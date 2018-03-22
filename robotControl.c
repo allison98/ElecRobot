@@ -34,6 +34,8 @@
 #define LCD_D4 P2_4
 #define LCD_D5 P2_3
 
+#define INPUT PX_X
+
 volatile unsigned char pwm_count = 0; // used in the timer 2 ISR
 volatile unsigned char pwm_count1 = 0; // this will be usec in the timer 3 ISR
 volatile unsigned char pwm_count2 = 0; // this will be used in the timer 4 ISR
@@ -251,13 +253,67 @@ void InitPinADC(unsigned char portno, unsigned char pinno)
 	SFRPAGE = 0x00;
 }
 
+// check the input
+// process the input 
+// output will be the different pwms
+// straight: both wheels move forward
+// turning: one wheel is on
 
+void PWMStraight(void) {
+}
+
+void PWMLeft(void) {
+}
+
+void PWMRight(void) {
+}
+
+void PWMback(void) {
+}
+
+float periodcalc(void) {
+		float period;
+		int overflow_count;
+		
+		TL0=0; 
+		TH0=0;
+		TF0=0;
+		overflow_count=0;
+		TR0=0;
+		
+		
+		//***SIGNAL PERIOD***//
+		while(INPUT!=0); // Wait for the signal to be zero
+		while(INPUT!=1); // Wait for the signal to be one
+		TR0=1; // Start the timer
+		while(INPUT!=0) // Wait for the signal to be zero
+		{
+			if(TF0==1) // Did the 16-bit timer overflow?
+			{
+				TF0=0;
+				overflow_count++;
+			}
+		}
+		while(INPUT!=1) // Wait for the signal to be one
+		{
+			if(TF0==1) // Did the 16-bit timer overflow?
+			{
+				TF0=0;
+				overflow_count++;
+			}
+		}
+		TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
+		period=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
+		// Send the period to the serial port
+		return period;
+}
 
 void main(void)
 {
 	char v[6];
 	int sig1 = 0;
 	int sig2 = 0;
+	float voltspeak;
 	unsigned float period = 0;
 	TIMER0_Init();
 
@@ -274,6 +330,11 @@ void main(void)
 	while (1)
 	{
 		// this was code used for lab 6 for the joystick function i included in my bonus
+
+
+		period = periodcalc();
+		
+		
 
 		// right motor
 		v[0] = Volts_at_Pin(QFP32_MUX_P2_1);
@@ -298,5 +359,13 @@ void main(void)
 			pwmSig3 = v[2] * 29;
 			pwmSig4 = v[3] * 29;
 		}
+		
+	// start of stuff for project 2, kinda psuedo code
+		
+		//acquire input data from adc. 	
+		
+		voltspeak = Volts_at_Pin(QFP32_MUX_PX_X); // which pin?
+		
+		
 	}
 }
