@@ -172,8 +172,8 @@ void Timer2_ISR(void) interrupt 5
 	motorR1 = pwm_count>pwmSig1 ? 0 : 1;
 	motorR2 = pwm_count>pwmSig2 ? 0 : 1;
 
-	motorL1 = pwm_count>pwmSig2 ? 0 : 1;
-	motorL2 = pwm_count>pwmSig1 ? 0 : 1;
+	motorL1 = pwm_count>pwmSig3 ? 0 : 1;
+	motorL2 = pwm_count>pwmSig4 ? 0 : 1;
 }
 
 // interrupt for the wheels
@@ -260,15 +260,35 @@ void InitPinADC(unsigned char portno, unsigned char pinno)
 // turning: one wheel is on
 
 void PWMStraight(void) {
+	pwmSig1 = 99;
+	pwmSig2 = 0;
+	
+	pwmSig3 = 0;
+	pwmSig4 =99;
 }
 
 void PWMLeft(void) {
+	pwmSig1 = 0;
+	pwmSig2 = 0;
+	
+	pwmSig3 = x;
+	pwmSig4 = x;
 }
 
 void PWMRight(void) {
+	pwmSig1 = __;
+	pwmSig2 = 0;
+	
+	pwmSig3 = x;
+	pwmSig4 = x;
 }
 
 void PWMback(void) {
+	pwmSig1 = __;
+	pwmSig2 = 0;
+	
+	pwmSig3 = x;
+	pwmSig4 = x;
 }
 
 float periodcalc(void) {
@@ -280,8 +300,7 @@ float periodcalc(void) {
 		TF0=0;
 		overflow_count=0;
 		TR0=0;
-		
-		
+				
 		//***SIGNAL PERIOD***//
 		while(INPUT!=0); // Wait for the signal to be zero
 		while(INPUT!=1); // Wait for the signal to be one
@@ -334,6 +353,12 @@ void main(void)
 
 		period = periodcalc();
 		
+		if (period = xx ) {
+			//start int1 to go straight
+		}
+		
+		if (period = xx) {
+		}
 		
 
 		// right motor
