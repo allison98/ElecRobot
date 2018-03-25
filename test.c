@@ -327,12 +327,7 @@ void main (void)
 	TH0=0;
 	TF0=0;
 	TIMER0_Init();
-	
-//	phase_diff_str[3]='\0';
-//	testRMS_str[3]='\0';
- 	// refRMS_str[3]='\0';
- 	
-	
+
 
     waitms(500); // Give PuTTy a chance to start before sending
 	printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
@@ -359,16 +354,14 @@ void main (void)
 		overflow_count=0;
 		TR0=0;
 		
-		peak=Volts_at_Pin(QFP32_MUX_P1_7);
-		printf("\t\t\tpeak of reference: =%f \n", peak);
+	//	peak=Volts_at_Pin(QFP32_MUX_P1_7);
+	//	printf("\t\t\tpeak of reference: =%f \n", peak);
 		
 			
-		while(Volts_at_Pin(QFP32_MUX_P1_7)>0); // Wait for the signal to be zero
-		
-		
-		while(Volts_at_Pin(QFP32_MUX_P1_7)<=0); // Wait for the signal to be one
-			TR0=1; // Start the timer
-		while(Volts_at_Pin(QFP32_MUX_P1_7)>0) // Wait for the signal to be zero
+		while(P1_7!=0); // Wait for the signal to be zero
+		while(P1_7!=1); // Wait for the signal to be one
+		TR0=1; // Start the timer
+		while(P1_7!=0) // Wait for the signal to be zero
 		{
 			if(TF0==1) // Did the 16-bit timer overflow?
 			{
@@ -376,7 +369,7 @@ void main (void)
 				overflow_count++;
 			}
 		}
-		while(Volts_at_Pin(QFP32_MUX_P1_7)<=0) // Wait for the signal to be one
+		while(P1_7!=1) // Wait for the signal to be one
 		{
 			if(TF0==1) // Did the 16-bit timer overflow?
 			{

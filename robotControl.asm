@@ -1,7 +1,7 @@
 ;--------------------------------------------------------
 ; File Created by C51
 ; Version 1.0.0 #1069 (Apr 23 2015) (MSVC)
-; This file was generated Sat Mar 24 16:01:14 2018
+; This file was generated Sun Mar 25 09:56:22 2018
 ;--------------------------------------------------------
 $name robotControl
 $optc51 --model-small
@@ -37,6 +37,8 @@ $printf_float
 	public _InitADC
 	public _Timer2_ISR
 	public _ADC_at_Pin
+	public _waitms
+	public _Timer3us
 	public __c51_external_startup
 	public _claw_flag
 	public _flag
@@ -528,11 +530,12 @@ _flag:
 	ds 2
 _claw_flag:
 	ds 2
-_main_v_1_72:
+_main_v_1_75:
 	ds 6
 ;--------------------------------------------------------
 ; overlayable items in internal ram 
 ;--------------------------------------------------------
+	rseg	R_OSEG
 	rseg	R_OSEG
 	rseg	R_OSEG
 _InitPinADC_PARM_2:
@@ -692,27 +695,127 @@ L002004?:
 	mov	dpl,#0x00
 	ret
 ;------------------------------------------------------------
+;Allocation info for local variables in function 'Timer3us'
+;------------------------------------------------------------
+;us                        Allocated to registers r2 r3 
+;i                         Allocated to registers r4 r5 
+;------------------------------------------------------------
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:152: void Timer3us(unsigned int us)
+;	-----------------------------------------
+;	 function Timer3us
+;	-----------------------------------------
+_Timer3us:
+	mov	r2,dpl
+	mov	r3,dph
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:157: CKCON0|=0b_0100_0000;
+	orl	_CKCON0,#0x40
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:159: TMR3RL = (-(SYSCLK)/1000000L); // Set Timer3 to overflow in 1us.
+	mov	_TMR3RL,#0xB8
+	mov	(_TMR3RL >> 8),#0xFF
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:160: TMR3 = TMR3RL;                 // Initialize Timer3 for first overflow
+	mov	_TMR3,_TMR3RL
+	mov	(_TMR3 >> 8),(_TMR3RL >> 8)
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:162: TMR3CN0 = 0x04;                 // Sart Timer3 and clear overflow flag
+	mov	_TMR3CN0,#0x04
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:163: for (i = 0; i < us; i++)       // Count <us> overflows
+	mov	r4,#0x00
+	mov	r5,#0x00
+L003004?:
+	clr	c
+	mov	a,r4
+	subb	a,r2
+	mov	a,r5
+	subb	a,r3
+	jnc	L003007?
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:165: while (!(TMR3CN0 & 0x80));  // Wait for overflow
+L003001?:
+	mov	a,_TMR3CN0
+	jnb	acc.7,L003001?
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:166: TMR3CN0 &= ~(0x80);         // Clear overflow indicator
+	anl	_TMR3CN0,#0x7F
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:163: for (i = 0; i < us; i++)       // Count <us> overflows
+	inc	r4
+	cjne	r4,#0x00,L003004?
+	inc	r5
+	sjmp	L003004?
+L003007?:
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:168: TMR3CN0 = 0 ;                   // Stop Timer3 and clear overflow flag
+	mov	_TMR3CN0,#0x00
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'waitms'
+;------------------------------------------------------------
+;ms                        Allocated to registers r2 r3 
+;j                         Allocated to registers r4 r5 
+;k                         Allocated to registers r6 
+;------------------------------------------------------------
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:170: void waitms (unsigned int ms)
+;	-----------------------------------------
+;	 function waitms
+;	-----------------------------------------
+_waitms:
+	mov	r2,dpl
+	mov	r3,dph
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:174: for(j=0; j<ms; j++)
+	mov	r4,#0x00
+	mov	r5,#0x00
+L004005?:
+	clr	c
+	mov	a,r4
+	subb	a,r2
+	mov	a,r5
+	subb	a,r3
+	jnc	L004009?
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:175: for (k=0; k<4; k++) Timer3us(250);
+	mov	r6,#0x00
+L004001?:
+	cjne	r6,#0x04,L004018?
+L004018?:
+	jnc	L004007?
+	mov	dptr,#0x00FA
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
+	push	ar6
+	lcall	_Timer3us
+	pop	ar6
+	pop	ar5
+	pop	ar4
+	pop	ar3
+	pop	ar2
+	inc	r6
+	sjmp	L004001?
+L004007?:
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:174: for(j=0; j<ms; j++)
+	inc	r4
+	cjne	r4,#0x00,L004005?
+	inc	r5
+	sjmp	L004005?
+L004009?:
+	ret
+;------------------------------------------------------------
 ;Allocation info for local variables in function 'ADC_at_Pin'
 ;------------------------------------------------------------
 ;pin                       Allocated to registers 
 ;------------------------------------------------------------
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:152: unsigned int ADC_at_Pin(unsigned char pin)
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:178: unsigned int ADC_at_Pin(unsigned char pin)
 ;	-----------------------------------------
 ;	 function ADC_at_Pin
 ;	-----------------------------------------
 _ADC_at_Pin:
 	mov	_ADC0MX,dpl
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:155: ADBUSY = 1;       // Dummy conversion first to select new pin
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:181: ADBUSY = 1;       // Dummy conversion first to select new pin
 	setb	_ADBUSY
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:156: while (ADBUSY); // Wait for dummy conversion to finish
-L003001?:
-	jb	_ADBUSY,L003001?
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:157: ADBUSY = 1;     // Convert voltage at the pin
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:182: while (ADBUSY); // Wait for dummy conversion to finish
+L005001?:
+	jb	_ADBUSY,L005001?
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:183: ADBUSY = 1;     // Convert voltage at the pin
 	setb	_ADBUSY
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:158: while (ADBUSY); // Wait for conversion to complete
-L003004?:
-	jb	_ADBUSY,L003004?
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:159: return (ADC0);
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:184: while (ADBUSY); // Wait for conversion to complete
+L005004?:
+	jb	_ADBUSY,L005004?
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:185: return (ADC0);
 	mov	dpl,_ADC0
 	mov	dph,(_ADC0 >> 8)
 	ret
@@ -720,7 +823,7 @@ L003004?:
 ;Allocation info for local variables in function 'Timer2_ISR'
 ;------------------------------------------------------------
 ;------------------------------------------------------------
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:163: void Timer2_ISR(void) interrupt 5
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:189: void Timer2_ISR(void) interrupt 5
 ;	-----------------------------------------
 ;	 function Timer2_ISR
 ;	-----------------------------------------
@@ -730,18 +833,18 @@ _Timer2_ISR:
 	push	ar3
 	push	psw
 	mov	psw,#0x00
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:165: TF2H = 0; // Clear Timer2 interrupt flag
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:191: TF2H = 0; // Clear Timer2 interrupt flag
 	clr	_TF2H
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:167: pwm_count++;
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:193: pwm_count++;
 	inc	_pwm_count
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:168: if (pwm_count>100)
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:194: if (pwm_count>100)
 	mov	a,_pwm_count
 	add	a,#0xff - 0x64
-	jnc	L004002?
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:169: pwm_count = 0;
+	jnc	L006002?
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:195: pwm_count = 0;
 	mov	_pwm_count,#0x00
-L004002?:
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:172: motorR1 = pwm_count>pwmSig1 ? 0 : 1;
+L006002?:
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:198: motorR1 = pwm_count>pwmSig1 ? 0 : 1;
 	mov	r2,_pwm_count
 	mov	r3,#0x00
 	clr	c
@@ -752,7 +855,7 @@ L004002?:
 	mov  _Timer2_ISR_sloc0_1_0,c
 	cpl	c
 	mov	_P2_2,c
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:173: motorR2 = pwm_count>pwmSig2 ? 0 : 1;
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:199: motorR2 = pwm_count>pwmSig2 ? 0 : 1;
 	mov	r2,_pwm_count
 	mov	r3,#0x00
 	clr	c
@@ -763,7 +866,7 @@ L004002?:
 	mov  _Timer2_ISR_sloc0_1_0,c
 	cpl	c
 	mov	_P2_1,c
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:175: motorL1 = pwm_count>pwmSig3 ? 0 : 1;
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:201: motorL1 = pwm_count>pwmSig3 ? 0 : 1;
 	mov	r2,_pwm_count
 	mov	r3,#0x00
 	clr	c
@@ -774,7 +877,7 @@ L004002?:
 	mov  _Timer2_ISR_sloc0_1_0,c
 	cpl	c
 	mov	_P2_3,c
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:176: motorL2 = pwm_count>pwmSig4 ? 0 : 1;
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:202: motorL2 = pwm_count>pwmSig4 ? 0 : 1;
 	mov	r2,_pwm_count
 	mov	r3,#0x00
 	clr	c
@@ -797,42 +900,42 @@ L004002?:
 ;Allocation info for local variables in function 'InitADC'
 ;------------------------------------------------------------
 ;------------------------------------------------------------
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:206: void InitADC(void)
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:232: void InitADC(void)
 ;	-----------------------------------------
 ;	 function InitADC
 ;	-----------------------------------------
 _InitADC:
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:208: SFRPAGE = 0x00;
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:234: SFRPAGE = 0x00;
 	mov	_SFRPAGE,#0x00
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:209: ADC0CN1 = 0b_10_000_000; //14-bit,  Right justified no shifting applied, perform and Accumulate 1 conversion.
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:235: ADC0CN1 = 0b_10_000_000; //14-bit,  Right justified no shifting applied, perform and Accumulate 1 conversion.
 	mov	_ADC0CN1,#0x80
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:210: ADC0CF0 = 0b_11111_0_00; // SYSCLK/32
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:236: ADC0CF0 = 0b_11111_0_00; // SYSCLK/32
 	mov	_ADC0CF0,#0xF8
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:211: ADC0CF1 = 0b_0_0_011110; // Same as default for now
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:237: ADC0CF1 = 0b_0_0_011110; // Same as default for now
 	mov	_ADC0CF1,#0x1E
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:212: ADC0CN0 = 0b_0_0_0_0_0_00_0; // Same as default for now
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:238: ADC0CN0 = 0b_0_0_0_0_0_00_0; // Same as default for now
 	mov	_ADC0CN0,#0x00
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:213: ADC0CF2 = 0b_0_01_11111; // GND pin, Vref=VDD
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:239: ADC0CF2 = 0b_0_01_11111; // GND pin, Vref=VDD
 	mov	_ADC0CF2,#0x3F
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:214: ADC0CN2 = 0b_0_000_0000;  // Same as default for now. ADC0 conversion initiated on write of 1 to ADBUSY.
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:240: ADC0CN2 = 0b_0_000_0000;  // Same as default for now. ADC0 conversion initiated on write of 1 to ADBUSY.
 	mov	_ADC0CN2,#0x00
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:215: ADEN = 1; // Enable ADC
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:241: ADEN = 1; // Enable ADC
 	setb	_ADEN
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'TIMER0_Init'
 ;------------------------------------------------------------
 ;------------------------------------------------------------
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:217: void TIMER0_Init(void)
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:243: void TIMER0_Init(void)
 ;	-----------------------------------------
 ;	 function TIMER0_Init
 ;	-----------------------------------------
 _TIMER0_Init:
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:219: TMOD &= 0b_1111_0000; // Set the bits of Timer/Counter 0 to zero
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:245: TMOD &= 0b_1111_0000; // Set the bits of Timer/Counter 0 to zero
 	anl	_TMOD,#0xF0
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:220: TMOD |= 0b_0000_0001; // Timer/Counter 0 used as a 16-bit timer
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:246: TMOD |= 0b_0000_0001; // Timer/Counter 0 used as a 16-bit timer
 	orl	_TMOD,#0x01
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:221: TR0 = 0; // Stop Timer/Counter 0
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:247: TR0 = 0; // Stop Timer/Counter 0
 	clr	_TR0
 	ret
 ;------------------------------------------------------------
@@ -840,12 +943,12 @@ _TIMER0_Init:
 ;------------------------------------------------------------
 ;pin                       Allocated to registers r2 
 ;------------------------------------------------------------
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:226: float Volts_at_Pin(unsigned char pin)
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:252: float Volts_at_Pin(unsigned char pin)
 ;	-----------------------------------------
 ;	 function Volts_at_Pin
 ;	-----------------------------------------
 _Volts_at_Pin:
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:228: return ((ADC_at_Pin(pin)*VDD) / 0b_0011_1111_1111_1111);
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:254: return ((ADC_at_Pin(pin)*VDD) / 0b_0011_1111_1111_1111);
 	lcall	_ADC_at_Pin
 	lcall	___uint2fs
 	mov	r2,dpl
@@ -899,93 +1002,93 @@ _Volts_at_Pin:
 ;portno                    Allocated to registers r2 
 ;mask                      Allocated to registers r3 
 ;------------------------------------------------------------
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:230: void InitPinADC(unsigned char portno, unsigned char pinno)
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:256: void InitPinADC(unsigned char portno, unsigned char pinno)
 ;	-----------------------------------------
 ;	 function InitPinADC
 ;	-----------------------------------------
 _InitPinADC:
 	mov	r2,dpl
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:234: mask = 1 << pinno;
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:260: mask = 1 << pinno;
 	mov	b,_InitPinADC_PARM_2
 	inc	b
 	mov	a,#0x01
-	sjmp	L008013?
-L008011?:
+	sjmp	L010013?
+L010011?:
 	add	a,acc
-L008013?:
-	djnz	b,L008011?
+L010013?:
+	djnz	b,L010011?
 	mov	r3,a
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:236: SFRPAGE = 0x20;
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:262: SFRPAGE = 0x20;
 	mov	_SFRPAGE,#0x20
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:237: switch (portno)
-	cjne	r2,#0x00,L008014?
-	sjmp	L008001?
-L008014?:
-	cjne	r2,#0x01,L008015?
-	sjmp	L008002?
-L008015?:
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:239: case 0:
-	cjne	r2,#0x02,L008005?
-	sjmp	L008003?
-L008001?:
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:240: P0MDIN &= (~mask); // Set pin as analog input
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:263: switch (portno)
+	cjne	r2,#0x00,L010014?
+	sjmp	L010001?
+L010014?:
+	cjne	r2,#0x01,L010015?
+	sjmp	L010002?
+L010015?:
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:265: case 0:
+	cjne	r2,#0x02,L010005?
+	sjmp	L010003?
+L010001?:
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:266: P0MDIN &= (~mask); // Set pin as analog input
 	mov	a,r3
 	cpl	a
 	mov	r2,a
 	anl	_P0MDIN,a
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:241: P0SKIP |= mask; // Skip Crossbar decoding for this pin
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:267: P0SKIP |= mask; // Skip Crossbar decoding for this pin
 	mov	a,r3
 	orl	_P0SKIP,a
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:242: break;
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:243: case 1:
-	sjmp	L008005?
-L008002?:
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:244: P1MDIN &= (~mask); // Set pin as analog input
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:268: break;
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:269: case 1:
+	sjmp	L010005?
+L010002?:
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:270: P1MDIN &= (~mask); // Set pin as analog input
 	mov	a,r3
 	cpl	a
 	mov	r2,a
 	anl	_P1MDIN,a
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:245: P1SKIP |= mask; // Skip Crossbar decoding for this pin
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:271: P1SKIP |= mask; // Skip Crossbar decoding for this pin
 	mov	a,r3
 	orl	_P1SKIP,a
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:246: break;
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:247: case 2:
-	sjmp	L008005?
-L008003?:
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:248: P2MDIN &= (~mask); // Set pin as analog input
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:272: break;
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:273: case 2:
+	sjmp	L010005?
+L010003?:
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:274: P2MDIN &= (~mask); // Set pin as analog input
 	mov	a,r3
 	cpl	a
 	mov	r2,a
 	anl	_P2MDIN,a
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:249: P2SKIP |= mask; // Skip Crossbar decoding for this pin
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:275: P2SKIP |= mask; // Skip Crossbar decoding for this pin
 	mov	a,r3
 	orl	_P2SKIP,a
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:253: }
-L008005?:
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:254: SFRPAGE = 0x00;
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:279: }
+L010005?:
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:280: SFRPAGE = 0x00;
 	mov	_SFRPAGE,#0x00
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'PWMStraight'
 ;------------------------------------------------------------
 ;------------------------------------------------------------
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:263: void PWMStraight(void) {
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:289: void PWMStraight(void) {
 ;	-----------------------------------------
 ;	 function PWMStraight
 ;	-----------------------------------------
 _PWMStraight:
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:264: pwmSig1 = 99;
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:290: pwmSig1 = 99;
 	mov	_pwmSig1,#0x63
 	clr	a
 	mov	(_pwmSig1 + 1),a
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:265: pwmSig2 = 0;
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:267: pwmSig3 = 0;
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:291: pwmSig2 = 0;
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:293: pwmSig3 = 0;
 	clr	a
 	mov	_pwmSig2,a
 	mov	(_pwmSig2 + 1),a
 	mov	_pwmSig3,a
 	mov	(_pwmSig3 + 1),a
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:268: pwmSig4 =99;
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:294: pwmSig4 =99;
 	mov	_pwmSig4,#0x63
 	clr	a
 	mov	(_pwmSig4 + 1),a
@@ -994,24 +1097,24 @@ _PWMStraight:
 ;Allocation info for local variables in function 'PWMback'
 ;------------------------------------------------------------
 ;------------------------------------------------------------
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:271: void PWMback(void) {
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:297: void PWMback(void) {
 ;	-----------------------------------------
 ;	 function PWMback
 ;	-----------------------------------------
 _PWMback:
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:272: pwmSig1 = 0;
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:298: pwmSig1 = 0;
 	clr	a
 	mov	_pwmSig1,a
 	mov	(_pwmSig1 + 1),a
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:273: pwmSig2 = 99;
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:299: pwmSig2 = 99;
 	mov	_pwmSig2,#0x63
 	clr	a
 	mov	(_pwmSig2 + 1),a
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:275: pwmSig3 = 99;
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:301: pwmSig3 = 99;
 	mov	_pwmSig3,#0x63
 	clr	a
 	mov	(_pwmSig3 + 1),a
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:276: pwmSig4 = 0;
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:302: pwmSig4 = 0;
 	clr	a
 	mov	_pwmSig4,a
 	mov	(_pwmSig4 + 1),a
@@ -1020,23 +1123,23 @@ _PWMback:
 ;Allocation info for local variables in function 'PWMLeft'
 ;------------------------------------------------------------
 ;------------------------------------------------------------
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:279: void PWMLeft(void) {
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:305: void PWMLeft(void) {
 ;	-----------------------------------------
 ;	 function PWMLeft
 ;	-----------------------------------------
 _PWMLeft:
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:280: pwmSig1 = 0;
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:281: pwmSig2 = 0;
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:306: pwmSig1 = 0;
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:307: pwmSig2 = 0;
 	clr	a
 	mov	_pwmSig1,a
 	mov	(_pwmSig1 + 1),a
 	mov	_pwmSig2,a
 	mov	(_pwmSig2 + 1),a
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:283: pwmSig3 = 99;
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:309: pwmSig3 = 99;
 	mov	_pwmSig3,#0x63
 	clr	a
 	mov	(_pwmSig3 + 1),a
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:284: pwmSig4 = 99;
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:310: pwmSig4 = 99;
 	mov	_pwmSig4,#0x63
 	clr	a
 	mov	(_pwmSig4 + 1),a
@@ -1045,18 +1148,18 @@ _PWMLeft:
 ;Allocation info for local variables in function 'PWMRight'
 ;------------------------------------------------------------
 ;------------------------------------------------------------
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:287: void PWMRight(void) {
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:313: void PWMRight(void) {
 ;	-----------------------------------------
 ;	 function PWMRight
 ;	-----------------------------------------
 _PWMRight:
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:288: pwmSig1 = 99;
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:314: pwmSig1 = 99;
 	mov	_pwmSig1,#0x63
 	clr	a
 	mov	(_pwmSig1 + 1),a
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:289: pwmSig2 = 0;
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:291: pwmSig3 = 0;
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:292: pwmSig4 = 0;
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:315: pwmSig2 = 0;
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:317: pwmSig3 = 0;
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:318: pwmSig4 = 0;
 	clr	a
 	mov	_pwmSig2,a
 	mov	(_pwmSig2 + 1),a
@@ -1068,63 +1171,49 @@ _PWMRight:
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'periodcalc'
 ;------------------------------------------------------------
-;period                    Allocated to registers r2 r3 r4 r5 
+;period1                   Allocated to registers r2 r3 r4 r5 
 ;overflow_count            Allocated to registers r2 r3 
 ;------------------------------------------------------------
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:297: float periodcalc(void) {
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:323: float periodcalc(void) {
 ;	-----------------------------------------
 ;	 function periodcalc
 ;	-----------------------------------------
 _periodcalc:
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:301: TL0=0; 
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:327: TL0=0; 
 	mov	_TL0,#0x00
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:302: TH0=0;
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:328: TH0=0;
 	mov	_TH0,#0x00
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:303: TF0=0;
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:329: TF0=0;
 	clr	_TF0
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:305: TR0=0;
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:331: TR0=0;
 	clr	_TR0
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:308: while(INPUT!=0); // Wait for the signal to be zero
-L013001?:
-	jb	_P2_0,L013001?
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:309: while(INPUT!=1); // Wait for the signal to be one
-L013004?:
-	jnb	_P2_0,L013004?
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:310: TR0=1; // Start the timer
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:335: while(P1_7!=0); // Wait for the signal to be zero
+L015001?:
+	jb	_P1_7,L015001?
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:336: while(P1_7!=1); // Wait for the signal to be one
+L015004?:
+	jnb	_P1_7,L015004?
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:337: TR0=1; // Start the timer
 	setb	_TR0
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:311: while(INPUT!=0) // Wait for the signal to be zero
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:339: while(P1_7!=0) // Wait for the signal to be zero
 	mov	r2,#0x00
 	mov	r3,#0x00
-L013009?:
-	jnb	_P2_0,L013026?
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:313: if(TF0==1) // Did the 16-bit timer overflow?
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:315: TF0=0;
-	jbc	_TF0,L013033?
-	sjmp	L013009?
-L013033?:
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:316: overflow_count++;
+L015009?:
+	jnb	_P1_7,L015011?
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:341: if(TF0==1) // Did the 16-bit timer overflow?
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:343: TF0=0;
+	jbc	_TF0,L015024?
+	sjmp	L015009?
+L015024?:
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:344: overflow_count++;
 	inc	r2
-	cjne	r2,#0x00,L013009?
+	cjne	r2,#0x00,L015009?
 	inc	r3
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:319: while(INPUT!=1) // Wait for the signal to be one
-	sjmp	L013009?
-L013026?:
-L013014?:
-	jb	_P2_0,L013016?
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:321: if(TF0==1) // Did the 16-bit timer overflow?
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:323: TF0=0;
-	jbc	_TF0,L013035?
-	sjmp	L013014?
-L013035?:
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:324: overflow_count++;
-	inc	r2
-	cjne	r2,#0x00,L013014?
-	inc	r3
-	sjmp	L013014?
-L013016?:
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:327: TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
+	sjmp	L015009?
+L015011?:
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:358: TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
 	clr	_TR0
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:328: period=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:359: period1=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
 	mov	dpl,r2
 	mov	dph,r3
 	lcall	___sint2fs
@@ -1240,7 +1329,22 @@ L013016?:
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:330: return period;
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:363: return period1*1000;
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
+	mov	dptr,#0x0000
+	mov	b,#0x7A
+	mov	a,#0x44
+	lcall	___fsmul
+	mov	r2,dpl
+	mov	r3,dph
+	mov	r4,b
+	mov	r5,a
+	mov	a,sp
+	add	a,#0xfc
+	mov	sp,a
 	mov	dpl,r2
 	mov	dph,r3
 	mov	b,r4
@@ -1249,33 +1353,33 @@ L013016?:
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'main'
 ;------------------------------------------------------------
-;v                         Allocated with name '_main_v_1_72'
+;v                         Allocated with name '_main_v_1_75'
 ;sig1                      Allocated to registers 
 ;sig2                      Allocated to registers 
-;peak                      Allocated to registers r2 r3 r4 r5 
-;voltspeak                 Allocated with name '_main_voltspeak_1_72'
-;periodpwm                 Allocated to registers 
-;period                    Allocated to registers r2 r3 r4 r5 
-;overflow_count            Allocated to registers r2 r3 
+;peak                      Allocated with name '_main_peak_1_75'
+;voltspeak                 Allocated with name '_main_voltspeak_1_75'
+;periodpwm                 Allocated to registers r2 r3 r4 r5 
+;period                    Allocated with name '_main_period_1_75'
+;overflow_count            Allocated with name '_main_overflow_count_1_75'
 ;------------------------------------------------------------
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:333: void main(void)
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:366: void main(void)
 ;	-----------------------------------------
 ;	 function main
 ;	-----------------------------------------
 _main:
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:344: TIMER0_Init();
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:377: TIMER0_Init();
 	lcall	_TIMER0_Init
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:346: InitPinADC(1, 7); // Configure P2.4 as analog input
-	mov	_InitPinADC_PARM_2,#0x07
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:379: InitPinADC(1, 6); // Configure P2.4 as analog input
+	mov	_InitPinADC_PARM_2,#0x06
 	mov	dpl,#0x01
 	lcall	_InitPinADC
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:347: InitPinADC(2, 1); // Configure P2.5 as analog input
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:380: InitPinADC(2, 1); // Configure P2.5 as analog input
 	mov	_InitPinADC_PARM_2,#0x01
 	mov	dpl,#0x02
 	lcall	_InitPinADC
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:349: InitADC();
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:382: InitADC();
 	lcall	_InitADC
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:350: printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:383: printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
 	mov	a,#__str_0
 	push	acc
 	mov	a,#(__str_0 >> 8)
@@ -1286,7 +1390,7 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:352: "Check pins P2.2 and P2.1 with the oscilloscope.\r\n");
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:385: "Check pins P2.2 and P2.1 with the oscilloscope.\r\n");
 	mov	a,#__str_1
 	push	acc
 	mov	a,#(__str_1 >> 8)
@@ -1297,7 +1401,7 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:354: printf("\n");
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:387: printf("\n");
 	mov	a,#__str_2
 	push	acc
 	mov	a,#(__str_2 >> 8)
@@ -1308,203 +1412,15 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:356: while (1)
-L014026?:
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:369: if(Volts_at_Pin(QFP32_MUX_P1_7)<=0) {
-	mov	dpl,#0x0D
-	lcall	_Volts_at_Pin
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:389: while (1)
+L016002?:
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:396: periodpwm = periodcalc(); // period for the pwm
+	lcall	_periodcalc
 	mov	r2,dpl
 	mov	r3,dph
 	mov	r4,b
 	mov	r5,a
-	clr	a
-	push	acc
-	push	acc
-	push	acc
-	push	acc
-	mov	dpl,r2
-	mov	dph,r3
-	mov	b,r4
-	mov	a,r5
-	lcall	___fsgt
-	mov	r2,dpl
-	mov	a,sp
-	add	a,#0xfc
-	mov	sp,a
-	mov	a,r2
-	jnz	L014002?
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:370: P2_0= 0; //output
-	clr	_P2_0
-	sjmp	L014003?
-L014002?:
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:373: P2_0 = 1; // output
-	setb	_P2_0
-L014003?:
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:376: TL0=0; 
-	mov	_TL0,#0x00
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:377: TH0=0;
-	mov	_TH0,#0x00
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:378: TF0=0;
-	clr	_TF0
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:380: TR0=0;
-	clr	_TR0
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:383: while(INPUT!=0); // Wait for the signal to be zero
-L014004?:
-	jb	_P2_0,L014004?
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:384: while(INPUT!=1); // Wait for the signal to be one
-L014007?:
-	jnb	_P2_0,L014007?
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:385: TR0=1; // Start the timer
-	setb	_TR0
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:386: while(INPUT!=0) // Wait for the signal to be zero
-	mov	r2,#0x00
-	mov	r3,#0x00
-L014012?:
-	jnb	_P2_0,L014038?
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:388: if(TF0==1) // Did the 16-bit timer overflow?
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:390: TF0=0;
-	jbc	_TF0,L014048?
-	sjmp	L014012?
-L014048?:
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:391: overflow_count++;
-	inc	r2
-	cjne	r2,#0x00,L014012?
-	inc	r3
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:394: while(INPUT!=1) // Wait for the signal to be one
-	sjmp	L014012?
-L014038?:
-L014017?:
-	jb	_P2_0,L014019?
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:396: if(TF0==1) // Did the 16-bit timer overflow?
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:398: TF0=0;
-	jbc	_TF0,L014050?
-	sjmp	L014017?
-L014050?:
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:399: overflow_count++;
-	inc	r2
-	cjne	r2,#0x00,L014017?
-	inc	r3
-	sjmp	L014017?
-L014019?:
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:402: TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
-	clr	_TR0
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:403: period=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
-	mov	dpl,r2
-	mov	dph,r3
-	lcall	___sint2fs
-	mov	r2,dpl
-	mov	r3,dph
-	mov	r4,b
-	mov	r5,a
-	push	ar2
-	push	ar3
-	push	ar4
-	push	ar5
-	mov	dptr,#0x0000
-	mov	b,#0x80
-	mov	a,#0x47
-	lcall	___fsmul
-	mov	r2,dpl
-	mov	r3,dph
-	mov	r4,b
-	mov	r5,a
-	mov	a,sp
-	add	a,#0xfc
-	mov	sp,a
-	mov	dpl,_TH0
-	push	ar2
-	push	ar3
-	push	ar4
-	push	ar5
-	lcall	___uchar2fs
-	mov	r6,dpl
-	mov	r7,dph
-	mov	r0,b
-	mov	r1,a
-	push	ar6
-	push	ar7
-	push	ar0
-	push	ar1
-	mov	dptr,#0x0000
-	mov	b,#0x80
-	mov	a,#0x43
-	lcall	___fsmul
-	mov	r6,dpl
-	mov	r7,dph
-	mov	r0,b
-	mov	r1,a
-	mov	a,sp
-	add	a,#0xfc
-	mov	sp,a
-	pop	ar5
-	pop	ar4
-	pop	ar3
-	pop	ar2
-	push	ar6
-	push	ar7
-	push	ar0
-	push	ar1
-	mov	dpl,r2
-	mov	dph,r3
-	mov	b,r4
-	mov	a,r5
-	lcall	___fsadd
-	mov	r2,dpl
-	mov	r3,dph
-	mov	r4,b
-	mov	r5,a
-	mov	a,sp
-	add	a,#0xfc
-	mov	sp,a
-	mov	r6,_TL0
-	mov	r7,#0x00
-	mov	dpl,r6
-	mov	dph,r7
-	push	ar2
-	push	ar3
-	push	ar4
-	push	ar5
-	lcall	___sint2fs
-	mov	r6,dpl
-	mov	r7,dph
-	mov	r0,b
-	mov	r1,a
-	pop	ar5
-	pop	ar4
-	pop	ar3
-	pop	ar2
-	push	ar6
-	push	ar7
-	push	ar0
-	push	ar1
-	mov	dpl,r2
-	mov	dph,r3
-	mov	b,r4
-	mov	a,r5
-	lcall	___fsadd
-	mov	r2,dpl
-	mov	r3,dph
-	mov	r4,b
-	mov	r5,a
-	mov	a,sp
-	add	a,#0xfc
-	mov	sp,a
-	push	ar2
-	push	ar3
-	push	ar4
-	push	ar5
-	mov	dptr,#0xF4FC
-	mov	b,#0x32
-	mov	a,#0x34
-	lcall	___fsmul
-	mov	r2,dpl
-	mov	r3,dph
-	mov	r4,b
-	mov	r5,a
-	mov	a,sp
-	add	a,#0xfc
-	mov	sp,a
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:404: printf("\t\t\tperiod: =%f \n", period);
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:398: printf("\t\t\tperiod: =%f s\n", periodpwm);
 	push	ar2
 	push	ar3
 	push	ar4
@@ -1519,29 +1435,10 @@ L014019?:
 	mov	a,sp
 	add	a,#0xf9
 	mov	sp,a
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:417: peak=Volts_at_Pin(QFP32_MUX_P1_7);
-	mov	dpl,#0x0D
-	lcall	_Volts_at_Pin
-	mov	r2,dpl
-	mov	r3,dph
-	mov	r4,b
-	mov	r5,a
-;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:418: printf("\t\t\tpeak of reference: =%f \n", peak);
-	push	ar2
-	push	ar3
-	push	ar4
-	push	ar5
-	mov	a,#__str_4
-	push	acc
-	mov	a,#(__str_4 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	mov	a,sp
-	add	a,#0xf9
-	mov	sp,a
-	ljmp	L014026?
+;	C:\Users\allisony\Documents\ElecRobot\robotControl.c:399: waitms(1000);
+	mov	dptr,#0x03E8
+	lcall	_waitms
+	sjmp	L016002?
 	rseg R_CSEG
 
 	rseg R_XINIT
@@ -1567,14 +1464,7 @@ __str_3:
 	db 0x09
 	db 0x09
 	db 0x09
-	db 'period: =%f '
-	db 0x0A
-	db 0x00
-__str_4:
-	db 0x09
-	db 0x09
-	db 0x09
-	db 'peak of reference: =%f '
+	db 'period: =%f s'
 	db 0x0A
 	db 0x00
 
