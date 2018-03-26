@@ -34,7 +34,7 @@
 #define LCD_D4 P2_4
 #define LCD_D5 P2_3
 
-#define INPUT PX_X
+#define INPUT P2_0
 
 volatile unsigned char pwm_count = 0; // used in the timer 2 ISR
 volatile unsigned char pwm_count1 = 0; // this will be usec in the timer 3 ISR
@@ -130,7 +130,7 @@ char _c51_external_startup(void)
 	ET2 = 1;         // Enable Timer2 interrupts
 	TR2 = 1;         // Start Timer2 (TMR2CN is bit addressable)
 					 // Initialize timer 4 for periodic interrupts
-	TMR4CN0 = 0x00;
+/*	TMR4CN0 = 0x00;
 	CKCON0 |= 0b_0001_0000;
 	TMR4RL = (0x10000L - (SYSCLK / 10000L));
 	TMR4 = 0xffff; // set to reload immediately
@@ -143,12 +143,38 @@ char _c51_external_startup(void)
 	TMR3 = 0xffff; // set to reload immediately
 	ET3 = 1; // enable timer 3 interrupts
 	TR3 = 1; // Start timer 3
-
+*/
 	EA = 1; // Enable interrupts
 
 
 	return 0;
 }
+void Timer3us(unsigned int us)
+{
+	unsigned int i;               // usec counter
+	
+	// The input for Timer 3 is selected as SYSCLK by setting T3ML (bit 6) of CKCON0:
+	CKCON0|=0b_0100_0000;
+	
+	TMR3RL = (-(SYSCLK)/1000000L); // Set Timer3 to overflow in 1us.
+	TMR3 = TMR3RL;                 // Initialize Timer3 for first overflow
+	
+	TMR3CN0 = 0x04;                 // Sart Timer3 and clear overflow flag
+	for (i = 0; i < us; i++)       // Count <us> overflows
+	{
+		while (!(TMR3CN0 & 0x80));  // Wait for overflow
+		TMR3CN0 &= ~(0x80);         // Clear overflow indicator
+	}
+	TMR3CN0 = 0 ;                   // Stop Timer3 and clear overflow flag
+}
+void waitms (unsigned int ms)
+{
+	unsigned int j;
+	unsigned char k;
+	for(j=0; j<ms; j++)
+		for (k=0; k<4; k++) Timer3us(250);
+}
+
 unsigned int ADC_at_Pin(unsigned char pin)
 {
 	ADC0MX = pin;   // Select input from pin
@@ -177,6 +203,7 @@ void Timer2_ISR(void) interrupt 5
 }
 
 // interrupt for the wheels
+/*
 void Timer3_ISR(void) interrupt 14
 {
 	TF3H = 0;
@@ -201,7 +228,7 @@ void Timer4_ISR(void) interrupt 17
 void Timer5_ISR(void) interrupt 18
 {
 	TF5H = 0;
-}
+}*/
 void InitADC(void)
 {
 	SFRPAGE = 0x00;
@@ -267,32 +294,34 @@ void PWMStraight(void) {
 	pwmSig4 =99;
 }
 
+void PWMback(void) {
+	pwmSig1 = 0;
+	pwmSig2 = 99;
+	
+	pwmSig3 = 99;
+	pwmSig4 = 0;
+}
+
 void PWMLeft(void) {
 	pwmSig1 = 0;
 	pwmSig2 = 0;
 	
-	pwmSig3 = x;
-	pwmSig4 = x;
+	pwmSig3 = 99;
+	pwmSig4 = 99;
 }
 
 void PWMRight(void) {
-	pwmSig1 = __;
+	pwmSig1 = 99;
 	pwmSig2 = 0;
 	
-	pwmSig3 = x;
-	pwmSig4 = x;
+	pwmSig3 = 0;
+	pwmSig4 = 0;
 }
 
-void PWMback(void) {
-	pwmSig1 = __;
-	pwmSig2 = 0;
-	
-	pwmSig3 = x;
-	pwmSig4 = x;
-}
+
 
 float periodcalc(void) {
-		float period;
+		float period1;
 		int overflow_count;
 		
 		TL0=0; 
@@ -300,31 +329,38 @@ float periodcalc(void) {
 		TF0=0;
 		overflow_count=0;
 		TR0=0;
-				
-		//***SIGNAL PERIOD***//
-		while(INPUT!=0); // Wait for the signal to be zero
-		while(INPUT!=1); // Wait for the signal to be one
+		
+		
+		//***TEST SIGNAL PERIOD***//
+		while(P1_7!=0); // Wait for the signal to be zero
+		while(P1_7!=1); // Wait for the signal to be one
 		TR0=1; // Start the timer
-		while(INPUT!=0) // Wait for the signal to be zero
+	//	printf( "hi/n");
+		while(P1_7!=0) // Wait for the signal to be zero
 		{
 			if(TF0==1) // Did the 16-bit timer overflow?
 			{
 				TF0=0;
 				overflow_count++;
 			}
+			
 		}
-		while(INPUT!=1) // Wait for the signal to be one
+		
+		
+		/*while(P1_7!=1) // Wait for the signal to be one
 		{
 			if(TF0==1) // Did the 16-bit timer overflow?
 			{
 				TF0=0;
 				overflow_count++;
 			}
-		}
+		}*/
 		TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
-		period=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
+		period1=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
 		// Send the period to the serial port
-		return period;
+	//	printf( "\rf=%f Hz ,     Period=%fms\n", 1/(period1), period1*1000.0);
+		
+		return period1*1000;
 }
 
 void main(void)
@@ -332,12 +368,16 @@ void main(void)
 	char v[6];
 	int sig1 = 0;
 	int sig2 = 0;
+	float  peak;
 	float voltspeak;
-	unsigned float period = 0;
+	float periodpwm = 0;
+	
+		float period;
+		int overflow_count;
 	TIMER0_Init();
 
-	InitPinADC(2, 4); // Configure P2.4 as analog input
-	InitPinADC(2, 5); // Configure P2.5 as analog input
+	InitPinADC(1, 6); // Configure P2.4 as analog input
+	InitPinADC(2, 1); // Configure P2.5 as analog input
 
 	InitADC();
 	printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
@@ -348,6 +388,43 @@ void main(void)
 
 	while (1)
 	{
+	
+
+				
+		//***SIGNAL PERIOD***//
+		
+		periodpwm = periodcalc(); // period for the pwm
+		// period will be the pulse mod length
+		printf("\t\t\tperiod: =%f s\n", periodpwm);
+		waitms(1000);
+		
+
+		/*
+		if(Volts_at_Pin(QFP32_MUX_P1_7)<=0) {
+			P2_0= 0; //output
+		}
+		else {
+			P2_0 = 1; // output
+		}
+
+	
+		
+		
+		if( period > 1/15000) {
+			PWMback;
+		}
+		
+		else if (period <= 1/15000) {
+			PWMStraight;
+		}
+		
+		
+		
+		peak=Volts_at_Pin(QFP32_MUX_P1_7);
+		printf("\t\t\tpeak of reference: =%f \n", peak);
+	*/		
+	
+	/*
 		// this was code used for lab 6 for the joystick function i included in my bonus
 
 
@@ -372,24 +449,24 @@ void main(void)
 		v[5] = Volts_at_Pin(QFP32_MUX_P2_6);
 
 
-		if (period == 0 /* placement holder period*/)
+		if (period == 0 )
 		{
 			pwmSig1 = v[0] * 29;
 			pwmSig2 = v[1] * 29;
 		}
 
 		//
-		if (period == 1.5 /*placement holder period*/)
+		if (period == 1.5 )
 		{
 			pwmSig3 = v[2] * 29;
 			pwmSig4 = v[3] * 29;
 		}
-		
+*/		
 	// start of stuff for project 2, kinda psuedo code
 		
 		//acquire input data from adc. 	
 		
-		voltspeak = Volts_at_Pin(QFP32_MUX_PX_X); // which pin?
+	//	voltspeak = Volts_at_Pin(QFP32_MUX_PX_X); // which pin?
 		
 		
 	}
