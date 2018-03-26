@@ -143,7 +143,7 @@ void PWMLeft(void) {
 	pwmSig1 = 0;
 	pwmSig2 = 0;
 	
-	pwmSig3 = 70;
+	pwmSig3 = 90;
 	pwmSig4 = 0;
 }
 

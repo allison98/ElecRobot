@@ -134,6 +134,56 @@ void PrintNumber(int N, int Base, int digits)
 	SerialTransmit(&buff[j+1]);
 }
 
+// Good information about ADC in PIC32 found here:
+// http://umassamherstm5.org/tech-tutorials/pic32-tutorials/pic32mx220-tutorials/adc
+void ADCConf(void)
+{
+    AD1CON1CLR = 0x8000;    // disable ADC before configuration
+    AD1CON1 = 0x00E0;       // internal counter ends sampling and starts conversion (auto-convert), manual sample
+    AD1CON2 = 0;            // AD1CON2<15:13> set voltage reference to pins AVSS/AVDD
+    AD1CON3 = 0x0f01;       // TAD = 4*TPB, acquisition time = 15*TAD 
+    AD1CON1SET=0x8000;      // Enable ADC
+}
+
+int ADCRead(char analogPIN)
+{
+    AD1CHS = analogPIN << 16;    // AD1CHS<16:19> controls which analog pin goes to the ADC
+ 
+    AD1CON1bits.SAMP = 1;        // Begin sampling
+    while(AD1CON1bits.SAMP);     // wait until acquisition is done
+    while(!AD1CON1bits.DONE);    // wait until conversion done
+ 
+    return ADC1BUF0;             // result stored in ADC1BUF0
+}
+
+void checkCommand(float voltagex, float voltagey){
+	//Forward
+	if((voltagey>=0 && voltagey<=0.5) && (voltagex>=1.4 && voltagex<=1.8 ))
+		PWMStraight();
+	//Back
+	else if((voltagey>=2.8 && voltagey<=3.3) && (voltagex>=1.4 && voltagex<=1.8 ))
+		PWMBack();
+		
+	//Left
+	else if(voltagex>=0 && voltagex<=0.5 && (voltagey>=1.4 && voltagey<=1.8 ))
+		PWMBack();
+	//Right
+	else if(voltagex>=2.8 && voltagex<=3.3 && (voltagey>=1.4 && voltagey<=1.8 ))
+		sendCommand(4);
+	//Stop
+	else;
+		sendCommand(0);
+}
+
+void readVolt() {
+		adcvalx = ADCRead(4);  // note that we call pin AN4 (RB2) by it's analog number 
+		    adcvaly = ADCRead(5);  // note that we call pin AN5 (RB3) by it's analog number
+	        //printf("adc value: %d", adcvalx);
+	        voltagex=adcvalx*3.3/1023.0;
+	        voltagey=adcvaly*3.3/1023.0;
+	        
+	 }
+
 void main (void)
 {
     char buf[128]; // declare receive buffer with max size 128
@@ -183,5 +233,49 @@ void main (void)
 	        }
         }
         SerialTransmit("\r\n");
+        
+        while(1){
+        
+      		readVolts();
+      		if((voltagey>=0 && voltagey<=0.5) && (voltagex>=1.4 && voltagex<=1.8 )) {
+	        	while(1) {
+		        	//square wave is normal
+		        	readVolts();
+		        	if((voltagey>=0 && voltagey<=0.5) && (voltagex>=1.4 && voltagex<=1.8 ))
+						//do nothing	
+					else
+						break;
+				}
+			}
+			
+			else if((voltagey>=2.8 && voltagey<=3.3) && (voltagex>=1.4 && voltagex<=1.8 )) {
+				while(1) {
+					readVolts();
+					if((voltagey>=2.8 && voltagey<=3.3) && (voltagex>=1.4 && voltagex<=1.8 )) {
+						//wait somehow but keep the square wave going
+						T1CONbits.ON = 0;
+						//wait to show logic 0
+						T1CONbits.ON = 1;
+					}
+					else {
+						break;
+					}
+			
+			else {
+				while(1)
+					T1CONbits.ON = 0;
+					if((voltagey==0 && voltagey==0))
+						T1CONbits.ON = 0; // keep square wave off while joystick is not moving
+					else {
+						T1CONbits.ON = 1; // exit while look and turn square wave back on
+						break;	
+					}
+			}			
+						
+			
+			//checkCommand(voltagex, voltagey);
+        };
+        
+        
 	}
 }
