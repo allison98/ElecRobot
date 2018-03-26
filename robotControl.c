@@ -15,15 +15,16 @@
 #define BAUDRATE 115200L
 
 // for the motor 1
-#define motorR1 P2_2
-#define motorR2 P2_1
+#define motorR1 P1_4
+#define motorR2 P1_3
 
 // for motor 2
-#define motorL1 P2_3
-#define motorL2 P2_4
+#define motorL1 P1_6
+#define motorL2 P1_5
+
 // for the claw system
-#define clawO P2_5
-#define clawC P2_6
+//#define clawO P2_5
+//#define clawC P2_6
 
 // the cart system for the crane
 #define motorF P3_0
@@ -31,8 +32,8 @@
 
 
 
-#define LCD_D4 P2_4
-#define LCD_D5 P2_3
+//#define LCD_D4 P2_4
+//#define LCD_D5 P2_3
 
 #define INPUT P2_0
 
@@ -129,8 +130,9 @@ char _c51_external_startup(void)
 	TMR2 = 0xffff;   // Set to reload immediately
 	ET2 = 1;         // Enable Timer2 interrupts
 	TR2 = 1;         // Start Timer2 (TMR2CN is bit addressable)
-					 // Initialize timer 4 for periodic interrupts
-/*	TMR4CN0 = 0x00;
+	
+/*					 // Initialize timer 4 for periodic interrupts
+	TMR4CN0 = 0x00;
 	CKCON0 |= 0b_0001_0000;
 	TMR4RL = (0x10000L - (SYSCLK / 10000L));
 	TMR4 = 0xffff; // set to reload immediately
@@ -197,9 +199,11 @@ void Timer2_ISR(void) interrupt 5
 	// this will move the robot forward and backwards if the joystick
 	motorR1 = pwm_count>pwmSig1 ? 0 : 1;
 	motorR2 = pwm_count>pwmSig2 ? 0 : 1;
+	
+	motorL1 = pwm_count>pwmSig1 ? 0 : 1;
+	motorL2 = pwm_count>pwmSig2 ? 0 : 1;
 
-	motorL1 = pwm_count>pwmSig3 ? 0 : 1;
-	motorL2 = pwm_count>pwmSig4 ? 0 : 1;
+	
 }
 
 // interrupt for the wheels
@@ -210,7 +214,7 @@ void Timer3_ISR(void) interrupt 14
 	pwm_count++;
 	if (pwm_count1>100)
 		pwm_count1 = 0;
-
+		
 
 }
 
@@ -306,8 +310,8 @@ void PWMLeft(void) {
 	pwmSig1 = 0;
 	pwmSig2 = 0;
 	
-	pwmSig3 = 99;
-	pwmSig4 = 99;
+	pwmSig3 = 70;
+	pwmSig4 = 0;
 }
 
 void PWMRight(void) {
@@ -330,12 +334,9 @@ float periodcalc(void) {
 		overflow_count=0;
 		TR0=0;
 		
-		
-		//***TEST SIGNAL PERIOD***//
 		while(P1_7!=0); // Wait for the signal to be zero
 		while(P1_7!=1); // Wait for the signal to be one
 		TR0=1; // Start the timer
-	//	printf( "hi/n");
 		while(P1_7!=0) // Wait for the signal to be zero
 		{
 			if(TF0==1) // Did the 16-bit timer overflow?
@@ -345,22 +346,19 @@ float periodcalc(void) {
 			}
 			
 		}
-		
-		
-		/*while(P1_7!=1) // Wait for the signal to be one
+		while(P1_7!=1) // Wait for the signal to be one
 		{
 			if(TF0==1) // Did the 16-bit timer overflow?
 			{
 				TF0=0;
 				overflow_count++;
 			}
-		}*/
+		}		
+		
 		TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
 		period1=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
-		// Send the period to the serial port
-	//	printf( "\rf=%f Hz ,     Period=%fms\n", 1/(period1), period1*1000.0);
 		
-		return period1*1000;
+		return period1*1000; //return period of high pulse in seconds
 }
 
 void main(void)
@@ -376,8 +374,8 @@ void main(void)
 		int overflow_count;
 	TIMER0_Init();
 
-	InitPinADC(1, 6); // Configure P2.4 as analog input
-	InitPinADC(2, 1); // Configure P2.5 as analog input
+	//InitPinADC(1, 6); // Configure P2.4 as analog input
+//	InitPinADC(2, 0); // Configure P2.5 as analog input
 
 	InitADC();
 	printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
@@ -385,44 +383,41 @@ void main(void)
 		"Check pins P2.2 and P2.1 with the oscilloscope.\r\n");
 
 	printf("\n");
-
+	P2_1=0;
 	while (1)
 	{
-	
-
-				
-		//***SIGNAL PERIOD***//
 		
 		periodpwm = periodcalc(); // period for the pwm
 		// period will be the pulse mod length
 		printf("\t\t\tperiod: =%f s\n", periodpwm);
+		printf("\t\t\tfreq: =%f s\n", 1/periodpwm);
 		waitms(1000);
-		
-
-		/*
-		if(Volts_at_Pin(QFP32_MUX_P1_7)<=0) {
-			P2_0= 0; //output
-		}
-		else {
-			P2_0 = 1; // output
-		}
-
 	
-		
-		
-		if( period > 1/15000) {
-			PWMback;
+		if( periodpwm >= 0.06 && periodpwm <=0.061) { //pwm is 80%
+			PWMback();
+			printf("\t\t\tmoving back\n");
+		//	P2_1 = !P2_1;
 		}
 		
-		else if (period <= 1/15000) {
-			PWMStraight;
+		else if (periodpwm >= 0.0465 && periodpwm <=0.0475) { //pwm is 70%
+			PWMStraight();
+			printf("\t\t\tmoving forward\n");
 		}
 		
+		else if (periodpwm >= 0.033 && periodpwm <=0.034) { //pwm 60%
+			PWMLeft();
+			printf("\t\t\tturn left\n");
+		}
 		
+		else if (periodpwm >= 0.022 && periodpwm <=0.0235) { //pwm 50%
+			PWMRight();
+			printf("\t\t\tturn right\n");
+		}
+			
 		
-		peak=Volts_at_Pin(QFP32_MUX_P1_7);
-		printf("\t\t\tpeak of reference: =%f \n", peak);
-	*/		
+		//peak=Volts_at_Pin(QFP32_MUX_P1_7);
+		//printf("\t\t\tpeak of reference: =%f \n", peak);
+		
 	
 	/*
 		// this was code used for lab 6 for the joystick function i included in my bonus
