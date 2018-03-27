@@ -33,6 +33,7 @@
 
 
 #define LowerBound 50/1000
+#define UpperBound 500/1000
 //#define LCD_D4 P2_4
 
 //#define LCD_D5 P2_3
@@ -66,7 +67,7 @@ int backward[]={1,0,0,0};
 int left[]={1,0,1,0};
 int right[]={1,1,0,1};
 
-int command[4];
+int command[4] = {0,0,0,0};
 
 char _c51_external_startup(void)
 {
@@ -332,7 +333,13 @@ void PWMRight(void) {
 	pwmSig4 = 0;
 }
 
-
+void PWMStop(void) {
+	pwmSig1 = 0;
+	pwmSig2 = 0;
+	
+	pwmSig3 = 0;
+	pwmSig4 = 0;
+}
 
 float periodcalc(void) {
 		float period1;
@@ -364,25 +371,25 @@ float periodcalc(void) {
 }
 
 //compare two arrays and returns true if same else returns false 
-bool arrayEqual (int arr1[int], int size, int arr2[int]){
+int arrayEqual (int arr1[], int size, int arr2[]){
   int i; 
   for(i=0; i<size; i++){
     if(arr1[i]!=arr2[i])
-      return false; 
+      return 0; 
   }
-  return true; 
+  return 1; 
 }
 
 //checks the signal sent from the transmitter and checks the predetermined commands
 //does different activities depending on the command sent
   
 void checkCommands (void){
- if(arrayEqual(command[], 4, stop[])) idle(); 
- else if (arrayEqual(command[],4,forward[])) PWMforward(); 
- else if (arrayEqual(command[],4,backward[])) PWMbackward(); 
- else if (arrayEqual(command[]),4, left[]) PWMfLeft(); 
- else if (arrayEqual(command[], 4, right[])) PWMRight(); 
- else idle(); //defaults to a halt 
+ if(arrayEqual(command, 4, stop)) PWMStop();
+ else if (arrayEqual(command,4,forward)) PWMforward(); 
+ else if (arrayEqual(command,4,backward)) PWMbackward(); 
+ else if (arrayEqual(command,4, left)) PWMLeft(); 
+ else if (arrayEqual(command,4, right)) PWMRight(); 
+ else PWMStop(); //defaults to a halt (redundant)
 }
 
 //
@@ -399,7 +406,7 @@ float voltsAtPeak(void) {
 int getDigitalSignal (void){
  	if (Volts_at_Pin(QFP32_MUX_P1_6)>=LowerBound && Volts_at_Pin(QFP32_MUX_P1_6)<=UpperBound )
  		return 1; 
- 	else if(Volts_at_Pin(QFP32_MUX_P1_6)>=0 && Volts_at_Pin(QFP32_MUX_P1_6)<=LowBound)
+ 	else if(Volts_at_Pin(QFP32_MUX_P1_6)>=0 && Volts_at_Pin(QFP32_MUX_P1_6)<=LowerBound)
  		return 0; 
  	else return 0; 
 }
@@ -407,7 +414,8 @@ int getDigitalSignal (void){
 //read the one bit data from getDigitalSignal and group together inside command array that we 
 //compare with the pre-defined left,right,forward and backward arrays using the checkCommands() function
 void recieveData (){
-	int checkcomm, i; 
+	int checkcomm= 0; 
+	int i; 
 
 
 	//******************   FROM ALLY  *********************//
@@ -439,22 +447,25 @@ void recieveData (){
   	}
   	
   	checkCommands();				//does activity depending on the command given 
-  	command[]={0,0,0,0};  			//clear the command array 
+  	command[0] = 0;
+  	command[1] = 0;
+  	command[2] = 0;
+  	command[3] = 0; 			//clear the command array 
   }
-  return; 
+
 }
 
 void main(void)
 {
-	int command[4], checkcommand;
+	int checkcommand = 0 ;
 	int sig1 = 0;
 	int sig2 = 0;
-	float  peak;
-	float voltspeak;
+	float  peak = 0;
+	float voltspeak=0;
 	float periodpwm = 0;
 	
-		float period;
-		int overflow_count;
+		float period = 0;
+		int overflow_count=0;
 	TIMER0_Init();
 
 //	InitPinADC(2, 0); // Configure P2.5 as analog input
