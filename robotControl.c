@@ -323,8 +323,16 @@ void PWMRight(void) {
 }
 
 
+void PWMStop(void) {
+	pwmSig1 = 0;
+	pwmSig2 = 0;
+	
+	pwmSig3 = 0;
+	pwmSig4 = 0;
+}
 
-float periodcalc(void) {
+
+float intervalcalc(void) {
 		float period1;
 		int overflow_count;
 		
@@ -363,59 +371,43 @@ float periodcalc(void) {
 
 void main(void)
 {
-	char v[6];
+//	char v[6];
 	int sig1 = 0;
 	int sig2 = 0;
 	float  peak;
-	float voltspeak;
+//	float voltspeak;
 	float periodpwm = 0;
-	
-		float period;
-		int overflow_count;
+	char command[4] = {0,0,0,0};
+//	float period;
+//	int overflow_count;
+	int i;
 	TIMER0_Init();
-
-	//InitPinADC(1, 6); // Configure P2.4 as analog input
-//	InitPinADC(2, 0); // Configure P2.5 as analog input
-
-	InitADC();
-	printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
-	printf("Square wave generator for the EFM8LB1.\r\n"
-		"Check pins P2.2 and P2.1 with the oscilloscope.\r\n");
-
-	printf("\n");
-	P2_1=0;
+	
+		
+	// start of the main program
 	while (1)
 	{
-		
-		periodpwm = periodcalc(); // period for the pwm
-		// period will be the pulse mod length
-		printf("\t\t\tperiod: =%f s\n", periodpwm);
-		printf("\t\t\tfreq: =%f s\n", 1/periodpwm);
-		waitms(1000);
+	// this for loop will fill the command array according to what signal we get from the transmitter circuit
+	for (i = 0; i<4;i++)
+	{
+	// we will be measuring the voltages of the peak detector
+	peak=Volts_at_Pin(QFP32_MUX_P1_7);
+	if (peak > 0.5)
+	{
+	command[i] = '1';
+	}
+	else 
+	command[i] = '0';
+	Timer3us(200);
+	}
+	// by the end of this for loop, we can execute our commands accordingly
 	
-		if( periodpwm >= 0.06 && periodpwm <=0.061) { //pwm is 80%
-			PWMback();
-			printf("\t\t\tmoving back\n");
-		//	P2_1 = !P2_1;
-		}
-		
-		else if (periodpwm >= 0.0465 && periodpwm <=0.0475) { //pwm is 70%
-			PWMStraight();
-			printf("\t\t\tmoving forward\n");
-		}
-		
-		else if (periodpwm >= 0.033 && periodpwm <=0.034) { //pwm 60%
-			PWMLeft();
-			printf("\t\t\tturn left\n");
-		}
-		
-		else if (periodpwm >= 0.022 && periodpwm <=0.0235) { //pwm 50%
-			PWMRight();
-			printf("\t\t\tturn right\n");
-		}
-			
-		
-		//peak=Volts_at_Pin(QFP32_MUX_P1_7);
+	// executes the stop command
+	if (command[0] == '1' && command[1] == '0' && command[2] == '0' && command[3] == '0')
+	{
+	PWMStop();
+	}
+
 		//printf("\t\t\tpeak of reference: =%f \n", peak);
 		
 	
