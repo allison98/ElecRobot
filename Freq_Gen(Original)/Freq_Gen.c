@@ -237,17 +237,18 @@ void main (void)
         while(1){
         
       		readVolts();
+      		//move forward
       		if((voltagey>=0 && voltagey<=0.5) && (voltagex>=1.4 && voltagex<=1.8 )) {
 	        	while(1) {
 		        	//square wave is normal
 		        	readVolts();
-		        	if((voltagey>=0 && voltagey<=0.5) && (voltagex>=1.4 && voltagex<=1.8 ))
+		        	if((voltagey>=0 && voltagey<=0.5) && (voltagex>=1.4 && voltagex<=1.8 ));
 						//do nothing	
 					else
 						break;
 				}
 			}
-			
+			//move back
 			else if((voltagey>=2.8 && voltagey<=3.3) && (voltagex>=1.4 && voltagex<=1.8 )) {
 				while(1) {
 					readVolts();
