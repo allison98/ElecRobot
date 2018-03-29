@@ -32,14 +32,14 @@
 #define motorB P3_1
 
 
-#define LowerBound 50/1000
-#define UpperBound 500/1000
+#define thresholdVolt 0.5 //50/1000
+
 //#define LCD_D4 P2_4
 
 //#define LCD_D5 P2_3
 
 #define INPUT P2_0
-#define constant_delay_time 5 //how long the delay for each signal is 
+#define constant_delay_time 10 //how long the delay for each signal is 
 
 volatile unsigned char pwm_count = 0; // used in the timer 2 ISR
 volatile unsigned char pwm_count1 = 0; // this will be usec in the timer 3 ISR
@@ -307,6 +307,7 @@ void PWMforward(void) {
 	
 	pwmSig3 = 0;
 	pwmSig4 =99;
+	printf("Forward\n\r");
 }
 
 void PWMbackward(void) {
@@ -315,6 +316,7 @@ void PWMbackward(void) {
 	
 	pwmSig3 = 99;
 	pwmSig4 = 0;
+	printf("Backward\n\r");
 }
 
 void PWMLeft(void) {
@@ -323,6 +325,7 @@ void PWMLeft(void) {
 	
 	pwmSig3 = 70;
 	pwmSig4 = 0;
+	printf("Left\n\r");
 }
 
 void PWMRight(void) {
@@ -331,6 +334,7 @@ void PWMRight(void) {
 	
 	pwmSig3 = 0;
 	pwmSig4 = 0;
+	printf("Right\n\r");
 }
 
 void PWMStop(void) {
@@ -339,6 +343,7 @@ void PWMStop(void) {
 	
 	pwmSig3 = 0;
 	pwmSig4 = 0;
+	printf("Stop\n\r");
 }
 
 float periodcalc(void) {
@@ -392,32 +397,70 @@ void checkCommands (void){
  else PWMStop(); //defaults to a halt (redundant)
 }
 
-//
+//***SOFTWARE APPROACH*****//
+
+//send the reciever signal back to the microcontroller ADC to get the voltage/ peak/amplitude 
 float voltsAtPeak(void) {
-	  while(ADC_at_Pin(QFP32_MUX_P1_6)!=0); //input pin
-		while(ADC_at_Pin(QFP32_MUX_P1_6)==0);
-		Timer3us((PERIOD*1.0E6)/4.0); //PERIOD IS DEFINED
-		return(Volts_at_Pin(QFP32_MUX_P1_6));
+//	while(ADC_at_Pin(QFP32_MUX_P1_6)==0); //input pin waiting to be  
+	while(ADC_at_Pin(QFP32_MUX_P1_6)==0); //this waiting for the pin to be high/ 1 
+	Timer3us((PERIOD*1.0E6)/4.0); //PERIOD IS DEFINED
+	return(Volts_at_Pin(QFP32_MUX_P1_6));
 //		printf("\t\t\tpeak of reference: =%f \n", peak);
 }
 
 
+//****HARDWARE APPROACH*****//
+
+//WITH THE HELP OF PEAK DETECTOR 
+//try to get the signal from zero cross: zero cross gives the period
+//get it from the peak detector
+
+
 //read the signal from the Inductor. The signal from the indcor is called Signal_Inductor
 int getDigitalSignal (void){
- 	if (Volts_at_Pin(QFP32_MUX_P1_6)>=LowerBound && Volts_at_Pin(QFP32_MUX_P1_6)<=UpperBound )
- 		return 1; 
- 	else if(Volts_at_Pin(QFP32_MUX_P1_6)>=0 && Volts_at_Pin(QFP32_MUX_P1_6)<=LowerBound)
+  
+ 	if (voltsAtPeak()>=thresholdVolt) //not too low to be a noise/ a valid signal for high, 1
+ 		{
+ 		printf("\nread 1:  at pin 1.6: %f\r", voltsAtPeak());
+ 		return 1;
+ 		} 
+ 	else{ //(voltsAtPeak()<LowerBound) //noise or too low to be recognozed as a high, 1 
+ 		printf("\nread 0: Volt at pin 1.6: %f\r", voltsAtPeak());
  		return 0; 
- 	else return 0; 
+ 		}
+ //	else return 0; 
 }
+
+
+
+//wait for a quarter period
+void waitquarterperiod(void){
+	waitms(constant_delay_time);
+}
+
 
 //read the one bit data from getDigitalSignal and group together inside command array that we 
 //compare with the pre-defined left,right,forward and backward arrays using the checkCommands() function
 void recieveData (){
 	int checkcomm= 0; 
 	int i; 
-
-
+  
+  while(getDigitalSignal()==0); 	//wait for the signal to be 1 
+  if (getDigitalSignal()==1){	//gets the first 1 that identifies a command 
+  	command[0]=1;
+  	for( i=1; i<4; i++){
+  		waitms(constant_delay_time);
+  		command[i]=getDigitalSignal();	
+  	}
+  	
+  	checkCommands();				//does activity depending on the command given 
+  //	command[0] = 0;
+  //	command[1] = 0;
+  //	command[2] = 0;
+  //	command[3] = 0; 			//clear the command array 
+  }
+  
+  
 	//******************   FROM ALLY  *********************//
   /*while(getDigitalSignal()==0){  //wait for the signal to be 1 
   	TR0=1; //start timer 0
@@ -437,27 +480,12 @@ void recieveData (){
 	 }  
   } // else return and do again
   */
-  
-  while (getDigitalSignal()==0); 	//wait for the signal to be 1 
-  if (getDigitalSignal()==1){	//gets the first 1 that identifies a command 
-  	command[0]=1;
-  	for( i=1; i<4; i++){
-  		waitms(constant_delay_time);
-  		command[i]=getDigitalSignal();	
-  	}
-  	
-  	checkCommands();				//does activity depending on the command given 
-  	command[0] = 0;
-  	command[1] = 0;
-  	command[2] = 0;
-  	command[3] = 0; 			//clear the command array 
-  }
 
 }
 
 void main(void)
 {
-	int checkcommand = 0 ;
+	int checkcommand= 0, i ;
 	int sig1 = 0;
 	int sig2 = 0;
 	float  peak = 0;
@@ -468,25 +496,37 @@ void main(void)
 		int overflow_count=0;
 	TIMER0_Init();
 
-//	InitPinADC(2, 0); // Configure P2.5 as analog input
+	InitPinADC(1, 6); // Configure P2.5 as analog input
 
 	InitADC();
 	printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
 	printf("Square wave generator for the EFM8LB1.\r\n"
 		"Check pins P2.2 and P2.1 with the oscilloscope.\r\n");
 
-	printf("\n");
+	printf("\n\r");
 	P2_1=0;
 	while (1)
 	{
     
     	recieveData();	//keep reading data continously 
+    	printf("Command: ");
+    	for(i=0; i<4; i++)
+    		 printf("%d\t", command[i]);
+    	printf("\n\r");
+    	command[0] = 0;
+  		command[1] = 0;
+  		command[2] = 0;
+  		command[3] = 0;
     
 		/*
 		periodpwm = periodcalc(); // period for the pwm
-		// period will be the pulse mod length
+		// period will be the pulse mod length;;;;;;;;;;;;;;;;;;;;;;;;;;;;;4
+		
+		
+		
 		printf("\t\t\tperiod: =%f s\n", periodpwm);
 		waitms(100);
+		
 	
     
 		if( array == arrayforward ) { //incoming is 1001
@@ -560,5 +600,5 @@ void main(void)
 	//	voltspeak = Volts_at_Pin(QFP32_MUX_PX_X); // which pin?
 		
 		
-	}
+	} 
 }
