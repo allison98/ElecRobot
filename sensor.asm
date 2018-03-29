@@ -1,11 +1,10 @@
 ;--------------------------------------------------------
 ; File Created by C51
 ; Version 1.0.0 #1069 (Apr 23 2015) (MSVC)
-; This file was generated Tue Mar 27 15:10:40 2018
+; This file was generated Thu Mar 29 13:01:53 2018
 ;--------------------------------------------------------
 $name sensor
 $optc51 --model-small
-$printf_float
 	R_DSEG    segment data
 	R_CSEG    segment code
 	R_BSEG    segment bit
@@ -27,8 +26,10 @@ $printf_float
 	public _main
 	public _waitms
 	public _Timer3us
+	public _Timer2_ISR
 	public _TIMER0_Init
 	public __c51_external_startup
+	public _pwm_count
 ;--------------------------------------------------------
 ; Special Function Registers
 ;--------------------------------------------------------
@@ -477,12 +478,8 @@ _TFRQ           BIT 0xdf
 ; internal ram data
 ;--------------------------------------------------------
 	rseg R_DSEG
-_main_distanceIn_1_51:
-	ds 4
-_main_overflow_count_1_51:
-	ds 2
-_main_period1_1_51:
-	ds 4
+_pwm_count:
+	ds 1
 ;--------------------------------------------------------
 ; overlayable items in internal ram 
 ;--------------------------------------------------------
@@ -499,6 +496,8 @@ _main_period1_1_51:
 ; bit data
 ;--------------------------------------------------------
 	rseg R_BSEG
+_Timer2_ISR_sloc0_1_0:
+	DBIT	1
 ;--------------------------------------------------------
 ; paged external ram data
 ;--------------------------------------------------------
@@ -523,6 +522,8 @@ _main_period1_1_51:
 ;--------------------------------------------------------
 	CSEG at 0x0000
 	ljmp	_crt0
+	CSEG at 0x002b
+	ljmp	_Timer2_ISR
 ;--------------------------------------------------------
 ; global & static initialisations
 ;--------------------------------------------------------
@@ -533,6 +534,8 @@ _main_period1_1_51:
 ; data variables initialization
 ;--------------------------------------------------------
 	rseg R_DINIT
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:17: volatile unsigned char pwm_count=0;
+	mov	_pwm_count,#0x00
 	; The linker places a 'ret' at the end of segment R_DINIT.
 ;--------------------------------------------------------
 ; code
@@ -542,131 +545,170 @@ _main_period1_1_51:
 ;Allocation info for local variables in function '_c51_external_startup'
 ;------------------------------------------------------------
 ;------------------------------------------------------------
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:19: char _c51_external_startup (void)
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:19: char _c51_external_startup (void)
 ;	-----------------------------------------
 ;	 function _c51_external_startup
 ;	-----------------------------------------
 __c51_external_startup:
 	using	0
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:22: SFRPAGE = 0x00;
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:22: SFRPAGE = 0x00;
 	mov	_SFRPAGE,#0x00
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:23: WDTCN = 0xDE; //First key
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:23: WDTCN = 0xDE; //First key
 	mov	_WDTCN,#0xDE
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:24: WDTCN = 0xAD; //Second key
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:24: WDTCN = 0xAD; //Second key
 	mov	_WDTCN,#0xAD
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:26: VDM0CN=0x80;       // enable VDD monitor
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:26: VDM0CN=0x80;       // enable VDD monitor
 	mov	_VDM0CN,#0x80
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:27: RSTSRC=0x02|0x04;  // Enable reset on missing clock detector and VDD
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:27: RSTSRC=0x02|0x04;  // Enable reset on missing clock detector and VDD
 	mov	_RSTSRC,#0x06
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:34: SFRPAGE = 0x10;
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:34: SFRPAGE = 0x10;
 	mov	_SFRPAGE,#0x10
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:35: PFE0CN  = 0x20; // SYSCLK < 75 MHz.
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:35: PFE0CN  = 0x20; // SYSCLK < 75 MHz.
 	mov	_PFE0CN,#0x20
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:36: SFRPAGE = 0x00;
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:36: SFRPAGE = 0x00;
 	mov	_SFRPAGE,#0x00
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:57: CLKSEL = 0x00;
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:57: CLKSEL = 0x00;
 	mov	_CLKSEL,#0x00
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:58: CLKSEL = 0x00;
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:58: CLKSEL = 0x00;
 	mov	_CLKSEL,#0x00
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:59: while ((CLKSEL & 0x80) == 0);
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:59: while ((CLKSEL & 0x80) == 0);
 L002001?:
 	mov	a,_CLKSEL
 	jnb	acc.7,L002001?
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:60: CLKSEL = 0x03;
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:60: CLKSEL = 0x03;
 	mov	_CLKSEL,#0x03
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:61: CLKSEL = 0x03;
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:61: CLKSEL = 0x03;
 	mov	_CLKSEL,#0x03
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:62: while ((CLKSEL & 0x80) == 0);
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:62: while ((CLKSEL & 0x80) == 0);
 L002004?:
 	mov	a,_CLKSEL
 	jnb	acc.7,L002004?
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:67: P0MDOUT |= 0x10; // Enable UART0 TX as push-pull output
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:67: P0MDOUT |= 0x10; // Enable UART0 TX as push-pull output
 	orl	_P0MDOUT,#0x10
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:68: XBR0     = 0x01; // Enable UART0 on P0.4(TX) and P0.5(RX)                     
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:68: XBR0     = 0x01; // Enable UART0 on P0.4(TX) and P0.5(RX)                     
 	mov	_XBR0,#0x01
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:69: XBR1     = 0X00;
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:69: XBR1     = 0X00;
 	mov	_XBR1,#0x00
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:70: XBR2     = 0x40; // Enable crossbar and weak pull-ups
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:70: XBR2     = 0x40; // Enable crossbar and weak pull-ups
 	mov	_XBR2,#0x40
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:76: SCON0 = 0x10;
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:76: SCON0 = 0x10;
 	mov	_SCON0,#0x10
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:77: TH1 = 0x100-((SYSCLK/BAUDRATE)/(2L*12L));
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:77: TH1 = 0x100-((SYSCLK/BAUDRATE)/(2L*12L));
 	mov	_TH1,#0xE6
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:78: TL1 = TH1;      // Init Timer1
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:78: TL1 = TH1;      // Init Timer1
 	mov	_TL1,_TH1
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:79: TMOD &= ~0xf0;  // TMOD: timer 1 in 8-bit auto-reload
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:79: TMOD &= ~0xf0;  // TMOD: timer 1 in 8-bit auto-reload
 	anl	_TMOD,#0x0F
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:80: TMOD |=  0x20;                       
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:80: TMOD |=  0x20;                       
 	orl	_TMOD,#0x20
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:81: TR1 = 1; // START Timer1
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:81: TR1 = 1; // START Timer1
 	setb	_TR1
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:82: TI = 1;  // Indicate TX0 ready
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:82: TI = 1;  // Indicate TX0 ready
 	setb	_TI
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:84: return 0;
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:84: return 0;
 	mov	dpl,#0x00
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'TIMER0_Init'
 ;------------------------------------------------------------
 ;------------------------------------------------------------
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:88: void TIMER0_Init(void)
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:88: void TIMER0_Init(void)
 ;	-----------------------------------------
 ;	 function TIMER0_Init
 ;	-----------------------------------------
 _TIMER0_Init:
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:90: TMOD&=0b_1111_0000; // Set the bits of Timer/Counter 0 to zero
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:90: TMOD&=0b_1111_0000; // Set the bits of Timer/Counter 0 to zero
 	anl	_TMOD,#0xF0
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:91: TMOD|=0b_0000_0001; // Timer/Counter 0 used as a 16-bit timer
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:91: TMOD|=0b_0000_0001; // Timer/Counter 0 used as a 16-bit timer
 	orl	_TMOD,#0x01
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:92: TR0=0; // Stop Timer/Counter 0
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:92: TR0=0; // Stop Timer/Counter 0
 	clr	_TR0
 	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'Timer2_ISR'
+;------------------------------------------------------------
+;------------------------------------------------------------
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:96: void Timer2_ISR (void) interrupt 5
+;	-----------------------------------------
+;	 function Timer2_ISR
+;	-----------------------------------------
+_Timer2_ISR:
+	push	acc
+	push	psw
+	mov	psw,#0x00
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:98: TF2H = 0; // Clear Timer2 interrupt flag
+	clr	_TF2H
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:100: pwm_count++;
+	inc	_pwm_count
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:101: if(pwm_count>100) pwm_count=0;
+	mov	a,_pwm_count
+	add	a,#0xff - 0x64
+	jnc	L004002?
+	mov	_pwm_count,#0x00
+L004002?:
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:103: TRIG_PIN=pwm_count>50?0:1;	
+	mov	a,_pwm_count
+	add	a,#0xff - 0x32
+	mov  _Timer2_ISR_sloc0_1_0,c
+	cpl	c
+	mov	_P2_1,c
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:104: ECHO_PIN=pwm_count>0?0:1;
+	mov	a,_pwm_count
+	cjne	a,#0x01,L004007?
+L004007?:
+	mov	_P2_0,c
+	pop	psw
+	pop	acc
+	reti
+;	eliminated unneeded push/pop dpl
+;	eliminated unneeded push/pop dph
+;	eliminated unneeded push/pop b
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'Timer3us'
 ;------------------------------------------------------------
 ;us                        Allocated to registers r2 r3 
 ;i                         Allocated to registers r4 r5 
 ;------------------------------------------------------------
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:96: void Timer3us(unsigned int us)
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:110: void Timer3us(unsigned int us)
 ;	-----------------------------------------
 ;	 function Timer3us
 ;	-----------------------------------------
 _Timer3us:
 	mov	r2,dpl
 	mov	r3,dph
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:101: CKCON0|=0b_0100_0000;
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:115: CKCON0|=0b_0100_0000;
 	orl	_CKCON0,#0x40
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:103: TMR3RL = (-(SYSCLK)/1000000L); // Set Timer3 to overflow in 1us.
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:117: TMR3RL = (-(SYSCLK)/1000000L); // Set Timer3 to overflow in 1us.
 	mov	_TMR3RL,#0xB8
 	mov	(_TMR3RL >> 8),#0xFF
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:104: TMR3 = TMR3RL;                 // Initialize Timer3 for first overflow
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:118: TMR3 = TMR3RL;                 // Initialize Timer3 for first overflow
 	mov	_TMR3,_TMR3RL
 	mov	(_TMR3 >> 8),(_TMR3RL >> 8)
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:106: TMR3CN0 = 0x04;                 // Sart Timer3 and clear overflow flag
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:120: TMR3CN0 = 0x04;                 // Sart Timer3 and clear overflow flag
 	mov	_TMR3CN0,#0x04
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:107: for (i = 0; i < us; i++)       // Count <us> overflows
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:121: for (i = 0; i < us; i++)       // Count <us> overflows
 	mov	r4,#0x00
 	mov	r5,#0x00
-L004004?:
+L005004?:
 	clr	c
 	mov	a,r4
 	subb	a,r2
 	mov	a,r5
 	subb	a,r3
-	jnc	L004007?
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:109: while (!(TMR3CN0 & 0x80));  // Wait for overflow
-L004001?:
+	jnc	L005007?
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:123: while (!(TMR3CN0 & 0x80));  // Wait for overflow
+L005001?:
 	mov	a,_TMR3CN0
-	jnb	acc.7,L004001?
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:110: TMR3CN0 &= ~(0x80);         // Clear overflow indicator
+	jnb	acc.7,L005001?
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:124: TMR3CN0 &= ~(0x80);         // Clear overflow indicator
 	anl	_TMR3CN0,#0x7F
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:107: for (i = 0; i < us; i++)       // Count <us> overflows
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:121: for (i = 0; i < us; i++)       // Count <us> overflows
 	inc	r4
-	cjne	r4,#0x00,L004004?
+	cjne	r4,#0x00,L005004?
 	inc	r5
-	sjmp	L004004?
-L004007?:
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:112: TMR3CN0 = 0 ;                   // Stop Timer3 and clear overflow flag
+	sjmp	L005004?
+L005007?:
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:126: TMR3CN0 = 0 ;                   // Stop Timer3 and clear overflow flag
 	mov	_TMR3CN0,#0x00
 	ret
 ;------------------------------------------------------------
@@ -676,29 +718,29 @@ L004007?:
 ;j                         Allocated to registers r4 r5 
 ;k                         Allocated to registers r6 
 ;------------------------------------------------------------
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:115: void waitms (unsigned int ms)
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:129: void waitms (unsigned int ms)
 ;	-----------------------------------------
 ;	 function waitms
 ;	-----------------------------------------
 _waitms:
 	mov	r2,dpl
 	mov	r3,dph
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:119: for(j=0; j<ms; j++)
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:133: for(j=0; j<ms; j++)
 	mov	r4,#0x00
 	mov	r5,#0x00
-L005005?:
+L006005?:
 	clr	c
 	mov	a,r4
 	subb	a,r2
 	mov	a,r5
 	subb	a,r3
-	jnc	L005009?
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:120: for (k=0; k<4; k++) Timer3us(250);
+	jnc	L006009?
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:134: for (k=0; k<4; k++) Timer3us(250);
 	mov	r6,#0x00
-L005001?:
-	cjne	r6,#0x04,L005018?
-L005018?:
-	jnc	L005007?
+L006001?:
+	cjne	r6,#0x04,L006018?
+L006018?:
+	jnc	L006007?
 	mov	dptr,#0x00FA
 	push	ar2
 	push	ar3
@@ -712,45 +754,41 @@ L005018?:
 	pop	ar3
 	pop	ar2
 	inc	r6
-	sjmp	L005001?
-L005007?:
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:119: for(j=0; j<ms; j++)
+	sjmp	L006001?
+L006007?:
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:133: for(j=0; j<ms; j++)
 	inc	r4
-	cjne	r4,#0x00,L005005?
+	cjne	r4,#0x00,L006005?
 	inc	r5
-	sjmp	L005005?
-L005009?:
+	sjmp	L006005?
+L006009?:
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'main'
 ;------------------------------------------------------------
-;duration                  Allocated to registers 
-;distanceCm                Allocated to registers r2 r3 r4 r5 
-;distanceIn                Allocated with name '_main_distanceIn_1_51'
-;overflow_count            Allocated with name '_main_overflow_count_1_51'
-;period1                   Allocated with name '_main_period1_1_51'
+;duration                  Allocated with name '_main_duration_1_53'
+;distanceCm                Allocated with name '_main_distanceCm_1_53'
+;distanceIn                Allocated with name '_main_distanceIn_1_53'
+;overflow_count            Allocated to registers 
+;period1                   Allocated with name '_main_period1_1_53'
 ;------------------------------------------------------------
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:122: void main()
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:136: void main()
 ;	-----------------------------------------
 ;	 function main
 ;	-----------------------------------------
 _main:
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:125: int overflow_count=0; 
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:128: TL0=0; 
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:129: TH0=0;
-	clr	a
-	mov	_main_overflow_count_1_51,a
-	mov	(_main_overflow_count_1_51 + 1),a
-	mov	_TL0,a
-	mov	_TH0,a
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:130: TF0=0;
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:142: TL0=0; 
+	mov	_TL0,#0x00
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:143: TH0=0;
+	mov	_TH0,#0x00
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:144: TF0=0;
 	clr	_TF0
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:131: TIMER0_Init();
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:145: TIMER0_Init();
 	lcall	_TIMER0_Init
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:133: waitms(500); // Give PuTTy a chance to start before sending
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:147: waitms(500); // Give PuTTy a chance to start before sending
 	mov	dptr,#0x01F4
 	lcall	_waitms
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:134: printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:148: printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
 	mov	a,#__str_0
 	push	acc
 	mov	a,#(__str_0 >> 8)
@@ -761,378 +799,9 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:137: while(1){
-L006010?:
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:139: TRIG_PIN=0;
-	clr	_P2_1
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:140: waitms(2);
-	mov	dptr,#0x0002
-	lcall	_waitms
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:142: TRIG_PIN=1;
-	setb	_P2_1
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:143: waitms(10);
-	mov	dptr,#0x000A
-	lcall	_waitms
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:147: while (ECHO_PIN==0){
-	mov	r4,_main_overflow_count_1_51
-	mov	r5,(_main_overflow_count_1_51 + 1)
-L006003?:
-	jb	_P2_0,L006019?
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:148: if(TF0==1) // Did the 16-bit timer overflow?
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:150: TF0=0;
-	jbc	_TF0,L006021?
-	sjmp	L006003?
-L006021?:
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:151: overflow_count++;
-	inc	r4
-	cjne	r4,#0x00,L006003?
-	inc	r5
-	sjmp	L006003?
-L006019?:
-	mov	_main_overflow_count_1_51,r4
-	mov	(_main_overflow_count_1_51 + 1),r5
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:154: printf("\r overflow_count:%d\n",overflow_count);
-	push	ar4
-	push	ar5
-	push	ar4
-	push	ar5
-	mov	a,#__str_1
-	push	acc
-	mov	a,#(__str_1 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	mov	a,sp
-	add	a,#0xfb
-	mov	sp,a
-	pop	ar5
-	pop	ar4
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:155: TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
-	clr	_TR0
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:156: period1=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
-	mov	dpl,r4
-	mov	dph,r5
-	lcall	___sint2fs
-	mov	r4,dpl
-	mov	r5,dph
-	mov	r6,b
-	mov	r7,a
-	push	ar4
-	push	ar5
-	push	ar6
-	push	ar7
-	mov	dptr,#0x0000
-	mov	b,#0x80
-	mov	a,#0x47
-	lcall	___fsmul
-	mov	r4,dpl
-	mov	r5,dph
-	mov	r6,b
-	mov	r7,a
-	mov	a,sp
-	add	a,#0xfc
-	mov	sp,a
-	mov	dpl,_TH0
-	push	ar4
-	push	ar5
-	push	ar6
-	push	ar7
-	lcall	___uchar2fs
-	mov	r0,dpl
-	mov	r1,dph
-	mov	r2,b
-	mov	r3,a
-	push	ar0
-	push	ar1
-	push	ar2
-	push	ar3
-	mov	dptr,#0x0000
-	mov	b,#0x80
-	mov	a,#0x43
-	lcall	___fsmul
-	mov	r2,dpl
-	mov	r3,dph
-	mov	r0,b
-	mov	r1,a
-	mov	a,sp
-	add	a,#0xfc
-	mov	sp,a
-	pop	ar7
-	pop	ar6
-	pop	ar5
-	pop	ar4
-	push	ar2
-	push	ar3
-	push	ar0
-	push	ar1
-	mov	dpl,r4
-	mov	dph,r5
-	mov	b,r6
-	mov	a,r7
-	lcall	___fsadd
-	mov	r2,dpl
-	mov	r3,dph
-	mov	r4,b
-	mov	r5,a
-	mov	a,sp
-	add	a,#0xfc
-	mov	sp,a
-	mov	r6,_TL0
-	mov	r7,#0x00
-	mov	dpl,r6
-	mov	dph,r7
-	push	ar2
-	push	ar3
-	push	ar4
-	push	ar5
-	lcall	___sint2fs
-	mov	r6,dpl
-	mov	r7,dph
-	mov	r0,b
-	mov	r1,a
-	pop	ar5
-	pop	ar4
-	pop	ar3
-	pop	ar2
-	push	ar6
-	push	ar7
-	push	ar0
-	push	ar1
-	mov	dpl,r2
-	mov	dph,r3
-	mov	b,r4
-	mov	a,r5
-	lcall	___fsadd
-	mov	r2,dpl
-	mov	r3,dph
-	mov	r4,b
-	mov	r5,a
-	mov	a,sp
-	add	a,#0xfc
-	mov	sp,a
-	push	ar2
-	push	ar3
-	push	ar4
-	push	ar5
-	mov	dptr,#0xF4FC
-	mov	b,#0x32
-	mov	a,#0x34
-	lcall	___fsmul
-	mov	_main_period1_1_51,dpl
-	mov	(_main_period1_1_51 + 1),dph
-	mov	(_main_period1_1_51 + 2),b
-	mov	(_main_period1_1_51 + 3),a
-	mov	a,sp
-	add	a,#0xfc
-	mov	sp,a
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:158: printf( "\rf=%f Hz ,     Period=%fms\n", 1/(period1), period1*1000.0);
-	push	_main_period1_1_51
-	push	(_main_period1_1_51 + 1)
-	push	(_main_period1_1_51 + 2)
-	push	(_main_period1_1_51 + 3)
-	mov	dptr,#0x0000
-	mov	b,#0x7A
-	mov	a,#0x44
-	lcall	___fsmul
-	mov	r6,dpl
-	mov	r7,dph
-	mov	r0,b
-	mov	r1,a
-	mov	a,sp
-	add	a,#0xfc
-	mov	sp,a
-	push	ar6
-	push	ar7
-	push	ar0
-	push	ar1
-	push	_main_period1_1_51
-	push	(_main_period1_1_51 + 1)
-	push	(_main_period1_1_51 + 2)
-	push	(_main_period1_1_51 + 3)
-	mov	dptr,#0x0000
-	mov	b,#0x80
-	mov	a,#0x3F
-	lcall	___fsdiv
-	mov	r2,dpl
-	mov	r3,dph
-	mov	r4,b
-	mov	r5,a
-	mov	a,sp
-	add	a,#0xfc
-	mov	sp,a
-	push	ar2
-	push	ar3
-	push	ar4
-	push	ar5
-	mov	a,#__str_2
-	push	acc
-	mov	a,#(__str_2 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	mov	a,sp
-	add	a,#0xf5
-	mov	sp,a
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:163: distanceCm=duration / 29.1 / 2 ;
-	mov	a,#0xCD
-	push	acc
-	mov	a,#0xCC
-	push	acc
-	mov	a,#0xE8
-	push	acc
-	mov	a,#0x41
-	push	acc
-	mov	dpl,_main_period1_1_51
-	mov	dph,(_main_period1_1_51 + 1)
-	mov	b,(_main_period1_1_51 + 2)
-	mov	a,(_main_period1_1_51 + 3)
-	lcall	___fsdiv
-	mov	r2,dpl
-	mov	r3,dph
-	mov	r4,b
-	mov	r5,a
-	mov	a,sp
-	add	a,#0xfc
-	mov	sp,a
-	clr	a
-	push	acc
-	push	acc
-	push	acc
-	mov	a,#0x40
-	push	acc
-	mov	dpl,r2
-	mov	dph,r3
-	mov	b,r4
-	mov	a,r5
-	lcall	___fsdiv
-	mov	r2,dpl
-	mov	r3,dph
-	mov	r4,b
-	mov	r5,a
-	mov	a,sp
-	add	a,#0xfc
-	mov	sp,a
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:164: distanceIn=duration / 74 / 2;
-	push	ar2
-	push	ar3
-	push	ar4
-	push	ar5
-	clr	a
-	push	acc
-	push	acc
-	mov	a,#0x94
-	push	acc
-	mov	a,#0x42
-	push	acc
-	mov	dpl,_main_period1_1_51
-	mov	dph,(_main_period1_1_51 + 1)
-	mov	b,(_main_period1_1_51 + 2)
-	mov	a,(_main_period1_1_51 + 3)
-	lcall	___fsdiv
-	mov	r6,dpl
-	mov	r7,dph
-	mov	r0,b
-	mov	r1,a
-	mov	a,sp
-	add	a,#0xfc
-	mov	sp,a
-	clr	a
-	push	acc
-	push	acc
-	push	acc
-	mov	a,#0x40
-	push	acc
-	mov	dpl,r6
-	mov	dph,r7
-	mov	b,r0
-	mov	a,r1
-	lcall	___fsdiv
-	mov	_main_distanceIn_1_51,dpl
-	mov	(_main_distanceIn_1_51 + 1),dph
-	mov	(_main_distanceIn_1_51 + 2),b
-	mov	(_main_distanceIn_1_51 + 3),a
-	mov	a,sp
-	add	a,#0xfc
-	mov	sp,a
-	pop	ar5
-	pop	ar4
-	pop	ar3
-	pop	ar2
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:166: if (distanceCm <= 0){
-	push	ar2
-	push	ar3
-	push	ar4
-	push	ar5
-	clr	a
-	push	acc
-	push	acc
-	push	acc
-	push	acc
-	mov	dpl,r2
-	mov	dph,r3
-	mov	b,r4
-	mov	a,r5
-	lcall	___fsgt
-	mov	r6,dpl
-	mov	a,sp
-	add	a,#0xfc
-	mov	sp,a
-	pop	ar5
-	pop	ar4
-	pop	ar3
-	pop	ar2
-	mov	a,r6
-	jnz	L006007?
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:167: printf("out of range");
-	mov	a,#__str_3
-	push	acc
-	mov	a,#(__str_3 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	dec	sp
-	dec	sp
-	dec	sp
-	sjmp	L006008?
-L006007?:
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:171: printf("distance in Inches: %f", distanceIn);
-	push	ar2
-	push	ar3
-	push	ar4
-	push	ar5
-	push	_main_distanceIn_1_51
-	push	(_main_distanceIn_1_51 + 1)
-	push	(_main_distanceIn_1_51 + 2)
-	push	(_main_distanceIn_1_51 + 3)
-	mov	a,#__str_4
-	push	acc
-	mov	a,#(__str_4 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	mov	a,sp
-	add	a,#0xf9
-	mov	sp,a
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:172: printf("distance in cm: %f", distanceCm);
-	mov	a,#__str_5
-	push	acc
-	mov	a,#(__str_5 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	mov	a,sp
-	add	a,#0xf9
-	mov	sp,a
-L006008?:
-;	C:\Users\allisony\Documents\ElecRobot\sensor.c:180: waitms(1000);
-	mov	dptr,#0x03E8
-	lcall	_waitms
-	ljmp	L006010?
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:151: while(1){
+L007002?:
+	sjmp	L007002?
 	rseg R_CSEG
 
 	rseg R_XINIT
@@ -1141,25 +810,6 @@ L006008?:
 __str_0:
 	db 0x1B
 	db '[2J'
-	db 0x00
-__str_1:
-	db 0x0D
-	db ' overflow_count:%d'
-	db 0x0A
-	db 0x00
-__str_2:
-	db 0x0D
-	db 'f=%f Hz ,     Period=%fms'
-	db 0x0A
-	db 0x00
-__str_3:
-	db 'out of range'
-	db 0x00
-__str_4:
-	db 'distance in Inches: %f'
-	db 0x00
-__str_5:
-	db 'distance in cm: %f'
 	db 0x00
 
 	CSEG

@@ -1,3 +1,7 @@
+//  square.c: Uses timer 2 interrupt to generate a square wave in pin
+//  P2.0 and a 75% duty cycle wave in pin P2.1
+//  Copyright (c) 2010-2018 Jesus Calvino-Fraga
+//  ~C51~
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -8,13 +12,10 @@
 #define SYSCLK 72000000L
 #define BAUDRATE 115200L
 
-#define TRIG_PIN P2_1
-#define ECHO_PIN P2_0
+#define OUT0 P2_0
+#define OUT1 P2_1
 
-
-//const int TRIG_PIN 12;
-//const int ECHO_PIN 13;
-
+volatile unsigned char pwm_count=0;
 
 char _c51_external_startup (void)
 {
@@ -80,6 +81,17 @@ char _c51_external_startup (void)
 	TMOD |=  0x20;                       
 	TR1 = 1; // START Timer1
 	TI = 1;  // Indicate TX0 ready
+
+	// Initialize timer 2 for periodic interrupts
+	TMR2CN0=0x00;   // Stop Timer2; Clear TF2;
+	CKCON0|=0b_0001_0000; // Timer 2 uses the system clock
+	TMR2RL=(0x10000L-(SYSCLK/10000L)); // Initialize reload value
+	TMR2=0xffff;   // Set to reload immediately
+	ET2=1;         // Enable Timer2 interrupts
+	TR2=1;         // Start Timer2 (TMR2CN is bit addressable)
+
+	EA=1; // Enable interrupts
+
   	
 	return 0;
 }
@@ -91,7 +103,6 @@ void TIMER0_Init(void)
 	TMOD|=0b_0000_0001; // Timer/Counter 0 used as a 16-bit timer
 	TR0=0; // Stop Timer/Counter 0
 }
-
 // Uses Timer3 to delay <us> micro-seconds. 
 void Timer3us(unsigned int us)
 {
@@ -112,6 +123,18 @@ void Timer3us(unsigned int us)
 	TMR3CN0 = 0 ;                   // Stop Timer3 and clear overflow flag
 }
 
+
+void Timer2_ISR (void) interrupt 5
+{
+	TF2H = 0; // Clear Timer2 interrupt flag
+	
+	pwm_count++;
+	if(pwm_count>100) pwm_count=0;
+	
+	OUT0=pwm_count>80?0:1;
+}
+
+
 void waitms (unsigned int ms)
 {
 	unsigned int j;
@@ -119,11 +142,12 @@ void waitms (unsigned int ms)
 	for(j=0; j<ms; j++)
 		for (k=0; k<4; k++) Timer3us(250);
 }
-void main()
+
+void main (void)
 {
- float duration, distanceCm, distanceIn;
- int overflow_count=0; 
-	float period1;
+
+ 	int overflow_count=0; 
+	float period;
  
  	TL0=0; 
 	TH0=0;
@@ -133,51 +157,33 @@ void main()
 	waitms(500); // Give PuTTy a chance to start before sending
 	printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
 	
+	while(1)
+	{
 	
- while(1){
- // Give a short LOW pulse beforehand to ensure a clean HIGH pulse:
-TRIG_PIN=0;
- waitms(2);
- //delayMicroseconds(2);
-TRIG_PIN=1;
-  waitms(10);
- //delayMicroseconds(10);
-//TRIG_PIN=0;
-
-while (ECHO_PIN==0){
-	if(TF0==1) // Did the 16-bit timer overflow?
+		while(P2_1!=0); // Wait for the signal to be zero
+		while(P2_1!=1); // Wait for the signal to be one
+		TR0=1; // Start the timer
+		while(P2_1!=0) // Wait for the signal to be zero
+		{
+			if(TF0==1) // Did the 16-bit timer overflow?
 			{
 				TF0=0;
 				overflow_count++;
 			}
 		}
-		printf("\r overflow_count:%d\n",overflow_count);
-	TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
-		period1=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
+		/*while(P2_1!=1) // Wait for the signal to be one
+		{
+			if(TF0==1) // Did the 16-bit timer overflow?
+			{
+				TF0=0;
+				overflow_count++;
+			}
+		}*/
+		TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
+		period=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
 		// Send the period to the serial port
-		printf( "\rf=%f Hz ,     Period=%fms\n", 1/(period1), period1*1000.0);
-
- duration=period1;
- //pulseIn(ECHO_PIN,HIGH);
- // convert the time into a distance
- distanceCm=duration / 29.1 / 2 ;
- distanceIn=duration / 74 / 2;
- 
- if (distanceCm <= 0){
- printf("out of range");
- //Serial.println("Out of range");
- }
- else {
- printf("distance in Inches: %f", distanceIn);
- printf("distance in cm: %f", distanceCm);
- 
- //Serial.print(distanceIn);
- //Serial.print("in, ");
- //Serial.print(distanceCm);
- //Serial.print("cm");
- //Serial.println();
- }
- waitms(1000);
- }
- }
- 
+		printf( "\rT=%f \n ms    ", period*1000.0);
+		
+		waitms(10);
+	}
+}

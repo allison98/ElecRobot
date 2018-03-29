@@ -1,1188 +1,817 @@
 0000              1   ;--------------------------------------------------------
 0000              2   ; File Created by C51
 0000              3   ; Version 1.0.0 #1069 (Apr 23 2015) (MSVC)
-0000              4   ; This file was generated Tue Mar 27 15:10:40 2018
+0000              4   ; This file was generated Thu Mar 29 13:01:53 2018
 0000              5   ;--------------------------------------------------------
                   5   $name sensor
                   6   $optc51 --model-small
-                  7   $printf_float
-0000              9            R_DSEG    segment data
-0000             10            R_CSEG    segment code
-0000             11            R_BSEG    segment bit
-0000             12            R_XSEG    segment xdata
-0000             13            R_PSEG    segment xdata
-0000             14            R_ISEG    segment idata
-0000             15            R_OSEG    segment data overlay
-0000             16            BIT_BANK  segment data overlay
-0000             17            R_HOME    segment code
-0000             18            R_GSINIT  segment code
-0000             19            R_IXSEG   segment xdata
-0000             20            R_CONST   segment code
-0000             21            R_XINIT   segment code
-0000             22            R_DINIT   segment code
-0000             23   
-0000             24   ;--------------------------------------------------------
-0000             25   ; Public variables in this module
-0000             26   ;--------------------------------------------------------
-0000             27            public _main
-0000             28            public _waitms
-0000             29            public _Timer3us
+0000              8            R_DSEG    segment data
+0000              9            R_CSEG    segment code
+0000             10            R_BSEG    segment bit
+0000             11            R_XSEG    segment xdata
+0000             12            R_PSEG    segment xdata
+0000             13            R_ISEG    segment idata
+0000             14            R_OSEG    segment data overlay
+0000             15            BIT_BANK  segment data overlay
+0000             16            R_HOME    segment code
+0000             17            R_GSINIT  segment code
+0000             18            R_IXSEG   segment xdata
+0000             19            R_CONST   segment code
+0000             20            R_XINIT   segment code
+0000             21            R_DINIT   segment code
+0000             22   
+0000             23   ;--------------------------------------------------------
+0000             24   ; Public variables in this module
+0000             25   ;--------------------------------------------------------
+0000             26            public _main
+0000             27            public _waitms
+0000             28            public _Timer3us
+0000             29            public _Timer2_ISR
 0000             30            public _TIMER0_Init
 0000             31            public __c51_external_startup
-0000             32   ;--------------------------------------------------------
-0000             33   ; Special Function Registers
-0000             34   ;--------------------------------------------------------
-0000             35   _ACC            DATA 0xe0
-0000             36   _ADC0ASAH       DATA 0xb6
-0000             37   _ADC0ASAL       DATA 0xb5
-0000             38   _ADC0ASCF       DATA 0xa1
-0000             39   _ADC0ASCT       DATA 0xc7
-0000             40   _ADC0CF0        DATA 0xbc
-0000             41   _ADC0CF1        DATA 0xb9
-0000             42   _ADC0CF2        DATA 0xdf
-0000             43   _ADC0CN0        DATA 0xe8
-0000             44   _ADC0CN1        DATA 0xb2
-0000             45   _ADC0CN2        DATA 0xb3
-0000             46   _ADC0GTH        DATA 0xc4
-0000             47   _ADC0GTL        DATA 0xc3
-0000             48   _ADC0H          DATA 0xbe
-0000             49   _ADC0L          DATA 0xbd
-0000             50   _ADC0LTH        DATA 0xc6
-0000             51   _ADC0LTL        DATA 0xc5
-0000             52   _ADC0MX         DATA 0xbb
-0000             53   _B              DATA 0xf0
-0000             54   _CKCON0         DATA 0x8e
-0000             55   _CKCON1         DATA 0xa6
-0000             56   _CLEN0          DATA 0xc6
-0000             57   _CLIE0          DATA 0xc7
-0000             58   _CLIF0          DATA 0xe8
-0000             59   _CLKSEL         DATA 0xa9
-0000             60   _CLOUT0         DATA 0xd1
-0000             61   _CLU0CF         DATA 0xb1
-0000             62   _CLU0FN         DATA 0xaf
-0000             63   _CLU0MX         DATA 0x84
-0000             64   _CLU1CF         DATA 0xb3
-0000             65   _CLU1FN         DATA 0xb2
-0000             66   _CLU1MX         DATA 0x85
-0000             67   _CLU2CF         DATA 0xb6
-0000             68   _CLU2FN         DATA 0xb5
-0000             69   _CLU2MX         DATA 0x91
-0000             70   _CLU3CF         DATA 0xbf
-0000             71   _CLU3FN         DATA 0xbe
-0000             72   _CLU3MX         DATA 0xae
-0000             73   _CMP0CN0        DATA 0x9b
-0000             74   _CMP0CN1        DATA 0x99
-0000             75   _CMP0MD         DATA 0x9d
-0000             76   _CMP0MX         DATA 0x9f
-0000             77   _CMP1CN0        DATA 0xbf
-0000             78   _CMP1CN1        DATA 0xac
-0000             79   _CMP1MD         DATA 0xab
-0000             80   _CMP1MX         DATA 0xaa
-0000             81   _CRC0CN0        DATA 0xce
-0000             82   _CRC0CN1        DATA 0x86
-0000             83   _CRC0CNT        DATA 0xd3
-0000             84   _CRC0DAT        DATA 0xcb
-0000             85   _CRC0FLIP       DATA 0xcf
-0000             86   _CRC0IN         DATA 0xca
-0000             87   _CRC0ST         DATA 0xd2
-0000             88   _DAC0CF0        DATA 0x91
-0000             89   _DAC0CF1        DATA 0x92
-0000             90   _DAC0H          DATA 0x85
-0000             91   _DAC0L          DATA 0x84
-0000             92   _DAC1CF0        DATA 0x93
-0000             93   _DAC1CF1        DATA 0x94
-0000             94   _DAC1H          DATA 0x8a
-0000             95   _DAC1L          DATA 0x89
-0000             96   _DAC2CF0        DATA 0x95
-0000             97   _DAC2CF1        DATA 0x96
-0000             98   _DAC2H          DATA 0x8c
-0000             99   _DAC2L          DATA 0x8b
-0000            100   _DAC3CF0        DATA 0x9a
-0000            101   _DAC3CF1        DATA 0x9c
-0000            102   _DAC3H          DATA 0x8e
-0000            103   _DAC3L          DATA 0x8d
-0000            104   _DACGCF0        DATA 0x88
-0000            105   _DACGCF1        DATA 0x98
-0000            106   _DACGCF2        DATA 0xa2
-0000            107   _DERIVID        DATA 0xad
-0000            108   _DEVICEID       DATA 0xb5
-0000            109   _DPH            DATA 0x83
-0000            110   _DPL            DATA 0x82
-0000            111   _EIE1           DATA 0xe6
-0000            112   _EIE2           DATA 0xf3
-0000            113   _EIP1           DATA 0xbb
-0000            114   _EIP1H          DATA 0xee
-0000            115   _EIP2           DATA 0xed
-0000            116   _EIP2H          DATA 0xf6
-0000            117   _EMI0CN         DATA 0xe7
-0000            118   _FLKEY          DATA 0xb7
-0000            119   _HFO0CAL        DATA 0xc7
-0000            120   _HFO1CAL        DATA 0xd6
-0000            121   _HFOCN          DATA 0xef
-0000            122   _I2C0ADM        DATA 0xff
-0000            123   _I2C0CN0        DATA 0xba
-0000            124   _I2C0DIN        DATA 0xbc
-0000            125   _I2C0DOUT       DATA 0xbb
-0000            126   _I2C0FCN0       DATA 0xad
-0000            127   _I2C0FCN1       DATA 0xab
-0000            128   _I2C0FCT        DATA 0xf5
-0000            129   _I2C0SLAD       DATA 0xbd
-0000            130   _I2C0STAT       DATA 0xb9
-0000            131   _IE             DATA 0xa8
-0000            132   _IP             DATA 0xb8
-0000            133   _IPH            DATA 0xf2
-0000            134   _IT01CF         DATA 0xe4
-0000            135   _LFO0CN         DATA 0xb1
-0000            136   _P0             DATA 0x80
-0000            137   _P0MASK         DATA 0xfe
-0000            138   _P0MAT          DATA 0xfd
-0000            139   _P0MDIN         DATA 0xf1
-0000            140   _P0MDOUT        DATA 0xa4
-0000            141   _P0SKIP         DATA 0xd4
-0000            142   _P1             DATA 0x90
-0000            143   _P1MASK         DATA 0xee
-0000            144   _P1MAT          DATA 0xed
-0000            145   _P1MDIN         DATA 0xf2
-0000            146   _P1MDOUT        DATA 0xa5
-0000            147   _P1SKIP         DATA 0xd5
-0000            148   _P2             DATA 0xa0
-0000            149   _P2MASK         DATA 0xfc
-0000            150   _P2MAT          DATA 0xfb
-0000            151   _P2MDIN         DATA 0xf3
-0000            152   _P2MDOUT        DATA 0xa6
-0000            153   _P2SKIP         DATA 0xcc
-0000            154   _P3             DATA 0xb0
-0000            155   _P3MDIN         DATA 0xf4
-0000            156   _P3MDOUT        DATA 0x9c
-0000            157   _PCA0CENT       DATA 0x9e
-0000            158   _PCA0CLR        DATA 0x9c
-0000            159   _PCA0CN0        DATA 0xd8
-0000            160   _PCA0CPH0       DATA 0xfc
-0000            161   _PCA0CPH1       DATA 0xea
-0000            162   _PCA0CPH2       DATA 0xec
-0000            163   _PCA0CPH3       DATA 0xf5
-0000            164   _PCA0CPH4       DATA 0x85
-0000            165   _PCA0CPH5       DATA 0xde
-0000            166   _PCA0CPL0       DATA 0xfb
-0000            167   _PCA0CPL1       DATA 0xe9
-0000            168   _PCA0CPL2       DATA 0xeb
-0000            169   _PCA0CPL3       DATA 0xf4
-0000            170   _PCA0CPL4       DATA 0x84
-0000            171   _PCA0CPL5       DATA 0xdd
-0000            172   _PCA0CPM0       DATA 0xda
-0000            173   _PCA0CPM1       DATA 0xdb
-0000            174   _PCA0CPM2       DATA 0xdc
-0000            175   _PCA0CPM3       DATA 0xae
-0000            176   _PCA0CPM4       DATA 0xaf
-0000            177   _PCA0CPM5       DATA 0xcc
-0000            178   _PCA0H          DATA 0xfa
-0000            179   _PCA0L          DATA 0xf9
-0000            180   _PCA0MD         DATA 0xd9
-0000            181   _PCA0POL        DATA 0x96
-0000            182   _PCA0PWM        DATA 0xf7
-0000            183   _PCON0          DATA 0x87
-0000            184   _PCON1          DATA 0xcd
-0000            185   _PFE0CN         DATA 0xc1
-0000            186   _PRTDRV         DATA 0xf6
-0000            187   _PSCTL          DATA 0x8f
-0000            188   _PSTAT0         DATA 0xaa
-0000            189   _PSW            DATA 0xd0
-0000            190   _REF0CN         DATA 0xd1
-0000            191   _REG0CN         DATA 0xc9
-0000            192   _REVID          DATA 0xb6
-0000            193   _RSTSRC         DATA 0xef
-0000            194   _SBCON1         DATA 0x94
-0000            195   _SBRLH1         DATA 0x96
-0000            196   _SBRLL1         DATA 0x95
-0000            197   _SBUF           DATA 0x99
-0000            198   _SBUF0          DATA 0x99
-0000            199   _SBUF1          DATA 0x92
-0000            200   _SCON           DATA 0x98
-0000            201   _SCON0          DATA 0x98
-0000            202   _SCON1          DATA 0xc8
-0000            203   _SFRPAGE        DATA 0xa7
-0000            204   _SFRPGCN        DATA 0xbc
-0000            205   _SFRSTACK       DATA 0xd7
-0000            206   _SMB0ADM        DATA 0xd6
-0000            207   _SMB0ADR        DATA 0xd7
-0000            208   _SMB0CF         DATA 0xc1
-0000            209   _SMB0CN0        DATA 0xc0
-0000            210   _SMB0DAT        DATA 0xc2
-0000            211   _SMB0FCN0       DATA 0xc3
-0000            212   _SMB0FCN1       DATA 0xc4
-0000            213   _SMB0FCT        DATA 0xef
-0000            214   _SMB0RXLN       DATA 0xc5
-0000            215   _SMB0TC         DATA 0xac
-0000            216   _SMOD1          DATA 0x93
-0000            217   _SP             DATA 0x81
-0000            218   _SPI0CFG        DATA 0xa1
-0000            219   _SPI0CKR        DATA 0xa2
-0000            220   _SPI0CN0        DATA 0xf8
-0000            221   _SPI0DAT        DATA 0xa3
-0000            222   _SPI0FCN0       DATA 0x9a
-0000            223   _SPI0FCN1       DATA 0x9b
-0000            224   _SPI0FCT        DATA 0xf7
-0000            225   _SPI0PCF        DATA 0xdf
-0000            226   _TCON           DATA 0x88
-0000            227   _TH0            DATA 0x8c
-0000            228   _TH1            DATA 0x8d
-0000            229   _TL0            DATA 0x8a
-0000            230   _TL1            DATA 0x8b
-0000            231   _TMOD           DATA 0x89
-0000            232   _TMR2CN0        DATA 0xc8
-0000            233   _TMR2CN1        DATA 0xfd
-0000            234   _TMR2H          DATA 0xcf
-0000            235   _TMR2L          DATA 0xce
-0000            236   _TMR2RLH        DATA 0xcb
-0000            237   _TMR2RLL        DATA 0xca
-0000            238   _TMR3CN0        DATA 0x91
-0000            239   _TMR3CN1        DATA 0xfe
-0000            240   _TMR3H          DATA 0x95
-0000            241   _TMR3L          DATA 0x94
-0000            242   _TMR3RLH        DATA 0x93
-0000            243   _TMR3RLL        DATA 0x92
-0000            244   _TMR4CN0        DATA 0x98
-0000            245   _TMR4CN1        DATA 0xff
-0000            246   _TMR4H          DATA 0xa5
-0000            247   _TMR4L          DATA 0xa4
-0000            248   _TMR4RLH        DATA 0xa3
-0000            249   _TMR4RLL        DATA 0xa2
-0000            250   _TMR5CN0        DATA 0xc0
-0000            251   _TMR5CN1        DATA 0xf1
-0000            252   _TMR5H          DATA 0xd5
-0000            253   _TMR5L          DATA 0xd4
-0000            254   _TMR5RLH        DATA 0xd3
-0000            255   _TMR5RLL        DATA 0xd2
-0000            256   _UART0PCF       DATA 0xd9
-0000            257   _UART1FCN0      DATA 0x9d
-0000            258   _UART1FCN1      DATA 0xd8
-0000            259   _UART1FCT       DATA 0xfa
-0000            260   _UART1LIN       DATA 0x9e
-0000            261   _UART1PCF       DATA 0xda
-0000            262   _VDM0CN         DATA 0xff
-0000            263   _WDTCN          DATA 0x97
-0000            264   _XBR0           DATA 0xe1
-0000            265   _XBR1           DATA 0xe2
-0000            266   _XBR2           DATA 0xe3
-0000            267   _XOSC0CN        DATA 0x86
-0000            268   _DPTR           DATA 0x8382
-0000            269   _TMR2RL         DATA 0xcbca
-0000            270   _TMR3RL         DATA 0x9392
-0000            271   _TMR4RL         DATA 0xa3a2
-0000            272   _TMR5RL         DATA 0xd3d2
-0000            273   _TMR0           DATA 0x8c8a
-0000            274   _TMR1           DATA 0x8d8b
-0000            275   _TMR2           DATA 0xcfce
-0000            276   _TMR3           DATA 0x9594
-0000            277   _TMR4           DATA 0xa5a4
-0000            278   _TMR5           DATA 0xd5d4
-0000            279   _SBRL1          DATA 0x9695
-0000            280   _PCA0           DATA 0xfaf9
-0000            281   _PCA0CP0        DATA 0xfcfb
-0000            282   _PCA0CP1        DATA 0xeae9
-0000            283   _PCA0CP2        DATA 0xeceb
-0000            284   _PCA0CP3        DATA 0xf5f4
-0000            285   _PCA0CP4        DATA 0x8584
-0000            286   _PCA0CP5        DATA 0xdedd
-0000            287   _ADC0ASA        DATA 0xb6b5
-0000            288   _ADC0GT         DATA 0xc4c3
-0000            289   _ADC0           DATA 0xbebd
-0000            290   _ADC0LT         DATA 0xc6c5
-0000            291   _DAC0           DATA 0x8584
-0000            292   _DAC1           DATA 0x8a89
-0000            293   _DAC2           DATA 0x8c8b
-0000            294   _DAC3           DATA 0x8e8d
-0000            295   ;--------------------------------------------------------
-0000            296   ; special function bits
-0000            297   ;--------------------------------------------------------
-0000            298   _ACC_0          BIT 0xe0
-0000            299   _ACC_1          BIT 0xe1
-0000            300   _ACC_2          BIT 0xe2
-0000            301   _ACC_3          BIT 0xe3
-0000            302   _ACC_4          BIT 0xe4
-0000            303   _ACC_5          BIT 0xe5
-0000            304   _ACC_6          BIT 0xe6
-0000            305   _ACC_7          BIT 0xe7
-0000            306   _TEMPE          BIT 0xe8
-0000            307   _ADGN0          BIT 0xe9
-0000            308   _ADGN1          BIT 0xea
-0000            309   _ADWINT         BIT 0xeb
-0000            310   _ADBUSY         BIT 0xec
-0000            311   _ADINT          BIT 0xed
-0000            312   _IPOEN          BIT 0xee
-0000            313   _ADEN           BIT 0xef
-0000            314   _B_0            BIT 0xf0
-0000            315   _B_1            BIT 0xf1
-0000            316   _B_2            BIT 0xf2
-0000            317   _B_3            BIT 0xf3
-0000            318   _B_4            BIT 0xf4
-0000            319   _B_5            BIT 0xf5
-0000            320   _B_6            BIT 0xf6
-0000            321   _B_7            BIT 0xf7
-0000            322   _C0FIF          BIT 0xe8
-0000            323   _C0RIF          BIT 0xe9
-0000            324   _C1FIF          BIT 0xea
-0000            325   _C1RIF          BIT 0xeb
-0000            326   _C2FIF          BIT 0xec
-0000            327   _C2RIF          BIT 0xed
-0000            328   _C3FIF          BIT 0xee
-0000            329   _C3RIF          BIT 0xef
-0000            330   _D1SRC0         BIT 0x88
-0000            331   _D1SRC1         BIT 0x89
-0000            332   _D1AMEN         BIT 0x8a
-0000            333   _D01REFSL       BIT 0x8b
-0000            334   _D3SRC0         BIT 0x8c
-0000            335   _D3SRC1         BIT 0x8d
-0000            336   _D3AMEN         BIT 0x8e
-0000            337   _D23REFSL       BIT 0x8f
-0000            338   _D0UDIS         BIT 0x98
-0000            339   _D1UDIS         BIT 0x99
-0000            340   _D2UDIS         BIT 0x9a
-0000            341   _D3UDIS         BIT 0x9b
-0000            342   _EX0            BIT 0xa8
-0000            343   _ET0            BIT 0xa9
-0000            344   _EX1            BIT 0xaa
-0000            345   _ET1            BIT 0xab
-0000            346   _ES0            BIT 0xac
-0000            347   _ET2            BIT 0xad
-0000            348   _ESPI0          BIT 0xae
-0000            349   _EA             BIT 0xaf
-0000            350   _PX0            BIT 0xb8
-0000            351   _PT0            BIT 0xb9
-0000            352   _PX1            BIT 0xba
-0000            353   _PT1            BIT 0xbb
-0000            354   _PS0            BIT 0xbc
-0000            355   _PT2            BIT 0xbd
-0000            356   _PSPI0          BIT 0xbe
-0000            357   _P0_0           BIT 0x80
-0000            358   _P0_1           BIT 0x81
-0000            359   _P0_2           BIT 0x82
-0000            360   _P0_3           BIT 0x83
-0000            361   _P0_4           BIT 0x84
-0000            362   _P0_5           BIT 0x85
-0000            363   _P0_6           BIT 0x86
-0000            364   _P0_7           BIT 0x87
-0000            365   _P1_0           BIT 0x90
-0000            366   _P1_1           BIT 0x91
-0000            367   _P1_2           BIT 0x92
-0000            368   _P1_3           BIT 0x93
-0000            369   _P1_4           BIT 0x94
-0000            370   _P1_5           BIT 0x95
-0000            371   _P1_6           BIT 0x96
-0000            372   _P1_7           BIT 0x97
-0000            373   _P2_0           BIT 0xa0
-0000            374   _P2_1           BIT 0xa1
-0000            375   _P2_2           BIT 0xa2
-0000            376   _P2_3           BIT 0xa3
-0000            377   _P2_4           BIT 0xa4
-0000            378   _P2_5           BIT 0xa5
-0000            379   _P2_6           BIT 0xa6
-0000            380   _P3_0           BIT 0xb0
-0000            381   _P3_1           BIT 0xb1
-0000            382   _P3_2           BIT 0xb2
-0000            383   _P3_3           BIT 0xb3
-0000            384   _P3_4           BIT 0xb4
-0000            385   _P3_7           BIT 0xb7
-0000            386   _CCF0           BIT 0xd8
-0000            387   _CCF1           BIT 0xd9
-0000            388   _CCF2           BIT 0xda
-0000            389   _CCF3           BIT 0xdb
-0000            390   _CCF4           BIT 0xdc
-0000            391   _CCF5           BIT 0xdd
-0000            392   _CR             BIT 0xde
-0000            393   _CF             BIT 0xdf
-0000            394   _PARITY         BIT 0xd0
-0000            395   _F1             BIT 0xd1
-0000            396   _OV             BIT 0xd2
-0000            397   _RS0            BIT 0xd3
-0000            398   _RS1            BIT 0xd4
-0000            399   _F0             BIT 0xd5
-0000            400   _AC             BIT 0xd6
-0000            401   _CY             BIT 0xd7
-0000            402   _RI             BIT 0x98
-0000            403   _TI             BIT 0x99
-0000            404   _RB8            BIT 0x9a
-0000            405   _TB8            BIT 0x9b
-0000            406   _REN            BIT 0x9c
-0000            407   _CE             BIT 0x9d
-0000            408   _SMODE          BIT 0x9e
-0000            409   _RI1            BIT 0xc8
-0000            410   _TI1            BIT 0xc9
-0000            411   _RBX1           BIT 0xca
-0000            412   _TBX1           BIT 0xcb
-0000            413   _REN1           BIT 0xcc
-0000            414   _PERR1          BIT 0xcd
-0000            415   _OVR1           BIT 0xce
-0000            416   _SI             BIT 0xc0
-0000            417   _ACK            BIT 0xc1
-0000            418   _ARBLOST        BIT 0xc2
-0000            419   _ACKRQ          BIT 0xc3
-0000            420   _STO            BIT 0xc4
-0000            421   _STA            BIT 0xc5
-0000            422   _TXMODE         BIT 0xc6
-0000            423   _MASTER         BIT 0xc7
-0000            424   _SPIEN          BIT 0xf8
-0000            425   _TXNF           BIT 0xf9
-0000            426   _NSSMD0         BIT 0xfa
-0000            427   _NSSMD1         BIT 0xfb
-0000            428   _RXOVRN         BIT 0xfc
-0000            429   _MODF           BIT 0xfd
-0000            430   _WCOL           BIT 0xfe
-0000            431   _SPIF           BIT 0xff
-0000            432   _IT0            BIT 0x88
-0000            433   _IE0            BIT 0x89
-0000            434   _IT1            BIT 0x8a
-0000            435   _IE1            BIT 0x8b
-0000            436   _TR0            BIT 0x8c
-0000            437   _TF0            BIT 0x8d
-0000            438   _TR1            BIT 0x8e
-0000            439   _TF1            BIT 0x8f
-0000            440   _T2XCLK0        BIT 0xc8
-0000            441   _T2XCLK1        BIT 0xc9
-0000            442   _TR2            BIT 0xca
-0000            443   _T2SPLIT        BIT 0xcb
-0000            444   _TF2CEN         BIT 0xcc
-0000            445   _TF2LEN         BIT 0xcd
-0000            446   _TF2L           BIT 0xce
-0000            447   _TF2H           BIT 0xcf
-0000            448   _T4XCLK0        BIT 0x98
-0000            449   _T4XCLK1        BIT 0x99
-0000            450   _TR4            BIT 0x9a
-0000            451   _T4SPLIT        BIT 0x9b
-0000            452   _TF4CEN         BIT 0x9c
-0000            453   _TF4LEN         BIT 0x9d
-0000            454   _TF4L           BIT 0x9e
-0000            455   _TF4H           BIT 0x9f
-0000            456   _T5XCLK0        BIT 0xc0
-0000            457   _T5XCLK1        BIT 0xc1
-0000            458   _TR5            BIT 0xc2
-0000            459   _T5SPLIT        BIT 0xc3
-0000            460   _TF5CEN         BIT 0xc4
-0000            461   _TF5LEN         BIT 0xc5
-0000            462   _TF5L           BIT 0xc6
-0000            463   _TF5H           BIT 0xc7
-0000            464   _RIE            BIT 0xd8
-0000            465   _RXTO0          BIT 0xd9
-0000            466   _RXTO1          BIT 0xda
-0000            467   _RFRQ           BIT 0xdb
-0000            468   _TIE            BIT 0xdc
-0000            469   _TXHOLD         BIT 0xdd
-0000            470   _TXNF1          BIT 0xde
-0000            471   _TFRQ           BIT 0xdf
-0000            472   ;--------------------------------------------------------
-0000            473   ; overlayable register banks
-0000            474   ;--------------------------------------------------------
-0000            475            rbank0 segment data overlay
-0000            476   ;--------------------------------------------------------
-0000            477   ; internal ram data
-0000            478   ;--------------------------------------------------------
-0000            479            rseg R_DSEG
-0000            480   _main_distanceIn_1_51:
-0000            481            ds 4
-0004            482   _main_overflow_count_1_51:
-0004            483            ds 2
-0006            484   _main_period1_1_51:
-0006            485            ds 4
-000A            486   ;--------------------------------------------------------
-000A            487   ; overlayable items in internal ram 
-000A            488   ;--------------------------------------------------------
-0000            489            rseg    R_OSEG
-0000            490   ;--------------------------------------------------------
-0000            491   ; indirectly addressable internal ram data
-0000            492   ;--------------------------------------------------------
-0000            493            rseg R_ISEG
-0000            494   ;--------------------------------------------------------
-0000            495   ; absolute internal ram data
-0000            496   ;--------------------------------------------------------
-0000            497            DSEG
-0000            498   ;--------------------------------------------------------
-0000            499   ; bit data
-0000            500   ;--------------------------------------------------------
-0000            501            rseg R_BSEG
-0000            502   ;--------------------------------------------------------
-0000            503   ; paged external ram data
-0000            504   ;--------------------------------------------------------
-0000            505            rseg R_PSEG
-0000            506   ;--------------------------------------------------------
-0000            507   ; external ram data
-0000            508   ;--------------------------------------------------------
-0000            509            rseg R_XSEG
-0000            510   ;--------------------------------------------------------
-0000            511   ; absolute external ram data
-0000            512   ;--------------------------------------------------------
-0000            513            XSEG
-0000            514   ;--------------------------------------------------------
-0000            515   ; external initialized ram data
-0000            516   ;--------------------------------------------------------
-0000            517            rseg R_IXSEG
-0000            518            rseg R_HOME
-0000            519            rseg R_GSINIT
-0000            520            rseg R_CSEG
-0000            521   ;--------------------------------------------------------
-0000            522   ; Reset entry point and interrupt vectors
-0000            523   ;--------------------------------------------------------
-0000            524            CSEG at 0x0000
-0000 020100     525            ljmp    _crt0
-0003            526   ;--------------------------------------------------------
-0003            527   ; global & static initialisations
-0003            528   ;--------------------------------------------------------
-0000            529            rseg R_HOME
-0000            530            rseg R_GSINIT
+0000             32            public _pwm_count
+0000             33   ;--------------------------------------------------------
+0000             34   ; Special Function Registers
+0000             35   ;--------------------------------------------------------
+0000             36   _ACC            DATA 0xe0
+0000             37   _ADC0ASAH       DATA 0xb6
+0000             38   _ADC0ASAL       DATA 0xb5
+0000             39   _ADC0ASCF       DATA 0xa1
+0000             40   _ADC0ASCT       DATA 0xc7
+0000             41   _ADC0CF0        DATA 0xbc
+0000             42   _ADC0CF1        DATA 0xb9
+0000             43   _ADC0CF2        DATA 0xdf
+0000             44   _ADC0CN0        DATA 0xe8
+0000             45   _ADC0CN1        DATA 0xb2
+0000             46   _ADC0CN2        DATA 0xb3
+0000             47   _ADC0GTH        DATA 0xc4
+0000             48   _ADC0GTL        DATA 0xc3
+0000             49   _ADC0H          DATA 0xbe
+0000             50   _ADC0L          DATA 0xbd
+0000             51   _ADC0LTH        DATA 0xc6
+0000             52   _ADC0LTL        DATA 0xc5
+0000             53   _ADC0MX         DATA 0xbb
+0000             54   _B              DATA 0xf0
+0000             55   _CKCON0         DATA 0x8e
+0000             56   _CKCON1         DATA 0xa6
+0000             57   _CLEN0          DATA 0xc6
+0000             58   _CLIE0          DATA 0xc7
+0000             59   _CLIF0          DATA 0xe8
+0000             60   _CLKSEL         DATA 0xa9
+0000             61   _CLOUT0         DATA 0xd1
+0000             62   _CLU0CF         DATA 0xb1
+0000             63   _CLU0FN         DATA 0xaf
+0000             64   _CLU0MX         DATA 0x84
+0000             65   _CLU1CF         DATA 0xb3
+0000             66   _CLU1FN         DATA 0xb2
+0000             67   _CLU1MX         DATA 0x85
+0000             68   _CLU2CF         DATA 0xb6
+0000             69   _CLU2FN         DATA 0xb5
+0000             70   _CLU2MX         DATA 0x91
+0000             71   _CLU3CF         DATA 0xbf
+0000             72   _CLU3FN         DATA 0xbe
+0000             73   _CLU3MX         DATA 0xae
+0000             74   _CMP0CN0        DATA 0x9b
+0000             75   _CMP0CN1        DATA 0x99
+0000             76   _CMP0MD         DATA 0x9d
+0000             77   _CMP0MX         DATA 0x9f
+0000             78   _CMP1CN0        DATA 0xbf
+0000             79   _CMP1CN1        DATA 0xac
+0000             80   _CMP1MD         DATA 0xab
+0000             81   _CMP1MX         DATA 0xaa
+0000             82   _CRC0CN0        DATA 0xce
+0000             83   _CRC0CN1        DATA 0x86
+0000             84   _CRC0CNT        DATA 0xd3
+0000             85   _CRC0DAT        DATA 0xcb
+0000             86   _CRC0FLIP       DATA 0xcf
+0000             87   _CRC0IN         DATA 0xca
+0000             88   _CRC0ST         DATA 0xd2
+0000             89   _DAC0CF0        DATA 0x91
+0000             90   _DAC0CF1        DATA 0x92
+0000             91   _DAC0H          DATA 0x85
+0000             92   _DAC0L          DATA 0x84
+0000             93   _DAC1CF0        DATA 0x93
+0000             94   _DAC1CF1        DATA 0x94
+0000             95   _DAC1H          DATA 0x8a
+0000             96   _DAC1L          DATA 0x89
+0000             97   _DAC2CF0        DATA 0x95
+0000             98   _DAC2CF1        DATA 0x96
+0000             99   _DAC2H          DATA 0x8c
+0000            100   _DAC2L          DATA 0x8b
+0000            101   _DAC3CF0        DATA 0x9a
+0000            102   _DAC3CF1        DATA 0x9c
+0000            103   _DAC3H          DATA 0x8e
+0000            104   _DAC3L          DATA 0x8d
+0000            105   _DACGCF0        DATA 0x88
+0000            106   _DACGCF1        DATA 0x98
+0000            107   _DACGCF2        DATA 0xa2
+0000            108   _DERIVID        DATA 0xad
+0000            109   _DEVICEID       DATA 0xb5
+0000            110   _DPH            DATA 0x83
+0000            111   _DPL            DATA 0x82
+0000            112   _EIE1           DATA 0xe6
+0000            113   _EIE2           DATA 0xf3
+0000            114   _EIP1           DATA 0xbb
+0000            115   _EIP1H          DATA 0xee
+0000            116   _EIP2           DATA 0xed
+0000            117   _EIP2H          DATA 0xf6
+0000            118   _EMI0CN         DATA 0xe7
+0000            119   _FLKEY          DATA 0xb7
+0000            120   _HFO0CAL        DATA 0xc7
+0000            121   _HFO1CAL        DATA 0xd6
+0000            122   _HFOCN          DATA 0xef
+0000            123   _I2C0ADM        DATA 0xff
+0000            124   _I2C0CN0        DATA 0xba
+0000            125   _I2C0DIN        DATA 0xbc
+0000            126   _I2C0DOUT       DATA 0xbb
+0000            127   _I2C0FCN0       DATA 0xad
+0000            128   _I2C0FCN1       DATA 0xab
+0000            129   _I2C0FCT        DATA 0xf5
+0000            130   _I2C0SLAD       DATA 0xbd
+0000            131   _I2C0STAT       DATA 0xb9
+0000            132   _IE             DATA 0xa8
+0000            133   _IP             DATA 0xb8
+0000            134   _IPH            DATA 0xf2
+0000            135   _IT01CF         DATA 0xe4
+0000            136   _LFO0CN         DATA 0xb1
+0000            137   _P0             DATA 0x80
+0000            138   _P0MASK         DATA 0xfe
+0000            139   _P0MAT          DATA 0xfd
+0000            140   _P0MDIN         DATA 0xf1
+0000            141   _P0MDOUT        DATA 0xa4
+0000            142   _P0SKIP         DATA 0xd4
+0000            143   _P1             DATA 0x90
+0000            144   _P1MASK         DATA 0xee
+0000            145   _P1MAT          DATA 0xed
+0000            146   _P1MDIN         DATA 0xf2
+0000            147   _P1MDOUT        DATA 0xa5
+0000            148   _P1SKIP         DATA 0xd5
+0000            149   _P2             DATA 0xa0
+0000            150   _P2MASK         DATA 0xfc
+0000            151   _P2MAT          DATA 0xfb
+0000            152   _P2MDIN         DATA 0xf3
+0000            153   _P2MDOUT        DATA 0xa6
+0000            154   _P2SKIP         DATA 0xcc
+0000            155   _P3             DATA 0xb0
+0000            156   _P3MDIN         DATA 0xf4
+0000            157   _P3MDOUT        DATA 0x9c
+0000            158   _PCA0CENT       DATA 0x9e
+0000            159   _PCA0CLR        DATA 0x9c
+0000            160   _PCA0CN0        DATA 0xd8
+0000            161   _PCA0CPH0       DATA 0xfc
+0000            162   _PCA0CPH1       DATA 0xea
+0000            163   _PCA0CPH2       DATA 0xec
+0000            164   _PCA0CPH3       DATA 0xf5
+0000            165   _PCA0CPH4       DATA 0x85
+0000            166   _PCA0CPH5       DATA 0xde
+0000            167   _PCA0CPL0       DATA 0xfb
+0000            168   _PCA0CPL1       DATA 0xe9
+0000            169   _PCA0CPL2       DATA 0xeb
+0000            170   _PCA0CPL3       DATA 0xf4
+0000            171   _PCA0CPL4       DATA 0x84
+0000            172   _PCA0CPL5       DATA 0xdd
+0000            173   _PCA0CPM0       DATA 0xda
+0000            174   _PCA0CPM1       DATA 0xdb
+0000            175   _PCA0CPM2       DATA 0xdc
+0000            176   _PCA0CPM3       DATA 0xae
+0000            177   _PCA0CPM4       DATA 0xaf
+0000            178   _PCA0CPM5       DATA 0xcc
+0000            179   _PCA0H          DATA 0xfa
+0000            180   _PCA0L          DATA 0xf9
+0000            181   _PCA0MD         DATA 0xd9
+0000            182   _PCA0POL        DATA 0x96
+0000            183   _PCA0PWM        DATA 0xf7
+0000            184   _PCON0          DATA 0x87
+0000            185   _PCON1          DATA 0xcd
+0000            186   _PFE0CN         DATA 0xc1
+0000            187   _PRTDRV         DATA 0xf6
+0000            188   _PSCTL          DATA 0x8f
+0000            189   _PSTAT0         DATA 0xaa
+0000            190   _PSW            DATA 0xd0
+0000            191   _REF0CN         DATA 0xd1
+0000            192   _REG0CN         DATA 0xc9
+0000            193   _REVID          DATA 0xb6
+0000            194   _RSTSRC         DATA 0xef
+0000            195   _SBCON1         DATA 0x94
+0000            196   _SBRLH1         DATA 0x96
+0000            197   _SBRLL1         DATA 0x95
+0000            198   _SBUF           DATA 0x99
+0000            199   _SBUF0          DATA 0x99
+0000            200   _SBUF1          DATA 0x92
+0000            201   _SCON           DATA 0x98
+0000            202   _SCON0          DATA 0x98
+0000            203   _SCON1          DATA 0xc8
+0000            204   _SFRPAGE        DATA 0xa7
+0000            205   _SFRPGCN        DATA 0xbc
+0000            206   _SFRSTACK       DATA 0xd7
+0000            207   _SMB0ADM        DATA 0xd6
+0000            208   _SMB0ADR        DATA 0xd7
+0000            209   _SMB0CF         DATA 0xc1
+0000            210   _SMB0CN0        DATA 0xc0
+0000            211   _SMB0DAT        DATA 0xc2
+0000            212   _SMB0FCN0       DATA 0xc3
+0000            213   _SMB0FCN1       DATA 0xc4
+0000            214   _SMB0FCT        DATA 0xef
+0000            215   _SMB0RXLN       DATA 0xc5
+0000            216   _SMB0TC         DATA 0xac
+0000            217   _SMOD1          DATA 0x93
+0000            218   _SP             DATA 0x81
+0000            219   _SPI0CFG        DATA 0xa1
+0000            220   _SPI0CKR        DATA 0xa2
+0000            221   _SPI0CN0        DATA 0xf8
+0000            222   _SPI0DAT        DATA 0xa3
+0000            223   _SPI0FCN0       DATA 0x9a
+0000            224   _SPI0FCN1       DATA 0x9b
+0000            225   _SPI0FCT        DATA 0xf7
+0000            226   _SPI0PCF        DATA 0xdf
+0000            227   _TCON           DATA 0x88
+0000            228   _TH0            DATA 0x8c
+0000            229   _TH1            DATA 0x8d
+0000            230   _TL0            DATA 0x8a
+0000            231   _TL1            DATA 0x8b
+0000            232   _TMOD           DATA 0x89
+0000            233   _TMR2CN0        DATA 0xc8
+0000            234   _TMR2CN1        DATA 0xfd
+0000            235   _TMR2H          DATA 0xcf
+0000            236   _TMR2L          DATA 0xce
+0000            237   _TMR2RLH        DATA 0xcb
+0000            238   _TMR2RLL        DATA 0xca
+0000            239   _TMR3CN0        DATA 0x91
+0000            240   _TMR3CN1        DATA 0xfe
+0000            241   _TMR3H          DATA 0x95
+0000            242   _TMR3L          DATA 0x94
+0000            243   _TMR3RLH        DATA 0x93
+0000            244   _TMR3RLL        DATA 0x92
+0000            245   _TMR4CN0        DATA 0x98
+0000            246   _TMR4CN1        DATA 0xff
+0000            247   _TMR4H          DATA 0xa5
+0000            248   _TMR4L          DATA 0xa4
+0000            249   _TMR4RLH        DATA 0xa3
+0000            250   _TMR4RLL        DATA 0xa2
+0000            251   _TMR5CN0        DATA 0xc0
+0000            252   _TMR5CN1        DATA 0xf1
+0000            253   _TMR5H          DATA 0xd5
+0000            254   _TMR5L          DATA 0xd4
+0000            255   _TMR5RLH        DATA 0xd3
+0000            256   _TMR5RLL        DATA 0xd2
+0000            257   _UART0PCF       DATA 0xd9
+0000            258   _UART1FCN0      DATA 0x9d
+0000            259   _UART1FCN1      DATA 0xd8
+0000            260   _UART1FCT       DATA 0xfa
+0000            261   _UART1LIN       DATA 0x9e
+0000            262   _UART1PCF       DATA 0xda
+0000            263   _VDM0CN         DATA 0xff
+0000            264   _WDTCN          DATA 0x97
+0000            265   _XBR0           DATA 0xe1
+0000            266   _XBR1           DATA 0xe2
+0000            267   _XBR2           DATA 0xe3
+0000            268   _XOSC0CN        DATA 0x86
+0000            269   _DPTR           DATA 0x8382
+0000            270   _TMR2RL         DATA 0xcbca
+0000            271   _TMR3RL         DATA 0x9392
+0000            272   _TMR4RL         DATA 0xa3a2
+0000            273   _TMR5RL         DATA 0xd3d2
+0000            274   _TMR0           DATA 0x8c8a
+0000            275   _TMR1           DATA 0x8d8b
+0000            276   _TMR2           DATA 0xcfce
+0000            277   _TMR3           DATA 0x9594
+0000            278   _TMR4           DATA 0xa5a4
+0000            279   _TMR5           DATA 0xd5d4
+0000            280   _SBRL1          DATA 0x9695
+0000            281   _PCA0           DATA 0xfaf9
+0000            282   _PCA0CP0        DATA 0xfcfb
+0000            283   _PCA0CP1        DATA 0xeae9
+0000            284   _PCA0CP2        DATA 0xeceb
+0000            285   _PCA0CP3        DATA 0xf5f4
+0000            286   _PCA0CP4        DATA 0x8584
+0000            287   _PCA0CP5        DATA 0xdedd
+0000            288   _ADC0ASA        DATA 0xb6b5
+0000            289   _ADC0GT         DATA 0xc4c3
+0000            290   _ADC0           DATA 0xbebd
+0000            291   _ADC0LT         DATA 0xc6c5
+0000            292   _DAC0           DATA 0x8584
+0000            293   _DAC1           DATA 0x8a89
+0000            294   _DAC2           DATA 0x8c8b
+0000            295   _DAC3           DATA 0x8e8d
+0000            296   ;--------------------------------------------------------
+0000            297   ; special function bits
+0000            298   ;--------------------------------------------------------
+0000            299   _ACC_0          BIT 0xe0
+0000            300   _ACC_1          BIT 0xe1
+0000            301   _ACC_2          BIT 0xe2
+0000            302   _ACC_3          BIT 0xe3
+0000            303   _ACC_4          BIT 0xe4
+0000            304   _ACC_5          BIT 0xe5
+0000            305   _ACC_6          BIT 0xe6
+0000            306   _ACC_7          BIT 0xe7
+0000            307   _TEMPE          BIT 0xe8
+0000            308   _ADGN0          BIT 0xe9
+0000            309   _ADGN1          BIT 0xea
+0000            310   _ADWINT         BIT 0xeb
+0000            311   _ADBUSY         BIT 0xec
+0000            312   _ADINT          BIT 0xed
+0000            313   _IPOEN          BIT 0xee
+0000            314   _ADEN           BIT 0xef
+0000            315   _B_0            BIT 0xf0
+0000            316   _B_1            BIT 0xf1
+0000            317   _B_2            BIT 0xf2
+0000            318   _B_3            BIT 0xf3
+0000            319   _B_4            BIT 0xf4
+0000            320   _B_5            BIT 0xf5
+0000            321   _B_6            BIT 0xf6
+0000            322   _B_7            BIT 0xf7
+0000            323   _C0FIF          BIT 0xe8
+0000            324   _C0RIF          BIT 0xe9
+0000            325   _C1FIF          BIT 0xea
+0000            326   _C1RIF          BIT 0xeb
+0000            327   _C2FIF          BIT 0xec
+0000            328   _C2RIF          BIT 0xed
+0000            329   _C3FIF          BIT 0xee
+0000            330   _C3RIF          BIT 0xef
+0000            331   _D1SRC0         BIT 0x88
+0000            332   _D1SRC1         BIT 0x89
+0000            333   _D1AMEN         BIT 0x8a
+0000            334   _D01REFSL       BIT 0x8b
+0000            335   _D3SRC0         BIT 0x8c
+0000            336   _D3SRC1         BIT 0x8d
+0000            337   _D3AMEN         BIT 0x8e
+0000            338   _D23REFSL       BIT 0x8f
+0000            339   _D0UDIS         BIT 0x98
+0000            340   _D1UDIS         BIT 0x99
+0000            341   _D2UDIS         BIT 0x9a
+0000            342   _D3UDIS         BIT 0x9b
+0000            343   _EX0            BIT 0xa8
+0000            344   _ET0            BIT 0xa9
+0000            345   _EX1            BIT 0xaa
+0000            346   _ET1            BIT 0xab
+0000            347   _ES0            BIT 0xac
+0000            348   _ET2            BIT 0xad
+0000            349   _ESPI0          BIT 0xae
+0000            350   _EA             BIT 0xaf
+0000            351   _PX0            BIT 0xb8
+0000            352   _PT0            BIT 0xb9
+0000            353   _PX1            BIT 0xba
+0000            354   _PT1            BIT 0xbb
+0000            355   _PS0            BIT 0xbc
+0000            356   _PT2            BIT 0xbd
+0000            357   _PSPI0          BIT 0xbe
+0000            358   _P0_0           BIT 0x80
+0000            359   _P0_1           BIT 0x81
+0000            360   _P0_2           BIT 0x82
+0000            361   _P0_3           BIT 0x83
+0000            362   _P0_4           BIT 0x84
+0000            363   _P0_5           BIT 0x85
+0000            364   _P0_6           BIT 0x86
+0000            365   _P0_7           BIT 0x87
+0000            366   _P1_0           BIT 0x90
+0000            367   _P1_1           BIT 0x91
+0000            368   _P1_2           BIT 0x92
+0000            369   _P1_3           BIT 0x93
+0000            370   _P1_4           BIT 0x94
+0000            371   _P1_5           BIT 0x95
+0000            372   _P1_6           BIT 0x96
+0000            373   _P1_7           BIT 0x97
+0000            374   _P2_0           BIT 0xa0
+0000            375   _P2_1           BIT 0xa1
+0000            376   _P2_2           BIT 0xa2
+0000            377   _P2_3           BIT 0xa3
+0000            378   _P2_4           BIT 0xa4
+0000            379   _P2_5           BIT 0xa5
+0000            380   _P2_6           BIT 0xa6
+0000            381   _P3_0           BIT 0xb0
+0000            382   _P3_1           BIT 0xb1
+0000            383   _P3_2           BIT 0xb2
+0000            384   _P3_3           BIT 0xb3
+0000            385   _P3_4           BIT 0xb4
+0000            386   _P3_7           BIT 0xb7
+0000            387   _CCF0           BIT 0xd8
+0000            388   _CCF1           BIT 0xd9
+0000            389   _CCF2           BIT 0xda
+0000            390   _CCF3           BIT 0xdb
+0000            391   _CCF4           BIT 0xdc
+0000            392   _CCF5           BIT 0xdd
+0000            393   _CR             BIT 0xde
+0000            394   _CF             BIT 0xdf
+0000            395   _PARITY         BIT 0xd0
+0000            396   _F1             BIT 0xd1
+0000            397   _OV             BIT 0xd2
+0000            398   _RS0            BIT 0xd3
+0000            399   _RS1            BIT 0xd4
+0000            400   _F0             BIT 0xd5
+0000            401   _AC             BIT 0xd6
+0000            402   _CY             BIT 0xd7
+0000            403   _RI             BIT 0x98
+0000            404   _TI             BIT 0x99
+0000            405   _RB8            BIT 0x9a
+0000            406   _TB8            BIT 0x9b
+0000            407   _REN            BIT 0x9c
+0000            408   _CE             BIT 0x9d
+0000            409   _SMODE          BIT 0x9e
+0000            410   _RI1            BIT 0xc8
+0000            411   _TI1            BIT 0xc9
+0000            412   _RBX1           BIT 0xca
+0000            413   _TBX1           BIT 0xcb
+0000            414   _REN1           BIT 0xcc
+0000            415   _PERR1          BIT 0xcd
+0000            416   _OVR1           BIT 0xce
+0000            417   _SI             BIT 0xc0
+0000            418   _ACK            BIT 0xc1
+0000            419   _ARBLOST        BIT 0xc2
+0000            420   _ACKRQ          BIT 0xc3
+0000            421   _STO            BIT 0xc4
+0000            422   _STA            BIT 0xc5
+0000            423   _TXMODE         BIT 0xc6
+0000            424   _MASTER         BIT 0xc7
+0000            425   _SPIEN          BIT 0xf8
+0000            426   _TXNF           BIT 0xf9
+0000            427   _NSSMD0         BIT 0xfa
+0000            428   _NSSMD1         BIT 0xfb
+0000            429   _RXOVRN         BIT 0xfc
+0000            430   _MODF           BIT 0xfd
+0000            431   _WCOL           BIT 0xfe
+0000            432   _SPIF           BIT 0xff
+0000            433   _IT0            BIT 0x88
+0000            434   _IE0            BIT 0x89
+0000            435   _IT1            BIT 0x8a
+0000            436   _IE1            BIT 0x8b
+0000            437   _TR0            BIT 0x8c
+0000            438   _TF0            BIT 0x8d
+0000            439   _TR1            BIT 0x8e
+0000            440   _TF1            BIT 0x8f
+0000            441   _T2XCLK0        BIT 0xc8
+0000            442   _T2XCLK1        BIT 0xc9
+0000            443   _TR2            BIT 0xca
+0000            444   _T2SPLIT        BIT 0xcb
+0000            445   _TF2CEN         BIT 0xcc
+0000            446   _TF2LEN         BIT 0xcd
+0000            447   _TF2L           BIT 0xce
+0000            448   _TF2H           BIT 0xcf
+0000            449   _T4XCLK0        BIT 0x98
+0000            450   _T4XCLK1        BIT 0x99
+0000            451   _TR4            BIT 0x9a
+0000            452   _T4SPLIT        BIT 0x9b
+0000            453   _TF4CEN         BIT 0x9c
+0000            454   _TF4LEN         BIT 0x9d
+0000            455   _TF4L           BIT 0x9e
+0000            456   _TF4H           BIT 0x9f
+0000            457   _T5XCLK0        BIT 0xc0
+0000            458   _T5XCLK1        BIT 0xc1
+0000            459   _TR5            BIT 0xc2
+0000            460   _T5SPLIT        BIT 0xc3
+0000            461   _TF5CEN         BIT 0xc4
+0000            462   _TF5LEN         BIT 0xc5
+0000            463   _TF5L           BIT 0xc6
+0000            464   _TF5H           BIT 0xc7
+0000            465   _RIE            BIT 0xd8
+0000            466   _RXTO0          BIT 0xd9
+0000            467   _RXTO1          BIT 0xda
+0000            468   _RFRQ           BIT 0xdb
+0000            469   _TIE            BIT 0xdc
+0000            470   _TXHOLD         BIT 0xdd
+0000            471   _TXNF1          BIT 0xde
+0000            472   _TFRQ           BIT 0xdf
+0000            473   ;--------------------------------------------------------
+0000            474   ; overlayable register banks
+0000            475   ;--------------------------------------------------------
+0000            476            rbank0 segment data overlay
+0000            477   ;--------------------------------------------------------
+0000            478   ; internal ram data
+0000            479   ;--------------------------------------------------------
+0000            480            rseg R_DSEG
+0000            481   _pwm_count:
+0000            482            ds 1
+0001            483   ;--------------------------------------------------------
+0001            484   ; overlayable items in internal ram 
+0001            485   ;--------------------------------------------------------
+0000            486            rseg    R_OSEG
+0000            487   ;--------------------------------------------------------
+0000            488   ; indirectly addressable internal ram data
+0000            489   ;--------------------------------------------------------
+0000            490            rseg R_ISEG
+0000            491   ;--------------------------------------------------------
+0000            492   ; absolute internal ram data
+0000            493   ;--------------------------------------------------------
+0000            494            DSEG
+0000            495   ;--------------------------------------------------------
+0000            496   ; bit data
+0000            497   ;--------------------------------------------------------
+0000            498            rseg R_BSEG
+0000            499   _Timer2_ISR_sloc0_1_0:
+0000            500            DBIT    1
+0001            501   ;--------------------------------------------------------
+0001            502   ; paged external ram data
+0001            503   ;--------------------------------------------------------
+0000            504            rseg R_PSEG
+0000            505   ;--------------------------------------------------------
+0000            506   ; external ram data
+0000            507   ;--------------------------------------------------------
+0000            508            rseg R_XSEG
+0000            509   ;--------------------------------------------------------
+0000            510   ; absolute external ram data
+0000            511   ;--------------------------------------------------------
+0000            512            XSEG
+0000            513   ;--------------------------------------------------------
+0000            514   ; external initialized ram data
+0000            515   ;--------------------------------------------------------
+0000            516            rseg R_IXSEG
+0000            517            rseg R_HOME
+0000            518            rseg R_GSINIT
+0000            519            rseg R_CSEG
+0000            520   ;--------------------------------------------------------
+0000            521   ; Reset entry point and interrupt vectors
+0000            522   ;--------------------------------------------------------
+0000            523            CSEG at 0x0000
+0000 020100     524            ljmp    _crt0
+002B            525            CSEG at 0x002b
+002B 020100     526            ljmp    _Timer2_ISR
+002E            527   ;--------------------------------------------------------
+002E            528   ; global & static initialisations
+002E            529   ;--------------------------------------------------------
+0000            530            rseg R_HOME
 0000            531            rseg R_GSINIT
-0000            532   ;--------------------------------------------------------
-0000            533   ; data variables initialization
-0000            534   ;--------------------------------------------------------
-0000            535            rseg R_DINIT
-0000            536            ; The linker places a 'ret' at the end of segment R_DINIT.
-0000            537   ;--------------------------------------------------------
-0000            538   ; code
-0000            539   ;--------------------------------------------------------
-0000            540            rseg R_CSEG
-0000            541   ;------------------------------------------------------------
-0000            542   ;Allocation info for local variables in function '_c51_external_startup'
-0000            543   ;------------------------------------------------------------
+0000            532            rseg R_GSINIT
+0000            533   ;--------------------------------------------------------
+0000            534   ; data variables initialization
+0000            535   ;--------------------------------------------------------
+0000            536            rseg R_DINIT
+0000            537   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:17: volatile unsigned char pwm_count=0;
+0000 750000     538            mov     _pwm_count,#0x00
+0003            539            ; The linker places a 'ret' at the end of segment R_DINIT.
+0003            540   ;--------------------------------------------------------
+0003            541   ; code
+0003            542   ;--------------------------------------------------------
+0000            543            rseg R_CSEG
 0000            544   ;------------------------------------------------------------
-0000            545   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:19: char _c51_external_startup (void)
-0000            546   ;        -----------------------------------------
-0000            547   ;         function _c51_external_startup
-0000            548   ;        -----------------------------------------
-0000            549   __c51_external_startup:
-0000            550            using   0
-0000            551   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:22: SFRPAGE = 0x00;
-0000 75A700     552            mov     _SFRPAGE,#0x00
-0003            553   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:23: WDTCN = 0xDE; //First key
-0003 7597DE     554            mov     _WDTCN,#0xDE
-0006            555   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:24: WDTCN = 0xAD; //Second key
-0006 7597AD     556            mov     _WDTCN,#0xAD
-0009            557   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:26: VDM0CN=0x80;       // enable VDD monitor
-0009 75FF80     558            mov     _VDM0CN,#0x80
-000C            559   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:27: RSTSRC=0x02|0x04;  // Enable reset on missing clock detector and VDD
-000C 75EF06     560            mov     _RSTSRC,#0x06
-000F            561   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:34: SFRPAGE = 0x10;
-000F 75A710     562            mov     _SFRPAGE,#0x10
-0012            563   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:35: PFE0CN  = 0x20; // SYSCLK < 75 MHz.
-0012 75C120     564            mov     _PFE0CN,#0x20
-0015            565   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:36: SFRPAGE = 0x00;
-0015 75A700     566            mov     _SFRPAGE,#0x00
-0018            567   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:57: CLKSEL = 0x00;
-0018 75A900     568            mov     _CLKSEL,#0x00
-001B            569   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:58: CLKSEL = 0x00;
-001B 75A900     570            mov     _CLKSEL,#0x00
-001E            571   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:59: while ((CLKSEL & 0x80) == 0);
-001E            572   L002001?:
-001E E5A9       573            mov     a,_CLKSEL
-0020 30E718     574            jnb     acc.7,L002001?
-0023            575   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:60: CLKSEL = 0x03;
-0023 75A903     576            mov     _CLKSEL,#0x03
-0026            577   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:61: CLKSEL = 0x03;
-0026 75A903     578            mov     _CLKSEL,#0x03
-0029            579   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:62: while ((CLKSEL & 0x80) == 0);
-0029            580   L002004?:
-0029 E5A9       581            mov     a,_CLKSEL
-002B 30E798     582            jnb     acc.7,L002004?
-002E            583   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:67: P0MDOUT |= 0x10; // Enable UART0 TX as push-pull output
-002E 43A410     584            orl     _P0MDOUT,#0x10
-0031            585   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:68: XBR0     = 0x01; // Enable UART0 on P0.4(TX) and P0.5(RX)                     
-0031 75E101     586            mov     _XBR0,#0x01
-0034            587   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:69: XBR1     = 0X00;
-0034 75E200     588            mov     _XBR1,#0x00
-0037            589   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:70: XBR2     = 0x40; // Enable crossbar and weak pull-ups
-0037 75E340     590            mov     _XBR2,#0x40
-003A            591   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:76: SCON0 = 0x10;
-003A 759810     592            mov     _SCON0,#0x10
-003D            593   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:77: TH1 = 0x100-((SYSCLK/BAUDRATE)/(2L*12L));
-003D 758DE6     594            mov     _TH1,#0xE6
-0040            595   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:78: TL1 = TH1;      // Init Timer1
-0040 858D8B     596            mov     _TL1,_TH1
-0043            597   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:79: TMOD &= ~0xf0;  // TMOD: timer 1 in 8-bit auto-reload
-0043 53890F     598            anl     _TMOD,#0x0F
-0046            599   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:80: TMOD |=  0x20;                       
-0046 438920     600            orl     _TMOD,#0x20
-0049            601   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:81: TR1 = 1; // START Timer1
-0049 D28E       602            setb    _TR1
-004B            603   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:82: TI = 1;  // Indicate TX0 ready
-004B D299       604            setb    _TI
-004D            605   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:84: return 0;
-004D 758200     606            mov     dpl,#0x00
-0050 22         607            ret
-0051            608   ;------------------------------------------------------------
-0051            609   ;Allocation info for local variables in function 'TIMER0_Init'
-0051            610   ;------------------------------------------------------------
+0000            545   ;Allocation info for local variables in function '_c51_external_startup'
+0000            546   ;------------------------------------------------------------
+0000            547   ;------------------------------------------------------------
+0000            548   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:19: char _c51_external_startup (void)
+0000            549   ;        -----------------------------------------
+0000            550   ;         function _c51_external_startup
+0000            551   ;        -----------------------------------------
+0000            552   __c51_external_startup:
+0000            553            using   0
+0000            554   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:22: SFRPAGE = 0x00;
+0000 75A700     555            mov     _SFRPAGE,#0x00
+0003            556   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:23: WDTCN = 0xDE; //First key
+0003 7597DE     557            mov     _WDTCN,#0xDE
+0006            558   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:24: WDTCN = 0xAD; //Second key
+0006 7597AD     559            mov     _WDTCN,#0xAD
+0009            560   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:26: VDM0CN=0x80;       // enable VDD monitor
+0009 75FF80     561            mov     _VDM0CN,#0x80
+000C            562   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:27: RSTSRC=0x02|0x04;  // Enable reset on missing clock detector and VDD
+000C 75EF06     563            mov     _RSTSRC,#0x06
+000F            564   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:34: SFRPAGE = 0x10;
+000F 75A710     565            mov     _SFRPAGE,#0x10
+0012            566   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:35: PFE0CN  = 0x20; // SYSCLK < 75 MHz.
+0012 75C120     567            mov     _PFE0CN,#0x20
+0015            568   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:36: SFRPAGE = 0x00;
+0015 75A700     569            mov     _SFRPAGE,#0x00
+0018            570   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:57: CLKSEL = 0x00;
+0018 75A900     571            mov     _CLKSEL,#0x00
+001B            572   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:58: CLKSEL = 0x00;
+001B 75A900     573            mov     _CLKSEL,#0x00
+001E            574   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:59: while ((CLKSEL & 0x80) == 0);
+001E            575   L002001?:
+001E E5A9       576            mov     a,_CLKSEL
+0020 30E7D8     577            jnb     acc.7,L002001?
+0023            578   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:60: CLKSEL = 0x03;
+0023 75A903     579            mov     _CLKSEL,#0x03
+0026            580   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:61: CLKSEL = 0x03;
+0026 75A903     581            mov     _CLKSEL,#0x03
+0029            582   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:62: while ((CLKSEL & 0x80) == 0);
+0029            583   L002004?:
+0029 E5A9       584            mov     a,_CLKSEL
+002B 30E758     585            jnb     acc.7,L002004?
+002E            586   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:67: P0MDOUT |= 0x10; // Enable UART0 TX as push-pull output
+002E 43A410     587            orl     _P0MDOUT,#0x10
+0031            588   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:68: XBR0     = 0x01; // Enable UART0 on P0.4(TX) and P0.5(RX)                     
+0031 75E101     589            mov     _XBR0,#0x01
+0034            590   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:69: XBR1     = 0X00;
+0034 75E200     591            mov     _XBR1,#0x00
+0037            592   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:70: XBR2     = 0x40; // Enable crossbar and weak pull-ups
+0037 75E340     593            mov     _XBR2,#0x40
+003A            594   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:76: SCON0 = 0x10;
+003A 759810     595            mov     _SCON0,#0x10
+003D            596   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:77: TH1 = 0x100-((SYSCLK/BAUDRATE)/(2L*12L));
+003D 758DE6     597            mov     _TH1,#0xE6
+0040            598   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:78: TL1 = TH1;      // Init Timer1
+0040 858D8B     599            mov     _TL1,_TH1
+0043            600   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:79: TMOD &= ~0xf0;  // TMOD: timer 1 in 8-bit auto-reload
+0043 53890F     601            anl     _TMOD,#0x0F
+0046            602   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:80: TMOD |=  0x20;                       
+0046 438920     603            orl     _TMOD,#0x20
+0049            604   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:81: TR1 = 1; // START Timer1
+0049 D28E       605            setb    _TR1
+004B            606   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:82: TI = 1;  // Indicate TX0 ready
+004B D299       607            setb    _TI
+004D            608   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:84: return 0;
+004D 758200     609            mov     dpl,#0x00
+0050 22         610            ret
 0051            611   ;------------------------------------------------------------
-0051            612   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:88: void TIMER0_Init(void)
-0051            613   ;        -----------------------------------------
-0051            614   ;         function TIMER0_Init
-0051            615   ;        -----------------------------------------
-0051            616   _TIMER0_Init:
-0051            617   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:90: TMOD&=0b_1111_0000; // Set the bits of Timer/Counter 0 to zero
-0051 5389F0     618            anl     _TMOD,#0xF0
-0054            619   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:91: TMOD|=0b_0000_0001; // Timer/Counter 0 used as a 16-bit timer
-0054 438901     620            orl     _TMOD,#0x01
-0057            621   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:92: TR0=0; // Stop Timer/Counter 0
-0057 C28C       622            clr     _TR0
-0059 22         623            ret
-005A            624   ;------------------------------------------------------------
-005A            625   ;Allocation info for local variables in function 'Timer3us'
-005A            626   ;------------------------------------------------------------
-005A            627   ;us                        Allocated to registers r2 r3 
-005A            628   ;i                         Allocated to registers r4 r5 
+0051            612   ;Allocation info for local variables in function 'TIMER0_Init'
+0051            613   ;------------------------------------------------------------
+0051            614   ;------------------------------------------------------------
+0051            615   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:88: void TIMER0_Init(void)
+0051            616   ;        -----------------------------------------
+0051            617   ;         function TIMER0_Init
+0051            618   ;        -----------------------------------------
+0051            619   _TIMER0_Init:
+0051            620   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:90: TMOD&=0b_1111_0000; // Set the bits of Timer/Counter 0 to zero
+0051 5389F0     621            anl     _TMOD,#0xF0
+0054            622   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:91: TMOD|=0b_0000_0001; // Timer/Counter 0 used as a 16-bit timer
+0054 438901     623            orl     _TMOD,#0x01
+0057            624   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:92: TR0=0; // Stop Timer/Counter 0
+0057 C28C       625            clr     _TR0
+0059 22         626            ret
+005A            627   ;------------------------------------------------------------
+005A            628   ;Allocation info for local variables in function 'Timer2_ISR'
 005A            629   ;------------------------------------------------------------
-005A            630   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:96: void Timer3us(unsigned int us)
-005A            631   ;        -----------------------------------------
-005A            632   ;         function Timer3us
-005A            633   ;        -----------------------------------------
-005A            634   _Timer3us:
-005A AA82       635            mov     r2,dpl
-005C AB83       636            mov     r3,dph
-005E            637   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:101: CKCON0|=0b_0100_0000;
-005E 438E40     638            orl     _CKCON0,#0x40
-0061            639   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:103: TMR3RL = (-(SYSCLK)/1000000L); // Set Timer3 to overflow in 1us.
-0061 7592B8     640            mov     _TMR3RL,#0xB8
-0064 7593FF     641            mov     (_TMR3RL >> 8),#0xFF
-0067            642   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:104: TMR3 = TMR3RL;                 // Initialize Timer3 for first overflow
-0067 859294     643            mov     _TMR3,_TMR3RL
-006A 859395     644            mov     (_TMR3 >> 8),(_TMR3RL >> 8)
-006D            645   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:106: TMR3CN0 = 0x04;                 // Sart Timer3 and clear overflow flag
-006D 759104     646            mov     _TMR3CN0,#0x04
-0070            647   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:107: for (i = 0; i < us; i++)       // Count <us> overflows
-0070 7C00       648            mov     r4,#0x00
-0072 7D00       649            mov     r5,#0x00
-0074            650   L004004?:
-0074 C3         651            clr     c
-0075 EC         652            mov     a,r4
-0076 9A         653            subb    a,r2
-0077 ED         654            mov     a,r5
-0078 9B         655            subb    a,r3
-0079 5001       656            jnc     L004007?
-007B            657   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:109: while (!(TMR3CN0 & 0x80));  // Wait for overflow
-007B            658   L004001?:
-007B E591       659            mov     a,_TMR3CN0
-007D 30E7D8     660            jnb     acc.7,L004001?
-0080            661   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:110: TMR3CN0 &= ~(0x80);         // Clear overflow indicator
-0080 53917F     662            anl     _TMR3CN0,#0x7F
-0083            663   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:107: for (i = 0; i < us; i++)       // Count <us> overflows
-0083 0C         664            inc     r4
-0084 BC0058     665            cjne    r4,#0x00,L004004?
-0087 0D         666            inc     r5
-0088 8001       667            sjmp    L004004?
-008A            668   L004007?:
-008A            669   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:112: TMR3CN0 = 0 ;                   // Stop Timer3 and clear overflow flag
-008A 759100     670            mov     _TMR3CN0,#0x00
-008D 22         671            ret
-008E            672   ;------------------------------------------------------------
-008E            673   ;Allocation info for local variables in function 'waitms'
-008E            674   ;------------------------------------------------------------
-008E            675   ;ms                        Allocated to registers r2 r3 
-008E            676   ;j                         Allocated to registers r4 r5 
-008E            677   ;k                         Allocated to registers r6 
-008E            678   ;------------------------------------------------------------
-008E            679   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:115: void waitms (unsigned int ms)
-008E            680   ;        -----------------------------------------
-008E            681   ;         function waitms
-008E            682   ;        -----------------------------------------
-008E            683   _waitms:
-008E AA82       684            mov     r2,dpl
-0090 AB83       685            mov     r3,dph
-0092            686   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:119: for(j=0; j<ms; j++)
-0092 7C00       687            mov     r4,#0x00
-0094 7D00       688            mov     r5,#0x00
-0096            689   L005005?:
-0096 C3         690            clr     c
-0097 EC         691            mov     a,r4
-0098 9A         692            subb    a,r2
-0099 ED         693            mov     a,r5
-009A 9B         694            subb    a,r3
-009B 5001       695            jnc     L005009?
-009D            696   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:120: for (k=0; k<4; k++) Timer3us(250);
-009D 7E00       697            mov     r6,#0x00
-009F            698   L005001?:
-009F BE04D8     699            cjne    r6,#0x04,L005018?
-00A2            700   L005018?:
-00A2 5001       701            jnc     L005007?
-00A4 9000FA     702            mov     dptr,#0x00FA
-00A7 C002       703            push    ar2
-00A9 C003       704            push    ar3
-00AB C004       705            push    ar4
-00AD C005       706            push    ar5
-00AF C006       707            push    ar6
-00B1 120100     708            lcall   _Timer3us
-00B4 D006       709            pop     ar6
-00B6 D005       710            pop     ar5
-00B8 D004       711            pop     ar4
-00BA D003       712            pop     ar3
-00BC D002       713            pop     ar2
-00BE 0E         714            inc     r6
-00BF 8001       715            sjmp    L005001?
-00C1            716   L005007?:
-00C1            717   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:119: for(j=0; j<ms; j++)
-00C1 0C         718            inc     r4
-00C2 BC0018     719            cjne    r4,#0x00,L005005?
-00C5 0D         720            inc     r5
-00C6 8001       721            sjmp    L005005?
-00C8            722   L005009?:
-00C8 22         723            ret
-00C9            724   ;------------------------------------------------------------
-00C9            725   ;Allocation info for local variables in function 'main'
-00C9            726   ;------------------------------------------------------------
-00C9            727   ;duration                  Allocated to registers 
-00C9            728   ;distanceCm                Allocated to registers r2 r3 r4 r5 
-00C9            729   ;distanceIn                Allocated with name '_main_distanceIn_1_51'
-00C9            730   ;overflow_count            Allocated with name '_main_overflow_count_1_51'
-00C9            731   ;period1                   Allocated with name '_main_period1_1_51'
-00C9            732   ;------------------------------------------------------------
-00C9            733   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:122: void main()
-00C9            734   ;        -----------------------------------------
-00C9            735   ;         function main
-00C9            736   ;        -----------------------------------------
-00C9            737   _main:
-00C9            738   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:125: int overflow_count=0; 
-00C9            739   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:128: TL0=0; 
-00C9            740   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:129: TH0=0;
-00C9 E4         741            clr     a
-00CA F548       742            mov     _main_overflow_count_1_51,a
-00CC F549       743            mov     (_main_overflow_count_1_51 + 1),a
-00CE F58A       744            mov     _TL0,a
-00D0 F58C       745            mov     _TH0,a
-00D2            746   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:130: TF0=0;
-00D2 C28D       747            clr     _TF0
-00D4            748   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:131: TIMER0_Init();
-00D4 120100     749            lcall   _TIMER0_Init
-00D7            750   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:133: waitms(500); // Give PuTTy a chance to start before sending
-00D7 9001F4     751            mov     dptr,#0x01F4
-00DA 120100     752            lcall   _waitms
-00DD            753   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:134: printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
-00DD 7458       754            mov     a,#__str_0
-00DF C0E0       755            push    acc
-00E1 74B8       756            mov     a,#(__str_0 >> 8)
-00E3 C0E0       757            push    acc
-00E5 7480       758            mov     a,#0x80
-00E7 C0E0       759            push    acc
-00E9 120100     760            lcall   _printf
-00EC 1581       761            dec     sp
-00EE 1581       762            dec     sp
-00F0 1581       763            dec     sp
-00F2            764   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:137: while(1){
-00F2            765   L006010?:
-00F2            766   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:139: TRIG_PIN=0;
-00F2 C2A1       767            clr     _P2_1
-00F4            768   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:140: waitms(2);
-00F4 900002     769            mov     dptr,#0x0002
-00F7 120100     770            lcall   _waitms
-00FA            771   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:142: TRIG_PIN=1;
-00FA D2A1       772            setb    _P2_1
-00FC            773   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:143: waitms(10);
-00FC 90000A     774            mov     dptr,#0x000A
-00FF 120100     775            lcall   _waitms
-0102            776   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:147: while (ECHO_PIN==0){
-0102 AC48       777            mov     r4,_main_overflow_count_1_51
-0104 AD49       778            mov     r5,(_main_overflow_count_1_51 + 1)
-0106            779   L006003?:
-0106 20A098     780            jb      _P2_0,L006019?
-0109            781   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:148: if(TF0==1) // Did the 16-bit timer overflow?
-0109            782   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:150: TF0=0;
-0109 108DD8     783            jbc     _TF0,L006021?
-010C 8001       784            sjmp    L006003?
-010E            785   L006021?:
-010E            786   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:151: overflow_count++;
-010E 0C         787            inc     r4
-010F BC0058     788            cjne    r4,#0x00,L006003?
-0112 0D         789            inc     r5
-0113 8001       790            sjmp    L006003?
-0115            791   L006019?:
-0115 8C48       792            mov     _main_overflow_count_1_51,r4
-0117 8D49       793            mov     (_main_overflow_count_1_51 + 1),r5
-0119            794   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:154: printf("\r overflow_count:%d\n",overflow_count);
-0119 C004       795            push    ar4
-011B C005       796            push    ar5
-011D C004       797            push    ar4
-011F C005       798            push    ar5
-0121 7418       799            mov     a,#__str_1
-0123 C0E0       800            push    acc
-0125 74BA       801            mov     a,#(__str_1 >> 8)
-0127 C0E0       802            push    acc
-0129 7480       803            mov     a,#0x80
-012B C0E0       804            push    acc
-012D 120100     805            lcall   _printf
-0130 E581       806            mov     a,sp
-0132 24FB       807            add     a,#0xfb
-0134 F581       808            mov     sp,a
-0136 D005       809            pop     ar5
-0138 D004       810            pop     ar4
-013A            811   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:155: TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
-013A C28C       812            clr     _TR0
-013C            813   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:156: period1=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
-013C 8C82       814            mov     dpl,r4
-013E 8D83       815            mov     dph,r5
-0140 120100     816            lcall   ___sint2fs
-0143 AC82       817            mov     r4,dpl
-0145 AD83       818            mov     r5,dph
-0147 AEF0       819            mov     r6,b
-0149 FF         820            mov     r7,a
-014A C004       821            push    ar4
-014C C005       822            push    ar5
-014E C006       823            push    ar6
-0150 C007       824            push    ar7
-0152 900000     825            mov     dptr,#0x0000
-0155 75F080     826            mov     b,#0x80
-0158 7447       827            mov     a,#0x47
-015A 120100     828            lcall   ___fsmul
-015D AC82       829            mov     r4,dpl
-015F AD83       830            mov     r5,dph
-0161 AEF0       831            mov     r6,b
-0163 FF         832            mov     r7,a
-0164 E581       833            mov     a,sp
-0166 24FC       834            add     a,#0xfc
-0168 F581       835            mov     sp,a
-016A 858C82     836            mov     dpl,_TH0
-016D C004       837            push    ar4
-016F C005       838            push    ar5
-0171 C006       839            push    ar6
-0173 C007       840            push    ar7
-0175 120100     841            lcall   ___uchar2fs
-0178 A882       842            mov     r0,dpl
-017A A983       843            mov     r1,dph
-017C AAF0       844            mov     r2,b
-017E FB         845            mov     r3,a
-017F C000       846            push    ar0
-0181 C001       847            push    ar1
-0183 C002       848            push    ar2
-0185 C003       849            push    ar3
-0187 900000     850            mov     dptr,#0x0000
-018A 75F080     851            mov     b,#0x80
-018D 7443       852            mov     a,#0x43
-018F 120100     853            lcall   ___fsmul
-0192 AA82       854            mov     r2,dpl
-0194 AB83       855            mov     r3,dph
-0196 A8F0       856            mov     r0,b
-0198 F9         857            mov     r1,a
-0199 E581       858            mov     a,sp
-019B 24FC       859            add     a,#0xfc
-019D F581       860            mov     sp,a
-019F D007       861            pop     ar7
-01A1 D006       862            pop     ar6
-01A3 D005       863            pop     ar5
-01A5 D004       864            pop     ar4
-01A7 C002       865            push    ar2
-01A9 C003       866            push    ar3
-01AB C000       867            push    ar0
-01AD C001       868            push    ar1
-01AF 8C82       869            mov     dpl,r4
-01B1 8D83       870            mov     dph,r5
-01B3 8EF0       871            mov     b,r6
-01B5 EF         872            mov     a,r7
-01B6 120100     873            lcall   ___fsadd
-01B9 AA82       874            mov     r2,dpl
-01BB AB83       875            mov     r3,dph
-01BD ACF0       876            mov     r4,b
-01BF FD         877            mov     r5,a
-01C0 E581       878            mov     a,sp
-01C2 24FC       879            add     a,#0xfc
-01C4 F581       880            mov     sp,a
-01C6 AE8A       881            mov     r6,_TL0
-01C8 7F00       882            mov     r7,#0x00
-01CA 8E82       883            mov     dpl,r6
-01CC 8F83       884            mov     dph,r7
-01CE C002       885            push    ar2
-01D0 C003       886            push    ar3
-01D2 C004       887            push    ar4
-01D4 C005       888            push    ar5
-01D6 120100     889            lcall   ___sint2fs
-01D9 AE82       890            mov     r6,dpl
-01DB AF83       891            mov     r7,dph
-01DD A8F0       892            mov     r0,b
-01DF F9         893            mov     r1,a
-01E0 D005       894            pop     ar5
-01E2 D004       895            pop     ar4
-01E4 D003       896            pop     ar3
-01E6 D002       897            pop     ar2
-01E8 C006       898            push    ar6
-01EA C007       899            push    ar7
-01EC C000       900            push    ar0
-01EE C001       901            push    ar1
-01F0 8A82       902            mov     dpl,r2
-01F2 8B83       903            mov     dph,r3
-01F4 8CF0       904            mov     b,r4
-01F6 ED         905            mov     a,r5
-01F7 120100     906            lcall   ___fsadd
-01FA AA82       907            mov     r2,dpl
-01FC AB83       908            mov     r3,dph
-01FE ACF0       909            mov     r4,b
-0200 FD         910            mov     r5,a
-0201 E581       911            mov     a,sp
-0203 24FC       912            add     a,#0xfc
-0205 F581       913            mov     sp,a
-0207 C002       914            push    ar2
-0209 C003       915            push    ar3
-020B C004       916            push    ar4
-020D C005       917            push    ar5
-020F 90F4FC     918            mov     dptr,#0xF4FC
-0212 75F032     919            mov     b,#0x32
-0215 7434       920            mov     a,#0x34
-0217 120100     921            lcall   ___fsmul
-021A 858298     922            mov     _main_period1_1_51,dpl
-021D 858399     923            mov     (_main_period1_1_51 + 1),dph
-0220 85F09A     924            mov     (_main_period1_1_51 + 2),b
-0223 F59B       925            mov     (_main_period1_1_51 + 3),a
-0225 E581       926            mov     a,sp
-0227 24FC       927            add     a,#0xfc
-0229 F581       928            mov     sp,a
-022B            929   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:158: printf( "\rf=%f Hz ,     Period=%fms\n", 1/(period1), period1*1000.0);
-022B C098       930            push    _main_period1_1_51
-022D C099       931            push    (_main_period1_1_51 + 1)
-022F C09A       932            push    (_main_period1_1_51 + 2)
-0231 C09B       933            push    (_main_period1_1_51 + 3)
-0233 900000     934            mov     dptr,#0x0000
-0236 75F07A     935            mov     b,#0x7A
-0239 7444       936            mov     a,#0x44
-023B 120100     937            lcall   ___fsmul
-023E AE82       938            mov     r6,dpl
-0240 AF83       939            mov     r7,dph
-0242 A8F0       940            mov     r0,b
-0244 F9         941            mov     r1,a
-0245 E581       942            mov     a,sp
-0247 24FC       943            add     a,#0xfc
-0249 F581       944            mov     sp,a
-024B C006       945            push    ar6
-024D C007       946            push    ar7
-024F C000       947            push    ar0
-0251 C001       948            push    ar1
-0253 C098       949            push    _main_period1_1_51
-0255 C099       950            push    (_main_period1_1_51 + 1)
-0257 C09A       951            push    (_main_period1_1_51 + 2)
-0259 C09B       952            push    (_main_period1_1_51 + 3)
-025B 900000     953            mov     dptr,#0x0000
-025E 75F080     954            mov     b,#0x80
-0261 743F       955            mov     a,#0x3F
-0263 120100     956            lcall   ___fsdiv
-0266 AA82       957            mov     r2,dpl
-0268 AB83       958            mov     r3,dph
-026A ACF0       959            mov     r4,b
-026C FD         960            mov     r5,a
-026D E581       961            mov     a,sp
-026F 24FC       962            add     a,#0xfc
-0271 F581       963            mov     sp,a
-0273 C002       964            push    ar2
-0275 C003       965            push    ar3
-0277 C004       966            push    ar4
-0279 C005       967            push    ar5
-027B 74D8       968            mov     a,#__str_2
-027D C0E0       969            push    acc
-027F 74BB       970            mov     a,#(__str_2 >> 8)
-0281 C0E0       971            push    acc
-0283 7480       972            mov     a,#0x80
-0285 C0E0       973            push    acc
-0287 120100     974            lcall   _printf
-028A E581       975            mov     a,sp
-028C 24F5       976            add     a,#0xf5
-028E F581       977            mov     sp,a
-0290            978   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:163: distanceCm=duration / 29.1 / 2 ;
-0290 74CD       979            mov     a,#0xCD
-0292 C0E0       980            push    acc
-0294 74CC       981            mov     a,#0xCC
-0296 C0E0       982            push    acc
-0298 74E8       983            mov     a,#0xE8
-029A C0E0       984            push    acc
-029C 7441       985            mov     a,#0x41
-029E C0E0       986            push    acc
-02A0 859882     987            mov     dpl,_main_period1_1_51
-02A3 859983     988            mov     dph,(_main_period1_1_51 + 1)
-02A6 859AF0     989            mov     b,(_main_period1_1_51 + 2)
-02A9 E59B       990            mov     a,(_main_period1_1_51 + 3)
-02AB 120100     991            lcall   ___fsdiv
-02AE AA82       992            mov     r2,dpl
-02B0 AB83       993            mov     r3,dph
-02B2 ACF0       994            mov     r4,b
-02B4 FD         995            mov     r5,a
-02B5 E581       996            mov     a,sp
-02B7 24FC       997            add     a,#0xfc
-02B9 F581       998            mov     sp,a
-02BB E4         999            clr     a
-02BC C0E0      1000            push    acc
-02BE C0E0      1001            push    acc
-02C0 C0E0      1002            push    acc
-02C2 7440      1003            mov     a,#0x40
-02C4 C0E0      1004            push    acc
-02C6 8A82      1005            mov     dpl,r2
-02C8 8B83      1006            mov     dph,r3
-02CA 8CF0      1007            mov     b,r4
-02CC ED        1008            mov     a,r5
-02CD 120100    1009            lcall   ___fsdiv
-02D0 AA82      1010            mov     r2,dpl
-02D2 AB83      1011            mov     r3,dph
-02D4 ACF0      1012            mov     r4,b
-02D6 FD        1013            mov     r5,a
-02D7 E581      1014            mov     a,sp
-02D9 24FC      1015            add     a,#0xfc
-02DB F581      1016            mov     sp,a
-02DD           1017   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:164: distanceIn=duration / 74 / 2;
-02DD C002      1018            push    ar2
-02DF C003      1019            push    ar3
-02E1 C004      1020            push    ar4
-02E3 C005      1021            push    ar5
-02E5 E4        1022            clr     a
-02E6 C0E0      1023            push    acc
-02E8 C0E0      1024            push    acc
-02EA 7494      1025            mov     a,#0x94
-02EC C0E0      1026            push    acc
-02EE 7442      1027            mov     a,#0x42
-02F0 C0E0      1028            push    acc
-02F2 859882    1029            mov     dpl,_main_period1_1_51
-02F5 859983    1030            mov     dph,(_main_period1_1_51 + 1)
-02F8 859AF0    1031            mov     b,(_main_period1_1_51 + 2)
-02FB E59B      1032            mov     a,(_main_period1_1_51 + 3)
-02FD 120100    1033            lcall   ___fsdiv
-0300 AE82      1034            mov     r6,dpl
-0302 AF83      1035            mov     r7,dph
-0304 A8F0      1036            mov     r0,b
-0306 F9        1037            mov     r1,a
-0307 E581      1038            mov     a,sp
-0309 24FC      1039            add     a,#0xfc
-030B F581      1040            mov     sp,a
-030D E4        1041            clr     a
-030E C0E0      1042            push    acc
-0310 C0E0      1043            push    acc
-0312 C0E0      1044            push    acc
-0314 7440      1045            mov     a,#0x40
-0316 C0E0      1046            push    acc
-0318 8E82      1047            mov     dpl,r6
-031A 8F83      1048            mov     dph,r7
-031C 88F0      1049            mov     b,r0
-031E E9        1050            mov     a,r1
-031F 120100    1051            lcall   ___fsdiv
-0322 8582F8    1052            mov     _main_distanceIn_1_51,dpl
-0325 8583F9    1053            mov     (_main_distanceIn_1_51 + 1),dph
-0328 85F0FA    1054            mov     (_main_distanceIn_1_51 + 2),b
-032B F5FB      1055            mov     (_main_distanceIn_1_51 + 3),a
-032D E581      1056            mov     a,sp
-032F 24FC      1057            add     a,#0xfc
-0331 F581      1058            mov     sp,a
-0333 D005      1059            pop     ar5
-0335 D004      1060            pop     ar4
-0337 D003      1061            pop     ar3
-0339 D002      1062            pop     ar2
-033B           1063   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:166: if (distanceCm <= 0){
-033B C002      1064            push    ar2
-033D C003      1065            push    ar3
-033F C004      1066            push    ar4
-0341 C005      1067            push    ar5
-0343 E4        1068            clr     a
-0344 C0E0      1069            push    acc
-0346 C0E0      1070            push    acc
-0348 C0E0      1071            push    acc
-034A C0E0      1072            push    acc
-034C 8A82      1073            mov     dpl,r2
-034E 8B83      1074            mov     dph,r3
-0350 8CF0      1075            mov     b,r4
-0352 ED        1076            mov     a,r5
-0353 120100    1077            lcall   ___fsgt
-0356 AE82      1078            mov     r6,dpl
-0358 E581      1079            mov     a,sp
-035A 24FC      1080            add     a,#0xfc
-035C F581      1081            mov     sp,a
-035E D005      1082            pop     ar5
-0360 D004      1083            pop     ar4
-0362 D003      1084            pop     ar3
-0364 D002      1085            pop     ar2
-0366 EE        1086            mov     a,r6
-0367 7001      1087            jnz     L006007?
-0369           1088   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:167: printf("out of range");
-0369 7498      1089            mov     a,#__str_3
-036B C0E0      1090            push    acc
-036D 74BC      1091            mov     a,#(__str_3 >> 8)
-036F C0E0      1092            push    acc
-0371 7480      1093            mov     a,#0x80
-0373 C0E0      1094            push    acc
-0375 120100    1095            lcall   _printf
-0378 1581      1096            dec     sp
-037A 1581      1097            dec     sp
-037C 1581      1098            dec     sp
-037E 8001      1099            sjmp    L006008?
-0380           1100   L006007?:
-0380           1101   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:171: printf("distance in Inches: %f", distanceIn);
-0380 C002      1102            push    ar2
-0382 C003      1103            push    ar3
-0384 C004      1104            push    ar4
-0386 C005      1105            push    ar5
-0388 C0F8      1106            push    _main_distanceIn_1_51
-038A C0F9      1107            push    (_main_distanceIn_1_51 + 1)
-038C C0FA      1108            push    (_main_distanceIn_1_51 + 2)
-038E C0FB      1109            push    (_main_distanceIn_1_51 + 3)
-0390 7418      1110            mov     a,#__str_4
-0392 C0E0      1111            push    acc
-0394 74BD      1112            mov     a,#(__str_4 >> 8)
-0396 C0E0      1113            push    acc
-0398 7480      1114            mov     a,#0x80
-039A C0E0      1115            push    acc
-039C 120100    1116            lcall   _printf
-039F E581      1117            mov     a,sp
-03A1 24F9      1118            add     a,#0xf9
-03A3 F581      1119            mov     sp,a
-03A5           1120   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:172: printf("distance in cm: %f", distanceCm);
-03A5 7458      1121            mov     a,#__str_5
-03A7 C0E0      1122            push    acc
-03A9 74BD      1123            mov     a,#(__str_5 >> 8)
-03AB C0E0      1124            push    acc
-03AD 7480      1125            mov     a,#0x80
-03AF C0E0      1126            push    acc
-03B1 120100    1127            lcall   _printf
-03B4 E581      1128            mov     a,sp
-03B6 24F9      1129            add     a,#0xf9
-03B8 F581      1130            mov     sp,a
-03BA           1131   L006008?:
-03BA           1132   ;        C:\Users\allisony\Documents\ElecRobot\sensor.c:180: waitms(1000);
-03BA 9003E8    1133            mov     dptr,#0x03E8
-03BD 120100    1134            lcall   _waitms
-03C0 020100    1135            ljmp    L006010?
-03C3           1136            rseg R_CSEG
-03C3           1137   
-0000           1138            rseg R_XINIT
-0000           1139   
-0000           1140            rseg R_CONST
-0000           1141   __str_0:
-0000 1B        1142            db 0x1B
-0001 5B324A    1143            db '[2J'
-0004 00        1144            db 0x00
-0005           1145   __str_1:
-0005 0D        1146            db 0x0D
-0006 206F7665  1147            db ' overflow_count:%d'
-     72666C6F
-     775F636F
-     756E743A
-     2564
-0018 0A        1148            db 0x0A
-0019 00        1149            db 0x00
-001A           1150   __str_2:
-001A 0D        1151            db 0x0D
-001B 663D2566  1152            db 'f=%f Hz ,     Period=%fms'
-     20487A20
-     2C202020
-     20205065
-     72696F64
-     3D25666D
-     73
-0034 0A        1153            db 0x0A
-0035 00        1154            db 0x00
-0036           1155   __str_3:
-0036 6F757420  1156            db 'out of range'
-     6F662072
-     616E6765
-0042 00        1157            db 0x00
-0043           1158   __str_4:
-0043 64697374  1159            db 'distance in Inches: %f'
-     616E6365
-     20696E20
-     496E6368
-     65733A20
-     2566
-0059 00        1160            db 0x00
-005A           1161   __str_5:
-005A 64697374  1162            db 'distance in cm: %f'
-     616E6365
-     20696E20
-     636D3A20
-     2566
-006C 00        1163            db 0x00
-006D           1164   
-0003           1165            CSEG
-0003           1166   
-0003           1167   end
+005A            630   ;------------------------------------------------------------
+005A            631   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:96: void Timer2_ISR (void) interrupt 5
+005A            632   ;        -----------------------------------------
+005A            633   ;         function Timer2_ISR
+005A            634   ;        -----------------------------------------
+005A            635   _Timer2_ISR:
+005A C0E0       636            push    acc
+005C C0D0       637            push    psw
+005E 75D000     638            mov     psw,#0x00
+0061            639   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:98: TF2H = 0; // Clear Timer2 interrupt flag
+0061 C2CF       640            clr     _TF2H
+0063            641   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:100: pwm_count++;
+0063 0500       642            inc     _pwm_count
+0065            643   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:101: if(pwm_count>100) pwm_count=0;
+0065 E500       644            mov     a,_pwm_count
+0067 249B       645            add     a,#0xff - 0x64
+0069 5001       646            jnc     L004002?
+006B 750000     647            mov     _pwm_count,#0x00
+006E            648   L004002?:
+006E            649   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:103: TRIG_PIN=pwm_count>50?0:1;    
+006E E500       650            mov     a,_pwm_count
+0070 24CD       651            add     a,#0xff - 0x32
+0072 9258       652            mov  _Timer2_ISR_sloc0_1_0,c
+0074 B3         653            cpl     c
+0075 92A1       654            mov     _P2_1,c
+0077            655   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:104: ECHO_PIN=pwm_count>0?0:1;
+0077 E500       656            mov     a,_pwm_count
+0079 B40158     657            cjne    a,#0x01,L004007?
+007C            658   L004007?:
+007C 92A0       659            mov     _P2_0,c
+007E D0D0       660            pop     psw
+0080 D0E0       661            pop     acc
+0082 32         662            reti
+0083            663   ;        eliminated unneeded push/pop dpl
+0083            664   ;        eliminated unneeded push/pop dph
+0083            665   ;        eliminated unneeded push/pop b
+0083            666   ;------------------------------------------------------------
+0083            667   ;Allocation info for local variables in function 'Timer3us'
+0083            668   ;------------------------------------------------------------
+0083            669   ;us                        Allocated to registers r2 r3 
+0083            670   ;i                         Allocated to registers r4 r5 
+0083            671   ;------------------------------------------------------------
+0083            672   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:110: void Timer3us(unsigned int us)
+0083            673   ;        -----------------------------------------
+0083            674   ;         function Timer3us
+0083            675   ;        -----------------------------------------
+0083            676   _Timer3us:
+0083 AA82       677            mov     r2,dpl
+0085 AB83       678            mov     r3,dph
+0087            679   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:115: CKCON0|=0b_0100_0000;
+0087 438E40     680            orl     _CKCON0,#0x40
+008A            681   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:117: TMR3RL = (-(SYSCLK)/1000000L); // Set Timer3 to overflow in 1us.
+008A 7592B8     682            mov     _TMR3RL,#0xB8
+008D 7593FF     683            mov     (_TMR3RL >> 8),#0xFF
+0090            684   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:118: TMR3 = TMR3RL;                 // Initialize Timer3 for first overflow
+0090 859294     685            mov     _TMR3,_TMR3RL
+0093 859395     686            mov     (_TMR3 >> 8),(_TMR3RL >> 8)
+0096            687   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:120: TMR3CN0 = 0x04;                 // Sart Timer3 and clear overflow flag
+0096 759104     688            mov     _TMR3CN0,#0x04
+0099            689   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:121: for (i = 0; i < us; i++)       // Count <us> overflows
+0099 7C00       690            mov     r4,#0x00
+009B 7D00       691            mov     r5,#0x00
+009D            692   L005004?:
+009D C3         693            clr     c
+009E EC         694            mov     a,r4
+009F 9A         695            subb    a,r2
+00A0 ED         696            mov     a,r5
+00A1 9B         697            subb    a,r3
+00A2 5001       698            jnc     L005007?
+00A4            699   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:123: while (!(TMR3CN0 & 0x80));  // Wait for overflow
+00A4            700   L005001?:
+00A4 E591       701            mov     a,_TMR3CN0
+00A6 30E758     702            jnb     acc.7,L005001?
+00A9            703   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:124: TMR3CN0 &= ~(0x80);         // Clear overflow indicator
+00A9 53917F     704            anl     _TMR3CN0,#0x7F
+00AC            705   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:121: for (i = 0; i < us; i++)       // Count <us> overflows
+00AC 0C         706            inc     r4
+00AD BC00D8     707            cjne    r4,#0x00,L005004?
+00B0 0D         708            inc     r5
+00B1 8001       709            sjmp    L005004?
+00B3            710   L005007?:
+00B3            711   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:126: TMR3CN0 = 0 ;                   // Stop Timer3 and clear overflow flag
+00B3 759100     712            mov     _TMR3CN0,#0x00
+00B6 22         713            ret
+00B7            714   ;------------------------------------------------------------
+00B7            715   ;Allocation info for local variables in function 'waitms'
+00B7            716   ;------------------------------------------------------------
+00B7            717   ;ms                        Allocated to registers r2 r3 
+00B7            718   ;j                         Allocated to registers r4 r5 
+00B7            719   ;k                         Allocated to registers r6 
+00B7            720   ;------------------------------------------------------------
+00B7            721   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:129: void waitms (unsigned int ms)
+00B7            722   ;        -----------------------------------------
+00B7            723   ;         function waitms
+00B7            724   ;        -----------------------------------------
+00B7            725   _waitms:
+00B7 AA82       726            mov     r2,dpl
+00B9 AB83       727            mov     r3,dph
+00BB            728   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:133: for(j=0; j<ms; j++)
+00BB 7C00       729            mov     r4,#0x00
+00BD 7D00       730            mov     r5,#0x00
+00BF            731   L006005?:
+00BF C3         732            clr     c
+00C0 EC         733            mov     a,r4
+00C1 9A         734            subb    a,r2
+00C2 ED         735            mov     a,r5
+00C3 9B         736            subb    a,r3
+00C4 5001       737            jnc     L006009?
+00C6            738   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:134: for (k=0; k<4; k++) Timer3us(250);
+00C6 7E00       739            mov     r6,#0x00
+00C8            740   L006001?:
+00C8 BE0458     741            cjne    r6,#0x04,L006018?
+00CB            742   L006018?:
+00CB 5001       743            jnc     L006007?
+00CD 9000FA     744            mov     dptr,#0x00FA
+00D0 C002       745            push    ar2
+00D2 C003       746            push    ar3
+00D4 C004       747            push    ar4
+00D6 C005       748            push    ar5
+00D8 C006       749            push    ar6
+00DA 120100     750            lcall   _Timer3us
+00DD D006       751            pop     ar6
+00DF D005       752            pop     ar5
+00E1 D004       753            pop     ar4
+00E3 D003       754            pop     ar3
+00E5 D002       755            pop     ar2
+00E7 0E         756            inc     r6
+00E8 8001       757            sjmp    L006001?
+00EA            758   L006007?:
+00EA            759   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:133: for(j=0; j<ms; j++)
+00EA 0C         760            inc     r4
+00EB BC0098     761            cjne    r4,#0x00,L006005?
+00EE 0D         762            inc     r5
+00EF 8001       763            sjmp    L006005?
+00F1            764   L006009?:
+00F1 22         765            ret
+00F2            766   ;------------------------------------------------------------
+00F2            767   ;Allocation info for local variables in function 'main'
+00F2            768   ;------------------------------------------------------------
+00F2            769   ;duration                  Allocated with name '_main_duration_1_53'
+00F2            770   ;distanceCm                Allocated with name '_main_distanceCm_1_53'
+00F2            771   ;distanceIn                Allocated with name '_main_distanceIn_1_53'
+00F2            772   ;overflow_count            Allocated to registers 
+00F2            773   ;period1                   Allocated with name '_main_period1_1_53'
+00F2            774   ;------------------------------------------------------------
+00F2            775   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:136: void main()
+00F2            776   ;        -----------------------------------------
+00F2            777   ;         function main
+00F2            778   ;        -----------------------------------------
+00F2            779   _main:
+00F2            780   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:142: TL0=0; 
+00F2 758A00     781            mov     _TL0,#0x00
+00F5            782   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:143: TH0=0;
+00F5 758C00     783            mov     _TH0,#0x00
+00F8            784   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:144: TF0=0;
+00F8 C28D       785            clr     _TF0
+00FA            786   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:145: TIMER0_Init();
+00FA 120100     787            lcall   _TIMER0_Init
+00FD            788   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:147: waitms(500); // Give PuTTy a chance to start before sending
+00FD 9001F4     789            mov     dptr,#0x01F4
+0100 120100     790            lcall   _waitms
+0103            791   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:148: printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
+0103 74D8       792            mov     a,#__str_0
+0105 C0E0       793            push    acc
+0107 74B0       794            mov     a,#(__str_0 >> 8)
+0109 C0E0       795            push    acc
+010B 7480       796            mov     a,#0x80
+010D C0E0       797            push    acc
+010F 120100     798            lcall   _printf
+0112 1581       799            dec     sp
+0114 1581       800            dec     sp
+0116 1581       801            dec     sp
+0118            802   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:151: while(1){
+0118            803   L007002?:
+0118 8001       804            sjmp    L007002?
+011A            805            rseg R_CSEG
+011A            806   
+0000            807            rseg R_XINIT
+0000            808   
+0000            809            rseg R_CONST
+0000            810   __str_0:
+0000 1B         811            db 0x1B
+0001 5B324A     812            db '[2J'
+0004 00         813            db 0x00
+0005            814   
+002E            815            CSEG
+002E            816   
+002E            817   end
