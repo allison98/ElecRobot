@@ -6,12 +6,16 @@ reciever_so_far
 --model-small
 </OPTC51>
 
+<PRINTF_FLOAT>
+printf_float
+</PRINTF_FLOAT>
+
 <SEGMENTS>
 R_GSINIT,code,0000,NO
 R_BSEG,bit,0001,NO
 R_XSEG,xdata,0000,NO
 BIT_BANK,data,0000,OV
-R_CONST,code,0061,NO
+R_CONST,code,00D3,NO
 rbank0,data,0000,OV
 R_PSEG,xdata,0000,NO
 R_DINIT,code,00A6,NO
@@ -21,68 +25,77 @@ R_IXSEG,xdata,0000,NO
 R_ISEG,idata,0000,NO
 R_HOME,code,0000,NO
 R_XINIT,code,0000,NO
-R_CSEG,code,0689,NO
+R_CSEG,code,072E,NO
 </SEGMENTS>
 
 <LOCALS>
 L002004?,R_CSEG,0029,0000
 L002001?,R_CSEG,001E,0000
-L018014?,R_CSEG,0444,0000
-L021010?,R_CSEG,063C,0000
-L018011?,R_CSEG,0468,0000
+L018014?,R_CSEG,04AD,0000
+L018011?,R_CSEG,04D1,0000
 L003007?,R_CSEG,0099,0000
 L003004?,R_CSEG,0083,0000
 L003001?,R_CSEG,008A,0000
+L022010?,R_CSEG,064C,0000
 L010015?,R_CSEG,01E7,0000
 L010014?,R_CSEG,01E2,0000
-L016009?,R_CSEG,028A,0000
+L016009?,R_CSEG,02F3,0000
 L010013?,R_CSEG,01D6,0000
 L010011?,R_CSEG,01D4,0000
-L016004?,R_CSEG,0281,0000
+L016004?,R_CSEG,02EA,0000
 L004009?,R_CSEG,00D7,0000
-L016001?,R_CSEG,027E,0000
+L016001?,R_CSEG,02E7,0000
 L004007?,R_CSEG,00D0,0000
 L004005?,R_CSEG,00A5,0000
+__str_10,R_CONST,00C5,0000
+__str_11,R_CONST,00CF,0000
 L004001?,R_CSEG,00AE,0000
-L020006?,R_CSEG,055B,0000
-L017006?,R_CSEG,041C,0000
-L020002?,R_CSEG,05B5,0000
-L017005?,R_CSEG,0415,0000
-L017003?,R_CSEG,03BB,0000
+L017006?,R_CSEG,0485,0000
+L020002?,R_CSEG,05B0,0000
+L017005?,R_CSEG,047E,0000
+L017003?,R_CSEG,0424,0000
 L005004?,R_CSEG,00E2,0000
 L005001?,R_CSEG,00DD,0000
-L021009?,R_CSEG,0621,0000
 _arrayEqual_arr1_1_76,R_OSEG,0006,0003
-L021006?,R_CSEG,05DC,0000
-L018008?,R_CSEG,048C,0000
-L018005?,R_CSEG,04B0,0000
-L021001?,R_CSEG,05B9,0000
+L018008?,R_CSEG,04F5,0000
+L018005?,R_CSEG,0519,0000
 _Timer2_ISR_sloc0_1_0,R_BSEG,0000,0001
-L018002?,R_CSEG,04D4,0000
+L018002?,R_CSEG,053D,0000
 L006002?,R_CSEG,0104,0000
-L022002?,R_CSEG,0684,0000
-L019004?,R_CSEG,04E6,0000
+L022009?,R_CSEG,0649,0000
+L022006?,R_CSEG,0604,0000
+L022001?,R_CSEG,05E1,0000
 L010005?,R_CSEG,0208,0000
-L019001?,R_CSEG,04D7,0000
+L019001?,R_CSEG,0540,0000
 L010003?,R_CSEG,0200,0000
 L010002?,R_CSEG,01F6,0000
 L010001?,R_CSEG,01EC,0000
+L023007?,R_CSEG,06FE,0000
+L023004?,R_CSEG,06B9,0000
+L023002?,R_CSEG,069D,0000
 __str_0,R_CONST,0000,0000
-__str_1,R_CONST,0005,0000
-__str_2,R_CONST,005F,0000
-L016011?,R_CSEG,0299,0000
+__str_1,R_CONST,000A,0000
+__str_2,R_CONST,0015,0000
+__str_3,R_CONST,001C,0000
+__str_4,R_CONST,0024,0000
+__str_5,R_CONST,002B,0000
+__str_6,R_CONST,0045,0000
+__str_7,R_CONST,0063,0000
+__str_8,R_CONST,0068,0000
+__str_9,R_CONST,00C2,0000
+L016011?,R_CSEG,0302,0000
 L004018?,R_CSEG,00B1,0000
-L016024?,R_CSEG,0292,0000
-L017013?,R_CSEG,0411,0000
+L016024?,R_CSEG,02FB,0000
+L017013?,R_CSEG,047A,0000
 </LOCALS>
 
 <PUBLICS>
 _InitPinADC,R_CSEG,01C9,0000
 _TIMER0_Init,R_CSEG,0165,0000
 _Volts_at_Pin,R_CSEG,016E,0000
-_main,R_CSEG,063D,0000
+_main,R_CSEG,064D,0000
 _right,R_DSEG,0038,0008
-_PWMLeft,R_CSEG,0239,0000
+_PWMLeft,R_CSEG,0263,0000
 _cartMoveB,R_DSEG,0012,0002
 _cartMoveF,R_DSEG,0010,0002
 __c51_external_startup,R_CSEG,0000,0000
@@ -90,7 +103,7 @@ _InitPinADC_PARM_2,R_OSEG,0000,0001
 _backward,R_DSEG,0028,0008
 _arrayEqual_PARM_2,R_OSEG,0001,0002
 _arrayEqual_PARM_3,R_OSEG,0003,0003
-_arrayEqual,R_CSEG,03AE,0000
+_arrayEqual,R_CSEG,0417,0000
 _Timer2_ISR,R_CSEG,00EC,0000
 _forward,R_DSEG,0020,0008
 _left,R_DSEG,0030,0008
@@ -100,25 +113,26 @@ _pwmSig3,R_DSEG,0008,0002
 _pwmSig4,R_DSEG,000A,0002
 _pwmSig5,R_DSEG,000C,0002
 _pwmSig6,R_DSEG,000E,0002
-_periodcalc,R_CSEG,0274,0000
+_periodcalc,R_CSEG,02DD,0000
 _InitADC,R_CSEG,014D,0000
 _pwm_count,R_DSEG,0000,0001
-_voltsAtPeak,R_CSEG,04D7,0000
-_PWMRight,R_CSEG,024E,0000
+_voltsAtPeak,R_CSEG,0540,0000
+_PWMRight,R_CSEG,028D,0000
 _command,R_DSEG,0040,0008
 _claw_flag,R_DSEG,0016,0002
 _PWMforward,R_CSEG,020C,0000
-_recieveData,R_CSEG,05B9,0000
-_PWMStop,R_CSEG,0262,0000
+_recieveData,R_CSEG,05E1,0000
+_PWMStop,R_CSEG,02B6,0000
 _Timer3us,R_CSEG,0069,0000
-_PWMbackward,R_CSEG,0222,0000
+_waitquarterperiod,R_CSEG,05DB,0000
+_PWMbackward,R_CSEG,0237,0000
 _flag,R_DSEG,0014,0002
 _pwm_count1,R_DSEG,0001,0001
 _pwm_count2,R_DSEG,0002,0001
 _pwm_count3,R_DSEG,0003,0001
-_getDigitalSignal,R_CSEG,0501,0000
+_getDigitalSignal,R_CSEG,055B,0000
 _ADC_at_Pin,R_CSEG,00D8,0000
-_checkCommands,R_CSEG,0420,0000
+_checkCommands,R_CSEG,0489,0000
 _stop,R_DSEG,0018,0008
 _waitms,R_CSEG,009D,0000
 </PUBLICS>
@@ -126,7 +140,6 @@ _waitms,R_CSEG,009D,0000
 <EXTERNALS>
 __gptrget,any,0000,0000
 ___uint2fs,any,0000,0000
-___fsgt,any,0000,0000
 ___fslt,any,0000,0000
 ___fsmul,any,0000,0000
 ___uchar2fs,any,0000,0000
@@ -494,6 +507,16 @@ F5 data8(_pwmSig3;0x0001;+;)
 75 data8(_pwmSig4;) 63
 E4
 F5 data8(_pwmSig4;0x0001;+;)
+74 data8(__str_0;)
+C0 E0
+74 data8(__str_0;0x0008;>>;)
+C0 E0
+74 80
+C0 E0
+12 addr16(_printf;)  
+15 81
+15 81
+15 81
 22
 E4
 F5 data8(_pwmSig1;)
@@ -507,6 +530,16 @@ F5 data8(_pwmSig3;0x0001;+;)
 E4
 F5 data8(_pwmSig4;)
 F5 data8(_pwmSig4;0x0001;+;)
+74 data8(__str_1;)
+C0 E0
+74 data8(__str_1;0x0008;>>;)
+C0 E0
+74 80
+C0 E0
+12 addr16(_printf;)  
+15 81
+15 81
+15 81
 22
 E4
 F5 data8(_pwmSig1;)
@@ -519,6 +552,16 @@ F5 data8(_pwmSig3;0x0001;+;)
 E4
 F5 data8(_pwmSig4;)
 F5 data8(_pwmSig4;0x0001;+;)
+74 data8(__str_2;)
+C0 E0
+74 data8(__str_2;0x0008;>>;)
+C0 E0
+74 80
+C0 E0
+12 addr16(_printf;)  
+15 81
+15 81
+15 81
 22
 75 data8(_pwmSig1;) 63
 E4
@@ -530,6 +573,16 @@ F5 data8(_pwmSig3;)
 F5 data8(_pwmSig3;0x0001;+;)
 F5 data8(_pwmSig4;)
 F5 data8(_pwmSig4;0x0001;+;)
+74 data8(__str_3;)
+C0 E0
+74 data8(__str_3;0x0008;>>;)
+C0 E0
+74 80
+C0 E0
+12 addr16(_printf;)  
+15 81
+15 81
+15 81
 22
 E4
 F5 data8(_pwmSig1;)
@@ -540,6 +593,16 @@ F5 data8(_pwmSig3;)
 F5 data8(_pwmSig3;0x0001;+;)
 F5 data8(_pwmSig4;)
 F5 data8(_pwmSig4;0x0001;+;)
+74 data8(__str_4;)
+C0 E0
+74 data8(__str_4;0x0008;>>;)
+C0 E0
+74 80
+C0 E0
+12 addr16(_printf;)  
+15 81
+15 81
+15 81
 22
 75 8A 00
 75 8C 00
@@ -833,19 +896,12 @@ E5 82
 E5 82
 85 83 F0
 45 F0
-70 rel2(L019001?;)
-75 82 0C
-12 addr16(_ADC_at_Pin;)  
-E5 82
-85 83 F0
-45 F0
-60 rel2(L019004?;)
+60 rel2(L019001?;)
 90 00 00
 12 addr16(_Timer3us;)  
 75 82 0C
 02 addr16(_Volts_at_Pin;)  
-75 82 0C
-12 addr16(_Volts_at_Pin;)  
+12 addr16(_voltsAtPeak;)  
 AA 82
 AB 83
 AC F0
@@ -854,6 +910,7 @@ E4
 C0 E0
 C0 E0
 C0 E0
+74 3F
 C0 E0
 8A 82
 8B 83
@@ -865,89 +922,61 @@ E5 81
 24 FC
 F5 81
 EA
-70 rel2(L020006?;)
-75 82 0C
-12 addr16(_Volts_at_Pin;)  
+70 rel2(L020002?;)
+12 addr16(_voltsAtPeak;)  
 AA 82
 AB 83
 AC F0
 FD
-E4
+C0 02
+C0 03
+C0 04
+C0 05
+74 data8(__str_5;)
 C0 E0
+74 data8(__str_5;0x0008;>>;)
 C0 E0
+74 80
 C0 E0
-C0 E0
-8A 82
-8B 83
-8C F0
-ED
-12 addr16(___fsgt;)  
-AA 82
+12 addr16(_printf;)  
 E5 81
-24 FC
+24 F9
 F5 81
-EA
-70 rel2(L020006?;)
 90 00 01
 22
-75 82 0C
-12 addr16(_Volts_at_Pin;)  
+12 addr16(_voltsAtPeak;)  
 AA 82
 AB 83
 AC F0
 FD
-E4
+C0 02
+C0 03
+C0 04
+C0 05
+74 data8(__str_6;)
 C0 E0
+74 data8(__str_6;0x0008;>>;)
 C0 E0
+74 80
 C0 E0
-C0 E0
-8A 82
-8B 83
-8C F0
-ED
-12 addr16(___fslt;)  
-AA 82
+12 addr16(_printf;)  
 E5 81
-24 FC
+24 F9
 F5 81
-EA
-70 rel2(L020002?;)
-75 82 0C
-12 addr16(_Volts_at_Pin;)  
-AA 82
-AB 83
-AC F0
-FD
-E4
-C0 E0
-C0 E0
-C0 E0
-C0 E0
-8A 82
-8B 83
-8C F0
-ED
-12 addr16(___fsgt;)  
-AA 82
-E5 81
-24 FC
-F5 81
-EA
-70 rel2(L020002?;)
 90 00 00
 22
-90 00 00
-22
+90 00 05
+02 addr16(_waitms;)  
 12 addr16(_getDigitalSignal;)  
 E5 82
 85 83 F0
 45 F0
-60 rel2(L021001?;)
+60 rel2(L022001?;)
 12 addr16(_getDigitalSignal;)  
 AA 82
 AB 83
-BA 01 rel3(L021010?;)
-BB 00 rel3(L021010?;)
+BA 01 rel3(L022010?;)
+BB 00 rel3(L022010?;)
 75 data8(_command;) 01
 75 data8(_command;0x0001;+;) 00
 7A 01
@@ -958,7 +987,7 @@ EA
 EB
 64 80
 94 80
-50 rel2(L021009?;)
+50 rel2(L022009?;)
 90 00 05
 C0 02
 C0 03
@@ -988,34 +1017,19 @@ F6
 A6 F0
 18
 0A
-BA 00 rel3(L021006?;)
+BA 00 rel3(L022006?;)
 0B
-80 rel2(L021006?;)
-12 addr16(_checkCommands;)  
-75 data8(_command;) 00
-75 data8(_command;0x0001;+;) 00
-75 data8(_command;0x0002;+;) 00
-75 data8(_command;0x0002;+;0x0001;+;) 00
-75 data8(_command;0x0004;+;) 00
-75 data8(_command;0x0004;+;0x0001;+;) 00
-75 data8(_command;0x0006;+;) 00
-75 data8(_command;0x0006;+;0x0001;+;) 00
+80 rel2(L022006?;)
+02 addr16(_checkCommands;)  
 22
 12 addr16(_TIMER0_Init;)  
+75 data8(_InitPinADC_PARM_2;) 06
+75 82 01
+12 addr16(_InitPinADC;)  
 12 addr16(_InitADC;)  
-74 data8(__str_0;)
+74 data8(__str_7;)
 C0 E0
-74 data8(__str_0;0x0008;>>;)
-C0 E0
-74 80
-C0 E0
-12 addr16(_printf;)  
-15 81
-15 81
-15 81
-74 data8(__str_1;)
-C0 E0
-74 data8(__str_1;0x0008;>>;)
+74 data8(__str_7;0x0008;>>;)
 C0 E0
 74 80
 C0 E0
@@ -1023,9 +1037,19 @@ C0 E0
 15 81
 15 81
 15 81
-74 data8(__str_2;)
+74 data8(__str_8;)
 C0 E0
-74 data8(__str_2;0x0008;>>;)
+74 data8(__str_8;0x0008;>>;)
+C0 E0
+74 80
+C0 E0
+12 addr16(_printf;)  
+15 81
+15 81
+15 81
+74 data8(__str_9;)
+C0 E0
+74 data8(__str_9;0x0008;>>;)
 C0 E0
 74 80
 C0 E0
@@ -1035,7 +1059,77 @@ C0 E0
 15 81
 C2 A1
 12 addr16(_recieveData;)  
-80 rel2(L022002?;)
+74 data8(__str_10;)
+C0 E0
+74 data8(__str_10;0x0008;>>;)
+C0 E0
+74 80
+C0 E0
+12 addr16(_printf;)  
+15 81
+15 81
+15 81
+7A 00
+7B 00
+C3
+EA
+94 04
+EB
+64 80
+94 80
+50 rel2(L023007?;)
+8A 04
+EB
+CC
+25 E0
+CC
+33
+EC
+24 data8(_command;)
+F8
+86 04
+08
+86 05
+18
+C0 02
+C0 03
+C0 04
+C0 05
+74 data8(__str_11;)
+C0 E0
+74 data8(__str_11;0x0008;>>;)
+C0 E0
+74 80
+C0 E0
+12 addr16(_printf;)  
+E5 81
+24 FB
+F5 81
+D0 03
+D0 02
+0A
+BA 00 rel3(L023004?;)
+0B
+80 rel2(L023004?;)
+74 data8(__str_9;)
+C0 E0
+74 data8(__str_9;0x0008;>>;)
+C0 E0
+74 80
+C0 E0
+12 addr16(_printf;)  
+15 81
+15 81
+15 81
+75 data8(_command;) 00
+75 data8(_command;0x0001;+;) 00
+75 data8(_command;0x0002;+;) 00
+75 data8(_command;0x0002;+;0x0001;+;) 00
+75 data8(_command;0x0004;+;) 00
+75 data8(_command;0x0004;+;0x0001;+;) 00
+75 data8(_command;0x0006;+;) 00
+75 data8(_command;0x0006;+;0x0001;+;) 00
+02 addr16(L023002?;)  
 </CODE>
 
 <CODE R_CSEG>
@@ -1045,6 +1139,36 @@ C2 A1
 </CODE>
 
 <CODE R_CONST>
+46 6F 72 77 61 72 64 
+0A
+0D
+00
+42 61 63 6B 77 61 72 64 
+0A
+0D
+00
+4C 65 66 74 
+0A
+0D
+00
+52 69 67 68 74 
+0A
+0D
+00
+53 74 6F 70 
+0A
+0D
+00
+0A
+72 65 61 64 20 31 3A 20 20 61 74 20 70 69 6E 20 31
+2E 36 3A 20 25 66 
+0D
+00
+0A
+72 65 61 64 20 30 3A 20 56 6F 6C 74 20 61 74 20 70
+69 6E 20 31 2E 36 3A 20 25 66 
+0D
+00
 1B
 5B 32 4A 
 00
@@ -1061,6 +1185,12 @@ C2 A1
 0A
 00
 0A
+0D
+00
+43 6F 6D 6D 61 6E 64 3A 20 
+00
+25 64 
+09
 00
 </CODE>
 
