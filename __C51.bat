@@ -1,11 +1,11 @@
 @echo off
 ::This file was created automatically by CrossIDE to compile with C51.
 C:
-cd "\Users\allisony\Documents\ElecRobot\"
-"C:\CrossIDE\Call51\Bin\c51.exe" --use-stdout  "C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c"
+cd "\Users\SHININA\Documents\GitHub\ElecRobot\"
+"C:\CrossIDE\Call51\Bin\c51.exe" --use-stdout  "C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c"
 if not exist hex2mif.exe goto done
-if exist reciever_so_far.ihx hex2mif reciever_so_far.ihx
-if exist reciever_so_far.hex hex2mif reciever_so_far.hex
+if exist sensor.ihx hex2mif sensor.ihx
+if exist sensor.hex hex2mif sensor.hex
 :done
 echo done
-echo Crosside_Action Set_Hex_File C:\Users\allisony\Documents\ElecRobot\reciever_so_far.hex
+echo Crosside_Action Set_Hex_File C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.hex

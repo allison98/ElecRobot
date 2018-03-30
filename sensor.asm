@@ -1,7 +1,7 @@
 ;--------------------------------------------------------
 ; File Created by C51
 ; Version 1.0.0 #1069 (Apr 23 2015) (MSVC)
-; This file was generated Thu Mar 29 16:08:47 2018
+; This file was generated Fri Mar 30 12:53:09 2018
 ;--------------------------------------------------------
 $name sensor
 $optc51 --model-small
@@ -816,19 +816,19 @@ L007013?:
 	mov	_TH0,#0x00
 ;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:165: TF0=0;
 	clr	_TF0
-;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:167: while(P2_1!=1); // Wait for the signal to be zero
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:167: while(P2_1!=0); // Wait for the signal to be zero
 L007001?:
-	jnb	_P2_1,L007001?
-;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:168: while(P2_1!=0); // Wait for the signal to be one
+	jb	_P2_1,L007001?
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:168: while(P2_1!=1); // Wait for the signal to be one
 L007004?:
-	jb	_P2_1,L007004?
+	jnb	_P2_1,L007004?
 ;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:169: TR0=1; // Start the timer
 	setb	_TR0
-;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:170: while(P2_1!=1) // Wait for the signal to be zero
+;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:170: while(P2_1!=0) // Wait for the signal to be zero
 	mov	r2,#0x00
 	mov	r3,#0x00
 L007009?:
-	jb	_P2_1,L007011?
+	jnb	_P2_1,L007011?
 ;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:172: if(TF0==1) // Did the 16-bit timer overflow?
 ;	C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:174: TF0=0;
 	jbc	_TF0,L007028?
