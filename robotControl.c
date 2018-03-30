@@ -345,6 +345,7 @@ float intervalcalc(void) {
 		while(P1_7!=0); // Wait for the signal to be zero
 		while(P1_7!=1); // Wait for the signal to be one
 		TR0=1; // Start the timer
+		
 		while(P1_7!=0) // Wait for the signal to be zero
 		{
 			if(TF0==1) // Did the 16-bit timer overflow?
@@ -354,6 +355,7 @@ float intervalcalc(void) {
 			}
 			
 		}
+		
 		while(P1_7!=1) // Wait for the signal to be one
 		{
 			if(TF0==1) // Did the 16-bit timer overflow?

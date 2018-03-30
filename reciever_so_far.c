@@ -41,6 +41,12 @@
 #define INPUT P2_0
 #define constant_delay_time 10 //how long the delay for each signal is 
 
+#define FORWARDTIME 10
+#define BACKTIME 20
+#define RIGHTTIME 30
+#define LEFTTIME  40
+#define STOPTIME 100
+
 volatile unsigned char pwm_count = 0; // used in the timer 2 ISR
 volatile unsigned char pwm_count1 = 0; // this will be usec in the timer 3 ISR
 volatile unsigned char pwm_count2 = 0; // this will be used in the timer 4 ISR
@@ -346,34 +352,7 @@ void PWMStop(void) {
 	printf("Stop\n\r");
 }
 
-float periodcalc(void) {
-		float period1;
-		int overflow_count;
-		
-		TL0=0; 
-		TH0=0;
-		TF0=0;
-		overflow_count=0;
-		TR0=0;
-		
-		while(P1_7!=0); // Wait for the signal to be zero
-		while(P1_7!=1); // Wait for the signal to be one
-		TR0=1; // Start the timer
-		while(P1_7!=0) // Wait for the signal to be zero
-		{
-			if(TF0==1) // Did the 16-bit timer overflow?
-			{
-				TF0=0;
-				overflow_count++;
-			}
-			
-		}		
-		
-		TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
-		period1=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
-		
-		return period1*1000; //return period of high pulse in seconds
-}
+
 
 //compare two arrays and returns true if same else returns false 
 int arrayEqual (int arr1[], int size, int arr2[]){
@@ -397,16 +376,9 @@ void checkCommands (void){
  else PWMStop(); //defaults to a halt (redundant)
 }
 
-void checkTime (void) {
-	int period;
-  while(getDigitalSignal()==0); 	//wait for the signal to be 1 
-  if (getDigitalSignal()==1){
-  	 period = intervalcalc();
-  
-
-float intervalcalc(void) {
-		float period1;
-		int overflow_count;
+float checkTime (void) {
+	float time;
+	int overflow_count;
 		
 		TL0=0; 
 		TH0=0;
@@ -414,22 +386,41 @@ float intervalcalc(void) {
 		overflow_count=0;
 		TR0=0;
 		
-		while(P1_7!=0); // Wait for the signal to be zero
-		while(P1_7!=1); // Wait for the signal to be one
+	//Volts_at_Pin(QFP32_MUX_P1_6) < thresholdVolt  : 0
+	//Volts_at_Pin(QFP32_MUX_P1_6) >= thresholdVolt : 1
+  	while(Volts_at_Pin(QFP32_MUX_P1_6) >= thresholdVolt); //wait for the signal to be 0
+  
+  	while (Volts_at_Pin(QFP32_MUX_P1_6) < thresholdVolt) {	// wait for signal to be 1
 		TR0=1; // Start the timer
-		while(P1_7!=0) // Wait for the signal to be zero
-		{
-			if(TF0==1) // Did the 16-bit timer overflow?
-			{
+		if ((overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK)*1000 >= STOPTIME)
+			//break;
+		while(Volts_at_Pin(QFP32_MUX_P1_6) >= thresholdVolt){ // Wait for the signal to be 0
+
+			if(TF0==1) { // Did the 16-bit timer overflow			{
 				TF0=0;
 				overflow_count++;
 			}
 			
-		}				
-		TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
-		period1=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
+		}
+	}
 		
-		return period1*1000; //return period of high pulse in seconds
+		TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
+		time=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
+		
+		return time*1000; //return period of high pulse in seconds		
+}
+
+int commandtimecheck(float lowtime) {
+	if(lowtime==FORWARDTIME) 
+		PWMforward();
+	else if (lowtime==BACKTIME)
+		PWMbackward();
+	else if (lowtime==RIGHTTIME)
+		PWMright();
+	else if (lowtime==LEFTTIME)
+		PWMleft();
+	else
+		PWMstop();
 }
 
 //***SOFTWARE APPROACH*****//
@@ -526,6 +517,7 @@ void main(void)
 	float  peak = 0;
 	float voltspeak=0;
 	float periodpwm = 0;
+	float time;
 	
 		float period = 0;
 		int overflow_count=0;
@@ -543,7 +535,7 @@ void main(void)
 	while (1)
 	{
     
-    	recieveData();	//keep reading data continously 
+    /*	recieveData();	//keep reading data continously 
     	printf("Command: ");
     	for(i=0; i<4; i++)
     		 printf("%d\t", command[i]);
@@ -552,7 +544,10 @@ void main(void)
   		command[1] = 0;
   		command[2] = 0;
   		command[3] = 0;
-    
+  		
+  	*/
+  	time = checktimecommand();
+    	 printf("%f\t\n\r", time);
 		/*
 		periodpwm = periodcalc(); // period for the pwm
 		// period will be the pulse mod length;;;;;;;;;;;;;;;;;;;;;;;;;;;;;4
