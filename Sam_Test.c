@@ -423,44 +423,40 @@ void main(void)
 	printf("\n\r");
 	time=0;
 	pasttime=0; 
-	P2_1=0;
 	while (1)
 	{
     
     	//PWMStop();
    
   		time = checkTime();
-  		if(time<200){
-  			time = pasttime;
-  			printf("badtime%f\t\n\r", time);
-  		}
-  		
-    	printf("%f\t\n\r", time);
-    	if(time>=700 && time<=720){
-    		PWMbackward(); 
-    		printf("%f\t\n\r", time);
-    		}
-    	else if(time>=340 && time<=360){
-    			pwmSig1 = 99;
-				pwmSig2 = 0;
-	
-				pwmSig3 = 0;
-				pwmSig4 =99;
-				printf("Forward\n\r");
-    		}
-    	else if(time>=1410 && time<=1440){
-    		PWMRight(); 
-    		printf("%f\t\n\r", time);
-    		}
-    	else if(time>=1060 && time<=1090){
-    		PWMLeft(); 
-    		printf("%f\t\n\r", time); } 
-    	else  
-   			PWMStop();
-   			
+  		printf("%f\t\n\r", time);
+  	//	if(time>100) {
+	    	
+	    	if(time>=700 && time<=720){
+	    		PWMbackward(); 
+	    		printf("%f\t\n\r", time);
+	    		}
+	    	else if(time>=340 && time<=360){
+	    			pwmSig1 = 99;
+					pwmSig2 = 0;
+		
+					pwmSig3 = 0;
+					pwmSig4 =99;
+					printf("Forward\n\r");
+	    		}
+	    	else if(time>=1410 && time<=1440){
+	    		PWMRight(); 
+	    		printf("%f\t\n\r", time);
+	    		}
+	    	else if(time>=1060 && time<=1090){
+	    		PWMLeft(); 
+	    		printf("%f\t\n\r", time); } 
+	    	else  
+	   			PWMStop();
+	//	}		   			
    	
-   			waitms(1000);
-   			pasttime = time;
+   			waitms(100);
+   		//	pasttime = time;
    			
 	} 
 }

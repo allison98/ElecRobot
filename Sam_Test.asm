@@ -1,7 +1,7 @@
 ;--------------------------------------------------------
 ; File Created by C51
 ; Version 1.0.0 #1069 (Apr 23 2015) (MSVC)
-; This file was generated Fri Mar 30 14:37:14 2018
+; This file was generated Fri Mar 30 15:09:41 2018
 ;--------------------------------------------------------
 $name Sam_Test
 $optc51 --model-small
@@ -553,8 +553,6 @@ _command:
 	ds 8
 _checkTime_overflow_count_1_73:
 	ds 2
-_main_pasttime_1_82:
-	ds 4
 ;--------------------------------------------------------
 ; overlayable items in internal ram 
 ;--------------------------------------------------------
@@ -1935,8 +1933,8 @@ _waitquarterperiod:
 ;peak                      Allocated to registers 
 ;voltspeak                 Allocated to registers 
 ;periodpwm                 Allocated to registers 
-;time                      Allocated to registers r6 r7 r0 r1 
-;pasttime                  Allocated with name '_main_pasttime_1_82'
+;time                      Allocated to registers r2 r3 r4 r5 
+;pasttime                  Allocated to registers 
 ;period                    Allocated to registers 
 ;overflow_count            Allocated to registers 
 ;------------------------------------------------------------
@@ -1986,62 +1984,23 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:425: pasttime=0; 
-	mov	_main_pasttime_1_82,#0x00
-	mov	(_main_pasttime_1_82 + 1),#0x00
-	mov	(_main_pasttime_1_82 + 2),#0x00
-	mov	(_main_pasttime_1_82 + 3),#0x00
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:426: P2_1=0;
-	clr	_P2_1
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:427: while (1)
-L019020?:
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:432: time = checkTime();
+;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:426: while (1)
+L019018?:
+;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:431: time = checkTime();
 	lcall	_checkTime
-	mov	r6,dpl
-	mov	r7,dph
-	mov	r0,b
-	mov	r1,a
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:433: if(time<200){
-	push	ar6
-	push	ar7
-	push	ar0
-	push	ar1
-	clr	a
-	push	acc
-	push	acc
-	mov	a,#0x48
-	push	acc
-	mov	a,#0x43
-	push	acc
-	mov	dpl,r6
-	mov	dph,r7
-	mov	b,r0
-	mov	a,r1
-	lcall	___fslt
 	mov	r2,dpl
-	mov	a,sp
-	add	a,#0xfc
-	mov	sp,a
-	pop	ar1
-	pop	ar0
-	pop	ar7
-	pop	ar6
-	mov	a,r2
-	jz	L019002?
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:434: time = pasttime;
-	mov	r6,_main_pasttime_1_82
-	mov	r7,(_main_pasttime_1_82 + 1)
-	mov	r0,(_main_pasttime_1_82 + 2)
-	mov	r1,(_main_pasttime_1_82 + 3)
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:435: printf("badtime%f\t\n\r", time);
-	push	ar6
-	push	ar7
-	push	ar0
-	push	ar1
-	push	_main_pasttime_1_82
-	push	(_main_pasttime_1_82 + 1)
-	push	(_main_pasttime_1_82 + 2)
-	push	(_main_pasttime_1_82 + 3)
+	mov	r3,dph
+	mov	r4,b
+	mov	r5,a
+;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:432: printf("%f\t\n\r", time);
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
 	mov	a,#__str_14
 	push	acc
 	mov	a,#(__str_14 >> 8)
@@ -2052,39 +2011,15 @@ L019020?:
 	mov	a,sp
 	add	a,#0xf9
 	mov	sp,a
-	pop	ar1
-	pop	ar0
-	pop	ar7
-	pop	ar6
-L019002?:
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:438: printf("%f\t\n\r", time);
-	push	ar6
-	push	ar7
-	push	ar0
-	push	ar1
-	push	ar6
-	push	ar7
-	push	ar0
-	push	ar1
-	mov	a,#__str_15
-	push	acc
-	mov	a,#(__str_15 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	mov	a,sp
-	add	a,#0xf9
-	mov	sp,a
-	pop	ar1
-	pop	ar0
-	pop	ar7
-	pop	ar6
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:439: if(time>=700 && time<=720){
-	push	ar6
-	push	ar7
-	push	ar0
-	push	ar1
+	pop	ar5
+	pop	ar4
+	pop	ar3
+	pop	ar2
+;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:435: if(time>=700 && time<=720){
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
 	clr	a
 	push	acc
 	push	acc
@@ -2092,25 +2027,25 @@ L019002?:
 	push	acc
 	mov	a,#0x44
 	push	acc
-	mov	dpl,r6
-	mov	dph,r7
-	mov	b,r0
-	mov	a,r1
+	mov	dpl,r2
+	mov	dph,r3
+	mov	b,r4
+	mov	a,r5
 	lcall	___fslt
-	mov	r2,dpl
+	mov	r6,dpl
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-	pop	ar1
-	pop	ar0
-	pop	ar7
-	pop	ar6
-	mov	a,r2
-	jnz	L019016?
-	push	ar6
-	push	ar7
-	push	ar0
-	push	ar1
+	pop	ar5
+	pop	ar4
+	pop	ar3
+	pop	ar2
+	mov	a,r6
+	jnz	L019014?
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
 	clr	a
 	push	acc
 	push	acc
@@ -2118,43 +2053,31 @@ L019002?:
 	push	acc
 	mov	a,#0x44
 	push	acc
-	mov	dpl,r6
-	mov	dph,r7
-	mov	b,r0
-	mov	a,r1
+	mov	dpl,r2
+	mov	dph,r3
+	mov	b,r4
+	mov	a,r5
 	lcall	___fsgt
-	mov	r2,dpl
+	mov	r6,dpl
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-	pop	ar1
-	pop	ar0
-	pop	ar7
-	pop	ar6
-	mov	a,r2
-	jnz	L019016?
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:440: PWMbackward(); 
-	push	ar6
-	push	ar7
-	push	ar0
-	push	ar1
+	pop	ar5
+	pop	ar4
+	pop	ar3
+	pop	ar2
+	mov	a,r6
+	jnz	L019014?
+;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:436: PWMbackward(); 
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
 	lcall	_PWMbackward
-	pop	ar1
-	pop	ar0
-	pop	ar7
-	pop	ar6
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:441: printf("%f\t\n\r", time);
-	push	ar6
-	push	ar7
-	push	ar0
-	push	ar1
-	push	ar6
-	push	ar7
-	push	ar0
-	push	ar1
-	mov	a,#__str_15
+;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:437: printf("%f\t\n\r", time);
+	mov	a,#__str_14
 	push	acc
-	mov	a,#(__str_15 >> 8)
+	mov	a,#(__str_14 >> 8)
 	push	acc
 	mov	a,#0x80
 	push	acc
@@ -2162,17 +2085,13 @@ L019002?:
 	mov	a,sp
 	add	a,#0xf9
 	mov	sp,a
-	pop	ar1
-	pop	ar0
-	pop	ar7
-	pop	ar6
-	ljmp	L019017?
-L019016?:
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:443: else if(time>=340 && time<=360){
-	push	ar6
-	push	ar7
-	push	ar0
-	push	ar1
+	ljmp	L019015?
+L019014?:
+;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:439: else if(time>=340 && time<=360){
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
 	clr	a
 	push	acc
 	push	acc
@@ -2180,25 +2099,25 @@ L019016?:
 	push	acc
 	mov	a,#0x43
 	push	acc
-	mov	dpl,r6
-	mov	dph,r7
-	mov	b,r0
-	mov	a,r1
+	mov	dpl,r2
+	mov	dph,r3
+	mov	b,r4
+	mov	a,r5
 	lcall	___fslt
-	mov	r2,dpl
+	mov	r6,dpl
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-	pop	ar1
-	pop	ar0
-	pop	ar7
-	pop	ar6
-	mov	a,r2
-	jnz	L019012?
-	push	ar6
-	push	ar7
-	push	ar0
-	push	ar1
+	pop	ar5
+	pop	ar4
+	pop	ar3
+	pop	ar2
+	mov	a,r6
+	jnz	L019010?
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
 	clr	a
 	push	acc
 	push	acc
@@ -2206,41 +2125,37 @@ L019016?:
 	push	acc
 	mov	a,#0x43
 	push	acc
-	mov	dpl,r6
-	mov	dph,r7
-	mov	b,r0
-	mov	a,r1
+	mov	dpl,r2
+	mov	dph,r3
+	mov	b,r4
+	mov	a,r5
 	lcall	___fsgt
-	mov	r2,dpl
+	mov	r6,dpl
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-	pop	ar1
-	pop	ar0
-	pop	ar7
-	pop	ar6
-	mov	a,r2
-	jnz	L019012?
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:444: pwmSig1 = 99;
+	pop	ar5
+	pop	ar4
+	pop	ar3
+	pop	ar2
+	mov	a,r6
+	jnz	L019010?
+;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:440: pwmSig1 = 99;
 	mov	_pwmSig1,#0x63
 	clr	a
 	mov	(_pwmSig1 + 1),a
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:445: pwmSig2 = 0;
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:447: pwmSig3 = 0;
+;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:441: pwmSig2 = 0;
+;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:443: pwmSig3 = 0;
 	clr	a
 	mov	_pwmSig2,a
 	mov	(_pwmSig2 + 1),a
 	mov	_pwmSig3,a
 	mov	(_pwmSig3 + 1),a
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:448: pwmSig4 =99;
+;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:444: pwmSig4 =99;
 	mov	_pwmSig4,#0x63
 	clr	a
 	mov	(_pwmSig4 + 1),a
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:449: printf("Forward\n\r");
-	push	ar6
-	push	ar7
-	push	ar0
-	push	ar1
+;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:445: printf("Forward\n\r");
 	mov	a,#__str_0
 	push	acc
 	mov	a,#(__str_0 >> 8)
@@ -2251,17 +2166,13 @@ L019016?:
 	dec	sp
 	dec	sp
 	dec	sp
-	pop	ar1
-	pop	ar0
-	pop	ar7
-	pop	ar6
-	ljmp	L019017?
-L019012?:
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:451: else if(time>=1410 && time<=1440){
-	push	ar6
-	push	ar7
-	push	ar0
-	push	ar1
+	ljmp	L019015?
+L019010?:
+;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:447: else if(time>=1410 && time<=1440){
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
 	clr	a
 	push	acc
 	mov	a,#0x40
@@ -2270,25 +2181,25 @@ L019012?:
 	push	acc
 	mov	a,#0x44
 	push	acc
-	mov	dpl,r6
-	mov	dph,r7
-	mov	b,r0
-	mov	a,r1
+	mov	dpl,r2
+	mov	dph,r3
+	mov	b,r4
+	mov	a,r5
 	lcall	___fslt
-	mov	r2,dpl
+	mov	r6,dpl
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-	pop	ar1
-	pop	ar0
-	pop	ar7
-	pop	ar6
-	mov	a,r2
-	jnz	L019008?
-	push	ar6
-	push	ar7
-	push	ar0
-	push	ar1
+	pop	ar5
+	pop	ar4
+	pop	ar3
+	pop	ar2
+	mov	a,r6
+	jnz	L019006?
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
 	clr	a
 	push	acc
 	push	acc
@@ -2296,43 +2207,31 @@ L019012?:
 	push	acc
 	mov	a,#0x44
 	push	acc
-	mov	dpl,r6
-	mov	dph,r7
-	mov	b,r0
-	mov	a,r1
+	mov	dpl,r2
+	mov	dph,r3
+	mov	b,r4
+	mov	a,r5
 	lcall	___fsgt
-	mov	r2,dpl
+	mov	r6,dpl
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-	pop	ar1
-	pop	ar0
-	pop	ar7
-	pop	ar6
-	mov	a,r2
-	jnz	L019008?
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:452: PWMRight(); 
-	push	ar6
-	push	ar7
-	push	ar0
-	push	ar1
+	pop	ar5
+	pop	ar4
+	pop	ar3
+	pop	ar2
+	mov	a,r6
+	jnz	L019006?
+;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:448: PWMRight(); 
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
 	lcall	_PWMRight
-	pop	ar1
-	pop	ar0
-	pop	ar7
-	pop	ar6
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:453: printf("%f\t\n\r", time);
-	push	ar6
-	push	ar7
-	push	ar0
-	push	ar1
-	push	ar6
-	push	ar7
-	push	ar0
-	push	ar1
-	mov	a,#__str_15
+;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:449: printf("%f\t\n\r", time);
+	mov	a,#__str_14
 	push	acc
-	mov	a,#(__str_15 >> 8)
+	mov	a,#(__str_14 >> 8)
 	push	acc
 	mov	a,#0x80
 	push	acc
@@ -2340,17 +2239,13 @@ L019012?:
 	mov	a,sp
 	add	a,#0xf9
 	mov	sp,a
-	pop	ar1
-	pop	ar0
-	pop	ar7
-	pop	ar6
-	ljmp	L019017?
-L019008?:
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:455: else if(time>=1060 && time<=1090){
-	push	ar6
-	push	ar7
-	push	ar0
-	push	ar1
+	ljmp	L019015?
+L019006?:
+;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:451: else if(time>=1060 && time<=1090){
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
 	clr	a
 	push	acc
 	mov	a,#0x80
@@ -2359,25 +2254,25 @@ L019008?:
 	push	acc
 	mov	a,#0x44
 	push	acc
-	mov	dpl,r6
-	mov	dph,r7
-	mov	b,r0
-	mov	a,r1
+	mov	dpl,r2
+	mov	dph,r3
+	mov	b,r4
+	mov	a,r5
 	lcall	___fslt
-	mov	r2,dpl
+	mov	r6,dpl
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-	pop	ar1
-	pop	ar0
-	pop	ar7
-	pop	ar6
-	mov	a,r2
-	jnz	L019004?
-	push	ar6
-	push	ar7
-	push	ar0
-	push	ar1
+	pop	ar5
+	pop	ar4
+	pop	ar3
+	pop	ar2
+	mov	a,r6
+	jnz	L019002?
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
 	clr	a
 	push	acc
 	mov	a,#0x40
@@ -2386,43 +2281,31 @@ L019008?:
 	push	acc
 	mov	a,#0x44
 	push	acc
-	mov	dpl,r6
-	mov	dph,r7
-	mov	b,r0
-	mov	a,r1
+	mov	dpl,r2
+	mov	dph,r3
+	mov	b,r4
+	mov	a,r5
 	lcall	___fsgt
-	mov	r2,dpl
+	mov	r6,dpl
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-	pop	ar1
-	pop	ar0
-	pop	ar7
-	pop	ar6
-	mov	a,r2
-	jnz	L019004?
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:456: PWMLeft(); 
-	push	ar6
-	push	ar7
-	push	ar0
-	push	ar1
+	pop	ar5
+	pop	ar4
+	pop	ar3
+	pop	ar2
+	mov	a,r6
+	jnz	L019002?
+;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:452: PWMLeft(); 
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
 	lcall	_PWMLeft
-	pop	ar1
-	pop	ar0
-	pop	ar7
-	pop	ar6
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:457: printf("%f\t\n\r", time); } 
-	push	ar6
-	push	ar7
-	push	ar0
-	push	ar1
-	push	ar6
-	push	ar7
-	push	ar0
-	push	ar1
-	mov	a,#__str_15
+;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:453: printf("%f\t\n\r", time); } 
+	mov	a,#__str_14
 	push	acc
-	mov	a,#(__str_15 >> 8)
+	mov	a,#(__str_14 >> 8)
 	push	acc
 	mov	a,#0x80
 	push	acc
@@ -2430,40 +2313,15 @@ L019008?:
 	mov	a,sp
 	add	a,#0xf9
 	mov	sp,a
-	pop	ar1
-	pop	ar0
-	pop	ar7
-	pop	ar6
-	sjmp	L019017?
-L019004?:
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:459: PWMStop();
-	push	ar6
-	push	ar7
-	push	ar0
-	push	ar1
+	sjmp	L019015?
+L019002?:
+;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:455: PWMStop();
 	lcall	_PWMStop
-	pop	ar1
-	pop	ar0
-	pop	ar7
-	pop	ar6
-L019017?:
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:462: waitms(1000);
-	mov	dptr,#0x03E8
-	push	ar6
-	push	ar7
-	push	ar0
-	push	ar1
+L019015?:
+;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:458: waitms(100);
+	mov	dptr,#0x0064
 	lcall	_waitms
-	pop	ar1
-	pop	ar0
-	pop	ar7
-	pop	ar6
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:463: pasttime = time;
-	mov	_main_pasttime_1_82,r6
-	mov	(_main_pasttime_1_82 + 1),r7
-	mov	(_main_pasttime_1_82 + 2),r0
-	mov	(_main_pasttime_1_82 + 3),r1
-	ljmp	L019020?
+	ljmp	L019018?
 	rseg R_CSEG
 
 	rseg R_XINIT
@@ -2542,12 +2400,6 @@ __str_13:
 	db 0x0D
 	db 0x00
 __str_14:
-	db 'badtime%f'
-	db 0x09
-	db 0x0A
-	db 0x0D
-	db 0x00
-__str_15:
 	db '%f'
 	db 0x09
 	db 0x0A
