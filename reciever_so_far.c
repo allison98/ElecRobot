@@ -397,6 +397,41 @@ void checkCommands (void){
  else PWMStop(); //defaults to a halt (redundant)
 }
 
+void checkTime (void) {
+	int period;
+  while(getDigitalSignal()==0); 	//wait for the signal to be 1 
+  if (getDigitalSignal()==1){
+  	 period = intervalcalc();
+  
+
+float intervalcalc(void) {
+		float period1;
+		int overflow_count;
+		
+		TL0=0; 
+		TH0=0;
+		TF0=0;
+		overflow_count=0;
+		TR0=0;
+		
+		while(P1_7!=0); // Wait for the signal to be zero
+		while(P1_7!=1); // Wait for the signal to be one
+		TR0=1; // Start the timer
+		while(P1_7!=0) // Wait for the signal to be zero
+		{
+			if(TF0==1) // Did the 16-bit timer overflow?
+			{
+				TF0=0;
+				overflow_count++;
+			}
+			
+		}				
+		TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
+		period1=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
+		
+		return period1*1000; //return period of high pulse in seconds
+}
+
 //***SOFTWARE APPROACH*****//
 
 //send the reciever signal back to the microcontroller ADC to get the voltage/ peak/amplitude 

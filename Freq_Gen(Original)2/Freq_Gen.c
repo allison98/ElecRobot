@@ -19,11 +19,19 @@
 //volatile int adcvaly = 0;
 volatile float voltagex = 0;
 volatile float voltagey = 0;
+volatile float backwardflag = 0;
 
 void __ISR(_TIMER_1_VECTOR, IPL5SOFT) Timer1_Handler(void)
 {
 	LATBbits.LATB6 = !LATBbits.LATB6; // Blink led on RB6
 	IFS0CLR=_IFS0_T1IF_MASK; // Clear timer 1 interrupt flag, bit 4 of IFS0
+	
+	if (LATBbits.LATB6 == 0) {
+		backwardflag = 1;
+	}
+	if (LATBbits.LATB6 == 1) {
+		backwardflag = 0;
+	}
 }
 
 void SetupTimer1 (void)
@@ -223,6 +231,7 @@ void main (void)
 	int newF;
 	unsigned long reload;
 	
+	
 	// Configure pins as analog inputs
 	ANSELBbits.ANSB3 = 1;   // set RB3 (AN5, pin 7 of DIP28) as analog pin
 	TRISBbits.TRISB3 = 1;   // set RB3 as an input
@@ -275,26 +284,15 @@ void main (void)
         SerialTransmit("\r\n");
         
         while(1){
-<<<<<<< HEAD:Freq_Gen(Original)2/Freq_Gen.c
-
       		readVolt();
       		printf("Voltage1: X:%f  Y:%f\r\n", voltagex, voltagey);
       		
-      		//Forward
+      		//Forward // this is good :)
       		if((voltagey>=0 && voltagey<=0.5) && (voltagex>=1.4 && voltagex<=1.8 )) {
 	        	while(1) {
 		        	//square wave is normal
 		        	readVolt();
 		        	printf("Voltage2: X:%f  Y:%f\r\n", voltagex, voltagey);
-=======
-        
-      		readVolts();
-      		//move forward
-      		if((voltagey>=0 && voltagey<=0.5) && (voltagex>=1.4 && voltagex<=1.8 )) {
-	        	while(1) {
-		        	//square wave is normal
-		        	readVolts();
->>>>>>> 7b2af10112eedf8889bc83a19e0c8efc7a02ec23:Freq_Gen(Original)/Freq_Gen.c
 		        	if((voltagey>=0 && voltagey<=0.5) && (voltagex>=1.4 && voltagex<=1.8 ));
 						//do nothing	
 					else
@@ -302,43 +300,45 @@ void main (void)
 						break;
 				}
 			}
-<<<<<<< HEAD:Freq_Gen(Original)2/Freq_Gen.c
-			
-			//Backward
-=======
-			//move back
->>>>>>> 7b2af10112eedf8889bc83a19e0c8efc7a02ec23:Freq_Gen(Original)/Freq_Gen.c
-			else if((voltagey>=2.8 && voltagey<=3.3) && (voltagex>=1.4 && voltagex<=1.8 )) {
 
+			//Backward
+				// send high, low, low, high -- high low, low, high ---
+			else if((voltagey>=2.8 && voltagey<=3.3) && (voltagex>=1.4 && voltagex<=1.8 )) {
+			//	backwardflag = 0;
+			//	_delay_ms(1000);
 				MsDelay(100000);
 				MsDelay(100000);
 				MsDelay(100000);
 				T1CONbits.ON = 0;
 				MsDelay(100000);
 				MsDelay(100000);
-				MsDelay(100000);
-				
+				MsDelay(100000);				
 				while(1) {
 					readVolt();
 					if((voltagey>=2.8 && voltagey<=3.3) && (voltagex>=1.4 && voltagex<=1.8 )) {
+					//	if (backwardflag == 1) {
+					//		T1CONbits.ON = 0;
+					//	}	
+						T1CONbits.ON = 1;
 						//backward will be 
 						//T1CONbits.ON = 0; 
 						//MsDelay(10);
-						T1CONbits.ON = 1;
+					/*	T1CONbits.ON = 1;
 						MsDelay(100000);
 						MsDelay(100000);
 						MsDelay(100000);
 						T1CONbits.ON = 0;
 						MsDelay(100000);
 						MsDelay(100000);
-						MsDelay(100000);
+						MsDelay(100000);*/
 					}
 					else {
 						break;
 					}
 				}
 			}
-			//Stop
+			
+			//Stop //works great
 
 			else {
 				while(1){
