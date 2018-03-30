@@ -1,7 +1,7 @@
 0000              1   ;--------------------------------------------------------
 0000              2   ; File Created by C51
 0000              3   ; Version 1.0.0 #1069 (Apr 23 2015) (MSVC)
-0000              4   ; This file was generated Thu Mar 29 16:08:47 2018
+0000              4   ; This file was generated Fri Mar 30 12:53:09 2018
 0000              5   ;--------------------------------------------------------
                   5   $name sensor
                   6   $optc51 --model-small
@@ -816,19 +816,19 @@
 012C 758C00     816            mov     _TH0,#0x00
 012F            817   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:165: TF0=0;
 012F C28D       818            clr     _TF0
-0131            819   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:167: while(P2_1!=1); // Wait for the signal to be zero
+0131            819   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:167: while(P2_1!=0); // Wait for the signal to be zero
 0131            820   L007001?:
-0131 30A198     821            jnb     _P2_1,L007001?
-0134            822   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:168: while(P2_1!=0); // Wait for the signal to be one
+0131 20A198     821            jb      _P2_1,L007001?
+0134            822   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:168: while(P2_1!=1); // Wait for the signal to be one
 0134            823   L007004?:
-0134 20A1D8     824            jb      _P2_1,L007004?
+0134 30A1D8     824            jnb     _P2_1,L007004?
 0137            825   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:169: TR0=1; // Start the timer
 0137 D28C       826            setb    _TR0
-0139            827   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:170: while(P2_1!=1) // Wait for the signal to be zero
+0139            827   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:170: while(P2_1!=0) // Wait for the signal to be zero
 0139 7A00       828            mov     r2,#0x00
 013B 7B00       829            mov     r3,#0x00
 013D            830   L007009?:
-013D 20A158     831            jb      _P2_1,L007011?
+013D 30A158     831            jnb     _P2_1,L007011?
 0140            832   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:172: if(TF0==1) // Did the 16-bit timer overflow?
 0140            833   ;        C:\Users\SHININA\Documents\GitHub\ElecRobot\sensor.c:174: TF0=0;
 0140 108D98     834            jbc     _TF0,L007028?
