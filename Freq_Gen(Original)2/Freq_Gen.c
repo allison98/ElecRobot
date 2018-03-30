@@ -289,55 +289,93 @@ void main (void)
       		
       		//Forward // this is good :)
       		if((voltagey>=0 && voltagey<=0.5) && (voltagex>=1.4 && voltagex<=1.8 )) {
-	        	while(1) {
-		        	//square wave is normal
+      			MsDelay(100000);
+				T1CONbits.ON = 0;
+				MsDelay(100000);
+	        	while(1) {	        	
 		        	readVolt();
-		        	printf("Voltage2: X:%f  Y:%f\r\n", voltagex, voltagey);
-		        	if((voltagey>=0 && voltagey<=0.5) && (voltagex>=1.4 && voltagex<=1.8 ));
-						//do nothing	
+		        //	printf("Voltage2: X:%f  Y:%f\r\n", voltagex, voltagey);
+		        	if((voltagey>=0 && voltagey<=0.5) && (voltagex>=1.4 && voltagex<=1.8 )){
+						T1CONbits.ON = 1;
+						MsDelay(100000);
+						T1CONbits.ON = 0;
+						MsDelay(100000);
+					}	
 					else
-					printf("It's breaking.\r\n");
 						break;
 				}
 			}
 
 			//Backward
-				// send high, low, low, high -- high low, low, high ---
-			else if((voltagey>=2.8 && voltagey<=3.3) && (voltagex>=1.4 && voltagex<=1.8 )) {
-			//	backwardflag = 0;
-			//	_delay_ms(1000);
-				MsDelay(100000);
-				MsDelay(100000);
+				
+			else if((voltagey>=2.8 && voltagey<=3.3) && (voltagex>=1.4 && voltagex<=1.8 )) {	
 				MsDelay(100000);
 				T1CONbits.ON = 0;
-				MsDelay(100000);
 				MsDelay(100000);
 				MsDelay(100000);				
 				while(1) {
 					readVolt();
 					if((voltagey>=2.8 && voltagey<=3.3) && (voltagex>=1.4 && voltagex<=1.8 )) {
-					//	if (backwardflag == 1) {
-					//		T1CONbits.ON = 0;
-					//	}	
 						T1CONbits.ON = 1;
-						//backward will be 
-						//T1CONbits.ON = 0; 
-						//MsDelay(10);
-					/*	T1CONbits.ON = 1;
-						MsDelay(100000);
-						MsDelay(100000);
 						MsDelay(100000);
 						T1CONbits.ON = 0;
 						MsDelay(100000);
 						MsDelay(100000);
-						MsDelay(100000);*/
+					}
+					else {
+						break;
+					}
+				}
+			}	
+					
+			//Left
+			else if(voltagex>=0 && voltagex<=0.5 && (voltagey>=1.4 && voltagey<=1.8 )) {
+				MsDelay(100000);
+				T1CONbits.ON = 0;
+				MsDelay(100000);
+				MsDelay(100000);
+				MsDelay(100000);
+				while(1) {
+					readVolt();
+					if((voltagex>=0 && voltagex<=0.5) && (voltagey>=1.4 && voltagey<=1.8 ) ) {
+						T1CONbits.ON = 1;
+						MsDelay(100000);
+						T1CONbits.ON = 0;
+						MsDelay(100000);
+						MsDelay(100000);
+						MsDelay(100000);
 					}
 					else {
 						break;
 					}
 				}
 			}
-			
+				
+			//Right
+			else if(voltagex>=2.8 && voltagex<=3.3 && (voltagey>=1.4 && voltagey<=1.8 )) {		
+				MsDelay(100000);
+				T1CONbits.ON = 0;
+				MsDelay(100000);
+				MsDelay(100000);
+				MsDelay(100000);
+				MsDelay(100000);
+				while(1) {
+					readVolt();
+					if(voltagex>=2.8 && voltagex<=3.3 && (voltagey>=1.4 && voltagey<=1.8 )) {
+						T1CONbits.ON = 1;
+						MsDelay(100000);
+						T1CONbits.ON = 0;
+						MsDelay(100000);
+						MsDelay(100000);
+						MsDelay(100000);
+						MsDelay(100000);
+					}
+					else {
+						break;
+					}
+				}
+			}
+					
 			//Stop //works great
 
 			else {
