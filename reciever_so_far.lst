@@ -1,7 +1,11 @@
 0000              1   ;--------------------------------------------------------
 0000              2   ; File Created by C51
 0000              3   ; Version 1.0.0 #1069 (Apr 23 2015) (MSVC)
-0000              4   ; This file was generated Thu Mar 29 13:51:08 2018
+<<<<<<< HEAD
+0000              4   ; This file was generated Thu Mar 29 21:44:51 2018
+=======
+0000              4   ; This file was generated Thu Mar 29 18:33:35 2018
+>>>>>>> fe136bdf45b3f0e44b86c3d7d0423044779e493d
 0000              5   ;--------------------------------------------------------
                   5   $name reciever_so_far
                   6   $optc51 --model-small
@@ -622,76 +626,76 @@
 0000            622   ; data variables initialization
 0000            623   ;--------------------------------------------------------
 0000            624            rseg R_DINIT
-0000            625   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:44: volatile unsigned char pwm_count = 0; // used in the timer 2 ISR
-0000 75D000     626            mov     _pwm_count,#0x00
-0003            627   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:45: volatile unsigned char pwm_count1 = 0; // this will be usec in the timer 3 ISR
-0003 759000     628            mov     _pwm_count1,#0x00
-0006            629   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:46: volatile unsigned char pwm_count2 = 0; // this will be used in the timer 4 ISR
-0006 755000     630            mov     _pwm_count2,#0x00
-0009            631   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:47: volatile unsigned char pwm_count3 = 0; //
-0009 751000     632            mov     _pwm_count3,#0x00
-000C            633   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:62: volatile int flag = 0;
+0000            625   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:44: volatile unsigned char pwm_count = 0; // used in the timer 2 ISR
+0000 752000     626            mov     _pwm_count,#0x00
+0003            627   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:45: volatile unsigned char pwm_count1 = 0; // this will be usec in the timer 3 ISR
+0003 75E000     628            mov     _pwm_count1,#0x00
+0006            629   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:46: volatile unsigned char pwm_count2 = 0; // this will be used in the timer 4 ISR
+0006 75A000     630            mov     _pwm_count2,#0x00
+0009            631   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:47: volatile unsigned char pwm_count3 = 0; //
+0009 756000     632            mov     _pwm_count3,#0x00
+000C            633   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:62: volatile int flag = 0;
 000C E4         634            clr     a
-000D F5D0       635            mov     _flag,a
-000F F5D1       636            mov     (_flag + 1),a
-0011            637   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:63: volatile int claw_flag = 0;
+000D F508       635            mov     _flag,a
+000F F509       636            mov     (_flag + 1),a
+0011            637   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:63: volatile int claw_flag = 0;
 0011 E4         638            clr     a
-0012 F590       639            mov     _claw_flag,a
-0014 F591       640            mov     (_claw_flag + 1),a
-0016            641   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:64: int stop[]={1,0,0,0};
-0016 752001     642            mov     _stop,#0x01
-0019 752100     643            mov     (_stop + 1),#0x00
-001C 752200     644            mov     (_stop + 0x0002),#0x00
-001F 752300     645            mov     ((_stop + 0x0002) + 1),#0x00
-0022 752400     646            mov     (_stop + 0x0004),#0x00
-0025 752500     647            mov     ((_stop + 0x0004) + 1),#0x00
-0028 752600     648            mov     (_stop + 0x0006),#0x00
-002B 752700     649            mov     ((_stop + 0x0006) + 1),#0x00
-002E            650   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:65: int forward[]={1,1,1,1};
-002E 75E001     651            mov     _forward,#0x01
-0031 75E100     652            mov     (_forward + 1),#0x00
-0034 75E201     653            mov     (_forward + 0x0002),#0x01
-0037 75E300     654            mov     ((_forward + 0x0002) + 1),#0x00
-003A 75E401     655            mov     (_forward + 0x0004),#0x01
-003D 75E500     656            mov     ((_forward + 0x0004) + 1),#0x00
-0040 75E601     657            mov     (_forward + 0x0006),#0x01
-0043 75E700     658            mov     ((_forward + 0x0006) + 1),#0x00
-0046            659   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:66: int backward[]={1,0,0,0};
-0046 75A001     660            mov     _backward,#0x01
-0049 75A100     661            mov     (_backward + 1),#0x00
-004C 75A200     662            mov     (_backward + 0x0002),#0x00
-004F 75A300     663            mov     ((_backward + 0x0002) + 1),#0x00
-0052 75A400     664            mov     (_backward + 0x0004),#0x00
-0055 75A500     665            mov     ((_backward + 0x0004) + 1),#0x00
-0058 75A600     666            mov     (_backward + 0x0006),#0x00
-005B 75A700     667            mov     ((_backward + 0x0006) + 1),#0x00
-005E            668   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:67: int left[]={1,0,1,0};
-005E 756001     669            mov     _left,#0x01
-0061 756100     670            mov     (_left + 1),#0x00
-0064 756200     671            mov     (_left + 0x0002),#0x00
-0067 756300     672            mov     ((_left + 0x0002) + 1),#0x00
-006A 756401     673            mov     (_left + 0x0004),#0x01
-006D 756500     674            mov     ((_left + 0x0004) + 1),#0x00
-0070 756600     675            mov     (_left + 0x0006),#0x00
-0073 756700     676            mov     ((_left + 0x0006) + 1),#0x00
-0076            677   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:68: int right[]={1,1,0,1};
-0076 752001     678            mov     _right,#0x01
-0079 752100     679            mov     (_right + 1),#0x00
-007C 752201     680            mov     (_right + 0x0002),#0x01
-007F 752300     681            mov     ((_right + 0x0002) + 1),#0x00
-0082 752400     682            mov     (_right + 0x0004),#0x00
-0085 752500     683            mov     ((_right + 0x0004) + 1),#0x00
-0088 752601     684            mov     (_right + 0x0006),#0x01
-008B 752700     685            mov     ((_right + 0x0006) + 1),#0x00
-008E            686   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:70: int command[4] = {0,0,0,0};
-008E 75E000     687            mov     _command,#0x00
-0091 75E100     688            mov     (_command + 1),#0x00
-0094 75E200     689            mov     (_command + 0x0002),#0x00
-0097 75E300     690            mov     ((_command + 0x0002) + 1),#0x00
-009A 75E400     691            mov     (_command + 0x0004),#0x00
-009D 75E500     692            mov     ((_command + 0x0004) + 1),#0x00
-00A0 75E600     693            mov     (_command + 0x0006),#0x00
-00A3 75E700     694            mov     ((_command + 0x0006) + 1),#0x00
+0012 F5C8       639            mov     _claw_flag,a
+0014 F5C9       640            mov     (_claw_flag + 1),a
+0016            641   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:64: int stop[]={1,0,0,0};
+0016 758801     642            mov     _stop,#0x01
+0019 758900     643            mov     (_stop + 1),#0x00
+001C 758A00     644            mov     (_stop + 0x0002),#0x00
+001F 758B00     645            mov     ((_stop + 0x0002) + 1),#0x00
+0022 758C00     646            mov     (_stop + 0x0004),#0x00
+0025 758D00     647            mov     ((_stop + 0x0004) + 1),#0x00
+0028 758E00     648            mov     (_stop + 0x0006),#0x00
+002B 758F00     649            mov     ((_stop + 0x0006) + 1),#0x00
+002E            650   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:65: int forward[]={1,1,1,1};
+002E 754801     651            mov     _forward,#0x01
+0031 754900     652            mov     (_forward + 1),#0x00
+0034 754A01     653            mov     (_forward + 0x0002),#0x01
+0037 754B00     654            mov     ((_forward + 0x0002) + 1),#0x00
+003A 754C01     655            mov     (_forward + 0x0004),#0x01
+003D 754D00     656            mov     ((_forward + 0x0004) + 1),#0x00
+0040 754E01     657            mov     (_forward + 0x0006),#0x01
+0043 754F00     658            mov     ((_forward + 0x0006) + 1),#0x00
+0046            659   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:66: int backward[]={1,0,0,0};
+0046 750801     660            mov     _backward,#0x01
+0049 750900     661            mov     (_backward + 1),#0x00
+004C 750A00     662            mov     (_backward + 0x0002),#0x00
+004F 750B00     663            mov     ((_backward + 0x0002) + 1),#0x00
+0052 750C00     664            mov     (_backward + 0x0004),#0x00
+0055 750D00     665            mov     ((_backward + 0x0004) + 1),#0x00
+0058 750E00     666            mov     (_backward + 0x0006),#0x00
+005B 750F00     667            mov     ((_backward + 0x0006) + 1),#0x00
+005E            668   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:67: int left[]={1,0,1,0};
+005E 75C801     669            mov     _left,#0x01
+0061 75C900     670            mov     (_left + 1),#0x00
+0064 75CA00     671            mov     (_left + 0x0002),#0x00
+0067 75CB00     672            mov     ((_left + 0x0002) + 1),#0x00
+006A 75CC01     673            mov     (_left + 0x0004),#0x01
+006D 75CD00     674            mov     ((_left + 0x0004) + 1),#0x00
+0070 75CE00     675            mov     (_left + 0x0006),#0x00
+0073 75CF00     676            mov     ((_left + 0x0006) + 1),#0x00
+0076            677   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:68: int right[]={1,1,0,1};
+0076 758801     678            mov     _right,#0x01
+0079 758900     679            mov     (_right + 1),#0x00
+007C 758A01     680            mov     (_right + 0x0002),#0x01
+007F 758B00     681            mov     ((_right + 0x0002) + 1),#0x00
+0082 758C00     682            mov     (_right + 0x0004),#0x00
+0085 758D00     683            mov     ((_right + 0x0004) + 1),#0x00
+0088 758E01     684            mov     (_right + 0x0006),#0x01
+008B 758F00     685            mov     ((_right + 0x0006) + 1),#0x00
+008E            686   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:70: int command[4] = {0,0,0,0};
+008E 754800     687            mov     _command,#0x00
+0091 754900     688            mov     (_command + 1),#0x00
+0094 754A00     689            mov     (_command + 0x0002),#0x00
+0097 754B00     690            mov     ((_command + 0x0002) + 1),#0x00
+009A 754C00     691            mov     (_command + 0x0004),#0x00
+009D 754D00     692            mov     ((_command + 0x0004) + 1),#0x00
+00A0 754E00     693            mov     (_command + 0x0006),#0x00
+00A3 754F00     694            mov     ((_command + 0x0006) + 1),#0x00
 00A6            695            ; The linker places a 'ret' at the end of segment R_DINIT.
 00A6            696   ;--------------------------------------------------------
 00A6            697   ; code
@@ -701,83 +705,83 @@
 0000            701   ;Allocation info for local variables in function '_c51_external_startup'
 0000            702   ;------------------------------------------------------------
 0000            703   ;------------------------------------------------------------
-0000            704   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:72: char _c51_external_startup(void)
+0000            704   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:72: char _c51_external_startup(void)
 0000            705   ;        -----------------------------------------
 0000            706   ;         function _c51_external_startup
 0000            707   ;        -----------------------------------------
 0000            708   __c51_external_startup:
 0000            709            using   0
-0000            710   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:75: SFRPAGE = 0x00;
+0000            710   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:75: SFRPAGE = 0x00;
 0000 75A700     711            mov     _SFRPAGE,#0x00
-0003            712   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:76: WDTCN = 0xDE; //First key
+0003            712   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:76: WDTCN = 0xDE; //First key
 0003 7597DE     713            mov     _WDTCN,#0xDE
-0006            714   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:77: WDTCN = 0xAD; //Second key
+0006            714   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:77: WDTCN = 0xAD; //Second key
 0006 7597AD     715            mov     _WDTCN,#0xAD
-0009            716   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:79: VDM0CN = 0x80;       // enable VDD monitor
+0009            716   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:79: VDM0CN = 0x80;       // enable VDD monitor
 0009 75FF80     717            mov     _VDM0CN,#0x80
-000C            718   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:80: RSTSRC = 0x02 | 0x04;  // Enable reset on missing clock detector and VDD
+000C            718   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:80: RSTSRC = 0x02 | 0x04;  // Enable reset on missing clock detector and VDD
 000C 75EF06     719            mov     _RSTSRC,#0x06
-000F            720   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:87: SFRPAGE = 0x10;
+000F            720   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:87: SFRPAGE = 0x10;
 000F 75A710     721            mov     _SFRPAGE,#0x10
-0012            722   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:88: PFE0CN = 0x20; // SYSCLK < 75 MHz.
+0012            722   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:88: PFE0CN = 0x20; // SYSCLK < 75 MHz.
 0012 75C120     723            mov     _PFE0CN,#0x20
-0015            724   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:89: SFRPAGE = 0x00;
+0015            724   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:89: SFRPAGE = 0x00;
 0015 75A700     725            mov     _SFRPAGE,#0x00
-0018            726   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:110: CLKSEL = 0x00;
+0018            726   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:110: CLKSEL = 0x00;
 0018 75A900     727            mov     _CLKSEL,#0x00
-001B            728   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:111: CLKSEL = 0x00;
+001B            728   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:111: CLKSEL = 0x00;
 001B 75A900     729            mov     _CLKSEL,#0x00
-001E            730   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:112: while ((CLKSEL & 0x80) == 0);
+001E            730   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:112: while ((CLKSEL & 0x80) == 0);
 001E            731   L002001?:
 001E E5A9       732            mov     a,_CLKSEL
-0020 30E7B0     733            jnb     acc.7,L002001?
-0023            734   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:113: CLKSEL = 0x03;
+0020 30E708     733            jnb     acc.7,L002001?
+0023            734   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:113: CLKSEL = 0x03;
 0023 75A903     735            mov     _CLKSEL,#0x03
-0026            736   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:114: CLKSEL = 0x03;
+0026            736   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:114: CLKSEL = 0x03;
 0026 75A903     737            mov     _CLKSEL,#0x03
-0029            738   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:115: while ((CLKSEL & 0x80) == 0);
+0029            738   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:115: while ((CLKSEL & 0x80) == 0);
 0029            739   L002004?:
 0029 E5A9       740            mov     a,_CLKSEL
-002B 30E730     741            jnb     acc.7,L002004?
-002E            742   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:120: P0MDOUT |= 0x10; // Enable UART0 TX as push-pull output
+002B 30E788     741            jnb     acc.7,L002004?
+002E            742   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:120: P0MDOUT |= 0x10; // Enable UART0 TX as push-pull output
 002E 43A410     743            orl     _P0MDOUT,#0x10
-0031            744   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:121: XBR0 = 0x01; // Enable UART0 on P0.4(TX) and P0.5(RX)
+0031            744   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:121: XBR0 = 0x01; // Enable UART0 on P0.4(TX) and P0.5(RX)
 0031 75E101     745            mov     _XBR0,#0x01
-0034            746   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:122: XBR1 = 0X00;
+0034            746   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:122: XBR1 = 0X00;
 0034 75E200     747            mov     _XBR1,#0x00
-0037            748   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:123: XBR2 = 0x40; // Enable crossbar and weak pull-ups
+0037            748   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:123: XBR2 = 0x40; // Enable crossbar and weak pull-ups
 0037 75E340     749            mov     _XBR2,#0x40
-003A            750   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:129: SCON0 = 0x10;
+003A            750   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:129: SCON0 = 0x10;
 003A 759810     751            mov     _SCON0,#0x10
-003D            752   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:130: TH1 = 0x100 - ((SYSCLK / BAUDRATE) / (2L * 12L));
+003D            752   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:130: TH1 = 0x100 - ((SYSCLK / BAUDRATE) / (2L * 12L));
 003D 758DE6     753            mov     _TH1,#0xE6
-0040            754   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:131: TL1 = TH1;      // Init Timer1
+0040            754   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:131: TL1 = TH1;      // Init Timer1
 0040 858D8B     755            mov     _TL1,_TH1
-0043            756   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:132: TMOD &= ~0xf0;  // TMOD: timer 1 in 8-bit auto-reload
+0043            756   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:132: TMOD &= ~0xf0;  // TMOD: timer 1 in 8-bit auto-reload
 0043 53890F     757            anl     _TMOD,#0x0F
-0046            758   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:133: TMOD |= 0x20;
+0046            758   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:133: TMOD |= 0x20;
 0046 438920     759            orl     _TMOD,#0x20
-0049            760   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:134: TR1 = 1; // START Timer1
+0049            760   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:134: TR1 = 1; // START Timer1
 0049 D28E       761            setb    _TR1
-004B            762   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:135: TI = 1;  // Indicate TX0 ready
+004B            762   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:135: TI = 1;  // Indicate TX0 ready
 004B D299       763            setb    _TI
-004D            764   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:138: TMR2CN0 = 0x00;   // Stop Timer2; Clear TF2;
+004D            764   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:138: TMR2CN0 = 0x00;   // Stop Timer2; Clear TF2;
 004D 75C800     765            mov     _TMR2CN0,#0x00
-0050            766   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:139: CKCON0 |= 0b_0001_0000; // Timer 2 uses the system clock
+0050            766   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:139: CKCON0 |= 0b_0001_0000; // Timer 2 uses the system clock
 0050 438E10     767            orl     _CKCON0,#0x10
-0053            768   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:140: TMR2RL = (0x10000L - (SYSCLK / 10000L)); // Initialize reload value
+0053            768   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:140: TMR2RL = (0x10000L - (SYSCLK / 10000L)); // Initialize reload value
 0053 75CAE0     769            mov     _TMR2RL,#0xE0
 0056 75CBE3     770            mov     (_TMR2RL >> 8),#0xE3
-0059            771   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:141: TMR2 = 0xffff;   // Set to reload immediately
+0059            771   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:141: TMR2 = 0xffff;   // Set to reload immediately
 0059 75CEFF     772            mov     _TMR2,#0xFF
 005C 75CFFF     773            mov     (_TMR2 >> 8),#0xFF
-005F            774   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:142: ET2 = 1;         // Enable Timer2 interrupts
+005F            774   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:142: ET2 = 1;         // Enable Timer2 interrupts
 005F D2AD       775            setb    _ET2
-0061            776   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:143: TR2 = 1;         // Start Timer2 (TMR2CN is bit addressable)
+0061            776   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:143: TR2 = 1;         // Start Timer2 (TMR2CN is bit addressable)
 0061 D2CA       777            setb    _TR2
-0063            778   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:160: EA = 1; // Enable interrupts
+0063            778   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:160: EA = 1; // Enable interrupts
 0063 D2AF       779            setb    _EA
-0065            780   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:163: return 0;
+0065            780   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:163: return 0;
 0065 758200     781            mov     dpl,#0x00
 0068 22         782            ret
 0069            783   ;------------------------------------------------------------
@@ -786,24 +790,24 @@
 0069            786   ;us                        Allocated to registers r2 r3 
 0069            787   ;i                         Allocated to registers r4 r5 
 0069            788   ;------------------------------------------------------------
-0069            789   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:165: void Timer3us(unsigned int us)
+0069            789   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:165: void Timer3us(unsigned int us)
 0069            790   ;        -----------------------------------------
 0069            791   ;         function Timer3us
 0069            792   ;        -----------------------------------------
 0069            793   _Timer3us:
 0069 AA82       794            mov     r2,dpl
 006B AB83       795            mov     r3,dph
-006D            796   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:170: CKCON0|=0b_0100_0000;
+006D            796   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:170: CKCON0|=0b_0100_0000;
 006D 438E40     797            orl     _CKCON0,#0x40
-0070            798   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:172: TMR3RL = (-(SYSCLK)/1000000L); // Set Timer3 to overflow in 1us.
+0070            798   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:172: TMR3RL = (-(SYSCLK)/1000000L); // Set Timer3 to overflow in 1us.
 0070 7592B8     799            mov     _TMR3RL,#0xB8
 0073 7593FF     800            mov     (_TMR3RL >> 8),#0xFF
-0076            801   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:173: TMR3 = TMR3RL;                 // Initialize Timer3 for first overflow
+0076            801   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:173: TMR3 = TMR3RL;                 // Initialize Timer3 for first overflow
 0076 859294     802            mov     _TMR3,_TMR3RL
 0079 859395     803            mov     (_TMR3 >> 8),(_TMR3RL >> 8)
-007C            804   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:175: TMR3CN0 = 0x04;                 // Sart Timer3 and clear overflow flag
+007C            804   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:175: TMR3CN0 = 0x04;                 // Sart Timer3 and clear overflow flag
 007C 759104     805            mov     _TMR3CN0,#0x04
-007F            806   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:176: for (i = 0; i < us; i++)       // Count <us> overflows
+007F            806   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:176: for (i = 0; i < us; i++)       // Count <us> overflows
 007F 7C00       807            mov     r4,#0x00
 0081 7D00       808            mov     r5,#0x00
 0083            809   L003004?:
@@ -813,19 +817,19 @@
 0086 ED         813            mov     a,r5
 0087 9B         814            subb    a,r3
 0088 5001       815            jnc     L003007?
-008A            816   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:178: while (!(TMR3CN0 & 0x80));  // Wait for overflow
+008A            816   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:178: while (!(TMR3CN0 & 0x80));  // Wait for overflow
 008A            817   L003001?:
 008A E591       818            mov     a,_TMR3CN0
-008C 30E770     819            jnb     acc.7,L003001?
-008F            820   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:179: TMR3CN0 &= ~(0x80);         // Clear overflow indicator
+008C 30E7C8     819            jnb     acc.7,L003001?
+008F            820   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:179: TMR3CN0 &= ~(0x80);         // Clear overflow indicator
 008F 53917F     821            anl     _TMR3CN0,#0x7F
-0092            822   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:176: for (i = 0; i < us; i++)       // Count <us> overflows
+0092            822   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:176: for (i = 0; i < us; i++)       // Count <us> overflows
 0092 0C         823            inc     r4
-0093 BC00F0     824            cjne    r4,#0x00,L003004?
+0093 BC0048     824            cjne    r4,#0x00,L003004?
 0096 0D         825            inc     r5
 0097 8001       826            sjmp    L003004?
 0099            827   L003007?:
-0099            828   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:181: TMR3CN0 = 0 ;                   // Stop Timer3 and clear overflow flag
+0099            828   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:181: TMR3CN0 = 0 ;                   // Stop Timer3 and clear overflow flag
 0099 759100     829            mov     _TMR3CN0,#0x00
 009C 22         830            ret
 009D            831   ;------------------------------------------------------------
@@ -835,14 +839,14 @@
 009D            835   ;j                         Allocated to registers r4 r5 
 009D            836   ;k                         Allocated to registers r6 
 009D            837   ;------------------------------------------------------------
-009D            838   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:183: void waitms (unsigned int ms)
+009D            838   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:183: void waitms (unsigned int ms)
 009D            839   ;        -----------------------------------------
 009D            840   ;         function waitms
 009D            841   ;        -----------------------------------------
 009D            842   _waitms:
 009D AA82       843            mov     r2,dpl
 009F AB83       844            mov     r3,dph
-00A1            845   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:187: for(j=0; j<ms; j++)
+00A1            845   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:187: for(j=0; j<ms; j++)
 00A1 7C00       846            mov     r4,#0x00
 00A3 7D00       847            mov     r5,#0x00
 00A5            848   L004005?:
@@ -852,10 +856,10 @@
 00A8 ED         852            mov     a,r5
 00A9 9B         853            subb    a,r3
 00AA 5001       854            jnc     L004009?
-00AC            855   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:188: for (k=0; k<4; k++) Timer3us(250);
+00AC            855   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:188: for (k=0; k<4; k++) Timer3us(250);
 00AC 7E00       856            mov     r6,#0x00
 00AE            857   L004001?:
-00AE BE0470     858            cjne    r6,#0x04,L004018?
+00AE BE04C8     858            cjne    r6,#0x04,L004018?
 00B1            859   L004018?:
 00B1 5001       860            jnc     L004007?
 00B3 9000FA     861            mov     dptr,#0x00FA
@@ -873,9 +877,9 @@
 00CD 0E         873            inc     r6
 00CE 8001       874            sjmp    L004001?
 00D0            875   L004007?:
-00D0            876   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:187: for(j=0; j<ms; j++)
+00D0            876   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:187: for(j=0; j<ms; j++)
 00D0 0C         877            inc     r4
-00D1 BC00B0     878            cjne    r4,#0x00,L004005?
+00D1 BC0008     878            cjne    r4,#0x00,L004005?
 00D4 0D         879            inc     r5
 00D5 8001       880            sjmp    L004005?
 00D7            881   L004009?:
@@ -885,23 +889,23 @@
 00D8            885   ;------------------------------------------------------------
 00D8            886   ;pin                       Allocated to registers 
 00D8            887   ;------------------------------------------------------------
-00D8            888   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:191: unsigned int ADC_at_Pin(unsigned char pin)
+00D8            888   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:191: unsigned int ADC_at_Pin(unsigned char pin)
 00D8            889   ;        -----------------------------------------
 00D8            890   ;         function ADC_at_Pin
 00D8            891   ;        -----------------------------------------
 00D8            892   _ADC_at_Pin:
 00D8 8582BB     893            mov     _ADC0MX,dpl
-00DB            894   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:194: ADBUSY = 1;       // Dummy conversion first to select new pin
+00DB            894   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:194: ADBUSY = 1;       // Dummy conversion first to select new pin
 00DB D2EC       895            setb    _ADBUSY
-00DD            896   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:195: while (ADBUSY); // Wait for dummy conversion to finish
+00DD            896   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:195: while (ADBUSY); // Wait for dummy conversion to finish
 00DD            897   L005001?:
-00DD 20ECF0     898            jb      _ADBUSY,L005001?
-00E0            899   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:196: ADBUSY = 1;     // Convert voltage at the pin
+00DD 20EC48     898            jb      _ADBUSY,L005001?
+00E0            899   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:196: ADBUSY = 1;     // Convert voltage at the pin
 00E0 D2EC       900            setb    _ADBUSY
-00E2            901   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:197: while (ADBUSY); // Wait for conversion to complete
+00E2            901   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:197: while (ADBUSY); // Wait for conversion to complete
 00E2            902   L005004?:
-00E2 20EC30     903            jb      _ADBUSY,L005004?
-00E5            904   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:198: return (ADC0);
+00E2 20EC88     903            jb      _ADBUSY,L005004?
+00E5            904   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:198: return (ADC0);
 00E5 85BD82     905            mov     dpl,_ADC0
 00E8 85BE83     906            mov     dph,(_ADC0 >> 8)
 00EB 22         907            ret
@@ -909,7 +913,7 @@
 00EC            909   ;Allocation info for local variables in function 'Timer2_ISR'
 00EC            910   ;------------------------------------------------------------
 00EC            911   ;------------------------------------------------------------
-00EC            912   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:202: void Timer2_ISR(void) interrupt 5
+00EC            912   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:202: void Timer2_ISR(void) interrupt 5
 00EC            913   ;        -----------------------------------------
 00EC            914   ;         function Timer2_ISR
 00EC            915   ;        -----------------------------------------
@@ -919,59 +923,71 @@
 00F0 C003       919            push    ar3
 00F2 C0D0       920            push    psw
 00F4 75D000     921            mov     psw,#0x00
-00F7            922   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:204: TF2H = 0; // Clear Timer2 interrupt flag
+00F7            922   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:204: TF2H = 0; // Clear Timer2 interrupt flag
 00F7 C2CF       923            clr     _TF2H
-00F9            924   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:206: pwm_count++;
-00F9 05D0       925            inc     _pwm_count
-00FB            926   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:207: if (pwm_count>100)
-00FB E5D0       927            mov     a,_pwm_count
+00F9            924   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:206: pwm_count++;
+00F9 0520       925            inc     _pwm_count
+00FB            926   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:207: if (pwm_count>100)
+00FB E520       927            mov     a,_pwm_count
 00FD 249B       928            add     a,#0xff - 0x64
 00FF 5001       929            jnc     L006002?
-0101            930   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:208: pwm_count = 0;
-0101 75D000     931            mov     _pwm_count,#0x00
+0101            930   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:208: pwm_count = 0;
+0101 752000     931            mov     _pwm_count,#0x00
 0104            932   L006002?:
-0104            933   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:211: motorR1 = pwm_count>pwmSig1 ? 0 : 1;
-0104 AAD0       934            mov     r2,_pwm_count
+0104            933   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:211: motorR1 = pwm_count>pwmSig1 ? 0 : 1;
+0104 AA20       934            mov     r2,_pwm_count
 0106 7B00       935            mov     r3,#0x00
 0108 C3         936            clr     c
-0109 E5D0       937            mov     a,_pwmSig1
+0109 E520       937            mov     a,_pwmSig1
 010B 9A         938            subb    a,r2
-010C E5D1       939            mov     a,(_pwmSig1 + 1)
+010C E521       939            mov     a,(_pwmSig1 + 1)
 010E 9B         940            subb    a,r3
-010F 9230       941            mov  _Timer2_ISR_sloc0_1_0,c
+010F 9288       941            mov  _Timer2_ISR_sloc0_1_0,c
 0111 B3         942            cpl     c
-0112 9294       943            mov     _P1_4,c
+<<<<<<< HEAD
+0112 9292       943            mov     _P1_2,c
 0114            944   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:212: motorR2 = pwm_count>pwmSig2 ? 0 : 1;
 0114 AAD0       945            mov     r2,_pwm_count
+=======
+0112 9294       943            mov     _P1_4,c
+0114            944   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:212: motorR2 = pwm_count>pwmSig2 ? 0 : 1;
+0114 AA20       945            mov     r2,_pwm_count
+>>>>>>> fe136bdf45b3f0e44b86c3d7d0423044779e493d
 0116 7B00       946            mov     r3,#0x00
 0118 C3         947            clr     c
-0119 E590       948            mov     a,_pwmSig2
+0119 E5E0       948            mov     a,_pwmSig2
 011B 9A         949            subb    a,r2
-011C E591       950            mov     a,(_pwmSig2 + 1)
+011C E5E1       950            mov     a,(_pwmSig2 + 1)
 011E 9B         951            subb    a,r3
-011F 9230       952            mov  _Timer2_ISR_sloc0_1_0,c
+011F 9288       952            mov  _Timer2_ISR_sloc0_1_0,c
 0121 B3         953            cpl     c
 0122 9293       954            mov     _P1_3,c
-0124            955   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:214: motorL1 = pwm_count>pwmSig1 ? 0 : 1;
-0124 AAD0       956            mov     r2,_pwm_count
+0124            955   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:214: motorL1 = pwm_count>pwmSig1 ? 0 : 1;
+0124 AA20       956            mov     r2,_pwm_count
 0126 7B00       957            mov     r3,#0x00
 0128 C3         958            clr     c
-0129 E5D0       959            mov     a,_pwmSig1
+0129 E520       959            mov     a,_pwmSig1
 012B 9A         960            subb    a,r2
-012C E5D1       961            mov     a,(_pwmSig1 + 1)
+012C E521       961            mov     a,(_pwmSig1 + 1)
 012E 9B         962            subb    a,r3
-012F 9230       963            mov  _Timer2_ISR_sloc0_1_0,c
+012F 9288       963            mov  _Timer2_ISR_sloc0_1_0,c
 0131 B3         964            cpl     c
-0132 9296       965            mov     _P1_6,c
+<<<<<<< HEAD
+0132 9294       965            mov     _P1_4,c
 0134            966   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:215: motorL2 = pwm_count>pwmSig2 ? 0 : 1;
 0134 AAD0       967            mov     r2,_pwm_count
+=======
+0132 9296       965            mov     _P1_6,c
+0134            966   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:215: motorL2 = pwm_count>pwmSig2 ? 0 : 1;
+0134 AA20       967            mov     r2,_pwm_count
+>>>>>>> fe136bdf45b3f0e44b86c3d7d0423044779e493d
 0136 7B00       968            mov     r3,#0x00
 0138 C3         969            clr     c
-0139 E590       970            mov     a,_pwmSig2
+0139 E5E0       970            mov     a,_pwmSig2
 013B 9A         971            subb    a,r2
-013C E591       972            mov     a,(_pwmSig2 + 1)
+013C E5E1       972            mov     a,(_pwmSig2 + 1)
 013E 9B         973            subb    a,r3
-013F 9230       974            mov  _Timer2_ISR_sloc0_1_0,c
+013F 9288       974            mov  _Timer2_ISR_sloc0_1_0,c
 0141 B3         975            cpl     c
 0142 9295       976            mov     _P1_5,c
 0144 D0D0       977            pop     psw
@@ -986,42 +1002,42 @@
 014D            986   ;Allocation info for local variables in function 'InitADC'
 014D            987   ;------------------------------------------------------------
 014D            988   ;------------------------------------------------------------
-014D            989   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:247: void InitADC(void)
+014D            989   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:247: void InitADC(void)
 014D            990   ;        -----------------------------------------
 014D            991   ;         function InitADC
 014D            992   ;        -----------------------------------------
 014D            993   _InitADC:
-014D            994   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:249: SFRPAGE = 0x00;
+014D            994   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:249: SFRPAGE = 0x00;
 014D 75A700     995            mov     _SFRPAGE,#0x00
-0150            996   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:250: ADC0CN1 = 0b_10_000_000; //14-bit,  Right justified no shifting applied, perform and Accumulate 1 conversion.
+0150            996   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:250: ADC0CN1 = 0b_10_000_000; //14-bit,  Right justified no shifting applied, perform and Accumulate 1 conversion.
 0150 75B280     997            mov     _ADC0CN1,#0x80
-0153            998   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:251: ADC0CF0 = 0b_11111_0_00; // SYSCLK/32
+0153            998   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:251: ADC0CF0 = 0b_11111_0_00; // SYSCLK/32
 0153 75BCF8     999            mov     _ADC0CF0,#0xF8
-0156           1000   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:252: ADC0CF1 = 0b_0_0_011110; // Same as default for now
+0156           1000   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:252: ADC0CF1 = 0b_0_0_011110; // Same as default for now
 0156 75B91E    1001            mov     _ADC0CF1,#0x1E
-0159           1002   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:253: ADC0CN0 = 0b_0_0_0_0_0_00_0; // Same as default for now
+0159           1002   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:253: ADC0CN0 = 0b_0_0_0_0_0_00_0; // Same as default for now
 0159 75E800    1003            mov     _ADC0CN0,#0x00
-015C           1004   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:254: ADC0CF2 = 0b_0_01_11111; // GND pin, Vref=VDD
+015C           1004   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:254: ADC0CF2 = 0b_0_01_11111; // GND pin, Vref=VDD
 015C 75DF3F    1005            mov     _ADC0CF2,#0x3F
-015F           1006   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:255: ADC0CN2 = 0b_0_000_0000;  // Same as default for now. ADC0 conversion initiated on write of 1 to ADBUSY.
+015F           1006   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:255: ADC0CN2 = 0b_0_000_0000;  // Same as default for now. ADC0 conversion initiated on write of 1 to ADBUSY.
 015F 75B300    1007            mov     _ADC0CN2,#0x00
-0162           1008   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:256: ADEN = 1; // Enable ADC
+0162           1008   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:256: ADEN = 1; // Enable ADC
 0162 D2EF      1009            setb    _ADEN
 0164 22        1010            ret
 0165           1011   ;------------------------------------------------------------
 0165           1012   ;Allocation info for local variables in function 'TIMER0_Init'
 0165           1013   ;------------------------------------------------------------
 0165           1014   ;------------------------------------------------------------
-0165           1015   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:258: void TIMER0_Init(void)
+0165           1015   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:258: void TIMER0_Init(void)
 0165           1016   ;        -----------------------------------------
 0165           1017   ;         function TIMER0_Init
 0165           1018   ;        -----------------------------------------
 0165           1019   _TIMER0_Init:
-0165           1020   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:260: TMOD &= 0b_1111_0000; // Set the bits of Timer/Counter 0 to zero
+0165           1020   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:260: TMOD &= 0b_1111_0000; // Set the bits of Timer/Counter 0 to zero
 0165 5389F0    1021            anl     _TMOD,#0xF0
-0168           1022   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:261: TMOD |= 0b_0000_0001; // Timer/Counter 0 used as a 16-bit timer
+0168           1022   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:261: TMOD |= 0b_0000_0001; // Timer/Counter 0 used as a 16-bit timer
 0168 438901    1023            orl     _TMOD,#0x01
-016B           1024   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:262: TR0 = 0; // Stop Timer/Counter 0
+016B           1024   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:262: TR0 = 0; // Stop Timer/Counter 0
 016B C28C      1025            clr     _TR0
 016D 22        1026            ret
 016E           1027   ;------------------------------------------------------------
@@ -1029,12 +1045,12 @@
 016E           1029   ;------------------------------------------------------------
 016E           1030   ;pin                       Allocated to registers r2 
 016E           1031   ;------------------------------------------------------------
-016E           1032   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:267: float Volts_at_Pin(unsigned char pin)
+016E           1032   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:267: float Volts_at_Pin(unsigned char pin)
 016E           1033   ;        -----------------------------------------
 016E           1034   ;         function Volts_at_Pin
 016E           1035   ;        -----------------------------------------
 016E           1036   _Volts_at_Pin:
-016E           1037   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:269: return ((ADC_at_Pin(pin)*VDD) / 0b_0011_1111_1111_1111);
+016E           1037   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:269: return ((ADC_at_Pin(pin)*VDD) / 0b_0011_1111_1111_1111);
 016E 120100    1038            lcall   _ADC_at_Pin
 0171 120100    1039            lcall   ___uint2fs
 0174 AA82      1040            mov     r2,dpl
@@ -1088,100 +1104,100 @@
 01C9           1088   ;portno                    Allocated to registers r2 
 01C9           1089   ;mask                      Allocated to registers r3 
 01C9           1090   ;------------------------------------------------------------
-01C9           1091   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:271: void InitPinADC(unsigned char portno, unsigned char pinno)
+01C9           1091   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:271: void InitPinADC(unsigned char portno, unsigned char pinno)
 01C9           1092   ;        -----------------------------------------
 01C9           1093   ;         function InitPinADC
 01C9           1094   ;        -----------------------------------------
 01C9           1095   _InitPinADC:
 01C9 AA82      1096            mov     r2,dpl
-01CB           1097   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:275: mask = 1 << pinno;
-01CB 85F0F0    1098            mov     b,_InitPinADC_PARM_2
+01CB           1097   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:275: mask = 1 << pinno;
+01CB 8558F0    1098            mov     b,_InitPinADC_PARM_2
 01CE 05F0      1099            inc     b
 01D0 7401      1100            mov     a,#0x01
 01D2 8001      1101            sjmp    L010013?
 01D4           1102   L010011?:
 01D4 25E0      1103            add     a,acc
 01D6           1104   L010013?:
-01D6 D5F070    1105            djnz    b,L010011?
+01D6 D5F0C8    1105            djnz    b,L010011?
 01D9 FB        1106            mov     r3,a
-01DA           1107   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:277: SFRPAGE = 0x20;
+01DA           1107   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:277: SFRPAGE = 0x20;
 01DA 75A720    1108            mov     _SFRPAGE,#0x20
-01DD           1109   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:278: switch (portno)
-01DD BA00B0    1110            cjne    r2,#0x00,L010014?
+01DD           1109   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:278: switch (portno)
+01DD BA0008    1110            cjne    r2,#0x00,L010014?
 01E0 8001      1111            sjmp    L010001?
 01E2           1112   L010014?:
-01E2 BA0130    1113            cjne    r2,#0x01,L010015?
+01E2 BA0188    1113            cjne    r2,#0x01,L010015?
 01E5 8001      1114            sjmp    L010002?
 01E7           1115   L010015?:
-01E7           1116   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:280: case 0:
-01E7 BA02B0    1117            cjne    r2,#0x02,L010005?
+01E7           1116   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:280: case 0:
+01E7 BA0208    1117            cjne    r2,#0x02,L010005?
 01EA 8001      1118            sjmp    L010003?
 01EC           1119   L010001?:
-01EC           1120   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:281: P0MDIN &= (~mask); // Set pin as analog input
+01EC           1120   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:281: P0MDIN &= (~mask); // Set pin as analog input
 01EC EB        1121            mov     a,r3
 01ED F4        1122            cpl     a
 01EE FA        1123            mov     r2,a
 01EF 52F1      1124            anl     _P0MDIN,a
-01F1           1125   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:282: P0SKIP |= mask; // Skip Crossbar decoding for this pin
+01F1           1125   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:282: P0SKIP |= mask; // Skip Crossbar decoding for this pin
 01F1 EB        1126            mov     a,r3
 01F2 42D4      1127            orl     _P0SKIP,a
-01F4           1128   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:283: break;
-01F4           1129   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:284: case 1:
+01F4           1128   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:283: break;
+01F4           1129   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:284: case 1:
 01F4 8001      1130            sjmp    L010005?
 01F6           1131   L010002?:
-01F6           1132   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:285: P1MDIN &= (~mask); // Set pin as analog input
+01F6           1132   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:285: P1MDIN &= (~mask); // Set pin as analog input
 01F6 EB        1133            mov     a,r3
 01F7 F4        1134            cpl     a
 01F8 FA        1135            mov     r2,a
 01F9 52F2      1136            anl     _P1MDIN,a
-01FB           1137   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:286: P1SKIP |= mask; // Skip Crossbar decoding for this pin
+01FB           1137   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:286: P1SKIP |= mask; // Skip Crossbar decoding for this pin
 01FB EB        1138            mov     a,r3
 01FC 42D5      1139            orl     _P1SKIP,a
-01FE           1140   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:287: break;
-01FE           1141   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:288: case 2:
+01FE           1140   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:287: break;
+01FE           1141   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:288: case 2:
 01FE 8001      1142            sjmp    L010005?
 0200           1143   L010003?:
-0200           1144   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:289: P2MDIN &= (~mask); // Set pin as analog input
+0200           1144   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:289: P2MDIN &= (~mask); // Set pin as analog input
 0200 EB        1145            mov     a,r3
 0201 F4        1146            cpl     a
 0202 FA        1147            mov     r2,a
 0203 52F3      1148            anl     _P2MDIN,a
-0205           1149   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:290: P2SKIP |= mask; // Skip Crossbar decoding for this pin
+0205           1149   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:290: P2SKIP |= mask; // Skip Crossbar decoding for this pin
 0205 EB        1150            mov     a,r3
 0206 42CC      1151            orl     _P2SKIP,a
-0208           1152   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:294: }
+0208           1152   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:294: }
 0208           1153   L010005?:
-0208           1154   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:295: SFRPAGE = 0x00;
+0208           1154   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:295: SFRPAGE = 0x00;
 0208 75A700    1155            mov     _SFRPAGE,#0x00
 020B 22        1156            ret
 020C           1157   ;------------------------------------------------------------
 020C           1158   ;Allocation info for local variables in function 'PWMforward'
 020C           1159   ;------------------------------------------------------------
 020C           1160   ;------------------------------------------------------------
-020C           1161   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:304: void PWMforward(void) {
+020C           1161   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:304: void PWMforward(void) {
 020C           1162   ;        -----------------------------------------
 020C           1163   ;         function PWMforward
 020C           1164   ;        -----------------------------------------
 020C           1165   _PWMforward:
-020C           1166   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:305: pwmSig1 = 99;
-020C 75D063    1167            mov     _pwmSig1,#0x63
+020C           1166   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:305: pwmSig1 = 99;
+020C 752063    1167            mov     _pwmSig1,#0x63
 020F E4        1168            clr     a
-0210 F5D1      1169            mov     (_pwmSig1 + 1),a
-0212           1170   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:306: pwmSig2 = 0;
-0212           1171   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:308: pwmSig3 = 0;
+0210 F521      1169            mov     (_pwmSig1 + 1),a
+0212           1170   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:306: pwmSig2 = 0;
+0212           1171   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:308: pwmSig3 = 0;
 0212 E4        1172            clr     a
-0213 F590      1173            mov     _pwmSig2,a
-0215 F591      1174            mov     (_pwmSig2 + 1),a
-0217 F550      1175            mov     _pwmSig3,a
-0219 F551      1176            mov     (_pwmSig3 + 1),a
-021B           1177   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:309: pwmSig4 =99;
-021B 751063    1178            mov     _pwmSig4,#0x63
+0213 F5E0      1173            mov     _pwmSig2,a
+0215 F5E1      1174            mov     (_pwmSig2 + 1),a
+0217 F588      1175            mov     _pwmSig3,a
+0219 F589      1176            mov     (_pwmSig3 + 1),a
+021B           1177   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:309: pwmSig4 =99;
+021B 754863    1178            mov     _pwmSig4,#0x63
 021E E4        1179            clr     a
-021F F511      1180            mov     (_pwmSig4 + 1),a
-0221           1181   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:310: printf("Forward\n\r");
-0221 7430      1182            mov     a,#__str_0
+021F F549      1180            mov     (_pwmSig4 + 1),a
+0221           1181   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:310: printf("Forward\n\r");
+0221 7488      1182            mov     a,#__str_0
 0223 C0E0      1183            push    acc
-0225 74C3      1184            mov     a,#(__str_0 >> 8)
+0225 74C6      1184            mov     a,#(__str_0 >> 8)
 0227 C0E0      1185            push    acc
 0229 7480      1186            mov     a,#0x80
 022B C0E0      1187            push    acc
@@ -1194,31 +1210,31 @@
 0237           1194   ;Allocation info for local variables in function 'PWMbackward'
 0237           1195   ;------------------------------------------------------------
 0237           1196   ;------------------------------------------------------------
-0237           1197   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:313: void PWMbackward(void) {
+0237           1197   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:313: void PWMbackward(void) {
 0237           1198   ;        -----------------------------------------
 0237           1199   ;         function PWMbackward
 0237           1200   ;        -----------------------------------------
 0237           1201   _PWMbackward:
-0237           1202   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:314: pwmSig1 = 0;
+0237           1202   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:314: pwmSig1 = 0;
 0237 E4        1203            clr     a
-0238 F5D0      1204            mov     _pwmSig1,a
-023A F5D1      1205            mov     (_pwmSig1 + 1),a
-023C           1206   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:315: pwmSig2 = 99;
-023C 759063    1207            mov     _pwmSig2,#0x63
+0238 F520      1204            mov     _pwmSig1,a
+023A F521      1205            mov     (_pwmSig1 + 1),a
+023C           1206   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:315: pwmSig2 = 99;
+023C 75E063    1207            mov     _pwmSig2,#0x63
 023F E4        1208            clr     a
-0240 F591      1209            mov     (_pwmSig2 + 1),a
-0242           1210   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:317: pwmSig3 = 99;
-0242 755063    1211            mov     _pwmSig3,#0x63
+0240 F5E1      1209            mov     (_pwmSig2 + 1),a
+0242           1210   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:317: pwmSig3 = 99;
+0242 758863    1211            mov     _pwmSig3,#0x63
 0245 E4        1212            clr     a
-0246 F551      1213            mov     (_pwmSig3 + 1),a
-0248           1214   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:318: pwmSig4 = 0;
+0246 F589      1213            mov     (_pwmSig3 + 1),a
+0248           1214   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:318: pwmSig4 = 0;
 0248 E4        1215            clr     a
-0249 F510      1216            mov     _pwmSig4,a
-024B F511      1217            mov     (_pwmSig4 + 1),a
-024D           1218   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:319: printf("Backward\n\r");
-024D 74B0      1219            mov     a,#__str_1
+0249 F548      1216            mov     _pwmSig4,a
+024B F549      1217            mov     (_pwmSig4 + 1),a
+024D           1218   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:319: printf("Backward\n\r");
+024D 7408      1219            mov     a,#__str_1
 024F C0E0      1220            push    acc
-0251 74C3      1221            mov     a,#(__str_1 >> 8)
+0251 74C7      1221            mov     a,#(__str_1 >> 8)
 0253 C0E0      1222            push    acc
 0255 7480      1223            mov     a,#0x80
 0257 C0E0      1224            push    acc
@@ -1231,30 +1247,30 @@
 0263           1231   ;Allocation info for local variables in function 'PWMLeft'
 0263           1232   ;------------------------------------------------------------
 0263           1233   ;------------------------------------------------------------
-0263           1234   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:322: void PWMLeft(void) {
+0263           1234   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:322: void PWMLeft(void) {
 0263           1235   ;        -----------------------------------------
 0263           1236   ;         function PWMLeft
 0263           1237   ;        -----------------------------------------
 0263           1238   _PWMLeft:
-0263           1239   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:323: pwmSig1 = 0;
-0263           1240   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:324: pwmSig2 = 0;
+0263           1239   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:323: pwmSig1 = 0;
+0263           1240   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:324: pwmSig2 = 0;
 0263 E4        1241            clr     a
-0264 F5D0      1242            mov     _pwmSig1,a
-0266 F5D1      1243            mov     (_pwmSig1 + 1),a
-0268 F590      1244            mov     _pwmSig2,a
-026A F591      1245            mov     (_pwmSig2 + 1),a
-026C           1246   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:326: pwmSig3 = 70;
-026C 755046    1247            mov     _pwmSig3,#0x46
+0264 F520      1242            mov     _pwmSig1,a
+0266 F521      1243            mov     (_pwmSig1 + 1),a
+0268 F5E0      1244            mov     _pwmSig2,a
+026A F5E1      1245            mov     (_pwmSig2 + 1),a
+026C           1246   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:326: pwmSig3 = 70;
+026C 758846    1247            mov     _pwmSig3,#0x46
 026F E4        1248            clr     a
-0270 F551      1249            mov     (_pwmSig3 + 1),a
-0272           1250   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:327: pwmSig4 = 0;
+0270 F589      1249            mov     (_pwmSig3 + 1),a
+0272           1250   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:327: pwmSig4 = 0;
 0272 E4        1251            clr     a
-0273 F510      1252            mov     _pwmSig4,a
-0275 F511      1253            mov     (_pwmSig4 + 1),a
-0277           1254   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:328: printf("Left\n\r");
-0277 74F0      1255            mov     a,#__str_2
+0273 F548      1252            mov     _pwmSig4,a
+0275 F549      1253            mov     (_pwmSig4 + 1),a
+0277           1254   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:328: printf("Left\n\r");
+0277 7448      1255            mov     a,#__str_2
 0279 C0E0      1256            push    acc
-027B 74C3      1257            mov     a,#(__str_2 >> 8)
+027B 74C7      1257            mov     a,#(__str_2 >> 8)
 027D C0E0      1258            push    acc
 027F 7480      1259            mov     a,#0x80
 0281 C0E0      1260            push    acc
@@ -1267,29 +1283,29 @@
 028D           1267   ;Allocation info for local variables in function 'PWMRight'
 028D           1268   ;------------------------------------------------------------
 028D           1269   ;------------------------------------------------------------
-028D           1270   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:331: void PWMRight(void) {
+028D           1270   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:331: void PWMRight(void) {
 028D           1271   ;        -----------------------------------------
 028D           1272   ;         function PWMRight
 028D           1273   ;        -----------------------------------------
 028D           1274   _PWMRight:
-028D           1275   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:332: pwmSig1 = 99;
-028D 75D063    1276            mov     _pwmSig1,#0x63
+028D           1275   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:332: pwmSig1 = 99;
+028D 752063    1276            mov     _pwmSig1,#0x63
 0290 E4        1277            clr     a
-0291 F5D1      1278            mov     (_pwmSig1 + 1),a
-0293           1279   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:333: pwmSig2 = 0;
-0293           1280   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:335: pwmSig3 = 0;
-0293           1281   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:336: pwmSig4 = 0;
+0291 F521      1278            mov     (_pwmSig1 + 1),a
+0293           1279   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:333: pwmSig2 = 0;
+0293           1280   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:335: pwmSig3 = 0;
+0293           1281   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:336: pwmSig4 = 0;
 0293 E4        1282            clr     a
-0294 F590      1283            mov     _pwmSig2,a
-0296 F591      1284            mov     (_pwmSig2 + 1),a
-0298 F550      1285            mov     _pwmSig3,a
-029A F551      1286            mov     (_pwmSig3 + 1),a
-029C F510      1287            mov     _pwmSig4,a
-029E F511      1288            mov     (_pwmSig4 + 1),a
-02A0           1289   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:337: printf("Right\n\r");
-02A0 7430      1290            mov     a,#__str_3
+0294 F5E0      1283            mov     _pwmSig2,a
+0296 F5E1      1284            mov     (_pwmSig2 + 1),a
+0298 F588      1285            mov     _pwmSig3,a
+029A F589      1286            mov     (_pwmSig3 + 1),a
+029C F548      1287            mov     _pwmSig4,a
+029E F549      1288            mov     (_pwmSig4 + 1),a
+02A0           1289   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:337: printf("Right\n\r");
+02A0 7488      1290            mov     a,#__str_3
 02A2 C0E0      1291            push    acc
-02A4 74C4      1292            mov     a,#(__str_3 >> 8)
+02A4 74C7      1292            mov     a,#(__str_3 >> 8)
 02A6 C0E0      1293            push    acc
 02A8 7480      1294            mov     a,#0x80
 02AA C0E0      1295            push    acc
@@ -1302,28 +1318,28 @@
 02B6           1302   ;Allocation info for local variables in function 'PWMStop'
 02B6           1303   ;------------------------------------------------------------
 02B6           1304   ;------------------------------------------------------------
-02B6           1305   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:340: void PWMStop(void) {
+02B6           1305   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:340: void PWMStop(void) {
 02B6           1306   ;        -----------------------------------------
 02B6           1307   ;         function PWMStop
 02B6           1308   ;        -----------------------------------------
 02B6           1309   _PWMStop:
-02B6           1310   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:341: pwmSig1 = 0;
-02B6           1311   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:342: pwmSig2 = 0;
-02B6           1312   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:344: pwmSig3 = 0;
-02B6           1313   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:345: pwmSig4 = 0;
+02B6           1310   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:341: pwmSig1 = 0;
+02B6           1311   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:342: pwmSig2 = 0;
+02B6           1312   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:344: pwmSig3 = 0;
+02B6           1313   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:345: pwmSig4 = 0;
 02B6 E4        1314            clr     a
-02B7 F5D0      1315            mov     _pwmSig1,a
-02B9 F5D1      1316            mov     (_pwmSig1 + 1),a
-02BB F590      1317            mov     _pwmSig2,a
-02BD F591      1318            mov     (_pwmSig2 + 1),a
-02BF F550      1319            mov     _pwmSig3,a
-02C1 F551      1320            mov     (_pwmSig3 + 1),a
-02C3 F510      1321            mov     _pwmSig4,a
-02C5 F511      1322            mov     (_pwmSig4 + 1),a
-02C7           1323   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:346: printf("Stop\n\r");
-02C7 7470      1324            mov     a,#__str_4
+02B7 F520      1315            mov     _pwmSig1,a
+02B9 F521      1316            mov     (_pwmSig1 + 1),a
+02BB F5E0      1317            mov     _pwmSig2,a
+02BD F5E1      1318            mov     (_pwmSig2 + 1),a
+02BF F588      1319            mov     _pwmSig3,a
+02C1 F589      1320            mov     (_pwmSig3 + 1),a
+02C3 F548      1321            mov     _pwmSig4,a
+02C5 F549      1322            mov     (_pwmSig4 + 1),a
+02C7           1323   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:346: printf("Stop\n\r");
+02C7 74C8      1324            mov     a,#__str_4
 02C9 C0E0      1325            push    acc
-02CB 74C4      1326            mov     a,#(__str_4 >> 8)
+02CB 74C7      1326            mov     a,#(__str_4 >> 8)
 02CD C0E0      1327            push    acc
 02CF 7480      1328            mov     a,#0x80
 02D1 C0E0      1329            push    acc
@@ -1338,46 +1354,46 @@
 02DD           1338   ;period1                   Allocated to registers r2 r3 r4 r5 
 02DD           1339   ;overflow_count            Allocated to registers r2 r3 
 02DD           1340   ;------------------------------------------------------------
-02DD           1341   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:349: float periodcalc(void) {
+02DD           1341   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:349: float periodcalc(void) {
 02DD           1342   ;        -----------------------------------------
 02DD           1343   ;         function periodcalc
 02DD           1344   ;        -----------------------------------------
 02DD           1345   _periodcalc:
-02DD           1346   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:353: TL0=0; 
+02DD           1346   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:353: TL0=0; 
 02DD 758A00    1347            mov     _TL0,#0x00
-02E0           1348   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:354: TH0=0;
+02E0           1348   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:354: TH0=0;
 02E0 758C00    1349            mov     _TH0,#0x00
-02E3           1350   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:355: TF0=0;
+02E3           1350   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:355: TF0=0;
 02E3 C28D      1351            clr     _TF0
-02E5           1352   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:357: TR0=0;
+02E5           1352   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:357: TR0=0;
 02E5 C28C      1353            clr     _TR0
-02E7           1354   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:359: while(P1_7!=0); // Wait for the signal to be zero
+02E7           1354   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:359: while(P1_7!=0); // Wait for the signal to be zero
 02E7           1355   L016001?:
-02E7 2097B0    1356            jb      _P1_7,L016001?
-02EA           1357   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:360: while(P1_7!=1); // Wait for the signal to be one
+02E7 209708    1356            jb      _P1_7,L016001?
+02EA           1357   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:360: while(P1_7!=1); // Wait for the signal to be one
 02EA           1358   L016004?:
-02EA 3097F0    1359            jnb     _P1_7,L016004?
-02ED           1360   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:361: TR0=1; // Start the timer
+02EA 309748    1359            jnb     _P1_7,L016004?
+02ED           1360   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:361: TR0=1; // Start the timer
 02ED D28C      1361            setb    _TR0
-02EF           1362   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:362: while(P1_7!=0) // Wait for the signal to be zero
+02EF           1362   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:362: while(P1_7!=0) // Wait for the signal to be zero
 02EF 7A00      1363            mov     r2,#0x00
 02F1 7B00      1364            mov     r3,#0x00
 02F3           1365   L016009?:
-02F3 309770    1366            jnb     _P1_7,L016011?
-02F6           1367   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:364: if(TF0==1) // Did the 16-bit timer overflow?
-02F6           1368   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:366: TF0=0;
-02F6 108DB0    1369            jbc     _TF0,L016024?
+02F3 3097C8    1366            jnb     _P1_7,L016011?
+02F6           1367   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:364: if(TF0==1) // Did the 16-bit timer overflow?
+02F6           1368   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:366: TF0=0;
+02F6 108D08    1369            jbc     _TF0,L016024?
 02F9 8001      1370            sjmp    L016009?
 02FB           1371   L016024?:
-02FB           1372   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:367: overflow_count++;
+02FB           1372   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:367: overflow_count++;
 02FB 0A        1373            inc     r2
-02FC BA0030    1374            cjne    r2,#0x00,L016009?
+02FC BA0088    1374            cjne    r2,#0x00,L016009?
 02FF 0B        1375            inc     r3
 0300 8001      1376            sjmp    L016009?
 0302           1377   L016011?:
-0302           1378   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:372: TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
+0302           1378   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:372: TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
 0302 C28C      1379            clr     _TR0
-0304           1380   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:373: period1=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
+0304           1380   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:373: period1=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
 0304 8A82      1381            mov     dpl,r2
 0306 8B83      1382            mov     dph,r3
 0308 120100    1383            lcall   ___sint2fs
@@ -1493,7 +1509,7 @@
 03E9 E581      1493            mov     a,sp
 03EB 24FC      1494            add     a,#0xfc
 03ED F581      1495            mov     sp,a
-03EF           1496   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:375: return period1*1000; //return period of high pulse in seconds
+03EF           1496   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:375: return period1*1000; //return period of high pulse in seconds
 03EF C002      1497            push    ar2
 03F1 C003      1498            push    ar3
 03F3 C004      1499            push    ar4
@@ -1522,28 +1538,28 @@
 0417           1522   ;arr1                      Allocated with name '_arrayEqual_arr1_1_76'
 0417           1523   ;i                         Allocated to registers r5 r6 
 0417           1524   ;------------------------------------------------------------
-0417           1525   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:379: int arrayEqual (int arr1[], int size, int arr2[]){
+0417           1525   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:379: int arrayEqual (int arr1[], int size, int arr2[]){
 0417           1526   ;        -----------------------------------------
 0417           1527   ;         function arrayEqual
 0417           1528   ;        -----------------------------------------
 0417           1529   _arrayEqual:
-0417 8582E0    1530            mov     _arrayEqual_arr1_1_76,dpl
-041A 8583E1    1531            mov     (_arrayEqual_arr1_1_76 + 1),dph
-041D 85F0E2    1532            mov     (_arrayEqual_arr1_1_76 + 2),b
-0420           1533   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:381: for(i=0; i<size; i++){
+0417 858238    1530            mov     _arrayEqual_arr1_1_76,dpl
+041A 858339    1531            mov     (_arrayEqual_arr1_1_76 + 1),dph
+041D 85F03A    1532            mov     (_arrayEqual_arr1_1_76 + 2),b
+0420           1533   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:381: for(i=0; i<size; i++){
 0420 7D00      1534            mov     r5,#0x00
 0422 7E00      1535            mov     r6,#0x00
 0424           1536   L017003?:
 0424 C3        1537            clr     c
 0425 ED        1538            mov     a,r5
-0426 95A0      1539            subb    a,_arrayEqual_PARM_2
+0426 9508      1539            subb    a,_arrayEqual_PARM_2
 0428 EE        1540            mov     a,r6
 0429 6480      1541            xrl     a,#0x80
-042B 85A1F0    1542            mov     b,(_arrayEqual_PARM_2 + 1)
+042B 8509F0    1542            mov     b,(_arrayEqual_PARM_2 + 1)
 042E 63F080    1543            xrl     b,#0x80
 0431 95F0      1544            subb    a,b
 0433 5001      1545            jnc     L017006?
-0435           1546   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:382: if(arr1[i]!=arr2[i])
+0435           1546   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:382: if(arr1[i]!=arr2[i])
 0435 8D07      1547            mov     ar7,r5
 0437 EE        1548            mov     a,r6
 0438 CF        1549            xch     a,r7
@@ -1552,12 +1568,12 @@
 043C 33        1552            rlc     a
 043D F8        1553            mov     r0,a
 043E EF        1554            mov     a,r7
-043F 25E0      1555            add     a,_arrayEqual_arr1_1_76
+043F 2538      1555            add     a,_arrayEqual_arr1_1_76
 0441 F9        1556            mov     r1,a
 0442 E8        1557            mov     a,r0
-0443 35E1      1558            addc    a,(_arrayEqual_arr1_1_76 + 1)
+0443 3539      1558            addc    a,(_arrayEqual_arr1_1_76 + 1)
 0445 FA        1559            mov     r2,a
-0446 ABE2      1560            mov     r3,(_arrayEqual_arr1_1_76 + 2)
+0446 AB3A      1560            mov     r3,(_arrayEqual_arr1_1_76 + 2)
 0448 8982      1561            mov     dpl,r1
 044A 8A83      1562            mov     dph,r2
 044C 8BF0      1563            mov     b,r3
@@ -1567,12 +1583,12 @@
 0453 120100    1567            lcall   __gptrget
 0456 FA        1568            mov     r2,a
 0457 EF        1569            mov     a,r7
-0458 2550      1570            add     a,_arrayEqual_PARM_3
+0458 25B8      1570            add     a,_arrayEqual_PARM_3
 045A FF        1571            mov     r7,a
 045B E8        1572            mov     a,r0
-045C 3551      1573            addc    a,(_arrayEqual_PARM_3 + 1)
+045C 35B9      1573            addc    a,(_arrayEqual_PARM_3 + 1)
 045E F8        1574            mov     r0,a
-045F AB52      1575            mov     r3,(_arrayEqual_PARM_3 + 2)
+045F ABBA      1575            mov     r3,(_arrayEqual_PARM_3 + 2)
 0461 8F82      1576            mov     dpl,r7
 0463 8883      1577            mov     dph,r0
 0465 8BF0      1578            mov     b,r3
@@ -1582,41 +1598,41 @@
 046C 120100    1582            lcall   __gptrget
 046F F8        1583            mov     r0,a
 0470 E9        1584            mov     a,r1
-0471 B50770    1585            cjne    a,ar7,L017013?
+0471 B507C8    1585            cjne    a,ar7,L017013?
 0474 EA        1586            mov     a,r2
-0475 B50070    1587            cjne    a,ar0,L017013?
+0475 B500C8    1587            cjne    a,ar0,L017013?
 0478 8001      1588            sjmp    L017005?
 047A           1589   L017013?:
-047A           1590   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:383: return 0; 
+047A           1590   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:383: return 0; 
 047A 900000    1591            mov     dptr,#0x0000
 047D 22        1592            ret
 047E           1593   L017005?:
-047E           1594   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:381: for(i=0; i<size; i++){
+047E           1594   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:381: for(i=0; i<size; i++){
 047E 0D        1595            inc     r5
-047F BD00B0    1596            cjne    r5,#0x00,L017003?
+047F BD0008    1596            cjne    r5,#0x00,L017003?
 0482 0E        1597            inc     r6
 0483 8001      1598            sjmp    L017003?
 0485           1599   L017006?:
-0485           1600   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:385: return 1; 
+0485           1600   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:385: return 1; 
 0485 900001    1601            mov     dptr,#0x0001
 0488 22        1602            ret
 0489           1603   ;------------------------------------------------------------
 0489           1604   ;Allocation info for local variables in function 'checkCommands'
 0489           1605   ;------------------------------------------------------------
 0489           1606   ;------------------------------------------------------------
-0489           1607   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:391: void checkCommands (void){
+0489           1607   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:391: void checkCommands (void){
 0489           1608   ;        -----------------------------------------
 0489           1609   ;         function checkCommands
 0489           1610   ;        -----------------------------------------
 0489           1611   _checkCommands:
-0489           1612   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:392: if(arrayEqual(command, 4, stop)) PWMStop();
-0489 755020    1613            mov     _arrayEqual_PARM_3,#_stop
-048C 755100    1614            mov     (_arrayEqual_PARM_3 + 1),#0x00
-048F 755240    1615            mov     (_arrayEqual_PARM_3 + 2),#0x40
-0492 75A004    1616            mov     _arrayEqual_PARM_2,#0x04
+0489           1612   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:392: if(arrayEqual(command, 4, stop)) PWMStop();
+0489 75B888    1613            mov     _arrayEqual_PARM_3,#_stop
+048C 75B900    1614            mov     (_arrayEqual_PARM_3 + 1),#0x00
+048F 75BA40    1615            mov     (_arrayEqual_PARM_3 + 2),#0x40
+0492 750804    1616            mov     _arrayEqual_PARM_2,#0x04
 0495 E4        1617            clr     a
-0496 F5A1      1618            mov     (_arrayEqual_PARM_2 + 1),a
-0498 9017E0    1619            mov     dptr,#_command
+0496 F509      1618            mov     (_arrayEqual_PARM_2 + 1),a
+0498 901848    1619            mov     dptr,#_command
 049B 75F040    1620            mov     b,#0x40
 049E 120100    1621            lcall   _arrayEqual
 04A1 E582      1622            mov     a,dpl
@@ -1625,14 +1641,14 @@
 04A8 6001      1625            jz      L018014?
 04AA 020100    1626            ljmp    _PWMStop
 04AD           1627   L018014?:
-04AD           1628   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:393: else if (arrayEqual(command,4,forward)) PWMforward(); 
-04AD 7550E0    1629            mov     _arrayEqual_PARM_3,#_forward
-04B0 755100    1630            mov     (_arrayEqual_PARM_3 + 1),#0x00
-04B3 755240    1631            mov     (_arrayEqual_PARM_3 + 2),#0x40
-04B6 75A004    1632            mov     _arrayEqual_PARM_2,#0x04
+04AD           1628   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:393: else if (arrayEqual(command,4,forward)) PWMforward(); 
+04AD 75B848    1629            mov     _arrayEqual_PARM_3,#_forward
+04B0 75B900    1630            mov     (_arrayEqual_PARM_3 + 1),#0x00
+04B3 75BA40    1631            mov     (_arrayEqual_PARM_3 + 2),#0x40
+04B6 750804    1632            mov     _arrayEqual_PARM_2,#0x04
 04B9 E4        1633            clr     a
-04BA F5A1      1634            mov     (_arrayEqual_PARM_2 + 1),a
-04BC 9017E0    1635            mov     dptr,#_command
+04BA F509      1634            mov     (_arrayEqual_PARM_2 + 1),a
+04BC 901848    1635            mov     dptr,#_command
 04BF 75F040    1636            mov     b,#0x40
 04C2 120100    1637            lcall   _arrayEqual
 04C5 E582      1638            mov     a,dpl
@@ -1641,14 +1657,14 @@
 04CC 6001      1641            jz      L018011?
 04CE 020100    1642            ljmp    _PWMforward
 04D1           1643   L018011?:
-04D1           1644   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:394: else if (arrayEqual(command,4,backward)) PWMbackward(); 
-04D1 7550A0    1645            mov     _arrayEqual_PARM_3,#_backward
-04D4 755100    1646            mov     (_arrayEqual_PARM_3 + 1),#0x00
-04D7 755240    1647            mov     (_arrayEqual_PARM_3 + 2),#0x40
-04DA 75A004    1648            mov     _arrayEqual_PARM_2,#0x04
+04D1           1644   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:394: else if (arrayEqual(command,4,backward)) PWMbackward(); 
+04D1 75B808    1645            mov     _arrayEqual_PARM_3,#_backward
+04D4 75B900    1646            mov     (_arrayEqual_PARM_3 + 1),#0x00
+04D7 75BA40    1647            mov     (_arrayEqual_PARM_3 + 2),#0x40
+04DA 750804    1648            mov     _arrayEqual_PARM_2,#0x04
 04DD E4        1649            clr     a
-04DE F5A1      1650            mov     (_arrayEqual_PARM_2 + 1),a
-04E0 9017E0    1651            mov     dptr,#_command
+04DE F509      1650            mov     (_arrayEqual_PARM_2 + 1),a
+04E0 901848    1651            mov     dptr,#_command
 04E3 75F040    1652            mov     b,#0x40
 04E6 120100    1653            lcall   _arrayEqual
 04E9 E582      1654            mov     a,dpl
@@ -1657,14 +1673,14 @@
 04F0 6001      1657            jz      L018008?
 04F2 020100    1658            ljmp    _PWMbackward
 04F5           1659   L018008?:
-04F5           1660   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:395: else if (arrayEqual(command,4, left)) PWMLeft(); 
-04F5 755060    1661            mov     _arrayEqual_PARM_3,#_left
-04F8 755100    1662            mov     (_arrayEqual_PARM_3 + 1),#0x00
-04FB 755240    1663            mov     (_arrayEqual_PARM_3 + 2),#0x40
-04FE 75A004    1664            mov     _arrayEqual_PARM_2,#0x04
+04F5           1660   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:395: else if (arrayEqual(command,4, left)) PWMLeft(); 
+04F5 75B8C8    1661            mov     _arrayEqual_PARM_3,#_left
+04F8 75B900    1662            mov     (_arrayEqual_PARM_3 + 1),#0x00
+04FB 75BA40    1663            mov     (_arrayEqual_PARM_3 + 2),#0x40
+04FE 750804    1664            mov     _arrayEqual_PARM_2,#0x04
 0501 E4        1665            clr     a
-0502 F5A1      1666            mov     (_arrayEqual_PARM_2 + 1),a
-0504 9017E0    1667            mov     dptr,#_command
+0502 F509      1666            mov     (_arrayEqual_PARM_2 + 1),a
+0504 901848    1667            mov     dptr,#_command
 0507 75F040    1668            mov     b,#0x40
 050A 120100    1669            lcall   _arrayEqual
 050D E582      1670            mov     a,dpl
@@ -1673,14 +1689,14 @@
 0514 6001      1673            jz      L018005?
 0516 020100    1674            ljmp    _PWMLeft
 0519           1675   L018005?:
-0519           1676   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:396: else if (arrayEqual(command,4, right)) PWMRight(); 
-0519 755020    1677            mov     _arrayEqual_PARM_3,#_right
-051C 755100    1678            mov     (_arrayEqual_PARM_3 + 1),#0x00
-051F 755240    1679            mov     (_arrayEqual_PARM_3 + 2),#0x40
-0522 75A004    1680            mov     _arrayEqual_PARM_2,#0x04
+0519           1676   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:396: else if (arrayEqual(command,4, right)) PWMRight(); 
+0519 75B888    1677            mov     _arrayEqual_PARM_3,#_right
+051C 75B900    1678            mov     (_arrayEqual_PARM_3 + 1),#0x00
+051F 75BA40    1679            mov     (_arrayEqual_PARM_3 + 2),#0x40
+0522 750804    1680            mov     _arrayEqual_PARM_2,#0x04
 0525 E4        1681            clr     a
-0526 F5A1      1682            mov     (_arrayEqual_PARM_2 + 1),a
-0528 9017E0    1683            mov     dptr,#_command
+0526 F509      1682            mov     (_arrayEqual_PARM_2 + 1),a
+0528 901848    1683            mov     dptr,#_command
 052B 75F040    1684            mov     b,#0x40
 052E 120100    1685            lcall   _arrayEqual
 0531 E582      1686            mov     a,dpl
@@ -1689,18 +1705,18 @@
 0538 6001      1689            jz      L018002?
 053A 020100    1690            ljmp    _PWMRight
 053D           1691   L018002?:
-053D           1692   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:397: else PWMStop(); //defaults to a halt (redundant)
+053D           1692   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:397: else PWMStop(); //defaults to a halt (redundant)
 053D 020100    1693            ljmp    _PWMStop
 0540           1694   ;------------------------------------------------------------
 0540           1695   ;Allocation info for local variables in function 'voltsAtPeak'
 0540           1696   ;------------------------------------------------------------
 0540           1697   ;------------------------------------------------------------
-0540           1698   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:403: float voltsAtPeak(void) {
+0540           1698   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:403: float voltsAtPeak(void) {
 0540           1699   ;        -----------------------------------------
 0540           1700   ;         function voltsAtPeak
 0540           1701   ;        -----------------------------------------
 0540           1702   _voltsAtPeak:
-0540           1703   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:405: while(ADC_at_Pin(QFP32_MUX_P1_6)==0); //this waiting for the pin to be high/ 1 
+0540           1703   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:405: while(ADC_at_Pin(QFP32_MUX_P1_6)==0); //this waiting for the pin to be high/ 1 
 0540           1704   L019001?:
 0540 75820C    1705            mov     dpl,#0x0C
 0543 120100    1706            lcall   _ADC_at_Pin
@@ -1708,22 +1724,22 @@
 0548 8583F0    1708            mov     b,dph
 054B 45F0      1709            orl     a,b
 054D 6001      1710            jz      L019001?
-054F           1711   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:406: Timer3us((PERIOD*1.0E6)/4.0); //PERIOD IS DEFINED
+054F           1711   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:406: Timer3us((PERIOD*1.0E6)/4.0); //PERIOD IS DEFINED
 054F 900000    1712            mov     dptr,#0x0000
 0552 120100    1713            lcall   _Timer3us
-0555           1714   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:407: return(Volts_at_Pin(QFP32_MUX_P1_6));
+0555           1714   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:407: return(Volts_at_Pin(QFP32_MUX_P1_6));
 0555 75820C    1715            mov     dpl,#0x0C
 0558 020100    1716            ljmp    _Volts_at_Pin
 055B           1717   ;------------------------------------------------------------
 055B           1718   ;Allocation info for local variables in function 'getDigitalSignal'
 055B           1719   ;------------------------------------------------------------
 055B           1720   ;------------------------------------------------------------
-055B           1721   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:420: int getDigitalSignal (void){
+055B           1721   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:420: int getDigitalSignal (void){
 055B           1722   ;        -----------------------------------------
 055B           1723   ;         function getDigitalSignal
 055B           1724   ;        -----------------------------------------
 055B           1725   _getDigitalSignal:
-055B           1726   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:422: if (voltsAtPeak()>=thresholdVolt) //not too low to be a noise/ a valid signal for high, 1
+055B           1726   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:422: if (voltsAtPeak()>=thresholdVolt) //not too low to be a noise/ a valid signal for high, 1
 055B 120100    1727            lcall   _voltsAtPeak
 055E AA82      1728            mov     r2,dpl
 0560 AB83      1729            mov     r3,dph
@@ -1746,7 +1762,7 @@
 0580 F581      1746            mov     sp,a
 0582 EA        1747            mov     a,r2
 0583 7001      1748            jnz     L020002?
-0585           1749   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:424: printf("\nread 1:  at pin 1.6: %f\r", voltsAtPeak());
+0585           1749   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:424: printf("\nread 1:  at pin 1.6: %f\r", voltsAtPeak());
 0585 120100    1750            lcall   _voltsAtPeak
 0588 AA82      1751            mov     r2,dpl
 058A AB83      1752            mov     r3,dph
@@ -1756,9 +1772,9 @@
 0591 C003      1756            push    ar3
 0593 C004      1757            push    ar4
 0595 C005      1758            push    ar5
-0597 74F0      1759            mov     a,#__str_5
+0597 7448      1759            mov     a,#__str_5
 0599 C0E0      1760            push    acc
-059B 74C9      1761            mov     a,#(__str_5 >> 8)
+059B 74CD      1761            mov     a,#(__str_5 >> 8)
 059D C0E0      1762            push    acc
 059F 7480      1763            mov     a,#0x80
 05A1 C0E0      1764            push    acc
@@ -1766,11 +1782,11 @@
 05A6 E581      1766            mov     a,sp
 05A8 24F9      1767            add     a,#0xf9
 05AA F581      1768            mov     sp,a
-05AC           1769   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:425: return 1;
+05AC           1769   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:425: return 1;
 05AC 900001    1770            mov     dptr,#0x0001
 05AF 22        1771            ret
 05B0           1772   L020002?:
-05B0           1773   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:428: printf("\nread 0: Volt at pin 1.6: %f\r", voltsAtPeak());
+05B0           1773   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:428: printf("\nread 0: Volt at pin 1.6: %f\r", voltsAtPeak());
 05B0 120100    1774            lcall   _voltsAtPeak
 05B3 AA82      1775            mov     r2,dpl
 05B5 AB83      1776            mov     r3,dph
@@ -1780,9 +1796,9 @@
 05BC C003      1780            push    ar3
 05BE C004      1781            push    ar4
 05C0 C005      1782            push    ar5
-05C2 7430      1783            mov     a,#__str_6
+05C2 7488      1783            mov     a,#__str_6
 05C4 C0E0      1784            push    acc
-05C6 74CA      1785            mov     a,#(__str_6 >> 8)
+05C6 74CD      1785            mov     a,#(__str_6 >> 8)
 05C8 C0E0      1786            push    acc
 05CA 7480      1787            mov     a,#0x80
 05CC C0E0      1788            push    acc
@@ -1790,20 +1806,24 @@
 05D1 E581      1790            mov     a,sp
 05D3 24F9      1791            add     a,#0xf9
 05D5 F581      1792            mov     sp,a
-05D7           1793   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:429: return 0; 
+05D7           1793   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:429: return 0; 
 05D7 900000    1794            mov     dptr,#0x0000
 05DA 22        1795            ret
 05DB           1796   ;------------------------------------------------------------
 05DB           1797   ;Allocation info for local variables in function 'waitquarterperiod'
 05DB           1798   ;------------------------------------------------------------
 05DB           1799   ;------------------------------------------------------------
-05DB           1800   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:437: void waitquarterperiod(void){
+05DB           1800   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:437: void waitquarterperiod(void){
 05DB           1801   ;        -----------------------------------------
 05DB           1802   ;         function waitquarterperiod
 05DB           1803   ;        -----------------------------------------
 05DB           1804   _waitquarterperiod:
+<<<<<<< HEAD
 05DB           1805   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:438: waitms(constant_delay_time);
-05DB 900005    1806            mov     dptr,#0x0005
+=======
+05DB           1805   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:438: waitms(constant_delay_time);
+>>>>>>> fe136bdf45b3f0e44b86c3d7d0423044779e493d
+05DB 90000A    1806            mov     dptr,#0x000A
 05DE 020100    1807            ljmp    _waitms
 05E1           1808   ;------------------------------------------------------------
 05E1           1809   ;Allocation info for local variables in function 'recieveData'
@@ -1811,28 +1831,28 @@
 05E1           1811   ;checkcomm                 Allocated to registers 
 05E1           1812   ;i                         Allocated to registers r2 r3 
 05E1           1813   ;------------------------------------------------------------
-05E1           1814   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:444: void recieveData (){
+05E1           1814   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:444: void recieveData (){
 05E1           1815   ;        -----------------------------------------
 05E1           1816   ;         function recieveData
 05E1           1817   ;        -----------------------------------------
 05E1           1818   _recieveData:
-05E1           1819   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:448: while(getDigitalSignal()==0);          //wait for the signal to be 1 
+05E1           1819   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:448: while(getDigitalSignal()==0);      //wait for the signal to be 1 
 05E1           1820   L022001?:
 05E1 120100    1821            lcall   _getDigitalSignal
 05E4 E582      1822            mov     a,dpl
 05E6 8583F0    1823            mov     b,dph
 05E9 45F0      1824            orl     a,b
 05EB 6001      1825            jz      L022001?
-05ED           1826   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:449: if (getDigitalSignal()==1){    //gets the first 1 that identifies a command 
+05ED           1826   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:449: if (getDigitalSignal()==1){        //gets the first 1 that identifies a command 
 05ED 120100    1827            lcall   _getDigitalSignal
 05F0 AA82      1828            mov     r2,dpl
 05F2 AB83      1829            mov     r3,dph
-05F4 BA01B0    1830            cjne    r2,#0x01,L022010?
-05F7 BB00B0    1831            cjne    r3,#0x00,L022010?
-05FA           1832   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:450: command[0]=1;
-05FA 75E001    1833            mov     _command,#0x01
-05FD 75E100    1834            mov     (_command + 1),#0x00
-0600           1835   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:451: for( i=1; i<4; i++){
+05F4 BA0108    1830            cjne    r2,#0x01,L022010?
+05F7 BB0008    1831            cjne    r3,#0x00,L022010?
+05FA           1832   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:450: command[0]=1;
+05FA 754801    1833            mov     _command,#0x01
+05FD 754900    1834            mov     (_command + 1),#0x00
+0600           1835   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:451: for( i=1; i<4; i++){
 0600 7A01      1836            mov     r2,#0x01
 0602 7B00      1837            mov     r3,#0x00
 0604           1838   L022006?:
@@ -1843,14 +1863,18 @@
 0609 6480      1843            xrl     a,#0x80
 060B 9480      1844            subb    a,#0x80
 060D 5001      1845            jnc     L022009?
+<<<<<<< HEAD
 060F           1846   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:452: waitms(constant_delay_time);
-060F 900005    1847            mov     dptr,#0x0005
+=======
+060F           1846   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:452: waitms(constant_delay_time);
+>>>>>>> fe136bdf45b3f0e44b86c3d7d0423044779e493d
+060F 90000A    1847            mov     dptr,#0x000A
 0612 C002      1848            push    ar2
 0614 C003      1849            push    ar3
 0616 120100    1850            lcall   _waitms
 0619 D003      1851            pop     ar3
 061B D002      1852            pop     ar2
-061D           1853   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:453: command[i]=getDigitalSignal();         
+061D           1853   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:453: command[i]=getDigitalSignal();     
 061D 8A04      1854            mov     ar4,r2
 061F EB        1855            mov     a,r3
 0620 CC        1856            xch     a,r4
@@ -1858,7 +1882,7 @@
 0623 CC        1858            xch     a,r4
 0624 33        1859            rlc     a
 0625 EC        1860            mov     a,r4
-0626 24E0      1861            add     a,#_command
+0626 2448      1861            add     a,#_command
 0628 F8        1862            mov     r0,a
 0629 C002      1863            push    ar2
 062B C003      1864            push    ar3
@@ -1873,13 +1897,13 @@
 063E 08        1873            inc     r0
 063F A6F0      1874            mov     @r0,b
 0641 18        1875            dec     r0
-0642           1876   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:451: for( i=1; i<4; i++){
+0642           1876   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:451: for( i=1; i<4; i++){
 0642 0A        1877            inc     r2
-0643 BA00F0    1878            cjne    r2,#0x00,L022006?
+0643 BA0048    1878            cjne    r2,#0x00,L022006?
 0646 0B        1879            inc     r3
 0647 8001      1880            sjmp    L022006?
 0649           1881   L022009?:
-0649           1882   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:456: checkCommands();                               //does activity depending on the command given 
+0649           1882   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:456: checkCommands();                           //does activity depending on the command given 
 0649 020100    1883            ljmp    _checkCommands
 064C           1884   L022010?:
 064C 22        1885            ret
@@ -1896,23 +1920,23 @@
 064D           1896   ;period                    Allocated to registers 
 064D           1897   ;overflow_count            Allocated to registers 
 064D           1898   ;------------------------------------------------------------
-064D           1899   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:486: void main(void)
+064D           1899   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:486: void main(void)
 064D           1900   ;        -----------------------------------------
 064D           1901   ;         function main
 064D           1902   ;        -----------------------------------------
 064D           1903   _main:
-064D           1904   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:497: TIMER0_Init();
+064D           1904   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:497: TIMER0_Init();
 064D 120100    1905            lcall   _TIMER0_Init
-0650           1906   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:499: InitPinADC(1, 6); // Configure P2.5 as analog input
-0650 75F006    1907            mov     _InitPinADC_PARM_2,#0x06
+0650           1906   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:499: InitPinADC(1, 6); // Configure P2.5 as analog input
+0650 755806    1907            mov     _InitPinADC_PARM_2,#0x06
 0653 758201    1908            mov     dpl,#0x01
 0656 120100    1909            lcall   _InitPinADC
-0659           1910   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:501: InitADC();
+0659           1910   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:501: InitADC();
 0659 120100    1911            lcall   _InitADC
-065C           1912   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:502: printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
-065C 7470      1913            mov     a,#__str_7
+065C           1912   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:502: printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
+065C 74C8      1913            mov     a,#__str_7
 065E C0E0      1914            push    acc
-0660 74CB      1915            mov     a,#(__str_7 >> 8)
+0660 74CE      1915            mov     a,#(__str_7 >> 8)
 0662 C0E0      1916            push    acc
 0664 7480      1917            mov     a,#0x80
 0666 C0E0      1918            push    acc
@@ -1920,10 +1944,10 @@
 066B 1581      1920            dec     sp
 066D 1581      1921            dec     sp
 066F 1581      1922            dec     sp
-0671           1923   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:504: "Check pins P2.2 and P2.1 with the oscilloscope.\r\n");
-0671 74B0      1924            mov     a,#__str_8
+0671           1923   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:504: "Check pins P2.2 and P2.1 with the oscilloscope.\r\n");
+0671 7408      1924            mov     a,#__str_8
 0673 C0E0      1925            push    acc
-0675 74CB      1926            mov     a,#(__str_8 >> 8)
+0675 74CF      1926            mov     a,#(__str_8 >> 8)
 0677 C0E0      1927            push    acc
 0679 7480      1928            mov     a,#0x80
 067B C0E0      1929            push    acc
@@ -1931,10 +1955,10 @@
 0680 1581      1931            dec     sp
 0682 1581      1932            dec     sp
 0684 1581      1933            dec     sp
-0686           1934   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:506: printf("\n\r");
-0686 74F0      1935            mov     a,#__str_9
+0686           1934   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:506: printf("\n\r");
+0686 7448      1935            mov     a,#__str_9
 0688 C0E0      1936            push    acc
-068A 74CB      1937            mov     a,#(__str_9 >> 8)
+068A 74CF      1937            mov     a,#(__str_9 >> 8)
 068C C0E0      1938            push    acc
 068E 7480      1939            mov     a,#0x80
 0690 C0E0      1940            push    acc
@@ -1942,16 +1966,16 @@
 0695 1581      1942            dec     sp
 0697 1581      1943            dec     sp
 0699 1581      1944            dec     sp
-069B           1945   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:507: P2_1=0;
+069B           1945   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:507: P2_1=0;
 069B C2A1      1946            clr     _P2_1
-069D           1947   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:508: while (1)
+069D           1947   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:508: while (1)
 069D           1948   L023002?:
-069D           1949   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:511: recieveData();         //keep reading data continously 
+069D           1949   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:511: recieveData();     //keep reading data continously 
 069D 120100    1950            lcall   _recieveData
-06A0           1951   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:512: printf("Command: ");
-06A0 7470      1952            mov     a,#__str_10
+06A0           1951   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:512: printf("Command: ");
+06A0 74C8      1952            mov     a,#__str_10
 06A2 C0E0      1953            push    acc
-06A4 74CC      1954            mov     a,#(__str_10 >> 8)
+06A4 74CF      1954            mov     a,#(__str_10 >> 8)
 06A6 C0E0      1955            push    acc
 06A8 7480      1956            mov     a,#0x80
 06AA C0E0      1957            push    acc
@@ -1959,7 +1983,7 @@
 06AF 1581      1959            dec     sp
 06B1 1581      1960            dec     sp
 06B3 1581      1961            dec     sp
-06B5           1962   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:513: for(i=0; i<4; i++)
+06B5           1962   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:513: for(i=0; i<4; i++)
 06B5 7A00      1963            mov     r2,#0x00
 06B7 7B00      1964            mov     r3,#0x00
 06B9           1965   L023004?:
@@ -1970,7 +1994,7 @@
 06BE 6480      1970            xrl     a,#0x80
 06C0 9480      1971            subb    a,#0x80
 06C2 5001      1972            jnc     L023007?
-06C4           1973   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:514: printf("%d\t", command[i]);
+06C4           1973   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:514: printf("%d\t", command[i]);
 06C4 8A04      1974            mov     ar4,r2
 06C6 EB        1975            mov     a,r3
 06C7 CC        1976            xch     a,r4
@@ -1978,7 +2002,7 @@
 06CA CC        1978            xch     a,r4
 06CB 33        1979            rlc     a
 06CC EC        1980            mov     a,r4
-06CD 24E0      1981            add     a,#_command
+06CD 2448      1981            add     a,#_command
 06CF F8        1982            mov     r0,a
 06D0 8604      1983            mov     ar4,@r0
 06D2 08        1984            inc     r0
@@ -1988,9 +2012,9 @@
 06D8 C003      1988            push    ar3
 06DA C004      1989            push    ar4
 06DC C005      1990            push    ar5
-06DE 7430      1991            mov     a,#__str_11
+06DE 7488      1991            mov     a,#__str_11
 06E0 C0E0      1992            push    acc
-06E2 74CD      1993            mov     a,#(__str_11 >> 8)
+06E2 74D0      1993            mov     a,#(__str_11 >> 8)
 06E4 C0E0      1994            push    acc
 06E6 7480      1995            mov     a,#0x80
 06E8 C0E0      1996            push    acc
@@ -2000,16 +2024,16 @@
 06F1 F581      2000            mov     sp,a
 06F3 D003      2001            pop     ar3
 06F5 D002      2002            pop     ar2
-06F7           2003   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:513: for(i=0; i<4; i++)
+06F7           2003   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:513: for(i=0; i<4; i++)
 06F7 0A        2004            inc     r2
-06F8 BA00B0    2005            cjne    r2,#0x00,L023004?
+06F8 BA0008    2005            cjne    r2,#0x00,L023004?
 06FB 0B        2006            inc     r3
 06FC 8001      2007            sjmp    L023004?
 06FE           2008   L023007?:
-06FE           2009   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:515: printf("\n\r");
-06FE 74F0      2010            mov     a,#__str_9
+06FE           2009   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:515: printf("\n\r");
+06FE 7448      2010            mov     a,#__str_9
 0700 C0E0      2011            push    acc
-0702 74CB      2012            mov     a,#(__str_9 >> 8)
+0702 74CF      2012            mov     a,#(__str_9 >> 8)
 0704 C0E0      2013            push    acc
 0706 7480      2014            mov     a,#0x80
 0708 C0E0      2015            push    acc
@@ -2017,18 +2041,18 @@
 070D 1581      2017            dec     sp
 070F 1581      2018            dec     sp
 0711 1581      2019            dec     sp
-0713           2020   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:516: command[0] = 0;
-0713 75E000    2021            mov     _command,#0x00
-0716 75E100    2022            mov     (_command + 1),#0x00
-0719           2023   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:517: command[1] = 0;
-0719 75E200    2024            mov     (_command + 0x0002),#0x00
-071C 75E300    2025            mov     ((_command + 0x0002) + 1),#0x00
-071F           2026   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:518: command[2] = 0;
-071F 75E400    2027            mov     (_command + 0x0004),#0x00
-0722 75E500    2028            mov     ((_command + 0x0004) + 1),#0x00
-0725           2029   ;        C:\Users\Binte\Documents\GitHub\ElecRobot\reciever_so_far.c:519: command[3] = 0;
-0725 75E600    2030            mov     (_command + 0x0006),#0x00
-0728 75E700    2031            mov     ((_command + 0x0006) + 1),#0x00
+0713           2020   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:516: command[0] = 0;
+0713 754800    2021            mov     _command,#0x00
+0716 754900    2022            mov     (_command + 1),#0x00
+0719           2023   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:517: command[1] = 0;
+0719 754A00    2024            mov     (_command + 0x0002),#0x00
+071C 754B00    2025            mov     ((_command + 0x0002) + 1),#0x00
+071F           2026   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:518: command[2] = 0;
+071F 754C00    2027            mov     (_command + 0x0004),#0x00
+0722 754D00    2028            mov     ((_command + 0x0004) + 1),#0x00
+0725           2029   ;        C:\Users\allisony\Documents\ElecRobot\reciever_so_far.c:519: command[3] = 0;
+0725 754E00    2030            mov     (_command + 0x0006),#0x00
+0728 754F00    2031            mov     ((_command + 0x0006) + 1),#0x00
 072B 020100    2032            ljmp    L023002?
 072E           2033            rseg R_CSEG
 072E           2034   

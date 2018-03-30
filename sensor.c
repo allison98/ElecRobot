@@ -158,12 +158,16 @@ void main (void)
 	printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
 	
 	while(1)
-	{
+	{	
+		overflow_count=0;
+		TL0=0; 
+		TH0=0;
+		TF0=0;
 	
-		while(P2_1!=0); // Wait for the signal to be zero
-		while(P2_1!=1); // Wait for the signal to be one
+		while(P2_1!=1); // Wait for the signal to be zero
+		while(P2_1!=0); // Wait for the signal to be one
 		TR0=1; // Start the timer
-		while(P2_1!=0) // Wait for the signal to be zero
+		while(P2_1!=1) // Wait for the signal to be zero
 		{
 			if(TF0==1) // Did the 16-bit timer overflow?
 			{
@@ -184,6 +188,15 @@ void main (void)
 		// Send the period to the serial port
 		printf( "\rT=%f \n ms    ", period*1000.0);
 		
-		waitms(10);
+		
+		//use period to create limit commands
+		
+		///speed=343.00;
+	//	distance=speed*period*1000;
+	//	distance=(period*10000000)*0.0061;
+	//	printf( "\rdistance = %f cm\n ", (distance));
+		
+		waitms(50);
 	}
 }
+
