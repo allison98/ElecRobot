@@ -32,7 +32,7 @@
 #define motorB P3_1
 
 
-#define thresholdVolt 0.4 //50/1000
+#define thresholdVolt 0.050 //50/1000
 
 //#define LCD_D4 P2_4
 
@@ -344,7 +344,7 @@ float checkTime (void) {
 //	waitms(500);
 	printf("Waiting for the signal to be 1\n\r");
 	printf("Volt at ADC: %f\n\r", Volts_at_Pin(QFP32_MUX_P1_6));
-	while(Volts_at_Pin(QFP32_MUX_P1_6) < thresholdVolt); //wait for the signal to be 1
+	while(Volts_at_Pin(QFP32_MUX_P1_6) < thresholdVolt);
   	while(Volts_at_Pin(QFP32_MUX_P1_6) >= thresholdVolt); //wait for the signal to be 0
 		printf("Signal is 0\n\r");
 		printf("Volt at ADC: %f\n\r", Volts_at_Pin(QFP32_MUX_P1_6));
@@ -352,19 +352,32 @@ float checkTime (void) {
 		TR0=1; // Start the timer
 		
   	while (Volts_at_Pin(QFP32_MUX_P1_6) < thresholdVolt) {	// wait for signal to be 1
-	
-		printf("Volt at ADC: %f\n\r", Volts_at_Pin(QFP32_MUX_P1_6));
-
+			printf("Volt at ADC: %f\n\r", Volts_at_Pin(QFP32_MUX_P1_6));
 			if(TF0==1) { // Did the 16-bit timer overflow			{
 				TF0=0;
 				overflow_count++;
 			}
-			
+			/*
 			if ((overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK)*1000 >= STOPTIME){
 			printf("Possibly a STOP. break out of the loop and stop timer. \n\r");
 			break;
-			}
+			}*/
 			
+	}	
+	if ((overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK)*1000 < 10) {
+		while (Volts_at_Pin(QFP32_MUX_P1_6) < thresholdVolt) {	// wait for signal to be 1
+			printf("Volt at ADC: %f\n\r", Volts_at_Pin(QFP32_MUX_P1_6));
+			if(TF0==1) { // Did the 16-bit timer overflow			{
+				TF0=0;
+				overflow_count++;
+			}
+			/*
+			if ((overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK)*1000 >= STOPTIME){
+			printf("Possibly a STOP. break out of the loop and stop timer. \n\r");
+			break;
+			}*/
+			
+		}	
 	}
 		
 		TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
@@ -424,38 +437,32 @@ void main(void)
 	time=0;
 	pasttime=0; 
 	while (1)
-	{
-    
+	{   
     	//PWMStop();
-   
-  		time = checkTime();
+ 		time = checkTime();
   		printf("%f\t\n\r", time);
-  	//	if(time>100) {
-	    	
+  		if(time>100) {	    	
 	    	if(time>=700 && time<=720){
 	    		PWMbackward(); 
-	    		printf("%f\t\n\r", time);
+	    //		printf("%f\t\n\r", time);
 	    		}
 	    	else if(time>=340 && time<=360){
-	    			pwmSig1 = 99;
-					pwmSig2 = 0;
-		
-					pwmSig3 = 0;
-					pwmSig4 =99;
-					printf("Forward\n\r");
+				PWMforward(); 
+				printf("Forward\n\r");
 	    		}
 	    	else if(time>=1410 && time<=1440){
 	    		PWMRight(); 
-	    		printf("%f\t\n\r", time);
+	    	//	printf("%f\t\n\r", time);
 	    		}
 	    	else if(time>=1060 && time<=1090){
 	    		PWMLeft(); 
-	    		printf("%f\t\n\r", time); } 
-	    	else  
+	    	//	printf("%f\t\n\r", time); } 
+	    	}
+	    	
+		}		   			
+   		else  
 	   			PWMStop();
-	//	}		   			
-   	
-   			waitms(100);
+   			waitms(1000);
    		//	pasttime = time;
    			
 	} 

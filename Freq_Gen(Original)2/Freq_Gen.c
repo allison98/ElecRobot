@@ -290,7 +290,9 @@ void main (void)
       		//Forward // this is good :)
       		if((voltagey>=0 && voltagey<=0.5) && (voltagex>=1.4 && voltagex<=1.8 )) {
       			MsDelay(100000);
+      			MsDelay(100000);
 				T1CONbits.ON = 0;
+				MsDelay(100000);
 				MsDelay(100000);
 	        	while(1) {	        	
 		        	readVolt();
@@ -298,7 +300,9 @@ void main (void)
 		        	if((voltagey>=0 && voltagey<=0.5) && (voltagex>=1.4 && voltagex<=1.8 )){
 						T1CONbits.ON = 1;
 						MsDelay(100000);
+						MsDelay(100000);
 						T1CONbits.ON = 0;
+						MsDelay(100000);
 						MsDelay(100000);
 					}	
 					else
@@ -310,14 +314,17 @@ void main (void)
 				
 			else if((voltagey>=2.8 && voltagey<=3.3) && (voltagex>=1.4 && voltagex<=1.8 )) {	
 				MsDelay(100000);
+		
 				T1CONbits.ON = 0;
 				MsDelay(100000);
-				MsDelay(100000);				
+				MsDelay(100000);
+								
 				while(1) {
 					readVolt();
 					if((voltagey>=2.8 && voltagey<=3.3) && (voltagex>=1.4 && voltagex<=1.8 )) {
 						T1CONbits.ON = 1;
 						MsDelay(100000);
+									
 						T1CONbits.ON = 0;
 						MsDelay(100000);
 						MsDelay(100000);

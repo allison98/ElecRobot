@@ -1,7 +1,7 @@
 ;--------------------------------------------------------
 ; File Created by C51
 ; Version 1.0.0 #1069 (Apr 23 2015) (MSVC)
-; This file was generated Fri Mar 30 15:09:41 2018
+; This file was generated Fri Mar 30 18:52:39 2018
 ;--------------------------------------------------------
 $name Sam_Test
 $optc51 --model-small
@@ -553,6 +553,8 @@ _command:
 	ds 8
 _checkTime_overflow_count_1_73:
 	ds 2
+_checkTime_sloc0_1_0:
+	ds 4
 ;--------------------------------------------------------
 ; overlayable items in internal ram 
 ;--------------------------------------------------------
@@ -611,23 +613,23 @@ _Timer2_ISR_sloc0_1_0:
 ; data variables initialization
 ;--------------------------------------------------------
 	rseg R_DINIT
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:50: volatile unsigned char pwm_count = 0; // used in the timer 2 ISR
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:50: volatile unsigned char pwm_count = 0; // used in the timer 2 ISR
 	mov	_pwm_count,#0x00
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:51: volatile unsigned char pwm_count1 = 0; // this will be usec in the timer 3 ISR
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:51: volatile unsigned char pwm_count1 = 0; // this will be usec in the timer 3 ISR
 	mov	_pwm_count1,#0x00
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:52: volatile unsigned char pwm_count2 = 0; // this will be used in the timer 4 ISR
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:52: volatile unsigned char pwm_count2 = 0; // this will be used in the timer 4 ISR
 	mov	_pwm_count2,#0x00
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:53: volatile unsigned char pwm_count3 = 0; //
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:53: volatile unsigned char pwm_count3 = 0; //
 	mov	_pwm_count3,#0x00
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:68: volatile int flag = 0;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:68: volatile int flag = 0;
 	clr	a
 	mov	_flag,a
 	mov	(_flag + 1),a
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:69: volatile int claw_flag = 0;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:69: volatile int claw_flag = 0;
 	clr	a
 	mov	_claw_flag,a
 	mov	(_claw_flag + 1),a
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:70: int stop[]={1,0,0,0};
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:70: int stop[]={1,0,0,0};
 	mov	_stop,#0x01
 	mov	(_stop + 1),#0x00
 	mov	(_stop + 0x0002),#0x00
@@ -636,7 +638,7 @@ _Timer2_ISR_sloc0_1_0:
 	mov	((_stop + 0x0004) + 1),#0x00
 	mov	(_stop + 0x0006),#0x00
 	mov	((_stop + 0x0006) + 1),#0x00
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:71: int forward[]={1,1,1,1};
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:71: int forward[]={1,1,1,1};
 	mov	_forward,#0x01
 	mov	(_forward + 1),#0x00
 	mov	(_forward + 0x0002),#0x01
@@ -645,7 +647,7 @@ _Timer2_ISR_sloc0_1_0:
 	mov	((_forward + 0x0004) + 1),#0x00
 	mov	(_forward + 0x0006),#0x01
 	mov	((_forward + 0x0006) + 1),#0x00
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:72: int backward[]={1,0,0,0};
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:72: int backward[]={1,0,0,0};
 	mov	_backward,#0x01
 	mov	(_backward + 1),#0x00
 	mov	(_backward + 0x0002),#0x00
@@ -654,7 +656,7 @@ _Timer2_ISR_sloc0_1_0:
 	mov	((_backward + 0x0004) + 1),#0x00
 	mov	(_backward + 0x0006),#0x00
 	mov	((_backward + 0x0006) + 1),#0x00
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:73: int left[]={1,0,1,0};
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:73: int left[]={1,0,1,0};
 	mov	_left,#0x01
 	mov	(_left + 1),#0x00
 	mov	(_left + 0x0002),#0x00
@@ -663,7 +665,7 @@ _Timer2_ISR_sloc0_1_0:
 	mov	((_left + 0x0004) + 1),#0x00
 	mov	(_left + 0x0006),#0x00
 	mov	((_left + 0x0006) + 1),#0x00
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:74: int right[]={1,1,0,1};
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:74: int right[]={1,1,0,1};
 	mov	_right,#0x01
 	mov	(_right + 1),#0x00
 	mov	(_right + 0x0002),#0x01
@@ -672,7 +674,7 @@ _Timer2_ISR_sloc0_1_0:
 	mov	((_right + 0x0004) + 1),#0x00
 	mov	(_right + 0x0006),#0x01
 	mov	((_right + 0x0006) + 1),#0x00
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:76: int command[4] = {0,0,0,0};
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:76: int command[4] = {0,0,0,0};
 	mov	_command,#0x00
 	mov	(_command + 1),#0x00
 	mov	(_command + 0x0002),#0x00
@@ -690,83 +692,83 @@ _Timer2_ISR_sloc0_1_0:
 ;Allocation info for local variables in function '_c51_external_startup'
 ;------------------------------------------------------------
 ;------------------------------------------------------------
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:78: char _c51_external_startup(void)
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:78: char _c51_external_startup(void)
 ;	-----------------------------------------
 ;	 function _c51_external_startup
 ;	-----------------------------------------
 __c51_external_startup:
 	using	0
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:81: SFRPAGE = 0x00;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:81: SFRPAGE = 0x00;
 	mov	_SFRPAGE,#0x00
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:82: WDTCN = 0xDE; //First key
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:82: WDTCN = 0xDE; //First key
 	mov	_WDTCN,#0xDE
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:83: WDTCN = 0xAD; //Second key
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:83: WDTCN = 0xAD; //Second key
 	mov	_WDTCN,#0xAD
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:85: VDM0CN = 0x80;       // enable VDD monitor
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:85: VDM0CN = 0x80;       // enable VDD monitor
 	mov	_VDM0CN,#0x80
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:86: RSTSRC = 0x02 | 0x04;  // Enable reset on missing clock detector and VDD
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:86: RSTSRC = 0x02 | 0x04;  // Enable reset on missing clock detector and VDD
 	mov	_RSTSRC,#0x06
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:93: SFRPAGE = 0x10;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:93: SFRPAGE = 0x10;
 	mov	_SFRPAGE,#0x10
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:94: PFE0CN = 0x20; // SYSCLK < 75 MHz.
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:94: PFE0CN = 0x20; // SYSCLK < 75 MHz.
 	mov	_PFE0CN,#0x20
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:95: SFRPAGE = 0x00;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:95: SFRPAGE = 0x00;
 	mov	_SFRPAGE,#0x00
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:116: CLKSEL = 0x00;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:116: CLKSEL = 0x00;
 	mov	_CLKSEL,#0x00
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:117: CLKSEL = 0x00;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:117: CLKSEL = 0x00;
 	mov	_CLKSEL,#0x00
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:118: while ((CLKSEL & 0x80) == 0);
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:118: while ((CLKSEL & 0x80) == 0);
 L002001?:
 	mov	a,_CLKSEL
 	jnb	acc.7,L002001?
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:119: CLKSEL = 0x03;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:119: CLKSEL = 0x03;
 	mov	_CLKSEL,#0x03
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:120: CLKSEL = 0x03;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:120: CLKSEL = 0x03;
 	mov	_CLKSEL,#0x03
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:121: while ((CLKSEL & 0x80) == 0);
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:121: while ((CLKSEL & 0x80) == 0);
 L002004?:
 	mov	a,_CLKSEL
 	jnb	acc.7,L002004?
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:126: P0MDOUT |= 0x10; // Enable UART0 TX as push-pull output
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:126: P0MDOUT |= 0x10; // Enable UART0 TX as push-pull output
 	orl	_P0MDOUT,#0x10
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:127: XBR0 = 0x01; // Enable UART0 on P0.4(TX) and P0.5(RX)
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:127: XBR0 = 0x01; // Enable UART0 on P0.4(TX) and P0.5(RX)
 	mov	_XBR0,#0x01
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:128: XBR1 = 0X00;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:128: XBR1 = 0X00;
 	mov	_XBR1,#0x00
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:129: XBR2 = 0x40; // Enable crossbar and weak pull-ups
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:129: XBR2 = 0x40; // Enable crossbar and weak pull-ups
 	mov	_XBR2,#0x40
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:135: SCON0 = 0x10;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:135: SCON0 = 0x10;
 	mov	_SCON0,#0x10
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:136: TH1 = 0x100 - ((SYSCLK / BAUDRATE) / (2L * 12L));
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:136: TH1 = 0x100 - ((SYSCLK / BAUDRATE) / (2L * 12L));
 	mov	_TH1,#0xE6
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:137: TL1 = TH1;      // Init Timer1
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:137: TL1 = TH1;      // Init Timer1
 	mov	_TL1,_TH1
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:138: TMOD &= ~0xf0;  // TMOD: timer 1 in 8-bit auto-reload
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:138: TMOD &= ~0xf0;  // TMOD: timer 1 in 8-bit auto-reload
 	anl	_TMOD,#0x0F
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:139: TMOD |= 0x20;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:139: TMOD |= 0x20;
 	orl	_TMOD,#0x20
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:140: TR1 = 1; // START Timer1
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:140: TR1 = 1; // START Timer1
 	setb	_TR1
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:141: TI = 1;  // Indicate TX0 ready
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:141: TI = 1;  // Indicate TX0 ready
 	setb	_TI
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:144: TMR2CN0 = 0x00;   // Stop Timer2; Clear TF2;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:144: TMR2CN0 = 0x00;   // Stop Timer2; Clear TF2;
 	mov	_TMR2CN0,#0x00
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:145: CKCON0 |= 0b_0001_0000; // Timer 2 uses the system clock
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:145: CKCON0 |= 0b_0001_0000; // Timer 2 uses the system clock
 	orl	_CKCON0,#0x10
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:146: TMR2RL = (0x10000L - (SYSCLK / 10000L)); // Initialize reload value
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:146: TMR2RL = (0x10000L - (SYSCLK / 10000L)); // Initialize reload value
 	mov	_TMR2RL,#0xE0
 	mov	(_TMR2RL >> 8),#0xE3
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:147: TMR2 = 0xffff;   // Set to reload immediately
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:147: TMR2 = 0xffff;   // Set to reload immediately
 	mov	_TMR2,#0xFF
 	mov	(_TMR2 >> 8),#0xFF
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:148: ET2 = 1;         // Enable Timer2 interrupts
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:148: ET2 = 1;         // Enable Timer2 interrupts
 	setb	_ET2
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:149: TR2 = 1;         // Start Timer2 (TMR2CN is bit addressable)
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:149: TR2 = 1;         // Start Timer2 (TMR2CN is bit addressable)
 	setb	_TR2
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:166: EA = 1; // Enable interrupts
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:166: EA = 1; // Enable interrupts
 	setb	_EA
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:169: return 0;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:169: return 0;
 	mov	dpl,#0x00
 	ret
 ;------------------------------------------------------------
@@ -775,24 +777,24 @@ L002004?:
 ;us                        Allocated to registers r2 r3 
 ;i                         Allocated to registers r4 r5 
 ;------------------------------------------------------------
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:171: void Timer3us(unsigned int us)
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:171: void Timer3us(unsigned int us)
 ;	-----------------------------------------
 ;	 function Timer3us
 ;	-----------------------------------------
 _Timer3us:
 	mov	r2,dpl
 	mov	r3,dph
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:176: CKCON0|=0b_0100_0000;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:176: CKCON0|=0b_0100_0000;
 	orl	_CKCON0,#0x40
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:178: TMR3RL = (-(SYSCLK)/1000000L); // Set Timer3 to overflow in 1us.
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:178: TMR3RL = (-(SYSCLK)/1000000L); // Set Timer3 to overflow in 1us.
 	mov	_TMR3RL,#0xB8
 	mov	(_TMR3RL >> 8),#0xFF
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:179: TMR3 = TMR3RL;                 // Initialize Timer3 for first overflow
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:179: TMR3 = TMR3RL;                 // Initialize Timer3 for first overflow
 	mov	_TMR3,_TMR3RL
 	mov	(_TMR3 >> 8),(_TMR3RL >> 8)
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:181: TMR3CN0 = 0x04;                 // Sart Timer3 and clear overflow flag
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:181: TMR3CN0 = 0x04;                 // Sart Timer3 and clear overflow flag
 	mov	_TMR3CN0,#0x04
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:182: for (i = 0; i < us; i++)       // Count <us> overflows
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:182: for (i = 0; i < us; i++)       // Count <us> overflows
 	mov	r4,#0x00
 	mov	r5,#0x00
 L003004?:
@@ -802,19 +804,19 @@ L003004?:
 	mov	a,r5
 	subb	a,r3
 	jnc	L003007?
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:184: while (!(TMR3CN0 & 0x80));  // Wait for overflow
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:184: while (!(TMR3CN0 & 0x80));  // Wait for overflow
 L003001?:
 	mov	a,_TMR3CN0
 	jnb	acc.7,L003001?
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:185: TMR3CN0 &= ~(0x80);         // Clear overflow indicator
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:185: TMR3CN0 &= ~(0x80);         // Clear overflow indicator
 	anl	_TMR3CN0,#0x7F
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:182: for (i = 0; i < us; i++)       // Count <us> overflows
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:182: for (i = 0; i < us; i++)       // Count <us> overflows
 	inc	r4
 	cjne	r4,#0x00,L003004?
 	inc	r5
 	sjmp	L003004?
 L003007?:
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:187: TMR3CN0 = 0 ;                   // Stop Timer3 and clear overflow flag
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:187: TMR3CN0 = 0 ;                   // Stop Timer3 and clear overflow flag
 	mov	_TMR3CN0,#0x00
 	ret
 ;------------------------------------------------------------
@@ -824,14 +826,14 @@ L003007?:
 ;j                         Allocated to registers r4 r5 
 ;k                         Allocated to registers r6 
 ;------------------------------------------------------------
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:189: void waitms (unsigned int ms)
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:189: void waitms (unsigned int ms)
 ;	-----------------------------------------
 ;	 function waitms
 ;	-----------------------------------------
 _waitms:
 	mov	r2,dpl
 	mov	r3,dph
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:193: for(j=0; j<ms; j++)
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:193: for(j=0; j<ms; j++)
 	mov	r4,#0x00
 	mov	r5,#0x00
 L004005?:
@@ -841,7 +843,7 @@ L004005?:
 	mov	a,r5
 	subb	a,r3
 	jnc	L004009?
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:194: for (k=0; k<4; k++) Timer3us(250);
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:194: for (k=0; k<4; k++) Timer3us(250);
 	mov	r6,#0x00
 L004001?:
 	cjne	r6,#0x04,L004018?
@@ -862,7 +864,7 @@ L004018?:
 	inc	r6
 	sjmp	L004001?
 L004007?:
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:193: for(j=0; j<ms; j++)
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:193: for(j=0; j<ms; j++)
 	inc	r4
 	cjne	r4,#0x00,L004005?
 	inc	r5
@@ -874,23 +876,23 @@ L004009?:
 ;------------------------------------------------------------
 ;pin                       Allocated to registers 
 ;------------------------------------------------------------
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:197: unsigned int ADC_at_Pin(unsigned char pin)
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:197: unsigned int ADC_at_Pin(unsigned char pin)
 ;	-----------------------------------------
 ;	 function ADC_at_Pin
 ;	-----------------------------------------
 _ADC_at_Pin:
 	mov	_ADC0MX,dpl
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:200: ADBUSY = 1;       // Dummy conversion first to select new pin
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:200: ADBUSY = 1;       // Dummy conversion first to select new pin
 	setb	_ADBUSY
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:201: while (ADBUSY); // Wait for dummy conversion to finish
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:201: while (ADBUSY); // Wait for dummy conversion to finish
 L005001?:
 	jb	_ADBUSY,L005001?
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:202: ADBUSY = 1;     // Convert voltage at the pin
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:202: ADBUSY = 1;     // Convert voltage at the pin
 	setb	_ADBUSY
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:203: while (ADBUSY); // Wait for conversion to complete
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:203: while (ADBUSY); // Wait for conversion to complete
 L005004?:
 	jb	_ADBUSY,L005004?
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:204: return (ADC0);
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:204: return (ADC0);
 	mov	dpl,_ADC0
 	mov	dph,(_ADC0 >> 8)
 	ret
@@ -898,7 +900,7 @@ L005004?:
 ;Allocation info for local variables in function 'Timer2_ISR'
 ;------------------------------------------------------------
 ;------------------------------------------------------------
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:208: void Timer2_ISR(void) interrupt 5
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:208: void Timer2_ISR(void) interrupt 5
 ;	-----------------------------------------
 ;	 function Timer2_ISR
 ;	-----------------------------------------
@@ -908,18 +910,18 @@ _Timer2_ISR:
 	push	ar3
 	push	psw
 	mov	psw,#0x00
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:210: TF2H = 0; // Clear Timer2 interrupt flag
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:210: TF2H = 0; // Clear Timer2 interrupt flag
 	clr	_TF2H
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:212: pwm_count++;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:212: pwm_count++;
 	inc	_pwm_count
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:213: if (pwm_count>100)
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:213: if (pwm_count>100)
 	mov	a,_pwm_count
 	add	a,#0xff - 0x64
 	jnc	L006002?
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:214: pwm_count = 0;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:214: pwm_count = 0;
 	mov	_pwm_count,#0x00
 L006002?:
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:217: motorR1 = pwm_count>pwmSig1 ? 0 : 1;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:217: motorR1 = pwm_count>pwmSig1 ? 0 : 1;
 	mov	r2,_pwm_count
 	mov	r3,#0x00
 	clr	c
@@ -930,7 +932,7 @@ L006002?:
 	mov  _Timer2_ISR_sloc0_1_0,c
 	cpl	c
 	mov	_P1_4,c
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:218: motorR2 = pwm_count>pwmSig2 ? 0 : 1;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:218: motorR2 = pwm_count>pwmSig2 ? 0 : 1;
 	mov	r2,_pwm_count
 	mov	r3,#0x00
 	clr	c
@@ -941,7 +943,7 @@ L006002?:
 	mov  _Timer2_ISR_sloc0_1_0,c
 	cpl	c
 	mov	_P1_5,c
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:220: motorL1 = pwm_count>pwmSig1 ? 0 : 1;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:220: motorL1 = pwm_count>pwmSig1 ? 0 : 1;
 	mov	r2,_pwm_count
 	mov	r3,#0x00
 	clr	c
@@ -952,7 +954,7 @@ L006002?:
 	mov  _Timer2_ISR_sloc0_1_0,c
 	cpl	c
 	mov	_P1_2,c
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:221: motorL2 = pwm_count>pwmSig2 ? 0 : 1;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:221: motorL2 = pwm_count>pwmSig2 ? 0 : 1;
 	mov	r2,_pwm_count
 	mov	r3,#0x00
 	clr	c
@@ -975,42 +977,42 @@ L006002?:
 ;Allocation info for local variables in function 'InitADC'
 ;------------------------------------------------------------
 ;------------------------------------------------------------
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:227: void InitADC(void)
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:227: void InitADC(void)
 ;	-----------------------------------------
 ;	 function InitADC
 ;	-----------------------------------------
 _InitADC:
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:229: SFRPAGE = 0x00;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:229: SFRPAGE = 0x00;
 	mov	_SFRPAGE,#0x00
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:230: ADC0CN1 = 0b_10_000_000; //14-bit,  Right justified no shifting applied, perform and Accumulate 1 conversion.
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:230: ADC0CN1 = 0b_10_000_000; //14-bit,  Right justified no shifting applied, perform and Accumulate 1 conversion.
 	mov	_ADC0CN1,#0x80
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:231: ADC0CF0 = 0b_11111_0_00; // SYSCLK/32
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:231: ADC0CF0 = 0b_11111_0_00; // SYSCLK/32
 	mov	_ADC0CF0,#0xF8
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:232: ADC0CF1 = 0b_0_0_011110; // Same as default for now
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:232: ADC0CF1 = 0b_0_0_011110; // Same as default for now
 	mov	_ADC0CF1,#0x1E
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:233: ADC0CN0 = 0b_0_0_0_0_0_00_0; // Same as default for now
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:233: ADC0CN0 = 0b_0_0_0_0_0_00_0; // Same as default for now
 	mov	_ADC0CN0,#0x00
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:234: ADC0CF2 = 0b_0_01_11111; // GND pin, Vref=VDD
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:234: ADC0CF2 = 0b_0_01_11111; // GND pin, Vref=VDD
 	mov	_ADC0CF2,#0x3F
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:235: ADC0CN2 = 0b_0_000_0000;  // Same as default for now. ADC0 conversion initiated on write of 1 to ADBUSY.
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:235: ADC0CN2 = 0b_0_000_0000;  // Same as default for now. ADC0 conversion initiated on write of 1 to ADBUSY.
 	mov	_ADC0CN2,#0x00
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:236: ADEN = 1; // Enable ADC
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:236: ADEN = 1; // Enable ADC
 	setb	_ADEN
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'TIMER0_Init'
 ;------------------------------------------------------------
 ;------------------------------------------------------------
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:238: void TIMER0_Init(void)
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:238: void TIMER0_Init(void)
 ;	-----------------------------------------
 ;	 function TIMER0_Init
 ;	-----------------------------------------
 _TIMER0_Init:
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:240: TMOD &= 0b_1111_0000; // Set the bits of Timer/Counter 0 to zero
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:240: TMOD &= 0b_1111_0000; // Set the bits of Timer/Counter 0 to zero
 	anl	_TMOD,#0xF0
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:241: TMOD |= 0b_0000_0001; // Timer/Counter 0 used as a 16-bit timer
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:241: TMOD |= 0b_0000_0001; // Timer/Counter 0 used as a 16-bit timer
 	orl	_TMOD,#0x01
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:242: TR0 = 0; // Stop Timer/Counter 0
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:242: TR0 = 0; // Stop Timer/Counter 0
 	clr	_TR0
 	ret
 ;------------------------------------------------------------
@@ -1018,12 +1020,12 @@ _TIMER0_Init:
 ;------------------------------------------------------------
 ;pin                       Allocated to registers r2 
 ;------------------------------------------------------------
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:247: float Volts_at_Pin(unsigned char pin)
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:247: float Volts_at_Pin(unsigned char pin)
 ;	-----------------------------------------
 ;	 function Volts_at_Pin
 ;	-----------------------------------------
 _Volts_at_Pin:
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:249: return ((ADC_at_Pin(pin)*VDD) / 0b_0011_1111_1111_1111);
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:249: return ((ADC_at_Pin(pin)*VDD) / 0b_0011_1111_1111_1111);
 	lcall	_ADC_at_Pin
 	lcall	___uint2fs
 	mov	r2,dpl
@@ -1077,13 +1079,13 @@ _Volts_at_Pin:
 ;portno                    Allocated to registers r2 
 ;mask                      Allocated to registers r3 
 ;------------------------------------------------------------
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:251: void InitPinADC(unsigned char portno, unsigned char pinno)
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:251: void InitPinADC(unsigned char portno, unsigned char pinno)
 ;	-----------------------------------------
 ;	 function InitPinADC
 ;	-----------------------------------------
 _InitPinADC:
 	mov	r2,dpl
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:255: mask = 1 << pinno;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:255: mask = 1 << pinno;
 	mov	b,_InitPinADC_PARM_2
 	inc	b
 	mov	a,#0x01
@@ -1093,81 +1095,81 @@ L010011?:
 L010013?:
 	djnz	b,L010011?
 	mov	r3,a
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:257: SFRPAGE = 0x20;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:257: SFRPAGE = 0x20;
 	mov	_SFRPAGE,#0x20
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:258: switch (portno)
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:258: switch (portno)
 	cjne	r2,#0x00,L010014?
 	sjmp	L010001?
 L010014?:
 	cjne	r2,#0x01,L010015?
 	sjmp	L010002?
 L010015?:
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:260: case 0:
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:260: case 0:
 	cjne	r2,#0x02,L010005?
 	sjmp	L010003?
 L010001?:
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:261: P0MDIN &= (~mask); // Set pin as analog input
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:261: P0MDIN &= (~mask); // Set pin as analog input
 	mov	a,r3
 	cpl	a
 	mov	r2,a
 	anl	_P0MDIN,a
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:262: P0SKIP |= mask; // Skip Crossbar decoding for this pin
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:262: P0SKIP |= mask; // Skip Crossbar decoding for this pin
 	mov	a,r3
 	orl	_P0SKIP,a
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:263: break;
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:264: case 1:
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:263: break;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:264: case 1:
 	sjmp	L010005?
 L010002?:
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:265: P1MDIN &= (~mask); // Set pin as analog input
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:265: P1MDIN &= (~mask); // Set pin as analog input
 	mov	a,r3
 	cpl	a
 	mov	r2,a
 	anl	_P1MDIN,a
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:266: P1SKIP |= mask; // Skip Crossbar decoding for this pin
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:266: P1SKIP |= mask; // Skip Crossbar decoding for this pin
 	mov	a,r3
 	orl	_P1SKIP,a
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:267: break;
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:268: case 2:
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:267: break;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:268: case 2:
 	sjmp	L010005?
 L010003?:
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:269: P2MDIN &= (~mask); // Set pin as analog input
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:269: P2MDIN &= (~mask); // Set pin as analog input
 	mov	a,r3
 	cpl	a
 	mov	r2,a
 	anl	_P2MDIN,a
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:270: P2SKIP |= mask; // Skip Crossbar decoding for this pin
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:270: P2SKIP |= mask; // Skip Crossbar decoding for this pin
 	mov	a,r3
 	orl	_P2SKIP,a
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:274: }
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:274: }
 L010005?:
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:275: SFRPAGE = 0x00;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:275: SFRPAGE = 0x00;
 	mov	_SFRPAGE,#0x00
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'PWMforward'
 ;------------------------------------------------------------
 ;------------------------------------------------------------
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:284: void PWMforward(void) {
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:284: void PWMforward(void) {
 ;	-----------------------------------------
 ;	 function PWMforward
 ;	-----------------------------------------
 _PWMforward:
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:285: pwmSig1 = 99;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:285: pwmSig1 = 99;
 	mov	_pwmSig1,#0x63
 	clr	a
 	mov	(_pwmSig1 + 1),a
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:286: pwmSig2 = 0;
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:288: pwmSig3 = 0;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:286: pwmSig2 = 0;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:288: pwmSig3 = 0;
 	clr	a
 	mov	_pwmSig2,a
 	mov	(_pwmSig2 + 1),a
 	mov	_pwmSig3,a
 	mov	(_pwmSig3 + 1),a
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:289: pwmSig4 =99;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:289: pwmSig4 =99;
 	mov	_pwmSig4,#0x63
 	clr	a
 	mov	(_pwmSig4 + 1),a
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:290: printf("Forward\n\r");
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:290: printf("Forward\n\r");
 	mov	a,#__str_0
 	push	acc
 	mov	a,#(__str_0 >> 8)
@@ -1183,28 +1185,28 @@ _PWMforward:
 ;Allocation info for local variables in function 'PWMbackward'
 ;------------------------------------------------------------
 ;------------------------------------------------------------
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:293: void PWMbackward(void) {
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:293: void PWMbackward(void) {
 ;	-----------------------------------------
 ;	 function PWMbackward
 ;	-----------------------------------------
 _PWMbackward:
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:294: pwmSig1 = 0;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:294: pwmSig1 = 0;
 	clr	a
 	mov	_pwmSig1,a
 	mov	(_pwmSig1 + 1),a
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:295: pwmSig2 = 99;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:295: pwmSig2 = 99;
 	mov	_pwmSig2,#0x63
 	clr	a
 	mov	(_pwmSig2 + 1),a
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:297: pwmSig3 = 99;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:297: pwmSig3 = 99;
 	mov	_pwmSig3,#0x63
 	clr	a
 	mov	(_pwmSig3 + 1),a
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:298: pwmSig4 = 0;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:298: pwmSig4 = 0;
 	clr	a
 	mov	_pwmSig4,a
 	mov	(_pwmSig4 + 1),a
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:299: printf("Backward\n\r");
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:299: printf("Backward\n\r");
 	mov	a,#__str_1
 	push	acc
 	mov	a,#(__str_1 >> 8)
@@ -1220,27 +1222,27 @@ _PWMbackward:
 ;Allocation info for local variables in function 'PWMLeft'
 ;------------------------------------------------------------
 ;------------------------------------------------------------
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:302: void PWMLeft(void) {
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:302: void PWMLeft(void) {
 ;	-----------------------------------------
 ;	 function PWMLeft
 ;	-----------------------------------------
 _PWMLeft:
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:303: pwmSig1 = 0;
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:304: pwmSig2 = 0;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:303: pwmSig1 = 0;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:304: pwmSig2 = 0;
 	clr	a
 	mov	_pwmSig1,a
 	mov	(_pwmSig1 + 1),a
 	mov	_pwmSig2,a
 	mov	(_pwmSig2 + 1),a
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:306: pwmSig3 = 70;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:306: pwmSig3 = 70;
 	mov	_pwmSig3,#0x46
 	clr	a
 	mov	(_pwmSig3 + 1),a
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:307: pwmSig4 = 0;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:307: pwmSig4 = 0;
 	clr	a
 	mov	_pwmSig4,a
 	mov	(_pwmSig4 + 1),a
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:308: printf("Left\n\r");
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:308: printf("Left\n\r");
 	mov	a,#__str_2
 	push	acc
 	mov	a,#(__str_2 >> 8)
@@ -1256,18 +1258,18 @@ _PWMLeft:
 ;Allocation info for local variables in function 'PWMRight'
 ;------------------------------------------------------------
 ;------------------------------------------------------------
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:311: void PWMRight(void) {
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:311: void PWMRight(void) {
 ;	-----------------------------------------
 ;	 function PWMRight
 ;	-----------------------------------------
 _PWMRight:
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:312: pwmSig1 = 99;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:312: pwmSig1 = 99;
 	mov	_pwmSig1,#0x63
 	clr	a
 	mov	(_pwmSig1 + 1),a
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:313: pwmSig2 = 0;
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:315: pwmSig3 = 0;
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:316: pwmSig4 = 0;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:313: pwmSig2 = 0;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:315: pwmSig3 = 0;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:316: pwmSig4 = 0;
 	clr	a
 	mov	_pwmSig2,a
 	mov	(_pwmSig2 + 1),a
@@ -1275,7 +1277,7 @@ _PWMRight:
 	mov	(_pwmSig3 + 1),a
 	mov	_pwmSig4,a
 	mov	(_pwmSig4 + 1),a
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:317: printf("Right\n\r");
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:317: printf("Right\n\r");
 	mov	a,#__str_3
 	push	acc
 	mov	a,#(__str_3 >> 8)
@@ -1291,15 +1293,15 @@ _PWMRight:
 ;Allocation info for local variables in function 'PWMStop'
 ;------------------------------------------------------------
 ;------------------------------------------------------------
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:320: void PWMStop(void) {
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:320: void PWMStop(void) {
 ;	-----------------------------------------
 ;	 function PWMStop
 ;	-----------------------------------------
 _PWMStop:
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:321: pwmSig1 = 0;
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:322: pwmSig2 = 0;
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:324: pwmSig3 = 0;
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:325: pwmSig4 = 0;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:321: pwmSig1 = 0;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:322: pwmSig2 = 0;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:324: pwmSig3 = 0;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:325: pwmSig4 = 0;
 	clr	a
 	mov	_pwmSig1,a
 	mov	(_pwmSig1 + 1),a
@@ -1309,7 +1311,7 @@ _PWMStop:
 	mov	(_pwmSig3 + 1),a
 	mov	_pwmSig4,a
 	mov	(_pwmSig4 + 1),a
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:326: printf("Stop\n\r");
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:326: printf("Stop\n\r");
 	mov	a,#__str_4
 	push	acc
 	mov	a,#(__str_4 >> 8)
@@ -1326,26 +1328,22 @@ _PWMStop:
 ;------------------------------------------------------------
 ;time                      Allocated to registers r2 r3 r4 r5 
 ;overflow_count            Allocated with name '_checkTime_overflow_count_1_73'
+;sloc0                     Allocated with name '_checkTime_sloc0_1_0'
 ;------------------------------------------------------------
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:332: float checkTime (void) {
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:332: float checkTime (void) {
 ;	-----------------------------------------
 ;	 function checkTime
 ;	-----------------------------------------
 _checkTime:
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:336: TL0=0; 
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:336: TL0=0; 
 	mov	_TL0,#0x00
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:337: TH0=0;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:337: TH0=0;
 	mov	_TH0,#0x00
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:338: TF0=0;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:338: TF0=0;
 	clr	_TF0
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:339: overflow_count=0;
-	mov	r2,#0x00
-	mov	r3,#0x00
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:340: TR0=0;
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:340: TR0=0;
 	clr	_TR0
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:345: printf("Waiting for the signal to be 1\n\r");
-	push	ar2
-	push	ar3
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:345: printf("Waiting for the signal to be 1\n\r");
 	mov	a,#__str_5
 	push	acc
 	mov	a,#(__str_5 >> 8)
@@ -1356,17 +1354,17 @@ _checkTime:
 	dec	sp
 	dec	sp
 	dec	sp
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:346: printf("Volt at ADC: %f\n\r", Volts_at_Pin(QFP32_MUX_P1_6));
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:346: printf("Volt at ADC: %f\n\r", Volts_at_Pin(QFP32_MUX_P1_6));
 	mov	dpl,#0x0C
 	lcall	_Volts_at_Pin
-	mov	r4,dpl
-	mov	r5,dph
-	mov	r6,b
-	mov	r7,a
+	mov	r2,dpl
+	mov	r3,dph
+	mov	r4,b
+	mov	r5,a
+	push	ar2
+	push	ar3
 	push	ar4
 	push	ar5
-	push	ar6
-	push	ar7
 	mov	a,#__str_6
 	push	acc
 	mov	a,#(__str_6 >> 8)
@@ -1377,71 +1375,61 @@ _checkTime:
 	mov	a,sp
 	add	a,#0xf9
 	mov	sp,a
-	pop	ar3
-	pop	ar2
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:347: while(Volts_at_Pin(QFP32_MUX_P1_6) < thresholdVolt); //wait for the signal to be 1
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:347: while(Volts_at_Pin(QFP32_MUX_P1_6) < thresholdVolt);
 L016001?:
 	mov	dpl,#0x0C
-	push	ar2
-	push	ar3
 	lcall	_Volts_at_Pin
-	mov	r4,dpl
-	mov	r5,dph
-	mov	r6,b
-	mov	r7,a
+	mov	r2,dpl
+	mov	r3,dph
+	mov	r4,b
+	mov	r5,a
 	mov	a,#0xCD
 	push	acc
 	mov	a,#0xCC
 	push	acc
+	mov	a,#0x4C
 	push	acc
-	mov	a,#0x3E
+	mov	a,#0x3D
 	push	acc
-	mov	dpl,r4
-	mov	dph,r5
-	mov	b,r6
-	mov	a,r7
+	mov	dpl,r2
+	mov	dph,r3
+	mov	b,r4
+	mov	a,r5
 	lcall	___fslt
-	mov	r4,dpl
+	mov	r2,dpl
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-	pop	ar3
-	pop	ar2
-	mov	a,r4
+	mov	a,r2
 	jnz	L016001?
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:348: while(Volts_at_Pin(QFP32_MUX_P1_6) >= thresholdVolt); //wait for the signal to be 0
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:348: while(Volts_at_Pin(QFP32_MUX_P1_6) >= thresholdVolt); //wait for the signal to be 0
 L016004?:
 	mov	dpl,#0x0C
-	push	ar2
-	push	ar3
 	lcall	_Volts_at_Pin
-	mov	r4,dpl
-	mov	r5,dph
-	mov	r6,b
-	mov	r7,a
+	mov	r2,dpl
+	mov	r3,dph
+	mov	r4,b
+	mov	r5,a
 	mov	a,#0xCD
 	push	acc
 	mov	a,#0xCC
 	push	acc
+	mov	a,#0x4C
 	push	acc
-	mov	a,#0x3E
+	mov	a,#0x3D
 	push	acc
-	mov	dpl,r4
-	mov	dph,r5
-	mov	b,r6
-	mov	a,r7
+	mov	dpl,r2
+	mov	dph,r3
+	mov	b,r4
+	mov	a,r5
 	lcall	___fslt
-	mov	r4,dpl
+	mov	r2,dpl
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-	pop	ar3
-	pop	ar2
-	mov	a,r4
+	mov	a,r2
 	jz	L016004?
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:349: printf("Signal is 0\n\r");
-	push	ar2
-	push	ar3
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:349: printf("Signal is 0\n\r");
 	mov	a,#__str_7
 	push	acc
 	mov	a,#(__str_7 >> 8)
@@ -1452,7 +1440,71 @@ L016004?:
 	dec	sp
 	dec	sp
 	dec	sp
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:350: printf("Volt at ADC: %f\n\r", Volts_at_Pin(QFP32_MUX_P1_6));
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:350: printf("Volt at ADC: %f\n\r", Volts_at_Pin(QFP32_MUX_P1_6));
+	mov	dpl,#0x0C
+	lcall	_Volts_at_Pin
+	mov	r2,dpl
+	mov	r3,dph
+	mov	r4,b
+	mov	r5,a
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
+	mov	a,#__str_6
+	push	acc
+	mov	a,#(__str_6 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	mov	a,sp
+	add	a,#0xf9
+	mov	sp,a
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:351: printf("Start Timer\n\r");
+	mov	a,#__str_8
+	push	acc
+	mov	a,#(__str_8 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	dec	sp
+	dec	sp
+	dec	sp
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:352: TR0=1; // Start the timer
+	setb	_TR0
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:354: while (Volts_at_Pin(QFP32_MUX_P1_6) < thresholdVolt) {	// wait for signal to be 1
+	clr	a
+	mov	_checkTime_overflow_count_1_73,a
+	mov	(_checkTime_overflow_count_1_73 + 1),a
+L016009?:
+	mov	dpl,#0x0C
+	lcall	_Volts_at_Pin
+	mov	r4,dpl
+	mov	r5,dph
+	mov	r6,b
+	mov	r7,a
+	mov	a,#0xCD
+	push	acc
+	mov	a,#0xCC
+	push	acc
+	mov	a,#0x4C
+	push	acc
+	mov	a,#0x3D
+	push	acc
+	mov	dpl,r4
+	mov	dph,r5
+	mov	b,r6
+	mov	a,r7
+	lcall	___fslt
+	mov	r4,dpl
+	mov	a,sp
+	add	a,#0xfc
+	mov	sp,a
+	mov	a,r4
+	jz	L016011?
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:355: printf("Volt at ADC: %f\n\r", Volts_at_Pin(QFP32_MUX_P1_6));
 	mov	dpl,#0x0C
 	lcall	_Volts_at_Pin
 	mov	r4,dpl
@@ -1473,67 +1525,194 @@ L016004?:
 	mov	a,sp
 	add	a,#0xf9
 	mov	sp,a
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:351: printf("Start Timer\n\r");
-	mov	a,#__str_8
-	push	acc
-	mov	a,#(__str_8 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	dec	sp
-	dec	sp
-	dec	sp
-	pop	ar3
-	pop	ar2
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:352: TR0=1; // Start the timer
-	setb	_TR0
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:354: while (Volts_at_Pin(QFP32_MUX_P1_6) < thresholdVolt) {	// wait for signal to be 1
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:356: if(TF0==1) { // Did the 16-bit timer overflow			{
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:357: TF0=0;
+	jbc	_TF0,L016035?
+	sjmp	L016009?
+L016035?:
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:358: overflow_count++;
+	inc	_checkTime_overflow_count_1_73
 	clr	a
-	mov	_checkTime_overflow_count_1_73,a
-	mov	(_checkTime_overflow_count_1_73 + 1),a
+	cjne	a,_checkTime_overflow_count_1_73,L016009?
+	inc	(_checkTime_overflow_count_1_73 + 1)
+	sjmp	L016009?
 L016011?:
-	mov	dpl,#0x0C
-	push	ar2
-	push	ar3
-	lcall	_Volts_at_Pin
-	mov	r6,dpl
-	mov	r7,dph
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:367: if ((overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK)*1000 < 10) {
+	mov	dpl,_checkTime_overflow_count_1_73
+	mov	dph,(_checkTime_overflow_count_1_73 + 1)
+	lcall	___sint2fs
+	mov	r4,dpl
+	mov	r5,dph
+	mov	r6,b
+	mov	r7,a
+	push	ar4
+	push	ar5
+	push	ar6
+	push	ar7
+	push	ar4
+	push	ar5
+	push	ar6
+	push	ar7
+	mov	dptr,#0x0000
+	mov	b,#0x80
+	mov	a,#0x47
+	lcall	___fsmul
+	mov	_checkTime_sloc0_1_0,dpl
+	mov	(_checkTime_sloc0_1_0 + 1),dph
+	mov	(_checkTime_sloc0_1_0 + 2),b
+	mov	(_checkTime_sloc0_1_0 + 3),a
+	mov	a,sp
+	add	a,#0xfc
+	mov	sp,a
+	mov	dpl,_TH0
+	lcall	___uchar2fs
+	mov	r2,dpl
+	mov	r3,dph
 	mov	r0,b
 	mov	r1,a
+	push	ar2
+	push	ar3
+	push	ar0
+	push	ar1
+	mov	dptr,#0x0000
+	mov	b,#0x80
+	mov	a,#0x43
+	lcall	___fsmul
+	mov	r2,dpl
+	mov	r3,dph
+	mov	r0,b
+	mov	r1,a
+	mov	a,sp
+	add	a,#0xfc
+	mov	sp,a
+	push	ar2
+	push	ar3
+	push	ar0
+	push	ar1
+	mov	dpl,_checkTime_sloc0_1_0
+	mov	dph,(_checkTime_sloc0_1_0 + 1)
+	mov	b,(_checkTime_sloc0_1_0 + 2)
+	mov	a,(_checkTime_sloc0_1_0 + 3)
+	lcall	___fsadd
+	mov	_checkTime_sloc0_1_0,dpl
+	mov	(_checkTime_sloc0_1_0 + 1),dph
+	mov	(_checkTime_sloc0_1_0 + 2),b
+	mov	(_checkTime_sloc0_1_0 + 3),a
+	mov	a,sp
+	add	a,#0xfc
+	mov	sp,a
+	mov	r2,_TL0
+	mov	r3,#0x00
+	mov	dpl,r2
+	mov	dph,r3
+	lcall	___sint2fs
+	mov	r2,dpl
+	mov	r3,dph
+	mov	r0,b
+	mov	r1,a
+	push	ar2
+	push	ar3
+	push	ar0
+	push	ar1
+	mov	dpl,_checkTime_sloc0_1_0
+	mov	dph,(_checkTime_sloc0_1_0 + 1)
+	mov	b,(_checkTime_sloc0_1_0 + 2)
+	mov	a,(_checkTime_sloc0_1_0 + 3)
+	lcall	___fsadd
+	mov	r2,dpl
+	mov	r3,dph
+	mov	r0,b
+	mov	r1,a
+	mov	a,sp
+	add	a,#0xfc
+	mov	sp,a
+	push	ar2
+	push	ar3
+	push	ar0
+	push	ar1
+	mov	dptr,#0xC33E
+	mov	b,#0x2E
+	mov	a,#0x39
+	lcall	___fsmul
+	mov	r2,dpl
+	mov	r3,dph
+	mov	r0,b
+	mov	r1,a
+	mov	a,sp
+	add	a,#0xfc
+	mov	sp,a
+	clr	a
+	push	acc
+	push	acc
+	mov	a,#0x20
+	push	acc
+	mov	a,#0x41
+	push	acc
+	mov	dpl,r2
+	mov	dph,r3
+	mov	b,r0
+	mov	a,r1
+	lcall	___fslt
+	mov	r2,dpl
+	mov	a,sp
+	add	a,#0xfc
+	mov	sp,a
+	pop	ar7
+	pop	ar6
+	pop	ar5
+	pop	ar4
+	mov	a,r2
+	jnz	L016037?
+	ljmp	L016018?
+L016037?:
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:368: while (Volts_at_Pin(QFP32_MUX_P1_6) < thresholdVolt) {	// wait for signal to be 1
+L016014?:
+	mov	dpl,#0x0C
+	push	ar4
+	push	ar5
+	push	ar6
+	push	ar7
+	lcall	_Volts_at_Pin
+	mov	r0,dpl
+	mov	r1,dph
+	mov	r2,b
+	mov	r3,a
 	mov	a,#0xCD
 	push	acc
 	mov	a,#0xCC
 	push	acc
+	mov	a,#0x4C
 	push	acc
-	mov	a,#0x3E
+	mov	a,#0x3D
 	push	acc
-	mov	dpl,r6
-	mov	dph,r7
-	mov	b,r0
-	mov	a,r1
+	mov	dpl,r0
+	mov	dph,r1
+	mov	b,r2
+	mov	a,r3
 	lcall	___fslt
-	mov	r6,dpl
+	mov	r2,dpl
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-	pop	ar3
-	pop	ar2
-	mov	a,r6
-	jnz	L016025?
-	ljmp	L016013?
-L016025?:
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:356: printf("Volt at ADC: %f\n\r", Volts_at_Pin(QFP32_MUX_P1_6));
+	pop	ar7
+	pop	ar6
+	pop	ar5
+	pop	ar4
+	mov	a,r2
+	jz	L016018?
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:369: printf("Volt at ADC: %f\n\r", Volts_at_Pin(QFP32_MUX_P1_6));
 	mov	dpl,#0x0C
-	push	ar2
-	push	ar3
-	lcall	_Volts_at_Pin
-	mov	r6,dpl
-	mov	r7,dph
-	mov	r0,b
-	mov	r1,a
+	push	ar4
+	push	ar5
 	push	ar6
 	push	ar7
+	lcall	_Volts_at_Pin
+	mov	r2,dpl
+	mov	r3,dph
+	mov	r0,b
+	mov	r1,a
+	push	ar2
+	push	ar3
 	push	ar0
 	push	ar1
 	mov	a,#__str_6
@@ -1546,172 +1725,30 @@ L016025?:
 	mov	a,sp
 	add	a,#0xf9
 	mov	sp,a
-	pop	ar3
-	pop	ar2
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:358: if(TF0==1) { // Did the 16-bit timer overflow			{
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:359: TF0=0;
-	jbc	_TF0,L016026?
-	sjmp	L016008?
-L016026?:
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:360: overflow_count++;
-	inc	_checkTime_overflow_count_1_73
-	clr	a
-	cjne	a,_checkTime_overflow_count_1_73,L016027?
-	inc	(_checkTime_overflow_count_1_73 + 1)
-L016027?:
-	mov	r2,_checkTime_overflow_count_1_73
-	mov	r3,(_checkTime_overflow_count_1_73 + 1)
-L016008?:
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:363: if ((overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK)*1000 >= STOPTIME){
-	push	ar2
-	push	ar3
-	mov	dpl,_checkTime_overflow_count_1_73
-	mov	dph,(_checkTime_overflow_count_1_73 + 1)
-	push	ar2
-	push	ar3
-	lcall	___sint2fs
-	mov	r6,dpl
-	mov	r7,dph
-	mov	r0,b
-	mov	r1,a
-	push	ar6
-	push	ar7
-	push	ar0
-	push	ar1
-	mov	dptr,#0x0000
-	mov	b,#0x80
-	mov	a,#0x47
-	lcall	___fsmul
-	mov	r6,dpl
-	mov	r7,dph
-	mov	r0,b
-	mov	r1,a
-	mov	a,sp
-	add	a,#0xfc
-	mov	sp,a
-	pop	ar3
-	pop	ar2
-	mov	dpl,_TH0
-	push	ar6
-	push	ar7
-	push	ar0
-	push	ar1
-	lcall	___uchar2fs
-	mov	r4,dpl
-	mov	r5,dph
-	mov	r2,b
-	mov	r3,a
-	push	ar4
-	push	ar5
-	push	ar2
-	push	ar3
-	mov	dptr,#0x0000
-	mov	b,#0x80
-	mov	a,#0x43
-	lcall	___fsmul
-	mov	r2,dpl
-	mov	r3,dph
-	mov	r4,b
-	mov	r5,a
-	mov	a,sp
-	add	a,#0xfc
-	mov	sp,a
-	pop	ar1
-	pop	ar0
 	pop	ar7
 	pop	ar6
-	push	ar2
-	push	ar3
-	push	ar4
-	push	ar5
-	mov	dpl,r6
-	mov	dph,r7
-	mov	b,r0
-	mov	a,r1
-	lcall	___fsadd
-	mov	r2,dpl
-	mov	r3,dph
-	mov	r4,b
-	mov	r5,a
-	mov	a,sp
-	add	a,#0xfc
-	mov	sp,a
-	mov	r6,_TL0
-	mov	r7,#0x00
-	mov	dpl,r6
-	mov	dph,r7
-	push	ar2
-	push	ar3
-	push	ar4
-	push	ar5
-	lcall	___sint2fs
-	mov	r6,dpl
-	mov	r7,dph
-	mov	r0,b
-	mov	r1,a
 	pop	ar5
 	pop	ar4
-	pop	ar3
-	pop	ar2
-	push	ar6
-	push	ar7
-	push	ar0
-	push	ar1
-	mov	dpl,r2
-	mov	dph,r3
-	mov	b,r4
-	mov	a,r5
-	lcall	___fsadd
-	mov	r2,dpl
-	mov	r3,dph
-	mov	r4,b
-	mov	r5,a
-	mov	a,sp
-	add	a,#0xfc
-	mov	sp,a
-	push	ar2
-	push	ar3
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:370: if(TF0==1) { // Did the 16-bit timer overflow			{
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:371: TF0=0;
+	jbc	_TF0,L016039?
+	ljmp	L016014?
+L016039?:
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:372: overflow_count++;
+	inc	_checkTime_overflow_count_1_73
+	clr	a
+	cjne	a,_checkTime_overflow_count_1_73,L016040?
+	inc	(_checkTime_overflow_count_1_73 + 1)
+L016040?:
+	ljmp	L016014?
+L016018?:
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:383: TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
+	clr	_TR0
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:384: printf("Stop Timer\n\r");
 	push	ar4
 	push	ar5
-	mov	dptr,#0xC33E
-	mov	b,#0x2E
-	mov	a,#0x39
-	lcall	___fsmul
-	mov	r2,dpl
-	mov	r3,dph
-	mov	r4,b
-	mov	r5,a
-	mov	a,sp
-	add	a,#0xfc
-	mov	sp,a
-	push	ar3
-	clr	a
-	push	acc
-	mov	a,#0x50
-	push	acc
-	mov	a,#0x43
-	push	acc
-	mov	a,#0x47
-	push	acc
-	mov	dpl,r2
-	mov	dph,r3
-	mov	b,r4
-	mov	a,r5
-	lcall	___fslt
-	mov	r2,dpl
-	mov	a,sp
-	add	a,#0xfc
-	mov	sp,a
-	pop	ar3
-	mov	a,r2
-	pop	ar3
-	pop	ar2
-	jz	L016028?
-	ljmp	L016011?
-L016028?:
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:364: printf("Possibly a STOP. break out of the loop and stop timer. \n\r");
-	push	ar2
-	push	ar3
+	push	ar6
+	push	ar7
 	mov	a,#__str_9
 	push	acc
 	mov	a,#(__str_9 >> 8)
@@ -1722,39 +1759,7 @@ L016028?:
 	dec	sp
 	dec	sp
 	dec	sp
-	pop	ar3
-	pop	ar2
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:365: break;
-L016013?:
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:370: TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
-	clr	_TR0
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:371: printf("Stop Timer\n\r");
-	push	ar2
-	push	ar3
-	mov	a,#__str_10
-	push	acc
-	mov	a,#(__str_10 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	dec	sp
-	dec	sp
-	dec	sp
-	pop	ar3
-	pop	ar2
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:372: time=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
-	mov	dpl,r2
-	mov	dph,r3
-	lcall	___sint2fs
-	mov	r2,dpl
-	mov	r3,dph
-	mov	r4,b
-	mov	r5,a
-	push	ar2
-	push	ar3
-	push	ar4
-	push	ar5
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:385: time=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
 	mov	dptr,#0x0000
 	mov	b,#0x80
 	mov	a,#0x47
@@ -1859,7 +1864,7 @@ L016013?:
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:373: return time*1000; //return period of high pulse in seconds		
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:386: return time*1000; //return period of high pulse in seconds		
 	push	ar2
 	push	ar3
 	push	ar4
@@ -1884,12 +1889,12 @@ L016013?:
 ;Allocation info for local variables in function 'voltsAtPeak'
 ;------------------------------------------------------------
 ;------------------------------------------------------------
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:380: float voltsAtPeak(void) {
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:393: float voltsAtPeak(void) {
 ;	-----------------------------------------
 ;	 function voltsAtPeak
 ;	-----------------------------------------
 _voltsAtPeak:
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:381: while(ADC_at_Pin(QFP32_MUX_P1_6)==0); //input pin waiting to be  
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:394: while(ADC_at_Pin(QFP32_MUX_P1_6)==0); //input pin waiting to be  
 L017001?:
 	mov	dpl,#0x0C
 	lcall	_ADC_at_Pin
@@ -1897,7 +1902,7 @@ L017001?:
 	mov	b,dph
 	orl	a,b
 	jz	L017001?
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:382: while(ADC_at_Pin(QFP32_MUX_P1_6)==0); //this waiting for the pin to be high/ 1 
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:395: while(ADC_at_Pin(QFP32_MUX_P1_6)==0); //this waiting for the pin to be high/ 1 
 L017004?:
 	mov	dpl,#0x0C
 	lcall	_ADC_at_Pin
@@ -1905,29 +1910,29 @@ L017004?:
 	mov	b,dph
 	orl	a,b
 	jz	L017004?
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:383: Timer3us((PERIOD*1.0E6)/4.0); //PERIOD IS DEFINED
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:396: Timer3us((PERIOD*1.0E6)/4.0); //PERIOD IS DEFINED
 	mov	dptr,#0x0000
 	lcall	_Timer3us
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:384: return(Volts_at_Pin(QFP32_MUX_P1_6));
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:397: return(Volts_at_Pin(QFP32_MUX_P1_6));
 	mov	dpl,#0x0C
 	ljmp	_Volts_at_Pin
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'waitquarterperiod'
 ;------------------------------------------------------------
 ;------------------------------------------------------------
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:397: void waitquarterperiod(void){
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:410: void waitquarterperiod(void){
 ;	-----------------------------------------
 ;	 function waitquarterperiod
 ;	-----------------------------------------
 _waitquarterperiod:
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:398: waitms(constant_delay_time);
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:411: waitms(constant_delay_time);
 	mov	dptr,#0x000A
 	ljmp	_waitms
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'main'
 ;------------------------------------------------------------
 ;checkcommand              Allocated to registers 
-;i                         Allocated with name '_main_i_1_82'
+;i                         Allocated with name '_main_i_1_84'
 ;sig1                      Allocated to registers 
 ;sig2                      Allocated to registers 
 ;peak                      Allocated to registers 
@@ -1938,20 +1943,31 @@ _waitquarterperiod:
 ;period                    Allocated to registers 
 ;overflow_count            Allocated to registers 
 ;------------------------------------------------------------
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:402: void main(void)
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:415: void main(void)
 ;	-----------------------------------------
 ;	 function main
 ;	-----------------------------------------
 _main:
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:414: TIMER0_Init();
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:427: TIMER0_Init();
 	lcall	_TIMER0_Init
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:416: InitPinADC(1, 6); // Configure P2.5 as analog input
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:429: InitPinADC(1, 6); // Configure P2.5 as analog input
 	mov	_InitPinADC_PARM_2,#0x06
 	mov	dpl,#0x01
 	lcall	_InitPinADC
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:418: InitADC();
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:431: InitADC();
 	lcall	_InitADC
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:419: printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:432: printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
+	mov	a,#__str_10
+	push	acc
+	mov	a,#(__str_10 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	dec	sp
+	dec	sp
+	dec	sp
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:434: "Check pins P2.2 and P2.1 with the oscilloscope.\r\n");
 	mov	a,#__str_11
 	push	acc
 	mov	a,#(__str_11 >> 8)
@@ -1962,7 +1978,7 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:421: "Check pins P2.2 and P2.1 with the oscilloscope.\r\n");
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:436: printf("\n\r");
 	mov	a,#__str_12
 	push	acc
 	mov	a,#(__str_12 >> 8)
@@ -1973,26 +1989,15 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:423: printf("\n\r");
-	mov	a,#__str_13
-	push	acc
-	mov	a,#(__str_13 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	dec	sp
-	dec	sp
-	dec	sp
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:426: while (1)
-L019018?:
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:431: time = checkTime();
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:439: while (1)
+L019020?:
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:442: time = checkTime();
 	lcall	_checkTime
 	mov	r2,dpl
 	mov	r3,dph
 	mov	r4,b
 	mov	r5,a
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:432: printf("%f\t\n\r", time);
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:443: printf("%f\t\n\r", time);
 	push	ar2
 	push	ar3
 	push	ar4
@@ -2001,9 +2006,9 @@ L019018?:
 	push	ar3
 	push	ar4
 	push	ar5
-	mov	a,#__str_14
+	mov	a,#__str_13
 	push	acc
-	mov	a,#(__str_14 >> 8)
+	mov	a,#(__str_13 >> 8)
 	push	acc
 	mov	a,#0x80
 	push	acc
@@ -2015,7 +2020,36 @@ L019018?:
 	pop	ar4
 	pop	ar3
 	pop	ar2
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:435: if(time>=700 && time<=720){
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:444: if(time>100) {	    	
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
+	clr	a
+	push	acc
+	push	acc
+	mov	a,#0xC8
+	push	acc
+	mov	a,#0x42
+	push	acc
+	mov	dpl,r2
+	mov	dph,r3
+	mov	b,r4
+	mov	a,r5
+	lcall	___fsgt
+	mov	r6,dpl
+	mov	a,sp
+	add	a,#0xfc
+	mov	sp,a
+	pop	ar5
+	pop	ar4
+	pop	ar3
+	pop	ar2
+	mov	a,r6
+	jnz	L019034?
+	ljmp	L019017?
+L019034?:
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:445: if(time>=700 && time<=720){
 	push	ar2
 	push	ar3
 	push	ar4
@@ -2041,7 +2075,7 @@ L019018?:
 	pop	ar3
 	pop	ar2
 	mov	a,r6
-	jnz	L019014?
+	jnz	L019013?
 	push	ar2
 	push	ar3
 	push	ar4
@@ -2067,27 +2101,12 @@ L019018?:
 	pop	ar3
 	pop	ar2
 	mov	a,r6
-	jnz	L019014?
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:436: PWMbackward(); 
-	push	ar2
-	push	ar3
-	push	ar4
-	push	ar5
+	jnz	L019013?
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:446: PWMbackward(); 
 	lcall	_PWMbackward
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:437: printf("%f\t\n\r", time);
-	mov	a,#__str_14
-	push	acc
-	mov	a,#(__str_14 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	mov	a,sp
-	add	a,#0xf9
-	mov	sp,a
-	ljmp	L019015?
-L019014?:
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:439: else if(time>=340 && time<=360){
+	ljmp	L019018?
+L019013?:
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:449: else if(time>=340 && time<=360){
 	push	ar2
 	push	ar3
 	push	ar4
@@ -2113,7 +2132,7 @@ L019014?:
 	pop	ar3
 	pop	ar2
 	mov	a,r6
-	jnz	L019010?
+	jnz	L019009?
 	push	ar2
 	push	ar3
 	push	ar4
@@ -2139,23 +2158,10 @@ L019014?:
 	pop	ar3
 	pop	ar2
 	mov	a,r6
-	jnz	L019010?
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:440: pwmSig1 = 99;
-	mov	_pwmSig1,#0x63
-	clr	a
-	mov	(_pwmSig1 + 1),a
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:441: pwmSig2 = 0;
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:443: pwmSig3 = 0;
-	clr	a
-	mov	_pwmSig2,a
-	mov	(_pwmSig2 + 1),a
-	mov	_pwmSig3,a
-	mov	(_pwmSig3 + 1),a
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:444: pwmSig4 =99;
-	mov	_pwmSig4,#0x63
-	clr	a
-	mov	(_pwmSig4 + 1),a
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:445: printf("Forward\n\r");
+	jnz	L019009?
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:450: PWMforward(); 
+	lcall	_PWMforward
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:451: printf("Forward\n\r");
 	mov	a,#__str_0
 	push	acc
 	mov	a,#(__str_0 >> 8)
@@ -2166,9 +2172,9 @@ L019014?:
 	dec	sp
 	dec	sp
 	dec	sp
-	ljmp	L019015?
-L019010?:
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:447: else if(time>=1410 && time<=1440){
+	ljmp	L019018?
+L019009?:
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:453: else if(time>=1410 && time<=1440){
 	push	ar2
 	push	ar3
 	push	ar4
@@ -2195,7 +2201,7 @@ L019010?:
 	pop	ar3
 	pop	ar2
 	mov	a,r6
-	jnz	L019006?
+	jnz	L019005?
 	push	ar2
 	push	ar3
 	push	ar4
@@ -2221,27 +2227,12 @@ L019010?:
 	pop	ar3
 	pop	ar2
 	mov	a,r6
-	jnz	L019006?
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:448: PWMRight(); 
-	push	ar2
-	push	ar3
-	push	ar4
-	push	ar5
+	jnz	L019005?
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:454: PWMRight(); 
 	lcall	_PWMRight
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:449: printf("%f\t\n\r", time);
-	mov	a,#__str_14
-	push	acc
-	mov	a,#(__str_14 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	mov	a,sp
-	add	a,#0xf9
-	mov	sp,a
-	ljmp	L019015?
-L019006?:
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:451: else if(time>=1060 && time<=1090){
+	sjmp	L019018?
+L019005?:
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:457: else if(time>=1060 && time<=1090){
 	push	ar2
 	push	ar3
 	push	ar4
@@ -2268,12 +2259,7 @@ L019006?:
 	pop	ar3
 	pop	ar2
 	mov	a,r6
-	jnz	L019002?
-	push	ar2
-	push	ar3
-	push	ar4
-	push	ar5
-	clr	a
+	jnz	L019018?
 	push	acc
 	mov	a,#0x40
 	push	acc
@@ -2286,42 +2272,23 @@ L019006?:
 	mov	b,r4
 	mov	a,r5
 	lcall	___fsgt
-	mov	r6,dpl
+	mov	r2,dpl
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-	pop	ar5
-	pop	ar4
-	pop	ar3
-	pop	ar2
-	mov	a,r6
-	jnz	L019002?
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:452: PWMLeft(); 
-	push	ar2
-	push	ar3
-	push	ar4
-	push	ar5
+	mov	a,r2
+	jnz	L019018?
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:458: PWMLeft(); 
 	lcall	_PWMLeft
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:453: printf("%f\t\n\r", time); } 
-	mov	a,#__str_14
-	push	acc
-	mov	a,#(__str_14 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	mov	a,sp
-	add	a,#0xf9
-	mov	sp,a
-	sjmp	L019015?
-L019002?:
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:455: PWMStop();
+	sjmp	L019018?
+L019017?:
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:464: PWMStop();
 	lcall	_PWMStop
-L019015?:
-;	C:\Users\Binte\Documents\GitHub\ElecRobot\Sam_Test.c:458: waitms(100);
-	mov	dptr,#0x0064
+L019018?:
+;	C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:465: waitms(1000);
+	mov	dptr,#0x03E8
 	lcall	_waitms
-	ljmp	L019018?
+	ljmp	L019020?
 	rseg R_CSEG
 
 	rseg R_XINIT
@@ -2373,20 +2340,15 @@ __str_8:
 	db 0x0D
 	db 0x00
 __str_9:
-	db 'Possibly a STOP. break out of the loop and stop timer. '
-	db 0x0A
-	db 0x0D
-	db 0x00
-__str_10:
 	db 'Stop Timer'
 	db 0x0A
 	db 0x0D
 	db 0x00
-__str_11:
+__str_10:
 	db 0x1B
 	db '[2J'
 	db 0x00
-__str_12:
+__str_11:
 	db 'Square wave generator for the EFM8LB1.'
 	db 0x0D
 	db 0x0A
@@ -2395,11 +2357,11 @@ __str_12:
 	db 0x0D
 	db 0x0A
 	db 0x00
-__str_13:
+__str_12:
 	db 0x0A
 	db 0x0D
 	db 0x00
-__str_14:
+__str_13:
 	db '%f'
 	db 0x09
 	db 0x0A

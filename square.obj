@@ -215,7 +215,7 @@ F5 data8(_pwmSig1;)
 F5 data8(_pwmSig1;0x0001;+;)
 F5 data8(_pwmSig2;)
 F5 data8(_pwmSig2;0x0001;+;)
-75 data8(_pwmSig3;) 46
+75 data8(_pwmSig3;) 5A
 E4
 F5 data8(_pwmSig3;0x0001;+;)
 E4
