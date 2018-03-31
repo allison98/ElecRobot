@@ -1,0 +1,2531 @@
+0000              1   ;--------------------------------------------------------
+0000              2   ; File Created by C51
+0000              3   ; Version 1.0.0 #1069 (Apr 23 2015) (MSVC)
+0000              4   ; This file was generated Fri Mar 30 20:08:22 2018
+0000              5   ;--------------------------------------------------------
+                  5   $name Sam_Test
+                  6   $optc51 --model-small
+                  7   $printf_float
+0000              9            R_DSEG    segment data
+0000             10            R_CSEG    segment code
+0000             11            R_BSEG    segment bit
+0000             12            R_XSEG    segment xdata
+0000             13            R_PSEG    segment xdata
+0000             14            R_ISEG    segment idata
+0000             15            R_OSEG    segment data overlay
+0000             16            BIT_BANK  segment data overlay
+0000             17            R_HOME    segment code
+0000             18            R_GSINIT  segment code
+0000             19            R_IXSEG   segment xdata
+0000             20            R_CONST   segment code
+0000             21            R_XINIT   segment code
+0000             22            R_DINIT   segment code
+0000             23   
+0000             24   ;--------------------------------------------------------
+0000             25   ; Public variables in this module
+0000             26   ;--------------------------------------------------------
+0000             27            public _InitPinADC_PARM_2
+0000             28            public _main
+0000             29            public _detectobstacle
+0000             30            public _waitquarterperiod
+0000             31            public _voltsAtPeak
+0000             32            public _checkTime
+0000             33            public _PWMStop
+0000             34            public _PWMRight
+0000             35            public _PWMLeft
+0000             36            public _PWMbackward
+0000             37            public _PWMforward
+0000             38            public _InitPinADC
+0000             39            public _Volts_at_Pin
+0000             40            public _TIMER0_Init
+0000             41            public _InitADC
+0000             42            public _Timer2_ISR
+0000             43            public _ADC_at_Pin
+0000             44            public _waitms
+0000             45            public _Timer3us
+0000             46            public __c51_external_startup
+0000             47            public _command
+0000             48            public _right
+0000             49            public _left
+0000             50            public _backward
+0000             51            public _forward
+0000             52            public _stop
+0000             53            public _claw_flag
+0000             54            public _flag
+0000             55            public _cartMoveB
+0000             56            public _cartMoveF
+0000             57            public _pwmSig6
+0000             58            public _pwmSig5
+0000             59            public _pwmSig4
+0000             60            public _pwmSig3
+0000             61            public _pwmSig2
+0000             62            public _pwmSig1
+0000             63            public _pwm_count3
+0000             64            public _pwm_count2
+0000             65            public _pwm_count1
+0000             66            public _pwm_count
+0000             67   ;--------------------------------------------------------
+0000             68   ; Special Function Registers
+0000             69   ;--------------------------------------------------------
+0000             70   _ACC            DATA 0xe0
+0000             71   _ADC0ASAH       DATA 0xb6
+0000             72   _ADC0ASAL       DATA 0xb5
+0000             73   _ADC0ASCF       DATA 0xa1
+0000             74   _ADC0ASCT       DATA 0xc7
+0000             75   _ADC0CF0        DATA 0xbc
+0000             76   _ADC0CF1        DATA 0xb9
+0000             77   _ADC0CF2        DATA 0xdf
+0000             78   _ADC0CN0        DATA 0xe8
+0000             79   _ADC0CN1        DATA 0xb2
+0000             80   _ADC0CN2        DATA 0xb3
+0000             81   _ADC0GTH        DATA 0xc4
+0000             82   _ADC0GTL        DATA 0xc3
+0000             83   _ADC0H          DATA 0xbe
+0000             84   _ADC0L          DATA 0xbd
+0000             85   _ADC0LTH        DATA 0xc6
+0000             86   _ADC0LTL        DATA 0xc5
+0000             87   _ADC0MX         DATA 0xbb
+0000             88   _B              DATA 0xf0
+0000             89   _CKCON0         DATA 0x8e
+0000             90   _CKCON1         DATA 0xa6
+0000             91   _CLEN0          DATA 0xc6
+0000             92   _CLIE0          DATA 0xc7
+0000             93   _CLIF0          DATA 0xe8
+0000             94   _CLKSEL         DATA 0xa9
+0000             95   _CLOUT0         DATA 0xd1
+0000             96   _CLU0CF         DATA 0xb1
+0000             97   _CLU0FN         DATA 0xaf
+0000             98   _CLU0MX         DATA 0x84
+0000             99   _CLU1CF         DATA 0xb3
+0000            100   _CLU1FN         DATA 0xb2
+0000            101   _CLU1MX         DATA 0x85
+0000            102   _CLU2CF         DATA 0xb6
+0000            103   _CLU2FN         DATA 0xb5
+0000            104   _CLU2MX         DATA 0x91
+0000            105   _CLU3CF         DATA 0xbf
+0000            106   _CLU3FN         DATA 0xbe
+0000            107   _CLU3MX         DATA 0xae
+0000            108   _CMP0CN0        DATA 0x9b
+0000            109   _CMP0CN1        DATA 0x99
+0000            110   _CMP0MD         DATA 0x9d
+0000            111   _CMP0MX         DATA 0x9f
+0000            112   _CMP1CN0        DATA 0xbf
+0000            113   _CMP1CN1        DATA 0xac
+0000            114   _CMP1MD         DATA 0xab
+0000            115   _CMP1MX         DATA 0xaa
+0000            116   _CRC0CN0        DATA 0xce
+0000            117   _CRC0CN1        DATA 0x86
+0000            118   _CRC0CNT        DATA 0xd3
+0000            119   _CRC0DAT        DATA 0xcb
+0000            120   _CRC0FLIP       DATA 0xcf
+0000            121   _CRC0IN         DATA 0xca
+0000            122   _CRC0ST         DATA 0xd2
+0000            123   _DAC0CF0        DATA 0x91
+0000            124   _DAC0CF1        DATA 0x92
+0000            125   _DAC0H          DATA 0x85
+0000            126   _DAC0L          DATA 0x84
+0000            127   _DAC1CF0        DATA 0x93
+0000            128   _DAC1CF1        DATA 0x94
+0000            129   _DAC1H          DATA 0x8a
+0000            130   _DAC1L          DATA 0x89
+0000            131   _DAC2CF0        DATA 0x95
+0000            132   _DAC2CF1        DATA 0x96
+0000            133   _DAC2H          DATA 0x8c
+0000            134   _DAC2L          DATA 0x8b
+0000            135   _DAC3CF0        DATA 0x9a
+0000            136   _DAC3CF1        DATA 0x9c
+0000            137   _DAC3H          DATA 0x8e
+0000            138   _DAC3L          DATA 0x8d
+0000            139   _DACGCF0        DATA 0x88
+0000            140   _DACGCF1        DATA 0x98
+0000            141   _DACGCF2        DATA 0xa2
+0000            142   _DERIVID        DATA 0xad
+0000            143   _DEVICEID       DATA 0xb5
+0000            144   _DPH            DATA 0x83
+0000            145   _DPL            DATA 0x82
+0000            146   _EIE1           DATA 0xe6
+0000            147   _EIE2           DATA 0xf3
+0000            148   _EIP1           DATA 0xbb
+0000            149   _EIP1H          DATA 0xee
+0000            150   _EIP2           DATA 0xed
+0000            151   _EIP2H          DATA 0xf6
+0000            152   _EMI0CN         DATA 0xe7
+0000            153   _FLKEY          DATA 0xb7
+0000            154   _HFO0CAL        DATA 0xc7
+0000            155   _HFO1CAL        DATA 0xd6
+0000            156   _HFOCN          DATA 0xef
+0000            157   _I2C0ADM        DATA 0xff
+0000            158   _I2C0CN0        DATA 0xba
+0000            159   _I2C0DIN        DATA 0xbc
+0000            160   _I2C0DOUT       DATA 0xbb
+0000            161   _I2C0FCN0       DATA 0xad
+0000            162   _I2C0FCN1       DATA 0xab
+0000            163   _I2C0FCT        DATA 0xf5
+0000            164   _I2C0SLAD       DATA 0xbd
+0000            165   _I2C0STAT       DATA 0xb9
+0000            166   _IE             DATA 0xa8
+0000            167   _IP             DATA 0xb8
+0000            168   _IPH            DATA 0xf2
+0000            169   _IT01CF         DATA 0xe4
+0000            170   _LFO0CN         DATA 0xb1
+0000            171   _P0             DATA 0x80
+0000            172   _P0MASK         DATA 0xfe
+0000            173   _P0MAT          DATA 0xfd
+0000            174   _P0MDIN         DATA 0xf1
+0000            175   _P0MDOUT        DATA 0xa4
+0000            176   _P0SKIP         DATA 0xd4
+0000            177   _P1             DATA 0x90
+0000            178   _P1MASK         DATA 0xee
+0000            179   _P1MAT          DATA 0xed
+0000            180   _P1MDIN         DATA 0xf2
+0000            181   _P1MDOUT        DATA 0xa5
+0000            182   _P1SKIP         DATA 0xd5
+0000            183   _P2             DATA 0xa0
+0000            184   _P2MASK         DATA 0xfc
+0000            185   _P2MAT          DATA 0xfb
+0000            186   _P2MDIN         DATA 0xf3
+0000            187   _P2MDOUT        DATA 0xa6
+0000            188   _P2SKIP         DATA 0xcc
+0000            189   _P3             DATA 0xb0
+0000            190   _P3MDIN         DATA 0xf4
+0000            191   _P3MDOUT        DATA 0x9c
+0000            192   _PCA0CENT       DATA 0x9e
+0000            193   _PCA0CLR        DATA 0x9c
+0000            194   _PCA0CN0        DATA 0xd8
+0000            195   _PCA0CPH0       DATA 0xfc
+0000            196   _PCA0CPH1       DATA 0xea
+0000            197   _PCA0CPH2       DATA 0xec
+0000            198   _PCA0CPH3       DATA 0xf5
+0000            199   _PCA0CPH4       DATA 0x85
+0000            200   _PCA0CPH5       DATA 0xde
+0000            201   _PCA0CPL0       DATA 0xfb
+0000            202   _PCA0CPL1       DATA 0xe9
+0000            203   _PCA0CPL2       DATA 0xeb
+0000            204   _PCA0CPL3       DATA 0xf4
+0000            205   _PCA0CPL4       DATA 0x84
+0000            206   _PCA0CPL5       DATA 0xdd
+0000            207   _PCA0CPM0       DATA 0xda
+0000            208   _PCA0CPM1       DATA 0xdb
+0000            209   _PCA0CPM2       DATA 0xdc
+0000            210   _PCA0CPM3       DATA 0xae
+0000            211   _PCA0CPM4       DATA 0xaf
+0000            212   _PCA0CPM5       DATA 0xcc
+0000            213   _PCA0H          DATA 0xfa
+0000            214   _PCA0L          DATA 0xf9
+0000            215   _PCA0MD         DATA 0xd9
+0000            216   _PCA0POL        DATA 0x96
+0000            217   _PCA0PWM        DATA 0xf7
+0000            218   _PCON0          DATA 0x87
+0000            219   _PCON1          DATA 0xcd
+0000            220   _PFE0CN         DATA 0xc1
+0000            221   _PRTDRV         DATA 0xf6
+0000            222   _PSCTL          DATA 0x8f
+0000            223   _PSTAT0         DATA 0xaa
+0000            224   _PSW            DATA 0xd0
+0000            225   _REF0CN         DATA 0xd1
+0000            226   _REG0CN         DATA 0xc9
+0000            227   _REVID          DATA 0xb6
+0000            228   _RSTSRC         DATA 0xef
+0000            229   _SBCON1         DATA 0x94
+0000            230   _SBRLH1         DATA 0x96
+0000            231   _SBRLL1         DATA 0x95
+0000            232   _SBUF           DATA 0x99
+0000            233   _SBUF0          DATA 0x99
+0000            234   _SBUF1          DATA 0x92
+0000            235   _SCON           DATA 0x98
+0000            236   _SCON0          DATA 0x98
+0000            237   _SCON1          DATA 0xc8
+0000            238   _SFRPAGE        DATA 0xa7
+0000            239   _SFRPGCN        DATA 0xbc
+0000            240   _SFRSTACK       DATA 0xd7
+0000            241   _SMB0ADM        DATA 0xd6
+0000            242   _SMB0ADR        DATA 0xd7
+0000            243   _SMB0CF         DATA 0xc1
+0000            244   _SMB0CN0        DATA 0xc0
+0000            245   _SMB0DAT        DATA 0xc2
+0000            246   _SMB0FCN0       DATA 0xc3
+0000            247   _SMB0FCN1       DATA 0xc4
+0000            248   _SMB0FCT        DATA 0xef
+0000            249   _SMB0RXLN       DATA 0xc5
+0000            250   _SMB0TC         DATA 0xac
+0000            251   _SMOD1          DATA 0x93
+0000            252   _SP             DATA 0x81
+0000            253   _SPI0CFG        DATA 0xa1
+0000            254   _SPI0CKR        DATA 0xa2
+0000            255   _SPI0CN0        DATA 0xf8
+0000            256   _SPI0DAT        DATA 0xa3
+0000            257   _SPI0FCN0       DATA 0x9a
+0000            258   _SPI0FCN1       DATA 0x9b
+0000            259   _SPI0FCT        DATA 0xf7
+0000            260   _SPI0PCF        DATA 0xdf
+0000            261   _TCON           DATA 0x88
+0000            262   _TH0            DATA 0x8c
+0000            263   _TH1            DATA 0x8d
+0000            264   _TL0            DATA 0x8a
+0000            265   _TL1            DATA 0x8b
+0000            266   _TMOD           DATA 0x89
+0000            267   _TMR2CN0        DATA 0xc8
+0000            268   _TMR2CN1        DATA 0xfd
+0000            269   _TMR2H          DATA 0xcf
+0000            270   _TMR2L          DATA 0xce
+0000            271   _TMR2RLH        DATA 0xcb
+0000            272   _TMR2RLL        DATA 0xca
+0000            273   _TMR3CN0        DATA 0x91
+0000            274   _TMR3CN1        DATA 0xfe
+0000            275   _TMR3H          DATA 0x95
+0000            276   _TMR3L          DATA 0x94
+0000            277   _TMR3RLH        DATA 0x93
+0000            278   _TMR3RLL        DATA 0x92
+0000            279   _TMR4CN0        DATA 0x98
+0000            280   _TMR4CN1        DATA 0xff
+0000            281   _TMR4H          DATA 0xa5
+0000            282   _TMR4L          DATA 0xa4
+0000            283   _TMR4RLH        DATA 0xa3
+0000            284   _TMR4RLL        DATA 0xa2
+0000            285   _TMR5CN0        DATA 0xc0
+0000            286   _TMR5CN1        DATA 0xf1
+0000            287   _TMR5H          DATA 0xd5
+0000            288   _TMR5L          DATA 0xd4
+0000            289   _TMR5RLH        DATA 0xd3
+0000            290   _TMR5RLL        DATA 0xd2
+0000            291   _UART0PCF       DATA 0xd9
+0000            292   _UART1FCN0      DATA 0x9d
+0000            293   _UART1FCN1      DATA 0xd8
+0000            294   _UART1FCT       DATA 0xfa
+0000            295   _UART1LIN       DATA 0x9e
+0000            296   _UART1PCF       DATA 0xda
+0000            297   _VDM0CN         DATA 0xff
+0000            298   _WDTCN          DATA 0x97
+0000            299   _XBR0           DATA 0xe1
+0000            300   _XBR1           DATA 0xe2
+0000            301   _XBR2           DATA 0xe3
+0000            302   _XOSC0CN        DATA 0x86
+0000            303   _DPTR           DATA 0x8382
+0000            304   _TMR2RL         DATA 0xcbca
+0000            305   _TMR3RL         DATA 0x9392
+0000            306   _TMR4RL         DATA 0xa3a2
+0000            307   _TMR5RL         DATA 0xd3d2
+0000            308   _TMR0           DATA 0x8c8a
+0000            309   _TMR1           DATA 0x8d8b
+0000            310   _TMR2           DATA 0xcfce
+0000            311   _TMR3           DATA 0x9594
+0000            312   _TMR4           DATA 0xa5a4
+0000            313   _TMR5           DATA 0xd5d4
+0000            314   _SBRL1          DATA 0x9695
+0000            315   _PCA0           DATA 0xfaf9
+0000            316   _PCA0CP0        DATA 0xfcfb
+0000            317   _PCA0CP1        DATA 0xeae9
+0000            318   _PCA0CP2        DATA 0xeceb
+0000            319   _PCA0CP3        DATA 0xf5f4
+0000            320   _PCA0CP4        DATA 0x8584
+0000            321   _PCA0CP5        DATA 0xdedd
+0000            322   _ADC0ASA        DATA 0xb6b5
+0000            323   _ADC0GT         DATA 0xc4c3
+0000            324   _ADC0           DATA 0xbebd
+0000            325   _ADC0LT         DATA 0xc6c5
+0000            326   _DAC0           DATA 0x8584
+0000            327   _DAC1           DATA 0x8a89
+0000            328   _DAC2           DATA 0x8c8b
+0000            329   _DAC3           DATA 0x8e8d
+0000            330   ;--------------------------------------------------------
+0000            331   ; special function bits
+0000            332   ;--------------------------------------------------------
+0000            333   _ACC_0          BIT 0xe0
+0000            334   _ACC_1          BIT 0xe1
+0000            335   _ACC_2          BIT 0xe2
+0000            336   _ACC_3          BIT 0xe3
+0000            337   _ACC_4          BIT 0xe4
+0000            338   _ACC_5          BIT 0xe5
+0000            339   _ACC_6          BIT 0xe6
+0000            340   _ACC_7          BIT 0xe7
+0000            341   _TEMPE          BIT 0xe8
+0000            342   _ADGN0          BIT 0xe9
+0000            343   _ADGN1          BIT 0xea
+0000            344   _ADWINT         BIT 0xeb
+0000            345   _ADBUSY         BIT 0xec
+0000            346   _ADINT          BIT 0xed
+0000            347   _IPOEN          BIT 0xee
+0000            348   _ADEN           BIT 0xef
+0000            349   _B_0            BIT 0xf0
+0000            350   _B_1            BIT 0xf1
+0000            351   _B_2            BIT 0xf2
+0000            352   _B_3            BIT 0xf3
+0000            353   _B_4            BIT 0xf4
+0000            354   _B_5            BIT 0xf5
+0000            355   _B_6            BIT 0xf6
+0000            356   _B_7            BIT 0xf7
+0000            357   _C0FIF          BIT 0xe8
+0000            358   _C0RIF          BIT 0xe9
+0000            359   _C1FIF          BIT 0xea
+0000            360   _C1RIF          BIT 0xeb
+0000            361   _C2FIF          BIT 0xec
+0000            362   _C2RIF          BIT 0xed
+0000            363   _C3FIF          BIT 0xee
+0000            364   _C3RIF          BIT 0xef
+0000            365   _D1SRC0         BIT 0x88
+0000            366   _D1SRC1         BIT 0x89
+0000            367   _D1AMEN         BIT 0x8a
+0000            368   _D01REFSL       BIT 0x8b
+0000            369   _D3SRC0         BIT 0x8c
+0000            370   _D3SRC1         BIT 0x8d
+0000            371   _D3AMEN         BIT 0x8e
+0000            372   _D23REFSL       BIT 0x8f
+0000            373   _D0UDIS         BIT 0x98
+0000            374   _D1UDIS         BIT 0x99
+0000            375   _D2UDIS         BIT 0x9a
+0000            376   _D3UDIS         BIT 0x9b
+0000            377   _EX0            BIT 0xa8
+0000            378   _ET0            BIT 0xa9
+0000            379   _EX1            BIT 0xaa
+0000            380   _ET1            BIT 0xab
+0000            381   _ES0            BIT 0xac
+0000            382   _ET2            BIT 0xad
+0000            383   _ESPI0          BIT 0xae
+0000            384   _EA             BIT 0xaf
+0000            385   _PX0            BIT 0xb8
+0000            386   _PT0            BIT 0xb9
+0000            387   _PX1            BIT 0xba
+0000            388   _PT1            BIT 0xbb
+0000            389   _PS0            BIT 0xbc
+0000            390   _PT2            BIT 0xbd
+0000            391   _PSPI0          BIT 0xbe
+0000            392   _P0_0           BIT 0x80
+0000            393   _P0_1           BIT 0x81
+0000            394   _P0_2           BIT 0x82
+0000            395   _P0_3           BIT 0x83
+0000            396   _P0_4           BIT 0x84
+0000            397   _P0_5           BIT 0x85
+0000            398   _P0_6           BIT 0x86
+0000            399   _P0_7           BIT 0x87
+0000            400   _P1_0           BIT 0x90
+0000            401   _P1_1           BIT 0x91
+0000            402   _P1_2           BIT 0x92
+0000            403   _P1_3           BIT 0x93
+0000            404   _P1_4           BIT 0x94
+0000            405   _P1_5           BIT 0x95
+0000            406   _P1_6           BIT 0x96
+0000            407   _P1_7           BIT 0x97
+0000            408   _P2_0           BIT 0xa0
+0000            409   _P2_1           BIT 0xa1
+0000            410   _P2_2           BIT 0xa2
+0000            411   _P2_3           BIT 0xa3
+0000            412   _P2_4           BIT 0xa4
+0000            413   _P2_5           BIT 0xa5
+0000            414   _P2_6           BIT 0xa6
+0000            415   _P3_0           BIT 0xb0
+0000            416   _P3_1           BIT 0xb1
+0000            417   _P3_2           BIT 0xb2
+0000            418   _P3_3           BIT 0xb3
+0000            419   _P3_4           BIT 0xb4
+0000            420   _P3_7           BIT 0xb7
+0000            421   _CCF0           BIT 0xd8
+0000            422   _CCF1           BIT 0xd9
+0000            423   _CCF2           BIT 0xda
+0000            424   _CCF3           BIT 0xdb
+0000            425   _CCF4           BIT 0xdc
+0000            426   _CCF5           BIT 0xdd
+0000            427   _CR             BIT 0xde
+0000            428   _CF             BIT 0xdf
+0000            429   _PARITY         BIT 0xd0
+0000            430   _F1             BIT 0xd1
+0000            431   _OV             BIT 0xd2
+0000            432   _RS0            BIT 0xd3
+0000            433   _RS1            BIT 0xd4
+0000            434   _F0             BIT 0xd5
+0000            435   _AC             BIT 0xd6
+0000            436   _CY             BIT 0xd7
+0000            437   _RI             BIT 0x98
+0000            438   _TI             BIT 0x99
+0000            439   _RB8            BIT 0x9a
+0000            440   _TB8            BIT 0x9b
+0000            441   _REN            BIT 0x9c
+0000            442   _CE             BIT 0x9d
+0000            443   _SMODE          BIT 0x9e
+0000            444   _RI1            BIT 0xc8
+0000            445   _TI1            BIT 0xc9
+0000            446   _RBX1           BIT 0xca
+0000            447   _TBX1           BIT 0xcb
+0000            448   _REN1           BIT 0xcc
+0000            449   _PERR1          BIT 0xcd
+0000            450   _OVR1           BIT 0xce
+0000            451   _SI             BIT 0xc0
+0000            452   _ACK            BIT 0xc1
+0000            453   _ARBLOST        BIT 0xc2
+0000            454   _ACKRQ          BIT 0xc3
+0000            455   _STO            BIT 0xc4
+0000            456   _STA            BIT 0xc5
+0000            457   _TXMODE         BIT 0xc6
+0000            458   _MASTER         BIT 0xc7
+0000            459   _SPIEN          BIT 0xf8
+0000            460   _TXNF           BIT 0xf9
+0000            461   _NSSMD0         BIT 0xfa
+0000            462   _NSSMD1         BIT 0xfb
+0000            463   _RXOVRN         BIT 0xfc
+0000            464   _MODF           BIT 0xfd
+0000            465   _WCOL           BIT 0xfe
+0000            466   _SPIF           BIT 0xff
+0000            467   _IT0            BIT 0x88
+0000            468   _IE0            BIT 0x89
+0000            469   _IT1            BIT 0x8a
+0000            470   _IE1            BIT 0x8b
+0000            471   _TR0            BIT 0x8c
+0000            472   _TF0            BIT 0x8d
+0000            473   _TR1            BIT 0x8e
+0000            474   _TF1            BIT 0x8f
+0000            475   _T2XCLK0        BIT 0xc8
+0000            476   _T2XCLK1        BIT 0xc9
+0000            477   _TR2            BIT 0xca
+0000            478   _T2SPLIT        BIT 0xcb
+0000            479   _TF2CEN         BIT 0xcc
+0000            480   _TF2LEN         BIT 0xcd
+0000            481   _TF2L           BIT 0xce
+0000            482   _TF2H           BIT 0xcf
+0000            483   _T4XCLK0        BIT 0x98
+0000            484   _T4XCLK1        BIT 0x99
+0000            485   _TR4            BIT 0x9a
+0000            486   _T4SPLIT        BIT 0x9b
+0000            487   _TF4CEN         BIT 0x9c
+0000            488   _TF4LEN         BIT 0x9d
+0000            489   _TF4L           BIT 0x9e
+0000            490   _TF4H           BIT 0x9f
+0000            491   _T5XCLK0        BIT 0xc0
+0000            492   _T5XCLK1        BIT 0xc1
+0000            493   _TR5            BIT 0xc2
+0000            494   _T5SPLIT        BIT 0xc3
+0000            495   _TF5CEN         BIT 0xc4
+0000            496   _TF5LEN         BIT 0xc5
+0000            497   _TF5L           BIT 0xc6
+0000            498   _TF5H           BIT 0xc7
+0000            499   _RIE            BIT 0xd8
+0000            500   _RXTO0          BIT 0xd9
+0000            501   _RXTO1          BIT 0xda
+0000            502   _RFRQ           BIT 0xdb
+0000            503   _TIE            BIT 0xdc
+0000            504   _TXHOLD         BIT 0xdd
+0000            505   _TXNF1          BIT 0xde
+0000            506   _TFRQ           BIT 0xdf
+0000            507   ;--------------------------------------------------------
+0000            508   ; overlayable register banks
+0000            509   ;--------------------------------------------------------
+0000            510            rbank0 segment data overlay
+0000            511   ;--------------------------------------------------------
+0000            512   ; internal ram data
+0000            513   ;--------------------------------------------------------
+0000            514            rseg R_DSEG
+0000            515   _pwm_count:
+0000            516            ds 1
+0001            517   _pwm_count1:
+0001            518            ds 1
+0002            519   _pwm_count2:
+0002            520            ds 1
+0003            521   _pwm_count3:
+0003            522            ds 1
+0004            523   _pwmSig1:
+0004            524            ds 2
+0006            525   _pwmSig2:
+0006            526            ds 2
+0008            527   _pwmSig3:
+0008            528            ds 2
+000A            529   _pwmSig4:
+000A            530            ds 2
+000C            531   _pwmSig5:
+000C            532            ds 2
+000E            533   _pwmSig6:
+000E            534            ds 2
+0010            535   _cartMoveF:
+0010            536            ds 2
+0012            537   _cartMoveB:
+0012            538            ds 2
+0014            539   _flag:
+0014            540            ds 2
+0016            541   _claw_flag:
+0016            542            ds 2
+0018            543   _stop:
+0018            544            ds 8
+0020            545   _forward:
+0020            546            ds 8
+0028            547   _backward:
+0028            548            ds 8
+0030            549   _left:
+0030            550            ds 8
+0038            551   _right:
+0038            552            ds 8
+0040            553   _command:
+0040            554            ds 8
+0048            555   _checkTime_overflow_count_1_73:
+0048            556            ds 2
+004A            557   _checkTime_sloc0_1_0:
+004A            558            ds 4
+004E            559   ;--------------------------------------------------------
+004E            560   ; overlayable items in internal ram 
+004E            561   ;--------------------------------------------------------
+0000            562            rseg    R_OSEG
+0000            563            rseg    R_OSEG
+0000            564            rseg    R_OSEG
+0000            565   _InitPinADC_PARM_2:
+0000            566            ds 1
+0001            567   ;--------------------------------------------------------
+0001            568   ; indirectly addressable internal ram data
+0001            569   ;--------------------------------------------------------
+0000            570            rseg R_ISEG
+0000            571   ;--------------------------------------------------------
+0000            572   ; absolute internal ram data
+0000            573   ;--------------------------------------------------------
+0000            574            DSEG
+0000            575   ;--------------------------------------------------------
+0000            576   ; bit data
+0000            577   ;--------------------------------------------------------
+0000            578            rseg R_BSEG
+0000            579   _Timer2_ISR_sloc0_1_0:
+0000            580            DBIT    1
+0001            581   ;--------------------------------------------------------
+0001            582   ; paged external ram data
+0001            583   ;--------------------------------------------------------
+0000            584            rseg R_PSEG
+0000            585   ;--------------------------------------------------------
+0000            586   ; external ram data
+0000            587   ;--------------------------------------------------------
+0000            588            rseg R_XSEG
+0000            589   ;--------------------------------------------------------
+0000            590   ; absolute external ram data
+0000            591   ;--------------------------------------------------------
+0000            592            XSEG
+0000            593   ;--------------------------------------------------------
+0000            594   ; external initialized ram data
+0000            595   ;--------------------------------------------------------
+0000            596            rseg R_IXSEG
+0000            597            rseg R_HOME
+0000            598            rseg R_GSINIT
+0000            599            rseg R_CSEG
+0000            600   ;--------------------------------------------------------
+0000            601   ; Reset entry point and interrupt vectors
+0000            602   ;--------------------------------------------------------
+0000            603            CSEG at 0x0000
+0000 020100     604            ljmp    _crt0
+002B            605            CSEG at 0x002b
+002B 020100     606            ljmp    _Timer2_ISR
+002E            607   ;--------------------------------------------------------
+002E            608   ; global & static initialisations
+002E            609   ;--------------------------------------------------------
+0000            610            rseg R_HOME
+0000            611            rseg R_GSINIT
+0000            612            rseg R_GSINIT
+0000            613   ;--------------------------------------------------------
+0000            614   ; data variables initialization
+0000            615   ;--------------------------------------------------------
+0000            616            rseg R_DINIT
+0000            617   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:53: volatile unsigned char pwm_count = 0; // used in the timer 2 ISR
+0000 75A800     618            mov     _pwm_count,#0x00
+0003            619   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:54: volatile unsigned char pwm_count1 = 0; // this will be usec in the timer 3 ISR
+0003 756800     620            mov     _pwm_count1,#0x00
+0006            621   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:55: volatile unsigned char pwm_count2 = 0; // this will be used in the timer 4 ISR
+0006 752800     622            mov     _pwm_count2,#0x00
+0009            623   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:56: volatile unsigned char pwm_count3 = 0; //
+0009 75E800     624            mov     _pwm_count3,#0x00
+000C            625   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:71: volatile int flag = 0;
+000C E4         626            clr     a
+000D F530       627            mov     _flag,a
+000F F531       628            mov     (_flag + 1),a
+0011            629   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:72: volatile int claw_flag = 0;
+0011 E4         630            clr     a
+0012 F5F0       631            mov     _claw_flag,a
+0014 F5F1       632            mov     (_claw_flag + 1),a
+0016            633   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:73: int stop[]={1,0,0,0};
+0016 75B001     634            mov     _stop,#0x01
+0019 75B100     635            mov     (_stop + 1),#0x00
+001C 75B200     636            mov     (_stop + 0x0002),#0x00
+001F 75B300     637            mov     ((_stop + 0x0002) + 1),#0x00
+0022 75B400     638            mov     (_stop + 0x0004),#0x00
+0025 75B500     639            mov     ((_stop + 0x0004) + 1),#0x00
+0028 75B600     640            mov     (_stop + 0x0006),#0x00
+002B 75B700     641            mov     ((_stop + 0x0006) + 1),#0x00
+002E            642   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:74: int forward[]={1,1,1,1};
+002E 757001     643            mov     _forward,#0x01
+0031 757100     644            mov     (_forward + 1),#0x00
+0034 757201     645            mov     (_forward + 0x0002),#0x01
+0037 757300     646            mov     ((_forward + 0x0002) + 1),#0x00
+003A 757401     647            mov     (_forward + 0x0004),#0x01
+003D 757500     648            mov     ((_forward + 0x0004) + 1),#0x00
+0040 757601     649            mov     (_forward + 0x0006),#0x01
+0043 757700     650            mov     ((_forward + 0x0006) + 1),#0x00
+0046            651   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:75: int backward[]={1,0,0,0};
+0046 753001     652            mov     _backward,#0x01
+0049 753100     653            mov     (_backward + 1),#0x00
+004C 753200     654            mov     (_backward + 0x0002),#0x00
+004F 753300     655            mov     ((_backward + 0x0002) + 1),#0x00
+0052 753400     656            mov     (_backward + 0x0004),#0x00
+0055 753500     657            mov     ((_backward + 0x0004) + 1),#0x00
+0058 753600     658            mov     (_backward + 0x0006),#0x00
+005B 753700     659            mov     ((_backward + 0x0006) + 1),#0x00
+005E            660   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:76: int left[]={1,0,1,0};
+005E 75F001     661            mov     _left,#0x01
+0061 75F100     662            mov     (_left + 1),#0x00
+0064 75F200     663            mov     (_left + 0x0002),#0x00
+0067 75F300     664            mov     ((_left + 0x0002) + 1),#0x00
+006A 75F401     665            mov     (_left + 0x0004),#0x01
+006D 75F500     666            mov     ((_left + 0x0004) + 1),#0x00
+0070 75F600     667            mov     (_left + 0x0006),#0x00
+0073 75F700     668            mov     ((_left + 0x0006) + 1),#0x00
+0076            669   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:77: int right[]={1,1,0,1};
+0076 75B001     670            mov     _right,#0x01
+0079 75B100     671            mov     (_right + 1),#0x00
+007C 75B201     672            mov     (_right + 0x0002),#0x01
+007F 75B300     673            mov     ((_right + 0x0002) + 1),#0x00
+0082 75B400     674            mov     (_right + 0x0004),#0x00
+0085 75B500     675            mov     ((_right + 0x0004) + 1),#0x00
+0088 75B601     676            mov     (_right + 0x0006),#0x01
+008B 75B700     677            mov     ((_right + 0x0006) + 1),#0x00
+008E            678   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:79: int command[4] = {0,0,0,0};
+008E 757000     679            mov     _command,#0x00
+0091 757100     680            mov     (_command + 1),#0x00
+0094 757200     681            mov     (_command + 0x0002),#0x00
+0097 757300     682            mov     ((_command + 0x0002) + 1),#0x00
+009A 757400     683            mov     (_command + 0x0004),#0x00
+009D 757500     684            mov     ((_command + 0x0004) + 1),#0x00
+00A0 757600     685            mov     (_command + 0x0006),#0x00
+00A3 757700     686            mov     ((_command + 0x0006) + 1),#0x00
+00A6            687            ; The linker places a 'ret' at the end of segment R_DINIT.
+00A6            688   ;--------------------------------------------------------
+00A6            689   ; code
+00A6            690   ;--------------------------------------------------------
+0000            691            rseg R_CSEG
+0000            692   ;------------------------------------------------------------
+0000            693   ;Allocation info for local variables in function '_c51_external_startup'
+0000            694   ;------------------------------------------------------------
+0000            695   ;------------------------------------------------------------
+0000            696   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:81: char _c51_external_startup(void)
+0000            697   ;        -----------------------------------------
+0000            698   ;         function _c51_external_startup
+0000            699   ;        -----------------------------------------
+0000            700   __c51_external_startup:
+0000            701            using   0
+0000            702   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:84: SFRPAGE = 0x00;
+0000 75A700     703            mov     _SFRPAGE,#0x00
+0003            704   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:85: WDTCN = 0xDE; //First key
+0003 7597DE     705            mov     _WDTCN,#0xDE
+0006            706   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:86: WDTCN = 0xAD; //Second key
+0006 7597AD     707            mov     _WDTCN,#0xAD
+0009            708   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:88: VDM0CN = 0x80;       // enable VDD monitor
+0009 75FF80     709            mov     _VDM0CN,#0x80
+000C            710   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:89: RSTSRC = 0x02 | 0x04;  // Enable reset on missing clock detector and VDD
+000C 75EF06     711            mov     _RSTSRC,#0x06
+000F            712   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:96: SFRPAGE = 0x10;
+000F 75A710     713            mov     _SFRPAGE,#0x10
+0012            714   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:97: PFE0CN = 0x20; // SYSCLK < 75 MHz.
+0012 75C120     715            mov     _PFE0CN,#0x20
+0015            716   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:98: SFRPAGE = 0x00;
+0015 75A700     717            mov     _SFRPAGE,#0x00
+0018            718   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:119: CLKSEL = 0x00;
+0018 75A900     719            mov     _CLKSEL,#0x00
+001B            720   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:120: CLKSEL = 0x00;
+001B 75A900     721            mov     _CLKSEL,#0x00
+001E            722   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:121: while ((CLKSEL & 0x80) == 0);
+001E            723   L002001?:
+001E E5A9       724            mov     a,_CLKSEL
+0020 30E7D8     725            jnb     acc.7,L002001?
+0023            726   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:122: CLKSEL = 0x03;
+0023 75A903     727            mov     _CLKSEL,#0x03
+0026            728   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:123: CLKSEL = 0x03;
+0026 75A903     729            mov     _CLKSEL,#0x03
+0029            730   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:124: while ((CLKSEL & 0x80) == 0);
+0029            731   L002004?:
+0029 E5A9       732            mov     a,_CLKSEL
+002B 30E758     733            jnb     acc.7,L002004?
+002E            734   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:129: P0MDOUT |= 0x10; // Enable UART0 TX as push-pull output
+002E 43A410     735            orl     _P0MDOUT,#0x10
+0031            736   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:130: XBR0 = 0x01; // Enable UART0 on P0.4(TX) and P0.5(RX)
+0031 75E101     737            mov     _XBR0,#0x01
+0034            738   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:131: XBR1 = 0X00;
+0034 75E200     739            mov     _XBR1,#0x00
+0037            740   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:132: XBR2 = 0x40; // Enable crossbar and weak pull-ups
+0037 75E340     741            mov     _XBR2,#0x40
+003A            742   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:138: SCON0 = 0x10;
+003A 759810     743            mov     _SCON0,#0x10
+003D            744   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:139: TH1 = 0x100 - ((SYSCLK / BAUDRATE) / (2L * 12L));
+003D 758DE6     745            mov     _TH1,#0xE6
+0040            746   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:140: TL1 = TH1;      // Init Timer1
+0040 858D8B     747            mov     _TL1,_TH1
+0043            748   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:141: TMOD &= ~0xf0;  // TMOD: timer 1 in 8-bit auto-reload
+0043 53890F     749            anl     _TMOD,#0x0F
+0046            750   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:142: TMOD |= 0x20;
+0046 438920     751            orl     _TMOD,#0x20
+0049            752   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:143: TR1 = 1; // START Timer1
+0049 D28E       753            setb    _TR1
+004B            754   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:144: TI = 1;  // Indicate TX0 ready
+004B D299       755            setb    _TI
+004D            756   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:147: TMR2CN0 = 0x00;   // Stop Timer2; Clear TF2;
+004D 75C800     757            mov     _TMR2CN0,#0x00
+0050            758   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:148: CKCON0 |= 0b_0001_0000; // Timer 2 uses the system clock
+0050 438E10     759            orl     _CKCON0,#0x10
+0053            760   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:149: TMR2RL = (0x10000L - (SYSCLK / 10000L)); // Initialize reload value
+0053 75CAE0     761            mov     _TMR2RL,#0xE0
+0056 75CBE3     762            mov     (_TMR2RL >> 8),#0xE3
+0059            763   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:150: TMR2 = 0xffff;   // Set to reload immediately
+0059 75CEFF     764            mov     _TMR2,#0xFF
+005C 75CFFF     765            mov     (_TMR2 >> 8),#0xFF
+005F            766   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:151: ET2 = 1;         // Enable Timer2 interrupts
+005F D2AD       767            setb    _ET2
+0061            768   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:152: TR2 = 1;         // Start Timer2 (TMR2CN is bit addressable)
+0061 D2CA       769            setb    _TR2
+0063            770   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:169: EA = 1; // Enable interrupts
+0063 D2AF       771            setb    _EA
+0065            772   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:172: return 0;
+0065 758200     773            mov     dpl,#0x00
+0068 22         774            ret
+0069            775   ;------------------------------------------------------------
+0069            776   ;Allocation info for local variables in function 'Timer3us'
+0069            777   ;------------------------------------------------------------
+0069            778   ;us                        Allocated to registers r2 r3 
+0069            779   ;i                         Allocated to registers r4 r5 
+0069            780   ;------------------------------------------------------------
+0069            781   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:174: void Timer3us(unsigned int us)
+0069            782   ;        -----------------------------------------
+0069            783   ;         function Timer3us
+0069            784   ;        -----------------------------------------
+0069            785   _Timer3us:
+0069 AA82       786            mov     r2,dpl
+006B AB83       787            mov     r3,dph
+006D            788   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:179: CKCON0|=0b_0100_0000;
+006D 438E40     789            orl     _CKCON0,#0x40
+0070            790   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:181: TMR3RL = (-(SYSCLK)/1000000L); // Set Timer3 to overflow in 1us.
+0070 7592B8     791            mov     _TMR3RL,#0xB8
+0073 7593FF     792            mov     (_TMR3RL >> 8),#0xFF
+0076            793   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:182: TMR3 = TMR3RL;                 // Initialize Timer3 for first overflow
+0076 859294     794            mov     _TMR3,_TMR3RL
+0079 859395     795            mov     (_TMR3 >> 8),(_TMR3RL >> 8)
+007C            796   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:184: TMR3CN0 = 0x04;                 // Sart Timer3 and clear overflow flag
+007C 759104     797            mov     _TMR3CN0,#0x04
+007F            798   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:185: for (i = 0; i < us; i++)       // Count <us> overflows
+007F 7C00       799            mov     r4,#0x00
+0081 7D00       800            mov     r5,#0x00
+0083            801   L003004?:
+0083 C3         802            clr     c
+0084 EC         803            mov     a,r4
+0085 9A         804            subb    a,r2
+0086 ED         805            mov     a,r5
+0087 9B         806            subb    a,r3
+0088 5001       807            jnc     L003007?
+008A            808   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:187: while (!(TMR3CN0 & 0x80));  // Wait for overflow
+008A            809   L003001?:
+008A E591       810            mov     a,_TMR3CN0
+008C 30E798     811            jnb     acc.7,L003001?
+008F            812   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:188: TMR3CN0 &= ~(0x80);         // Clear overflow indicator
+008F 53917F     813            anl     _TMR3CN0,#0x7F
+0092            814   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:185: for (i = 0; i < us; i++)       // Count <us> overflows
+0092 0C         815            inc     r4
+0093 BC0018     816            cjne    r4,#0x00,L003004?
+0096 0D         817            inc     r5
+0097 8001       818            sjmp    L003004?
+0099            819   L003007?:
+0099            820   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:190: TMR3CN0 = 0 ;                   // Stop Timer3 and clear overflow flag
+0099 759100     821            mov     _TMR3CN0,#0x00
+009C 22         822            ret
+009D            823   ;------------------------------------------------------------
+009D            824   ;Allocation info for local variables in function 'waitms'
+009D            825   ;------------------------------------------------------------
+009D            826   ;ms                        Allocated to registers r2 r3 
+009D            827   ;j                         Allocated to registers r4 r5 
+009D            828   ;k                         Allocated to registers r6 
+009D            829   ;------------------------------------------------------------
+009D            830   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:192: void waitms (unsigned int ms)
+009D            831   ;        -----------------------------------------
+009D            832   ;         function waitms
+009D            833   ;        -----------------------------------------
+009D            834   _waitms:
+009D AA82       835            mov     r2,dpl
+009F AB83       836            mov     r3,dph
+00A1            837   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:196: for(j=0; j<ms; j++)
+00A1 7C00       838            mov     r4,#0x00
+00A3 7D00       839            mov     r5,#0x00
+00A5            840   L004005?:
+00A5 C3         841            clr     c
+00A6 EC         842            mov     a,r4
+00A7 9A         843            subb    a,r2
+00A8 ED         844            mov     a,r5
+00A9 9B         845            subb    a,r3
+00AA 5001       846            jnc     L004009?
+00AC            847   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:197: for (k=0; k<4; k++) Timer3us(250);
+00AC 7E00       848            mov     r6,#0x00
+00AE            849   L004001?:
+00AE BE0498     850            cjne    r6,#0x04,L004018?
+00B1            851   L004018?:
+00B1 5001       852            jnc     L004007?
+00B3 9000FA     853            mov     dptr,#0x00FA
+00B6 C002       854            push    ar2
+00B8 C003       855            push    ar3
+00BA C004       856            push    ar4
+00BC C005       857            push    ar5
+00BE C006       858            push    ar6
+00C0 120100     859            lcall   _Timer3us
+00C3 D006       860            pop     ar6
+00C5 D005       861            pop     ar5
+00C7 D004       862            pop     ar4
+00C9 D003       863            pop     ar3
+00CB D002       864            pop     ar2
+00CD 0E         865            inc     r6
+00CE 8001       866            sjmp    L004001?
+00D0            867   L004007?:
+00D0            868   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:196: for(j=0; j<ms; j++)
+00D0 0C         869            inc     r4
+00D1 BC00D8     870            cjne    r4,#0x00,L004005?
+00D4 0D         871            inc     r5
+00D5 8001       872            sjmp    L004005?
+00D7            873   L004009?:
+00D7 22         874            ret
+00D8            875   ;------------------------------------------------------------
+00D8            876   ;Allocation info for local variables in function 'ADC_at_Pin'
+00D8            877   ;------------------------------------------------------------
+00D8            878   ;pin                       Allocated to registers 
+00D8            879   ;------------------------------------------------------------
+00D8            880   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:200: unsigned int ADC_at_Pin(unsigned char pin)
+00D8            881   ;        -----------------------------------------
+00D8            882   ;         function ADC_at_Pin
+00D8            883   ;        -----------------------------------------
+00D8            884   _ADC_at_Pin:
+00D8 8582BB     885            mov     _ADC0MX,dpl
+00DB            886   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:203: ADBUSY = 1;       // Dummy conversion first to select new pin
+00DB D2EC       887            setb    _ADBUSY
+00DD            888   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:204: while (ADBUSY); // Wait for dummy conversion to finish
+00DD            889   L005001?:
+00DD 20EC18     890            jb      _ADBUSY,L005001?
+00E0            891   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:205: ADBUSY = 1;     // Convert voltage at the pin
+00E0 D2EC       892            setb    _ADBUSY
+00E2            893   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:206: while (ADBUSY); // Wait for conversion to complete
+00E2            894   L005004?:
+00E2 20EC58     895            jb      _ADBUSY,L005004?
+00E5            896   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:207: return (ADC0);
+00E5 85BD82     897            mov     dpl,_ADC0
+00E8 85BE83     898            mov     dph,(_ADC0 >> 8)
+00EB 22         899            ret
+00EC            900   ;------------------------------------------------------------
+00EC            901   ;Allocation info for local variables in function 'Timer2_ISR'
+00EC            902   ;------------------------------------------------------------
+00EC            903   ;------------------------------------------------------------
+00EC            904   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:211: void Timer2_ISR(void) interrupt 5
+00EC            905   ;        -----------------------------------------
+00EC            906   ;         function Timer2_ISR
+00EC            907   ;        -----------------------------------------
+00EC            908   _Timer2_ISR:
+00EC C0E0       909            push    acc
+00EE C002       910            push    ar2
+00F0 C003       911            push    ar3
+00F2 C0D0       912            push    psw
+00F4 75D000     913            mov     psw,#0x00
+00F7            914   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:213: TF2H = 0; // Clear Timer2 interrupt flag
+00F7 C2CF       915            clr     _TF2H
+00F9            916   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:215: pwm_count++;
+00F9 05A8       917            inc     _pwm_count
+00FB            918   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:216: if (pwm_count>100)
+00FB E5A8       919            mov     a,_pwm_count
+00FD 249B       920            add     a,#0xff - 0x64
+00FF 5001       921            jnc     L006002?
+0101            922   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:217: pwm_count = 0;
+0101 75A800     923            mov     _pwm_count,#0x00
+0104            924   L006002?:
+0104            925   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:220: motorR1 = pwm_count>pwmSig1 ? 0 : 1;
+0104 AAA8       926            mov     r2,_pwm_count
+0106 7B00       927            mov     r3,#0x00
+0108 C3         928            clr     c
+0109 E5A8       929            mov     a,_pwmSig1
+010B 9A         930            subb    a,r2
+010C E5A9       931            mov     a,(_pwmSig1 + 1)
+010E 9B         932            subb    a,r3
+010F 9258       933            mov  _Timer2_ISR_sloc0_1_0,c
+0111 B3         934            cpl     c
+0112 9294       935            mov     _P1_4,c
+0114            936   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:221: motorR2 = pwm_count>pwmSig2 ? 0 : 1;
+0114 AAA8       937            mov     r2,_pwm_count
+0116 7B00       938            mov     r3,#0x00
+0118 C3         939            clr     c
+0119 E568       940            mov     a,_pwmSig2
+011B 9A         941            subb    a,r2
+011C E569       942            mov     a,(_pwmSig2 + 1)
+011E 9B         943            subb    a,r3
+011F 9258       944            mov  _Timer2_ISR_sloc0_1_0,c
+0121 B3         945            cpl     c
+0122 9295       946            mov     _P1_5,c
+0124            947   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:223: motorL1 = pwm_count>pwmSig3 ? 0 : 1;
+0124 AAA8       948            mov     r2,_pwm_count
+0126 7B00       949            mov     r3,#0x00
+0128 C3         950            clr     c
+0129 E528       951            mov     a,_pwmSig3
+012B 9A         952            subb    a,r2
+012C E529       953            mov     a,(_pwmSig3 + 1)
+012E 9B         954            subb    a,r3
+012F 9258       955            mov  _Timer2_ISR_sloc0_1_0,c
+0131 B3         956            cpl     c
+0132 9292       957            mov     _P1_2,c
+0134            958   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:224: motorL2 = pwm_count>pwmSig4 ? 0 : 1;
+0134 AAA8       959            mov     r2,_pwm_count
+0136 7B00       960            mov     r3,#0x00
+0138 C3         961            clr     c
+0139 E5E8       962            mov     a,_pwmSig4
+013B 9A         963            subb    a,r2
+013C E5E9       964            mov     a,(_pwmSig4 + 1)
+013E 9B         965            subb    a,r3
+013F 9258       966            mov  _Timer2_ISR_sloc0_1_0,c
+0141 B3         967            cpl     c
+0142 9293       968            mov     _P1_3,c
+0144            969   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:226: OUT0=pwm_count>80?0:1;
+0144 E5A8       970            mov     a,_pwm_count
+0146 24AF       971            add     a,#0xff - 0x50
+0148 9258       972            mov  _Timer2_ISR_sloc0_1_0,c
+014A B3         973            cpl     c
+014B 92A0       974            mov     _P2_0,c
+014D D0D0       975            pop     psw
+014F D003       976            pop     ar3
+0151 D002       977            pop     ar2
+0153 D0E0       978            pop     acc
+0155 32         979            reti
+0156            980   ;        eliminated unneeded push/pop dpl
+0156            981   ;        eliminated unneeded push/pop dph
+0156            982   ;        eliminated unneeded push/pop b
+0156            983   ;------------------------------------------------------------
+0156            984   ;Allocation info for local variables in function 'InitADC'
+0156            985   ;------------------------------------------------------------
+0156            986   ;------------------------------------------------------------
+0156            987   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:230: void InitADC(void)
+0156            988   ;        -----------------------------------------
+0156            989   ;         function InitADC
+0156            990   ;        -----------------------------------------
+0156            991   _InitADC:
+0156            992   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:232: SFRPAGE = 0x00;
+0156 75A700     993            mov     _SFRPAGE,#0x00
+0159            994   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:233: ADC0CN1 = 0b_10_000_000; //14-bit,  Right justified no shifting applied, perform and Accumulate 1 conversion.
+0159 75B280     995            mov     _ADC0CN1,#0x80
+015C            996   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:234: ADC0CF0 = 0b_11111_0_00; // SYSCLK/32
+015C 75BCF8     997            mov     _ADC0CF0,#0xF8
+015F            998   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:235: ADC0CF1 = 0b_0_0_011110; // Same as default for now
+015F 75B91E     999            mov     _ADC0CF1,#0x1E
+0162           1000   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:236: ADC0CN0 = 0b_0_0_0_0_0_00_0; // Same as default for now
+0162 75E800    1001            mov     _ADC0CN0,#0x00
+0165           1002   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:237: ADC0CF2 = 0b_0_01_11111; // GND pin, Vref=VDD
+0165 75DF3F    1003            mov     _ADC0CF2,#0x3F
+0168           1004   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:238: ADC0CN2 = 0b_0_000_0000;  // Same as default for now. ADC0 conversion initiated on write of 1 to ADBUSY.
+0168 75B300    1005            mov     _ADC0CN2,#0x00
+016B           1006   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:239: ADEN = 1; // Enable ADC
+016B D2EF      1007            setb    _ADEN
+016D 22        1008            ret
+016E           1009   ;------------------------------------------------------------
+016E           1010   ;Allocation info for local variables in function 'TIMER0_Init'
+016E           1011   ;------------------------------------------------------------
+016E           1012   ;------------------------------------------------------------
+016E           1013   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:241: void TIMER0_Init(void)
+016E           1014   ;        -----------------------------------------
+016E           1015   ;         function TIMER0_Init
+016E           1016   ;        -----------------------------------------
+016E           1017   _TIMER0_Init:
+016E           1018   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:243: TMOD &= 0b_1111_0000; // Set the bits of Timer/Counter 0 to zero
+016E 5389F0    1019            anl     _TMOD,#0xF0
+0171           1020   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:244: TMOD |= 0b_0000_0001; // Timer/Counter 0 used as a 16-bit timer
+0171 438901    1021            orl     _TMOD,#0x01
+0174           1022   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:245: TR0 = 0; // Stop Timer/Counter 0
+0174 C28C      1023            clr     _TR0
+0176 22        1024            ret
+0177           1025   ;------------------------------------------------------------
+0177           1026   ;Allocation info for local variables in function 'Volts_at_Pin'
+0177           1027   ;------------------------------------------------------------
+0177           1028   ;pin                       Allocated to registers r2 
+0177           1029   ;------------------------------------------------------------
+0177           1030   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:250: float Volts_at_Pin(unsigned char pin)
+0177           1031   ;        -----------------------------------------
+0177           1032   ;         function Volts_at_Pin
+0177           1033   ;        -----------------------------------------
+0177           1034   _Volts_at_Pin:
+0177           1035   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:252: return ((ADC_at_Pin(pin)*VDD) / 0b_0011_1111_1111_1111);
+0177 120100    1036            lcall   _ADC_at_Pin
+017A 120100    1037            lcall   ___uint2fs
+017D AA82      1038            mov     r2,dpl
+017F AB83      1039            mov     r3,dph
+0181 ACF0      1040            mov     r4,b
+0183 FD        1041            mov     r5,a
+0184 C002      1042            push    ar2
+0186 C003      1043            push    ar3
+0188 C004      1044            push    ar4
+018A C005      1045            push    ar5
+018C 906C8B    1046            mov     dptr,#0x6C8B
+018F 75F053    1047            mov     b,#0x53
+0192 7440      1048            mov     a,#0x40
+0194 120100    1049            lcall   ___fsmul
+0197 AA82      1050            mov     r2,dpl
+0199 AB83      1051            mov     r3,dph
+019B ACF0      1052            mov     r4,b
+019D FD        1053            mov     r5,a
+019E E581      1054            mov     a,sp
+01A0 24FC      1055            add     a,#0xfc
+01A2 F581      1056            mov     sp,a
+01A4 E4        1057            clr     a
+01A5 C0E0      1058            push    acc
+01A7 74FC      1059            mov     a,#0xFC
+01A9 C0E0      1060            push    acc
+01AB 747F      1061            mov     a,#0x7F
+01AD C0E0      1062            push    acc
+01AF 7446      1063            mov     a,#0x46
+01B1 C0E0      1064            push    acc
+01B3 8A82      1065            mov     dpl,r2
+01B5 8B83      1066            mov     dph,r3
+01B7 8CF0      1067            mov     b,r4
+01B9 ED        1068            mov     a,r5
+01BA 120100    1069            lcall   ___fsdiv
+01BD AA82      1070            mov     r2,dpl
+01BF AB83      1071            mov     r3,dph
+01C1 ACF0      1072            mov     r4,b
+01C3 FD        1073            mov     r5,a
+01C4 E581      1074            mov     a,sp
+01C6 24FC      1075            add     a,#0xfc
+01C8 F581      1076            mov     sp,a
+01CA 8A82      1077            mov     dpl,r2
+01CC 8B83      1078            mov     dph,r3
+01CE 8CF0      1079            mov     b,r4
+01D0 ED        1080            mov     a,r5
+01D1 22        1081            ret
+01D2           1082   ;------------------------------------------------------------
+01D2           1083   ;Allocation info for local variables in function 'InitPinADC'
+01D2           1084   ;------------------------------------------------------------
+01D2           1085   ;pinno                     Allocated with name '_InitPinADC_PARM_2'
+01D2           1086   ;portno                    Allocated to registers r2 
+01D2           1087   ;mask                      Allocated to registers r3 
+01D2           1088   ;------------------------------------------------------------
+01D2           1089   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:254: void InitPinADC(unsigned char portno, unsigned char pinno)
+01D2           1090   ;        -----------------------------------------
+01D2           1091   ;         function InitPinADC
+01D2           1092   ;        -----------------------------------------
+01D2           1093   _InitPinADC:
+01D2 AA82      1094            mov     r2,dpl
+01D4           1095   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:258: mask = 1 << pinno;
+01D4 8550F0    1096            mov     b,_InitPinADC_PARM_2
+01D7 05F0      1097            inc     b
+01D9 7401      1098            mov     a,#0x01
+01DB 8001      1099            sjmp    L010013?
+01DD           1100   L010011?:
+01DD 25E0      1101            add     a,acc
+01DF           1102   L010013?:
+01DF D5F098    1103            djnz    b,L010011?
+01E2 FB        1104            mov     r3,a
+01E3           1105   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:260: SFRPAGE = 0x20;
+01E3 75A720    1106            mov     _SFRPAGE,#0x20
+01E6           1107   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:261: switch (portno)
+01E6 BA00D8    1108            cjne    r2,#0x00,L010014?
+01E9 8001      1109            sjmp    L010001?
+01EB           1110   L010014?:
+01EB BA0158    1111            cjne    r2,#0x01,L010015?
+01EE 8001      1112            sjmp    L010002?
+01F0           1113   L010015?:
+01F0           1114   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:263: case 0:
+01F0 BA02D8    1115            cjne    r2,#0x02,L010005?
+01F3 8001      1116            sjmp    L010003?
+01F5           1117   L010001?:
+01F5           1118   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:264: P0MDIN &= (~mask); // Set pin as analog input
+01F5 EB        1119            mov     a,r3
+01F6 F4        1120            cpl     a
+01F7 FA        1121            mov     r2,a
+01F8 52F1      1122            anl     _P0MDIN,a
+01FA           1123   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:265: P0SKIP |= mask; // Skip Crossbar decoding for this pin
+01FA EB        1124            mov     a,r3
+01FB 42D4      1125            orl     _P0SKIP,a
+01FD           1126   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:266: break;
+01FD           1127   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:267: case 1:
+01FD 8001      1128            sjmp    L010005?
+01FF           1129   L010002?:
+01FF           1130   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:268: P1MDIN &= (~mask); // Set pin as analog input
+01FF EB        1131            mov     a,r3
+0200 F4        1132            cpl     a
+0201 FA        1133            mov     r2,a
+0202 52F2      1134            anl     _P1MDIN,a
+0204           1135   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:269: P1SKIP |= mask; // Skip Crossbar decoding for this pin
+0204 EB        1136            mov     a,r3
+0205 42D5      1137            orl     _P1SKIP,a
+0207           1138   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:270: break;
+0207           1139   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:271: case 2:
+0207 8001      1140            sjmp    L010005?
+0209           1141   L010003?:
+0209           1142   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:272: P2MDIN &= (~mask); // Set pin as analog input
+0209 EB        1143            mov     a,r3
+020A F4        1144            cpl     a
+020B FA        1145            mov     r2,a
+020C 52F3      1146            anl     _P2MDIN,a
+020E           1147   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:273: P2SKIP |= mask; // Skip Crossbar decoding for this pin
+020E EB        1148            mov     a,r3
+020F 42CC      1149            orl     _P2SKIP,a
+0211           1150   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:277: }
+0211           1151   L010005?:
+0211           1152   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:278: SFRPAGE = 0x00;
+0211 75A700    1153            mov     _SFRPAGE,#0x00
+0214 22        1154            ret
+0215           1155   ;------------------------------------------------------------
+0215           1156   ;Allocation info for local variables in function 'PWMforward'
+0215           1157   ;------------------------------------------------------------
+0215           1158   ;------------------------------------------------------------
+0215           1159   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:287: void PWMforward(void) {
+0215           1160   ;        -----------------------------------------
+0215           1161   ;         function PWMforward
+0215           1162   ;        -----------------------------------------
+0215           1163   _PWMforward:
+0215           1164   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:288: pwmSig1 = 99;
+0215 75A863    1165            mov     _pwmSig1,#0x63
+0218 E4        1166            clr     a
+0219 F5A9      1167            mov     (_pwmSig1 + 1),a
+021B           1168   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:289: pwmSig2 = 0;
+021B           1169   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:291: pwmSig3 = 0;
+021B E4        1170            clr     a
+021C F568      1171            mov     _pwmSig2,a
+021E F569      1172            mov     (_pwmSig2 + 1),a
+0220 F528      1173            mov     _pwmSig3,a
+0222 F529      1174            mov     (_pwmSig3 + 1),a
+0224           1175   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:292: pwmSig4 =99;
+0224 75E863    1176            mov     _pwmSig4,#0x63
+0227 E4        1177            clr     a
+0228 F5E9      1178            mov     (_pwmSig4 + 1),a
+022A           1179   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:293: printf("Forward\n\r");
+022A 7458      1180            mov     a,#__str_0
+022C C0E0      1181            push    acc
+022E 74C1      1182            mov     a,#(__str_0 >> 8)
+0230 C0E0      1183            push    acc
+0232 7480      1184            mov     a,#0x80
+0234 C0E0      1185            push    acc
+0236 120100    1186            lcall   _printf
+0239 1581      1187            dec     sp
+023B 1581      1188            dec     sp
+023D 1581      1189            dec     sp
+023F 22        1190            ret
+0240           1191   ;------------------------------------------------------------
+0240           1192   ;Allocation info for local variables in function 'PWMbackward'
+0240           1193   ;------------------------------------------------------------
+0240           1194   ;------------------------------------------------------------
+0240           1195   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:296: void PWMbackward(void) {
+0240           1196   ;        -----------------------------------------
+0240           1197   ;         function PWMbackward
+0240           1198   ;        -----------------------------------------
+0240           1199   _PWMbackward:
+0240           1200   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:297: pwmSig1 = 0;
+0240 E4        1201            clr     a
+0241 F5A8      1202            mov     _pwmSig1,a
+0243 F5A9      1203            mov     (_pwmSig1 + 1),a
+0245           1204   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:298: pwmSig2 = 99;
+0245 756863    1205            mov     _pwmSig2,#0x63
+0248 E4        1206            clr     a
+0249 F569      1207            mov     (_pwmSig2 + 1),a
+024B           1208   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:300: pwmSig3 = 99;
+024B 752863    1209            mov     _pwmSig3,#0x63
+024E E4        1210            clr     a
+024F F529      1211            mov     (_pwmSig3 + 1),a
+0251           1212   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:301: pwmSig4 = 0;
+0251 E4        1213            clr     a
+0252 F5E8      1214            mov     _pwmSig4,a
+0254 F5E9      1215            mov     (_pwmSig4 + 1),a
+0256           1216   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:302: printf("Backward\n\r");
+0256 74D8      1217            mov     a,#__str_1
+0258 C0E0      1218            push    acc
+025A 74C1      1219            mov     a,#(__str_1 >> 8)
+025C C0E0      1220            push    acc
+025E 7480      1221            mov     a,#0x80
+0260 C0E0      1222            push    acc
+0262 120100    1223            lcall   _printf
+0265 1581      1224            dec     sp
+0267 1581      1225            dec     sp
+0269 1581      1226            dec     sp
+026B 22        1227            ret
+026C           1228   ;------------------------------------------------------------
+026C           1229   ;Allocation info for local variables in function 'PWMLeft'
+026C           1230   ;------------------------------------------------------------
+026C           1231   ;------------------------------------------------------------
+026C           1232   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:305: void PWMLeft(void) {
+026C           1233   ;        -----------------------------------------
+026C           1234   ;         function PWMLeft
+026C           1235   ;        -----------------------------------------
+026C           1236   _PWMLeft:
+026C           1237   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:306: pwmSig1 = 0;
+026C           1238   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:307: pwmSig2 = 0;
+026C E4        1239            clr     a
+026D F5A8      1240            mov     _pwmSig1,a
+026F F5A9      1241            mov     (_pwmSig1 + 1),a
+0271 F568      1242            mov     _pwmSig2,a
+0273 F569      1243            mov     (_pwmSig2 + 1),a
+0275           1244   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:309: pwmSig3 = 70;
+0275 752846    1245            mov     _pwmSig3,#0x46
+0278 E4        1246            clr     a
+0279 F529      1247            mov     (_pwmSig3 + 1),a
+027B           1248   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:310: pwmSig4 = 0;
+027B E4        1249            clr     a
+027C F5E8      1250            mov     _pwmSig4,a
+027E F5E9      1251            mov     (_pwmSig4 + 1),a
+0280           1252   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:311: printf("Left\n\r");
+0280 7418      1253            mov     a,#__str_2
+0282 C0E0      1254            push    acc
+0284 74C2      1255            mov     a,#(__str_2 >> 8)
+0286 C0E0      1256            push    acc
+0288 7480      1257            mov     a,#0x80
+028A C0E0      1258            push    acc
+028C 120100    1259            lcall   _printf
+028F 1581      1260            dec     sp
+0291 1581      1261            dec     sp
+0293 1581      1262            dec     sp
+0295 22        1263            ret
+0296           1264   ;------------------------------------------------------------
+0296           1265   ;Allocation info for local variables in function 'PWMRight'
+0296           1266   ;------------------------------------------------------------
+0296           1267   ;------------------------------------------------------------
+0296           1268   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:314: void PWMRight(void) {
+0296           1269   ;        -----------------------------------------
+0296           1270   ;         function PWMRight
+0296           1271   ;        -----------------------------------------
+0296           1272   _PWMRight:
+0296           1273   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:315: pwmSig1 = 99;
+0296 75A863    1274            mov     _pwmSig1,#0x63
+0299 E4        1275            clr     a
+029A F5A9      1276            mov     (_pwmSig1 + 1),a
+029C           1277   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:316: pwmSig2 = 0;
+029C           1278   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:318: pwmSig3 = 0;
+029C           1279   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:319: pwmSig4 = 0;
+029C E4        1280            clr     a
+029D F568      1281            mov     _pwmSig2,a
+029F F569      1282            mov     (_pwmSig2 + 1),a
+02A1 F528      1283            mov     _pwmSig3,a
+02A3 F529      1284            mov     (_pwmSig3 + 1),a
+02A5 F5E8      1285            mov     _pwmSig4,a
+02A7 F5E9      1286            mov     (_pwmSig4 + 1),a
+02A9           1287   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:320: printf("Right\n\r");
+02A9 7458      1288            mov     a,#__str_3
+02AB C0E0      1289            push    acc
+02AD 74C2      1290            mov     a,#(__str_3 >> 8)
+02AF C0E0      1291            push    acc
+02B1 7480      1292            mov     a,#0x80
+02B3 C0E0      1293            push    acc
+02B5 120100    1294            lcall   _printf
+02B8 1581      1295            dec     sp
+02BA 1581      1296            dec     sp
+02BC 1581      1297            dec     sp
+02BE 22        1298            ret
+02BF           1299   ;------------------------------------------------------------
+02BF           1300   ;Allocation info for local variables in function 'PWMStop'
+02BF           1301   ;------------------------------------------------------------
+02BF           1302   ;------------------------------------------------------------
+02BF           1303   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:323: void PWMStop(void) {
+02BF           1304   ;        -----------------------------------------
+02BF           1305   ;         function PWMStop
+02BF           1306   ;        -----------------------------------------
+02BF           1307   _PWMStop:
+02BF           1308   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:324: pwmSig1 = 0;
+02BF           1309   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:325: pwmSig2 = 0;
+02BF           1310   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:327: pwmSig3 = 0;
+02BF           1311   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:328: pwmSig4 = 0;
+02BF E4        1312            clr     a
+02C0 F5A8      1313            mov     _pwmSig1,a
+02C2 F5A9      1314            mov     (_pwmSig1 + 1),a
+02C4 F568      1315            mov     _pwmSig2,a
+02C6 F569      1316            mov     (_pwmSig2 + 1),a
+02C8 F528      1317            mov     _pwmSig3,a
+02CA F529      1318            mov     (_pwmSig3 + 1),a
+02CC F5E8      1319            mov     _pwmSig4,a
+02CE F5E9      1320            mov     (_pwmSig4 + 1),a
+02D0           1321   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:329: printf("Stop\n\r");
+02D0 7498      1322            mov     a,#__str_4
+02D2 C0E0      1323            push    acc
+02D4 74C2      1324            mov     a,#(__str_4 >> 8)
+02D6 C0E0      1325            push    acc
+02D8 7480      1326            mov     a,#0x80
+02DA C0E0      1327            push    acc
+02DC 120100    1328            lcall   _printf
+02DF 1581      1329            dec     sp
+02E1 1581      1330            dec     sp
+02E3 1581      1331            dec     sp
+02E5 22        1332            ret
+02E6           1333   ;------------------------------------------------------------
+02E6           1334   ;Allocation info for local variables in function 'checkTime'
+02E6           1335   ;------------------------------------------------------------
+02E6           1336   ;time                      Allocated to registers r2 r3 r4 r5 
+02E6           1337   ;overflow_count            Allocated with name '_checkTime_overflow_count_1_73'
+02E6           1338   ;sloc0                     Allocated with name '_checkTime_sloc0_1_0'
+02E6           1339   ;------------------------------------------------------------
+02E6           1340   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:335: float checkTime (void) {
+02E6           1341   ;        -----------------------------------------
+02E6           1342   ;         function checkTime
+02E6           1343   ;        -----------------------------------------
+02E6           1344   _checkTime:
+02E6           1345   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:339: TL0=0; 
+02E6 758A00    1346            mov     _TL0,#0x00
+02E9           1347   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:340: TH0=0;
+02E9 758C00    1348            mov     _TH0,#0x00
+02EC           1349   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:341: TF0=0;
+02EC C28D      1350            clr     _TF0
+02EE           1351   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:343: TR0=0;
+02EE C28C      1352            clr     _TR0
+02F0           1353   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:348: printf("Waiting for the signal to be 1\n\r");
+02F0 74D8      1354            mov     a,#__str_5
+02F2 C0E0      1355            push    acc
+02F4 74C2      1356            mov     a,#(__str_5 >> 8)
+02F6 C0E0      1357            push    acc
+02F8 7480      1358            mov     a,#0x80
+02FA C0E0      1359            push    acc
+02FC 120100    1360            lcall   _printf
+02FF 1581      1361            dec     sp
+0301 1581      1362            dec     sp
+0303 1581      1363            dec     sp
+0305           1364   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:349: printf("Volt at ADC: %f\n\r", Volts_at_Pin(QFP32_MUX_P1_6));
+0305 75820C    1365            mov     dpl,#0x0C
+0308 120100    1366            lcall   _Volts_at_Pin
+030B AA82      1367            mov     r2,dpl
+030D AB83      1368            mov     r3,dph
+030F ACF0      1369            mov     r4,b
+0311 FD        1370            mov     r5,a
+0312 C002      1371            push    ar2
+0314 C003      1372            push    ar3
+0316 C004      1373            push    ar4
+0318 C005      1374            push    ar5
+031A 7418      1375            mov     a,#__str_6
+031C C0E0      1376            push    acc
+031E 74C3      1377            mov     a,#(__str_6 >> 8)
+0320 C0E0      1378            push    acc
+0322 7480      1379            mov     a,#0x80
+0324 C0E0      1380            push    acc
+0326 120100    1381            lcall   _printf
+0329 E581      1382            mov     a,sp
+032B 24F9      1383            add     a,#0xf9
+032D F581      1384            mov     sp,a
+032F           1385   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:350: while(Volts_at_Pin(QFP32_MUX_P1_6) < thresholdVolt);
+032F           1386   L016001?:
+032F 75820C    1387            mov     dpl,#0x0C
+0332 120100    1388            lcall   _Volts_at_Pin
+0335 AA82      1389            mov     r2,dpl
+0337 AB83      1390            mov     r3,dph
+0339 ACF0      1391            mov     r4,b
+033B FD        1392            mov     r5,a
+033C 74CD      1393            mov     a,#0xCD
+033E C0E0      1394            push    acc
+0340 74CC      1395            mov     a,#0xCC
+0342 C0E0      1396            push    acc
+0344 744C      1397            mov     a,#0x4C
+0346 C0E0      1398            push    acc
+0348 743D      1399            mov     a,#0x3D
+034A C0E0      1400            push    acc
+034C 8A82      1401            mov     dpl,r2
+034E 8B83      1402            mov     dph,r3
+0350 8CF0      1403            mov     b,r4
+0352 ED        1404            mov     a,r5
+0353 120100    1405            lcall   ___fslt
+0356 AA82      1406            mov     r2,dpl
+0358 E581      1407            mov     a,sp
+035A 24FC      1408            add     a,#0xfc
+035C F581      1409            mov     sp,a
+035E EA        1410            mov     a,r2
+035F 7001      1411            jnz     L016001?
+0361           1412   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:351: while(Volts_at_Pin(QFP32_MUX_P1_6) >= thresholdVolt); //wait for the signal to be 0
+0361           1413   L016004?:
+0361 75820C    1414            mov     dpl,#0x0C
+0364 120100    1415            lcall   _Volts_at_Pin
+0367 AA82      1416            mov     r2,dpl
+0369 AB83      1417            mov     r3,dph
+036B ACF0      1418            mov     r4,b
+036D FD        1419            mov     r5,a
+036E 74CD      1420            mov     a,#0xCD
+0370 C0E0      1421            push    acc
+0372 74CC      1422            mov     a,#0xCC
+0374 C0E0      1423            push    acc
+0376 744C      1424            mov     a,#0x4C
+0378 C0E0      1425            push    acc
+037A 743D      1426            mov     a,#0x3D
+037C C0E0      1427            push    acc
+037E 8A82      1428            mov     dpl,r2
+0380 8B83      1429            mov     dph,r3
+0382 8CF0      1430            mov     b,r4
+0384 ED        1431            mov     a,r5
+0385 120100    1432            lcall   ___fslt
+0388 AA82      1433            mov     r2,dpl
+038A E581      1434            mov     a,sp
+038C 24FC      1435            add     a,#0xfc
+038E F581      1436            mov     sp,a
+0390 EA        1437            mov     a,r2
+0391 6001      1438            jz      L016004?
+0393           1439   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:352: printf("Signal is 0\n\r");
+0393 7418      1440            mov     a,#__str_7
+0395 C0E0      1441            push    acc
+0397 74C4      1442            mov     a,#(__str_7 >> 8)
+0399 C0E0      1443            push    acc
+039B 7480      1444            mov     a,#0x80
+039D C0E0      1445            push    acc
+039F 120100    1446            lcall   _printf
+03A2 1581      1447            dec     sp
+03A4 1581      1448            dec     sp
+03A6 1581      1449            dec     sp
+03A8           1450   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:353: printf("Volt at ADC: %f\n\r", Volts_at_Pin(QFP32_MUX_P1_6));
+03A8 75820C    1451            mov     dpl,#0x0C
+03AB 120100    1452            lcall   _Volts_at_Pin
+03AE AA82      1453            mov     r2,dpl
+03B0 AB83      1454            mov     r3,dph
+03B2 ACF0      1455            mov     r4,b
+03B4 FD        1456            mov     r5,a
+03B5 C002      1457            push    ar2
+03B7 C003      1458            push    ar3
+03B9 C004      1459            push    ar4
+03BB C005      1460            push    ar5
+03BD 7418      1461            mov     a,#__str_6
+03BF C0E0      1462            push    acc
+03C1 74C3      1463            mov     a,#(__str_6 >> 8)
+03C3 C0E0      1464            push    acc
+03C5 7480      1465            mov     a,#0x80
+03C7 C0E0      1466            push    acc
+03C9 120100    1467            lcall   _printf
+03CC E581      1468            mov     a,sp
+03CE 24F9      1469            add     a,#0xf9
+03D0 F581      1470            mov     sp,a
+03D2           1471   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:354: printf("Start Timer\n\r");
+03D2 7458      1472            mov     a,#__str_8
+03D4 C0E0      1473            push    acc
+03D6 74C4      1474            mov     a,#(__str_8 >> 8)
+03D8 C0E0      1475            push    acc
+03DA 7480      1476            mov     a,#0x80
+03DC C0E0      1477            push    acc
+03DE 120100    1478            lcall   _printf
+03E1 1581      1479            dec     sp
+03E3 1581      1480            dec     sp
+03E5 1581      1481            dec     sp
+03E7           1482   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:355: TR0=1; // Start the timer
+03E7 D28C      1483            setb    _TR0
+03E9           1484   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:357: while (Volts_at_Pin(QFP32_MUX_P1_6) < thresholdVolt) {   // wait for signal to be 1
+03E9 E4        1485            clr     a
+03EA F5B8      1486            mov     _checkTime_overflow_count_1_73,a
+03EC F5B9      1487            mov     (_checkTime_overflow_count_1_73 + 1),a
+03EE           1488   L016009?:
+03EE 75820C    1489            mov     dpl,#0x0C
+03F1 120100    1490            lcall   _Volts_at_Pin
+03F4 AC82      1491            mov     r4,dpl
+03F6 AD83      1492            mov     r5,dph
+03F8 AEF0      1493            mov     r6,b
+03FA FF        1494            mov     r7,a
+03FB 74CD      1495            mov     a,#0xCD
+03FD C0E0      1496            push    acc
+03FF 74CC      1497            mov     a,#0xCC
+0401 C0E0      1498            push    acc
+0403 744C      1499            mov     a,#0x4C
+0405 C0E0      1500            push    acc
+0407 743D      1501            mov     a,#0x3D
+0409 C0E0      1502            push    acc
+040B 8C82      1503            mov     dpl,r4
+040D 8D83      1504            mov     dph,r5
+040F 8EF0      1505            mov     b,r6
+0411 EF        1506            mov     a,r7
+0412 120100    1507            lcall   ___fslt
+0415 AC82      1508            mov     r4,dpl
+0417 E581      1509            mov     a,sp
+0419 24FC      1510            add     a,#0xfc
+041B F581      1511            mov     sp,a
+041D EC        1512            mov     a,r4
+041E 6001      1513            jz      L016011?
+0420           1514   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:358: printf("Volt at ADC: %f\n\r", Volts_at_Pin(QFP32_MUX_P1_6));
+0420 75820C    1515            mov     dpl,#0x0C
+0423 120100    1516            lcall   _Volts_at_Pin
+0426 AC82      1517            mov     r4,dpl
+0428 AD83      1518            mov     r5,dph
+042A AEF0      1519            mov     r6,b
+042C FF        1520            mov     r7,a
+042D C004      1521            push    ar4
+042F C005      1522            push    ar5
+0431 C006      1523            push    ar6
+0433 C007      1524            push    ar7
+0435 7418      1525            mov     a,#__str_6
+0437 C0E0      1526            push    acc
+0439 74C3      1527            mov     a,#(__str_6 >> 8)
+043B C0E0      1528            push    acc
+043D 7480      1529            mov     a,#0x80
+043F C0E0      1530            push    acc
+0441 120100    1531            lcall   _printf
+0444 E581      1532            mov     a,sp
+0446 24F9      1533            add     a,#0xf9
+0448 F581      1534            mov     sp,a
+044A           1535   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:359: if(TF0==1) { // Did the 16-bit timer overflow                    {
+044A           1536   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:360: TF0=0;
+044A 108D18    1537            jbc     _TF0,L016035?
+044D 8001      1538            sjmp    L016009?
+044F           1539   L016035?:
+044F           1540   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:361: overflow_count++;
+044F 05B8      1541            inc     _checkTime_overflow_count_1_73
+0451 E4        1542            clr     a
+0452 B5B898    1543            cjne    a,_checkTime_overflow_count_1_73,L016009?
+0455 05B9      1544            inc     (_checkTime_overflow_count_1_73 + 1)
+0457 8001      1545            sjmp    L016009?
+0459           1546   L016011?:
+0459           1547   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:370: if ((overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK)*1000 < 10) {
+0459 85B882    1548            mov     dpl,_checkTime_overflow_count_1_73
+045C 85B983    1549            mov     dph,(_checkTime_overflow_count_1_73 + 1)
+045F 120100    1550            lcall   ___sint2fs
+0462 AC82      1551            mov     r4,dpl
+0464 AD83      1552            mov     r5,dph
+0466 AEF0      1553            mov     r6,b
+0468 FF        1554            mov     r7,a
+0469 C004      1555            push    ar4
+046B C005      1556            push    ar5
+046D C006      1557            push    ar6
+046F C007      1558            push    ar7
+0471 C004      1559            push    ar4
+0473 C005      1560            push    ar5
+0475 C006      1561            push    ar6
+0477 C007      1562            push    ar7
+0479 900000    1563            mov     dptr,#0x0000
+047C 75F080    1564            mov     b,#0x80
+047F 7447      1565            mov     a,#0x47
+0481 120100    1566            lcall   ___fsmul
+0484 858208    1567            mov     _checkTime_sloc0_1_0,dpl
+0487 858309    1568            mov     (_checkTime_sloc0_1_0 + 1),dph
+048A 85F00A    1569            mov     (_checkTime_sloc0_1_0 + 2),b
+048D F50B      1570            mov     (_checkTime_sloc0_1_0 + 3),a
+048F E581      1571            mov     a,sp
+0491 24FC      1572            add     a,#0xfc
+0493 F581      1573            mov     sp,a
+0495 858C82    1574            mov     dpl,_TH0
+0498 120100    1575            lcall   ___uchar2fs
+049B AA82      1576            mov     r2,dpl
+049D AB83      1577            mov     r3,dph
+049F A8F0      1578            mov     r0,b
+04A1 F9        1579            mov     r1,a
+04A2 C002      1580            push    ar2
+04A4 C003      1581            push    ar3
+04A6 C000      1582            push    ar0
+04A8 C001      1583            push    ar1
+04AA 900000    1584            mov     dptr,#0x0000
+04AD 75F080    1585            mov     b,#0x80
+04B0 7443      1586            mov     a,#0x43
+04B2 120100    1587            lcall   ___fsmul
+04B5 AA82      1588            mov     r2,dpl
+04B7 AB83      1589            mov     r3,dph
+04B9 A8F0      1590            mov     r0,b
+04BB F9        1591            mov     r1,a
+04BC E581      1592            mov     a,sp
+04BE 24FC      1593            add     a,#0xfc
+04C0 F581      1594            mov     sp,a
+04C2 C002      1595            push    ar2
+04C4 C003      1596            push    ar3
+04C6 C000      1597            push    ar0
+04C8 C001      1598            push    ar1
+04CA 850882    1599            mov     dpl,_checkTime_sloc0_1_0
+04CD 850983    1600            mov     dph,(_checkTime_sloc0_1_0 + 1)
+04D0 850AF0    1601            mov     b,(_checkTime_sloc0_1_0 + 2)
+04D3 E50B      1602            mov     a,(_checkTime_sloc0_1_0 + 3)
+04D5 120100    1603            lcall   ___fsadd
+04D8 858208    1604            mov     _checkTime_sloc0_1_0,dpl
+04DB 858309    1605            mov     (_checkTime_sloc0_1_0 + 1),dph
+04DE 85F00A    1606            mov     (_checkTime_sloc0_1_0 + 2),b
+04E1 F50B      1607            mov     (_checkTime_sloc0_1_0 + 3),a
+04E3 E581      1608            mov     a,sp
+04E5 24FC      1609            add     a,#0xfc
+04E7 F581      1610            mov     sp,a
+04E9 AA8A      1611            mov     r2,_TL0
+04EB 7B00      1612            mov     r3,#0x00
+04ED 8A82      1613            mov     dpl,r2
+04EF 8B83      1614            mov     dph,r3
+04F1 120100    1615            lcall   ___sint2fs
+04F4 AA82      1616            mov     r2,dpl
+04F6 AB83      1617            mov     r3,dph
+04F8 A8F0      1618            mov     r0,b
+04FA F9        1619            mov     r1,a
+04FB C002      1620            push    ar2
+04FD C003      1621            push    ar3
+04FF C000      1622            push    ar0
+0501 C001      1623            push    ar1
+0503 850882    1624            mov     dpl,_checkTime_sloc0_1_0
+0506 850983    1625            mov     dph,(_checkTime_sloc0_1_0 + 1)
+0509 850AF0    1626            mov     b,(_checkTime_sloc0_1_0 + 2)
+050C E50B      1627            mov     a,(_checkTime_sloc0_1_0 + 3)
+050E 120100    1628            lcall   ___fsadd
+0511 AA82      1629            mov     r2,dpl
+0513 AB83      1630            mov     r3,dph
+0515 A8F0      1631            mov     r0,b
+0517 F9        1632            mov     r1,a
+0518 E581      1633            mov     a,sp
+051A 24FC      1634            add     a,#0xfc
+051C F581      1635            mov     sp,a
+051E C002      1636            push    ar2
+0520 C003      1637            push    ar3
+0522 C000      1638            push    ar0
+0524 C001      1639            push    ar1
+0526 90C33E    1640            mov     dptr,#0xC33E
+0529 75F02E    1641            mov     b,#0x2E
+052C 7439      1642            mov     a,#0x39
+052E 120100    1643            lcall   ___fsmul
+0531 AA82      1644            mov     r2,dpl
+0533 AB83      1645            mov     r3,dph
+0535 A8F0      1646            mov     r0,b
+0537 F9        1647            mov     r1,a
+0538 E581      1648            mov     a,sp
+053A 24FC      1649            add     a,#0xfc
+053C F581      1650            mov     sp,a
+053E E4        1651            clr     a
+053F C0E0      1652            push    acc
+0541 C0E0      1653            push    acc
+0543 7420      1654            mov     a,#0x20
+0545 C0E0      1655            push    acc
+0547 7441      1656            mov     a,#0x41
+0549 C0E0      1657            push    acc
+054B 8A82      1658            mov     dpl,r2
+054D 8B83      1659            mov     dph,r3
+054F 88F0      1660            mov     b,r0
+0551 E9        1661            mov     a,r1
+0552 120100    1662            lcall   ___fslt
+0555 AA82      1663            mov     r2,dpl
+0557 E581      1664            mov     a,sp
+0559 24FC      1665            add     a,#0xfc
+055B F581      1666            mov     sp,a
+055D D007      1667            pop     ar7
+055F D006      1668            pop     ar6
+0561 D005      1669            pop     ar5
+0563 D004      1670            pop     ar4
+0565 EA        1671            mov     a,r2
+0566 7001      1672            jnz     L016037?
+0568 020100    1673            ljmp    L016018?
+056B           1674   L016037?:
+056B           1675   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:371: while (Volts_at_Pin(QFP32_MUX_P1_6) < thresholdVolt) {   // wait for signal to be 1
+056B           1676   L016014?:
+056B 75820C    1677            mov     dpl,#0x0C
+056E C004      1678            push    ar4
+0570 C005      1679            push    ar5
+0572 C006      1680            push    ar6
+0574 C007      1681            push    ar7
+0576 120100    1682            lcall   _Volts_at_Pin
+0579 A882      1683            mov     r0,dpl
+057B A983      1684            mov     r1,dph
+057D AAF0      1685            mov     r2,b
+057F FB        1686            mov     r3,a
+0580 74CD      1687            mov     a,#0xCD
+0582 C0E0      1688            push    acc
+0584 74CC      1689            mov     a,#0xCC
+0586 C0E0      1690            push    acc
+0588 744C      1691            mov     a,#0x4C
+058A C0E0      1692            push    acc
+058C 743D      1693            mov     a,#0x3D
+058E C0E0      1694            push    acc
+0590 8882      1695            mov     dpl,r0
+0592 8983      1696            mov     dph,r1
+0594 8AF0      1697            mov     b,r2
+0596 EB        1698            mov     a,r3
+0597 120100    1699            lcall   ___fslt
+059A AA82      1700            mov     r2,dpl
+059C E581      1701            mov     a,sp
+059E 24FC      1702            add     a,#0xfc
+05A0 F581      1703            mov     sp,a
+05A2 D007      1704            pop     ar7
+05A4 D006      1705            pop     ar6
+05A6 D005      1706            pop     ar5
+05A8 D004      1707            pop     ar4
+05AA EA        1708            mov     a,r2
+05AB 6001      1709            jz      L016018?
+05AD           1710   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:372: printf("Volt at ADC: %f\n\r", Volts_at_Pin(QFP32_MUX_P1_6));
+05AD 75820C    1711            mov     dpl,#0x0C
+05B0 C004      1712            push    ar4
+05B2 C005      1713            push    ar5
+05B4 C006      1714            push    ar6
+05B6 C007      1715            push    ar7
+05B8 120100    1716            lcall   _Volts_at_Pin
+05BB AA82      1717            mov     r2,dpl
+05BD AB83      1718            mov     r3,dph
+05BF A8F0      1719            mov     r0,b
+05C1 F9        1720            mov     r1,a
+05C2 C002      1721            push    ar2
+05C4 C003      1722            push    ar3
+05C6 C000      1723            push    ar0
+05C8 C001      1724            push    ar1
+05CA 7418      1725            mov     a,#__str_6
+05CC C0E0      1726            push    acc
+05CE 74C3      1727            mov     a,#(__str_6 >> 8)
+05D0 C0E0      1728            push    acc
+05D2 7480      1729            mov     a,#0x80
+05D4 C0E0      1730            push    acc
+05D6 120100    1731            lcall   _printf
+05D9 E581      1732            mov     a,sp
+05DB 24F9      1733            add     a,#0xf9
+05DD F581      1734            mov     sp,a
+05DF D007      1735            pop     ar7
+05E1 D006      1736            pop     ar6
+05E3 D005      1737            pop     ar5
+05E5 D004      1738            pop     ar4
+05E7           1739   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:373: if(TF0==1) { // Did the 16-bit timer overflow                    {
+05E7           1740   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:374: TF0=0;
+05E7 108DD8    1741            jbc     _TF0,L016039?
+05EA 020100    1742            ljmp    L016014?
+05ED           1743   L016039?:
+05ED           1744   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:375: overflow_count++;
+05ED 05B8      1745            inc     _checkTime_overflow_count_1_73
+05EF E4        1746            clr     a
+05F0 B5B818    1747            cjne    a,_checkTime_overflow_count_1_73,L016040?
+05F3 05B9      1748            inc     (_checkTime_overflow_count_1_73 + 1)
+05F5           1749   L016040?:
+05F5 020100    1750            ljmp    L016014?
+05F8           1751   L016018?:
+05F8           1752   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:386: TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
+05F8 C28C      1753            clr     _TR0
+05FA           1754   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:387: printf("Stop Timer\n\r");
+05FA C004      1755            push    ar4
+05FC C005      1756            push    ar5
+05FE C006      1757            push    ar6
+0600 C007      1758            push    ar7
+0602 7458      1759            mov     a,#__str_9
+0604 C0E0      1760            push    acc
+0606 74C7      1761            mov     a,#(__str_9 >> 8)
+0608 C0E0      1762            push    acc
+060A 7480      1763            mov     a,#0x80
+060C C0E0      1764            push    acc
+060E 120100    1765            lcall   _printf
+0611 1581      1766            dec     sp
+0613 1581      1767            dec     sp
+0615 1581      1768            dec     sp
+0617           1769   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:388: time=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
+0617 900000    1770            mov     dptr,#0x0000
+061A 75F080    1771            mov     b,#0x80
+061D 7447      1772            mov     a,#0x47
+061F 120100    1773            lcall   ___fsmul
+0622 AA82      1774            mov     r2,dpl
+0624 AB83      1775            mov     r3,dph
+0626 ACF0      1776            mov     r4,b
+0628 FD        1777            mov     r5,a
+0629 E581      1778            mov     a,sp
+062B 24FC      1779            add     a,#0xfc
+062D F581      1780            mov     sp,a
+062F 858C82    1781            mov     dpl,_TH0
+0632 C002      1782            push    ar2
+0634 C003      1783            push    ar3
+0636 C004      1784            push    ar4
+0638 C005      1785            push    ar5
+063A 120100    1786            lcall   ___uchar2fs
+063D AE82      1787            mov     r6,dpl
+063F AF83      1788            mov     r7,dph
+0641 A8F0      1789            mov     r0,b
+0643 F9        1790            mov     r1,a
+0644 C006      1791            push    ar6
+0646 C007      1792            push    ar7
+0648 C000      1793            push    ar0
+064A C001      1794            push    ar1
+064C 900000    1795            mov     dptr,#0x0000
+064F 75F080    1796            mov     b,#0x80
+0652 7443      1797            mov     a,#0x43
+0654 120100    1798            lcall   ___fsmul
+0657 AE82      1799            mov     r6,dpl
+0659 AF83      1800            mov     r7,dph
+065B A8F0      1801            mov     r0,b
+065D F9        1802            mov     r1,a
+065E E581      1803            mov     a,sp
+0660 24FC      1804            add     a,#0xfc
+0662 F581      1805            mov     sp,a
+0664 D005      1806            pop     ar5
+0666 D004      1807            pop     ar4
+0668 D003      1808            pop     ar3
+066A D002      1809            pop     ar2
+066C C006      1810            push    ar6
+066E C007      1811            push    ar7
+0670 C000      1812            push    ar0
+0672 C001      1813            push    ar1
+0674 8A82      1814            mov     dpl,r2
+0676 8B83      1815            mov     dph,r3
+0678 8CF0      1816            mov     b,r4
+067A ED        1817            mov     a,r5
+067B 120100    1818            lcall   ___fsadd
+067E AA82      1819            mov     r2,dpl
+0680 AB83      1820            mov     r3,dph
+0682 ACF0      1821            mov     r4,b
+0684 FD        1822            mov     r5,a
+0685 E581      1823            mov     a,sp
+0687 24FC      1824            add     a,#0xfc
+0689 F581      1825            mov     sp,a
+068B AE8A      1826            mov     r6,_TL0
+068D 7F00      1827            mov     r7,#0x00
+068F 8E82      1828            mov     dpl,r6
+0691 8F83      1829            mov     dph,r7
+0693 C002      1830            push    ar2
+0695 C003      1831            push    ar3
+0697 C004      1832            push    ar4
+0699 C005      1833            push    ar5
+069B 120100    1834            lcall   ___sint2fs
+069E AE82      1835            mov     r6,dpl
+06A0 AF83      1836            mov     r7,dph
+06A2 A8F0      1837            mov     r0,b
+06A4 F9        1838            mov     r1,a
+06A5 D005      1839            pop     ar5
+06A7 D004      1840            pop     ar4
+06A9 D003      1841            pop     ar3
+06AB D002      1842            pop     ar2
+06AD C006      1843            push    ar6
+06AF C007      1844            push    ar7
+06B1 C000      1845            push    ar0
+06B3 C001      1846            push    ar1
+06B5 8A82      1847            mov     dpl,r2
+06B7 8B83      1848            mov     dph,r3
+06B9 8CF0      1849            mov     b,r4
+06BB ED        1850            mov     a,r5
+06BC 120100    1851            lcall   ___fsadd
+06BF AA82      1852            mov     r2,dpl
+06C1 AB83      1853            mov     r3,dph
+06C3 ACF0      1854            mov     r4,b
+06C5 FD        1855            mov     r5,a
+06C6 E581      1856            mov     a,sp
+06C8 24FC      1857            add     a,#0xfc
+06CA F581      1858            mov     sp,a
+06CC C002      1859            push    ar2
+06CE C003      1860            push    ar3
+06D0 C004      1861            push    ar4
+06D2 C005      1862            push    ar5
+06D4 90F4FC    1863            mov     dptr,#0xF4FC
+06D7 75F032    1864            mov     b,#0x32
+06DA 7434      1865            mov     a,#0x34
+06DC 120100    1866            lcall   ___fsmul
+06DF AA82      1867            mov     r2,dpl
+06E1 AB83      1868            mov     r3,dph
+06E3 ACF0      1869            mov     r4,b
+06E5 FD        1870            mov     r5,a
+06E6 E581      1871            mov     a,sp
+06E8 24FC      1872            add     a,#0xfc
+06EA F581      1873            mov     sp,a
+06EC           1874   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:389: return time*1000; //return period of high pulse in seconds               
+06EC C002      1875            push    ar2
+06EE C003      1876            push    ar3
+06F0 C004      1877            push    ar4
+06F2 C005      1878            push    ar5
+06F4 900000    1879            mov     dptr,#0x0000
+06F7 75F07A    1880            mov     b,#0x7A
+06FA 7444      1881            mov     a,#0x44
+06FC 120100    1882            lcall   ___fsmul
+06FF AA82      1883            mov     r2,dpl
+0701 AB83      1884            mov     r3,dph
+0703 ACF0      1885            mov     r4,b
+0705 FD        1886            mov     r5,a
+0706 E581      1887            mov     a,sp
+0708 24FC      1888            add     a,#0xfc
+070A F581      1889            mov     sp,a
+070C 8A82      1890            mov     dpl,r2
+070E 8B83      1891            mov     dph,r3
+0710 8CF0      1892            mov     b,r4
+0712 ED        1893            mov     a,r5
+0713 22        1894            ret
+0714           1895   ;------------------------------------------------------------
+0714           1896   ;Allocation info for local variables in function 'voltsAtPeak'
+0714           1897   ;------------------------------------------------------------
+0714           1898   ;------------------------------------------------------------
+0714           1899   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:396: float voltsAtPeak(void) {
+0714           1900   ;        -----------------------------------------
+0714           1901   ;         function voltsAtPeak
+0714           1902   ;        -----------------------------------------
+0714           1903   _voltsAtPeak:
+0714           1904   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:397: while(ADC_at_Pin(QFP32_MUX_P1_6)==0); //input pin waiting to be  
+0714           1905   L017001?:
+0714 75820C    1906            mov     dpl,#0x0C
+0717 120100    1907            lcall   _ADC_at_Pin
+071A E582      1908            mov     a,dpl
+071C 8583F0    1909            mov     b,dph
+071F 45F0      1910            orl     a,b
+0721 6001      1911            jz      L017001?
+0723           1912   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:398: while(ADC_at_Pin(QFP32_MUX_P1_6)==0); //this waiting for the pin to be high/ 1 
+0723           1913   L017004?:
+0723 75820C    1914            mov     dpl,#0x0C
+0726 120100    1915            lcall   _ADC_at_Pin
+0729 E582      1916            mov     a,dpl
+072B 8583F0    1917            mov     b,dph
+072E 45F0      1918            orl     a,b
+0730 6001      1919            jz      L017004?
+0732           1920   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:399: Timer3us((PERIOD*1.0E6)/4.0); //PERIOD IS DEFINED
+0732 900000    1921            mov     dptr,#0x0000
+0735 120100    1922            lcall   _Timer3us
+0738           1923   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:400: return(Volts_at_Pin(QFP32_MUX_P1_6));
+0738 75820C    1924            mov     dpl,#0x0C
+073B 020100    1925            ljmp    _Volts_at_Pin
+073E           1926   ;------------------------------------------------------------
+073E           1927   ;Allocation info for local variables in function 'waitquarterperiod'
+073E           1928   ;------------------------------------------------------------
+073E           1929   ;------------------------------------------------------------
+073E           1930   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:413: void waitquarterperiod(void){
+073E           1931   ;        -----------------------------------------
+073E           1932   ;         function waitquarterperiod
+073E           1933   ;        -----------------------------------------
+073E           1934   _waitquarterperiod:
+073E           1935   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:414: waitms(constant_delay_time);
+073E 90000A    1936            mov     dptr,#0x000A
+0741 020100    1937            ljmp    _waitms
+0744           1938   ;------------------------------------------------------------
+0744           1939   ;Allocation info for local variables in function 'detectobstacle'
+0744           1940   ;------------------------------------------------------------
+0744           1941   ;threshold                 Allocated to registers r2 r3 r4 r5 
+0744           1942   ;------------------------------------------------------------
+0744           1943   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:418: void detectobstacle(float threshold){
+0744           1944   ;        -----------------------------------------
+0744           1945   ;         function detectobstacle
+0744           1946   ;        -----------------------------------------
+0744           1947   _detectobstacle:
+0744 AA82      1948            mov     r2,dpl
+0746 AB83      1949            mov     r3,dph
+0748 ACF0      1950            mov     r4,b
+074A FD        1951            mov     r5,a
+074B           1952   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:429: if(threshold <= 0.6 ){
+074B 749A      1953            mov     a,#0x9A
+074D C0E0      1954            push    acc
+074F 7499      1955            mov     a,#0x99
+0751 C0E0      1956            push    acc
+0753 7419      1957            mov     a,#0x19
+0755 C0E0      1958            push    acc
+0757 743F      1959            mov     a,#0x3F
+0759 C0E0      1960            push    acc
+075B 8A82      1961            mov     dpl,r2
+075D 8B83      1962            mov     dph,r3
+075F 8CF0      1963            mov     b,r4
+0761 ED        1964            mov     a,r5
+0762 120100    1965            lcall   ___fsgt
+0765 AA82      1966            mov     r2,dpl
+0767 E581      1967            mov     a,sp
+0769 24FC      1968            add     a,#0xfc
+076B F581      1969            mov     sp,a
+076D EA        1970            mov     a,r2
+076E 7001      1971            jnz     L019002?
+0770           1972   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:431: printf("Turn right \r\n");
+0770 C002      1973            push    ar2
+0772 7498      1974            mov     a,#__str_10
+0774 C0E0      1975            push    acc
+0776 74C8      1976            mov     a,#(__str_10 >> 8)
+0778 C0E0      1977            push    acc
+077A 7480      1978            mov     a,#0x80
+077C C0E0      1979            push    acc
+077E 120100    1980            lcall   _printf
+0781 1581      1981            dec     sp
+0783 1581      1982            dec     sp
+0785 1581      1983            dec     sp
+0787           1984   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:432: pwmSig1 = 99;
+0787 75A863    1985            mov     _pwmSig1,#0x63
+078A E4        1986            clr     a
+078B F5A9      1987            mov     (_pwmSig1 + 1),a
+078D           1988   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:433: pwmSig2 = 0;
+078D           1989   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:434: pwmSig3 = 0;
+078D           1990   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:435: pwmSig4 = 0;
+078D E4        1991            clr     a
+078E F568      1992            mov     _pwmSig2,a
+0790 F569      1993            mov     (_pwmSig2 + 1),a
+0792 F528      1994            mov     _pwmSig3,a
+0794 F529      1995            mov     (_pwmSig3 + 1),a
+0796 F5E8      1996            mov     _pwmSig4,a
+0798 F5E9      1997            mov     (_pwmSig4 + 1),a
+079A           1998   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:436: waitms(500); //Make waits longer
+079A 9001F4    1999            mov     dptr,#0x01F4
+079D 120100    2000            lcall   _waitms
+07A0           2001   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:437: waitms(500); 
+07A0 9001F4    2002            mov     dptr,#0x01F4
+07A3 120100    2003            lcall   _waitms
+07A6           2004   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:438: waitms(500); 
+07A6 9001F4    2005            mov     dptr,#0x01F4
+07A9 120100    2006            lcall   _waitms
+07AC           2007   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:440: pwmSig1 = 0;
+07AC           2008   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:441: pwmSig2 = 0;
+07AC           2009   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:442: pwmSig3 = 0;
+07AC           2010   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:443: pwmSig4 = 0;
+07AC E4        2011            clr     a
+07AD F5A8      2012            mov     _pwmSig1,a
+07AF F5A9      2013            mov     (_pwmSig1 + 1),a
+07B1 F568      2014            mov     _pwmSig2,a
+07B3 F569      2015            mov     (_pwmSig2 + 1),a
+07B5 F528      2016            mov     _pwmSig3,a
+07B7 F529      2017            mov     (_pwmSig3 + 1),a
+07B9 F5E8      2018            mov     _pwmSig4,a
+07BB F5E9      2019            mov     (_pwmSig4 + 1),a
+07BD           2020   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:444: waitms(500);
+07BD 9001F4    2021            mov     dptr,#0x01F4
+07C0 120100    2022            lcall   _waitms
+07C3           2023   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:445: waitms(250);
+07C3 9000FA    2024            mov     dptr,#0x00FA
+07C6 120100    2025            lcall   _waitms
+07C9 D002      2026            pop     ar2
+07CB           2027   L019002?:
+07CB           2028   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:447: if(threshold <= 0.6){
+07CB EA        2029            mov     a,r2
+07CC 7001      2030            jnz     L019004?
+07CE           2031   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:449: printf("Turn left \r\n");
+07CE 7418      2032            mov     a,#__str_11
+07D0 C0E0      2033            push    acc
+07D2 74C9      2034            mov     a,#(__str_11 >> 8)
+07D4 C0E0      2035            push    acc
+07D6 7480      2036            mov     a,#0x80
+07D8 C0E0      2037            push    acc
+07DA 120100    2038            lcall   _printf
+07DD 1581      2039            dec     sp
+07DF 1581      2040            dec     sp
+07E1 1581      2041            dec     sp
+07E3           2042   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:450: pwmSig1 = 0;
+07E3           2043   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:451: pwmSig2 = 0;
+07E3           2044   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:452: pwmSig3 = 0;
+07E3 E4        2045            clr     a
+07E4 F5A8      2046            mov     _pwmSig1,a
+07E6 F5A9      2047            mov     (_pwmSig1 + 1),a
+07E8 F568      2048            mov     _pwmSig2,a
+07EA F569      2049            mov     (_pwmSig2 + 1),a
+07EC F528      2050            mov     _pwmSig3,a
+07EE F529      2051            mov     (_pwmSig3 + 1),a
+07F0           2052   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:453: pwmSig4 = 99;
+07F0 75E863    2053            mov     _pwmSig4,#0x63
+07F3 E4        2054            clr     a
+07F4 F5E9      2055            mov     (_pwmSig4 + 1),a
+07F6           2056   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:454: waitms(500);
+07F6 9001F4    2057            mov     dptr,#0x01F4
+07F9 120100    2058            lcall   _waitms
+07FC           2059   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:455: waitms(500);
+07FC 9001F4    2060            mov     dptr,#0x01F4
+07FF 120100    2061            lcall   _waitms
+0802           2062   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:456: waitms(500); 
+0802 9001F4    2063            mov     dptr,#0x01F4
+0805 120100    2064            lcall   _waitms
+0808           2065   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:457: waitms(500); 
+0808 9001F4    2066            mov     dptr,#0x01F4
+080B 120100    2067            lcall   _waitms
+080E           2068   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:458: waitms(500); 
+080E 9001F4    2069            mov     dptr,#0x01F4
+0811 120100    2070            lcall   _waitms
+0814           2071   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:459: waitms(500); 
+0814 9001F4    2072            mov     dptr,#0x01F4
+0817 120100    2073            lcall   _waitms
+081A           2074   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:461: pwmSig1 = 0;
+081A           2075   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:462: pwmSig2 = 0;
+081A           2076   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:463: pwmSig3 = 0;
+081A           2077   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:464: pwmSig4 = 0;
+081A E4        2078            clr     a
+081B F5A8      2079            mov     _pwmSig1,a
+081D F5A9      2080            mov     (_pwmSig1 + 1),a
+081F F568      2081            mov     _pwmSig2,a
+0821 F569      2082            mov     (_pwmSig2 + 1),a
+0823 F528      2083            mov     _pwmSig3,a
+0825 F529      2084            mov     (_pwmSig3 + 1),a
+0827 F5E8      2085            mov     _pwmSig4,a
+0829 F5E9      2086            mov     (_pwmSig4 + 1),a
+082B           2087   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:465: waitms(500);
+082B 9001F4    2088            mov     dptr,#0x01F4
+082E 120100    2089            lcall   _waitms
+0831           2090   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:466: waitms(250);
+0831 9000FA    2091            mov     dptr,#0x00FA
+0834 120100    2092            lcall   _waitms
+0837           2093   L019004?:
+0837           2094   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:469: printf("Go Straight \r\n");
+0837 7458      2095            mov     a,#__str_12
+0839 C0E0      2096            push    acc
+083B 74C9      2097            mov     a,#(__str_12 >> 8)
+083D C0E0      2098            push    acc
+083F 7480      2099            mov     a,#0x80
+0841 C0E0      2100            push    acc
+0843 120100    2101            lcall   _printf
+0846 1581      2102            dec     sp
+0848 1581      2103            dec     sp
+084A 1581      2104            dec     sp
+084C           2105   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:471: pwmSig1= 99;
+084C 75A863    2106            mov     _pwmSig1,#0x63
+084F E4        2107            clr     a
+0850 F5A9      2108            mov     (_pwmSig1 + 1),a
+0852           2109   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:472: pwmSig2 = 0;
+0852           2110   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:473: pwmSig3 = 0;
+0852 E4        2111            clr     a
+0853 F568      2112            mov     _pwmSig2,a
+0855 F569      2113            mov     (_pwmSig2 + 1),a
+0857 F528      2114            mov     _pwmSig3,a
+0859 F529      2115            mov     (_pwmSig3 + 1),a
+085B           2116   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:474: pwmSig4 = 99;
+085B 75E863    2117            mov     _pwmSig4,#0x63
+085E E4        2118            clr     a
+085F F5E9      2119            mov     (_pwmSig4 + 1),a
+0861 22        2120            ret
+0862           2121   ;------------------------------------------------------------
+0862           2122   ;Allocation info for local variables in function 'main'
+0862           2123   ;------------------------------------------------------------
+0862           2124   ;checkcommand              Allocated to registers 
+0862           2125   ;i                         Allocated to registers 
+0862           2126   ;sig1                      Allocated to registers 
+0862           2127   ;sig2                      Allocated to registers 
+0862           2128   ;peak                      Allocated to registers 
+0862           2129   ;voltspeak                 Allocated to registers 
+0862           2130   ;periodpwm                 Allocated to registers 
+0862           2131   ;time                      Allocated to registers 
+0862           2132   ;pasttime                  Allocated to registers 
+0862           2133   ;period                    Allocated to registers r2 r3 r4 r5 
+0862           2134   ;overflow_count            Allocated to registers r2 r3 
+0862           2135   ;------------------------------------------------------------
+0862           2136   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:481: void main(void)
+0862           2137   ;        -----------------------------------------
+0862           2138   ;         function main
+0862           2139   ;        -----------------------------------------
+0862           2140   _main:
+0862           2141   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:494: TL0=0; 
+0862 758A00    2142            mov     _TL0,#0x00
+0865           2143   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:495: TH0=0;
+0865 758C00    2144            mov     _TH0,#0x00
+0868           2145   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:496: TF0=0;
+0868 C28D      2146            clr     _TF0
+086A           2147   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:497: TIMER0_Init();
+086A 120100    2148            lcall   _TIMER0_Init
+086D           2149   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:499: InitPinADC(1, 6); // Configure P2.5 as analog input
+086D 755006    2150            mov     _InitPinADC_PARM_2,#0x06
+0870 758201    2151            mov     dpl,#0x01
+0873 120100    2152            lcall   _InitPinADC
+0876           2153   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:501: InitADC();
+0876 120100    2154            lcall   _InitADC
+0879           2155   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:502: printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
+0879 7498      2156            mov     a,#__str_13
+087B C0E0      2157            push    acc
+087D 74C9      2158            mov     a,#(__str_13 >> 8)
+087F C0E0      2159            push    acc
+0881 7480      2160            mov     a,#0x80
+0883 C0E0      2161            push    acc
+0885 120100    2162            lcall   _printf
+0888 1581      2163            dec     sp
+088A 1581      2164            dec     sp
+088C 1581      2165            dec     sp
+088E           2166   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:504: "Check pins P2.2 and P2.1 with the oscilloscope.\r\n");
+088E 74D8      2167            mov     a,#__str_14
+0890 C0E0      2168            push    acc
+0892 74C9      2169            mov     a,#(__str_14 >> 8)
+0894 C0E0      2170            push    acc
+0896 7480      2171            mov     a,#0x80
+0898 C0E0      2172            push    acc
+089A 120100    2173            lcall   _printf
+089D 1581      2174            dec     sp
+089F 1581      2175            dec     sp
+08A1 1581      2176            dec     sp
+08A3           2177   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:506: printf("\n\r");
+08A3 7418      2178            mov     a,#__str_15
+08A5 C0E0      2179            push    acc
+08A7 74CA      2180            mov     a,#(__str_15 >> 8)
+08A9 C0E0      2181            push    acc
+08AB 7480      2182            mov     a,#0x80
+08AD C0E0      2183            push    acc
+08AF 120100    2184            lcall   _printf
+08B2 1581      2185            dec     sp
+08B4 1581      2186            dec     sp
+08B6 1581      2187            dec     sp
+08B8           2188   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:509: while (1)
+08B8           2189   L020013?:
+08B8           2190   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:540: TL0=0; 
+08B8 758A00    2191            mov     _TL0,#0x00
+08BB           2192   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:541: TH0=0;
+08BB 758C00    2193            mov     _TH0,#0x00
+08BE           2194   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:542: TF0=0;
+08BE C28D      2195            clr     _TF0
+08C0           2196   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:544: while(P2_1!=0); // Wait for the signal to be zero
+08C0           2197   L020001?:
+08C0 20A198    2198            jb      _P2_1,L020001?
+08C3           2199   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:545: while(P2_1!=1); // Wait for the signal to be one
+08C3           2200   L020004?:
+08C3 30A1D8    2201            jnb     _P2_1,L020004?
+08C6           2202   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:546: TR0=1; // Start the timer
+08C6 D28C      2203            setb    _TR0
+08C8           2204   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:547: while(P2_1!=0) // Wait for the signal to be zero
+08C8 7A00      2205            mov     r2,#0x00
+08CA 7B00      2206            mov     r3,#0x00
+08CC           2207   L020009?:
+08CC 30A158    2208            jnb     _P2_1,L020011?
+08CF           2209   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:549: if(TF0==1) // Did the 16-bit timer overflow?
+08CF           2210   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:551: TF0=0;
+08CF 108D98    2211            jbc     _TF0,L020028?
+08D2 8001      2212            sjmp    L020009?
+08D4           2213   L020028?:
+08D4           2214   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:552: overflow_count++;
+08D4 0A        2215            inc     r2
+08D5 BA0018    2216            cjne    r2,#0x00,L020009?
+08D8 0B        2217            inc     r3
+08D9 8001      2218            sjmp    L020009?
+08DB           2219   L020011?:
+08DB           2220   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:563: TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
+08DB C28C      2221            clr     _TR0
+08DD           2222   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:564: period=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
+08DD 8A82      2223            mov     dpl,r2
+08DF 8B83      2224            mov     dph,r3
+08E1 120100    2225            lcall   ___sint2fs
+08E4 AA82      2226            mov     r2,dpl
+08E6 AB83      2227            mov     r3,dph
+08E8 ACF0      2228            mov     r4,b
+08EA FD        2229            mov     r5,a
+08EB C002      2230            push    ar2
+08ED C003      2231            push    ar3
+08EF C004      2232            push    ar4
+08F1 C005      2233            push    ar5
+08F3 900000    2234            mov     dptr,#0x0000
+08F6 75F080    2235            mov     b,#0x80
+08F9 7447      2236            mov     a,#0x47
+08FB 120100    2237            lcall   ___fsmul
+08FE AA82      2238            mov     r2,dpl
+0900 AB83      2239            mov     r3,dph
+0902 ACF0      2240            mov     r4,b
+0904 FD        2241            mov     r5,a
+0905 E581      2242            mov     a,sp
+0907 24FC      2243            add     a,#0xfc
+0909 F581      2244            mov     sp,a
+090B 858C82    2245            mov     dpl,_TH0
+090E C002      2246            push    ar2
+0910 C003      2247            push    ar3
+0912 C004      2248            push    ar4
+0914 C005      2249            push    ar5
+0916 120100    2250            lcall   ___uchar2fs
+0919 AE82      2251            mov     r6,dpl
+091B AF83      2252            mov     r7,dph
+091D A8F0      2253            mov     r0,b
+091F F9        2254            mov     r1,a
+0920 C006      2255            push    ar6
+0922 C007      2256            push    ar7
+0924 C000      2257            push    ar0
+0926 C001      2258            push    ar1
+0928 900000    2259            mov     dptr,#0x0000
+092B 75F080    2260            mov     b,#0x80
+092E 7443      2261            mov     a,#0x43
+0930 120100    2262            lcall   ___fsmul
+0933 AE82      2263            mov     r6,dpl
+0935 AF83      2264            mov     r7,dph
+0937 A8F0      2265            mov     r0,b
+0939 F9        2266            mov     r1,a
+093A E581      2267            mov     a,sp
+093C 24FC      2268            add     a,#0xfc
+093E F581      2269            mov     sp,a
+0940 D005      2270            pop     ar5
+0942 D004      2271            pop     ar4
+0944 D003      2272            pop     ar3
+0946 D002      2273            pop     ar2
+0948 C006      2274            push    ar6
+094A C007      2275            push    ar7
+094C C000      2276            push    ar0
+094E C001      2277            push    ar1
+0950 8A82      2278            mov     dpl,r2
+0952 8B83      2279            mov     dph,r3
+0954 8CF0      2280            mov     b,r4
+0956 ED        2281            mov     a,r5
+0957 120100    2282            lcall   ___fsadd
+095A AA82      2283            mov     r2,dpl
+095C AB83      2284            mov     r3,dph
+095E ACF0      2285            mov     r4,b
+0960 FD        2286            mov     r5,a
+0961 E581      2287            mov     a,sp
+0963 24FC      2288            add     a,#0xfc
+0965 F581      2289            mov     sp,a
+0967 AE8A      2290            mov     r6,_TL0
+0969 7F00      2291            mov     r7,#0x00
+096B 8E82      2292            mov     dpl,r6
+096D 8F83      2293            mov     dph,r7
+096F C002      2294            push    ar2
+0971 C003      2295            push    ar3
+0973 C004      2296            push    ar4
+0975 C005      2297            push    ar5
+0977 120100    2298            lcall   ___sint2fs
+097A AE82      2299            mov     r6,dpl
+097C AF83      2300            mov     r7,dph
+097E A8F0      2301            mov     r0,b
+0980 F9        2302            mov     r1,a
+0981 D005      2303            pop     ar5
+0983 D004      2304            pop     ar4
+0985 D003      2305            pop     ar3
+0987 D002      2306            pop     ar2
+0989 C006      2307            push    ar6
+098B C007      2308            push    ar7
+098D C000      2309            push    ar0
+098F C001      2310            push    ar1
+0991 8A82      2311            mov     dpl,r2
+0993 8B83      2312            mov     dph,r3
+0995 8CF0      2313            mov     b,r4
+0997 ED        2314            mov     a,r5
+0998 120100    2315            lcall   ___fsadd
+099B AA82      2316            mov     r2,dpl
+099D AB83      2317            mov     r3,dph
+099F ACF0      2318            mov     r4,b
+09A1 FD        2319            mov     r5,a
+09A2 E581      2320            mov     a,sp
+09A4 24FC      2321            add     a,#0xfc
+09A6 F581      2322            mov     sp,a
+09A8 C002      2323            push    ar2
+09AA C003      2324            push    ar3
+09AC C004      2325            push    ar4
+09AE C005      2326            push    ar5
+09B0 90F4FC    2327            mov     dptr,#0xF4FC
+09B3 75F032    2328            mov     b,#0x32
+09B6 7434      2329            mov     a,#0x34
+09B8 120100    2330            lcall   ___fsmul
+09BB AA82      2331            mov     r2,dpl
+09BD AB83      2332            mov     r3,dph
+09BF ACF0      2333            mov     r4,b
+09C1 FD        2334            mov     r5,a
+09C2 E581      2335            mov     a,sp
+09C4 24FC      2336            add     a,#0xfc
+09C6 F581      2337            mov     sp,a
+09C8           2338   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:566: printf( "\rT=%f ms   \n ", period*1000.0);
+09C8 C002      2339            push    ar2
+09CA C003      2340            push    ar3
+09CC C004      2341            push    ar4
+09CE C005      2342            push    ar5
+09D0 900000    2343            mov     dptr,#0x0000
+09D3 75F07A    2344            mov     b,#0x7A
+09D6 7444      2345            mov     a,#0x44
+09D8 120100    2346            lcall   ___fsmul
+09DB AA82      2347            mov     r2,dpl
+09DD AB83      2348            mov     r3,dph
+09DF ACF0      2349            mov     r4,b
+09E1 FD        2350            mov     r5,a
+09E2 E581      2351            mov     a,sp
+09E4 24FC      2352            add     a,#0xfc
+09E6 F581      2353            mov     sp,a
+09E8 C002      2354            push    ar2
+09EA C003      2355            push    ar3
+09EC C004      2356            push    ar4
+09EE C005      2357            push    ar5
+09F0 C002      2358            push    ar2
+09F2 C003      2359            push    ar3
+09F4 C004      2360            push    ar4
+09F6 C005      2361            push    ar5
+09F8 74D8      2362            mov     a,#__str_16
+09FA C0E0      2363            push    acc
+09FC 74CB      2364            mov     a,#(__str_16 >> 8)
+09FE C0E0      2365            push    acc
+0A00 7480      2366            mov     a,#0x80
+0A02 C0E0      2367            push    acc
+0A04 120100    2368            lcall   _printf
+0A07 E581      2369            mov     a,sp
+0A09 24F9      2370            add     a,#0xf9
+0A0B F581      2371            mov     sp,a
+0A0D           2372   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:567: waitms(50);
+0A0D 900032    2373            mov     dptr,#0x0032
+0A10 120100    2374            lcall   _waitms
+0A13 D005      2375            pop     ar5
+0A15 D004      2376            pop     ar4
+0A17 D003      2377            pop     ar3
+0A19 D002      2378            pop     ar2
+0A1B           2379   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:568: detectobstacle(period*1000.0);
+0A1B 8A82      2380            mov     dpl,r2
+0A1D 8B83      2381            mov     dph,r3
+0A1F 8CF0      2382            mov     b,r4
+0A21 ED        2383            mov     a,r5
+0A22 120100    2384            lcall   _detectobstacle
+0A25           2385   ;        C:\Users\Dalto\Desktop\robotwithsonar3\Sam_Test.c:577: waitms(50);      
+0A25 900032    2386            mov     dptr,#0x0032
+0A28 120100    2387            lcall   _waitms
+0A2B 020100    2388            ljmp    L020013?
+0A2E           2389            rseg R_CSEG
+0A2E           2390   
+0000           2391            rseg R_XINIT
+0000           2392   
+0000           2393            rseg R_CONST
+0000           2394   __str_0:
+0000 466F7277  2395            db 'Forward'
+     617264
+0007 0A        2396            db 0x0A
+0008 0D        2397            db 0x0D
+0009 00        2398            db 0x00
+000A           2399   __str_1:
+000A 4261636B  2400            db 'Backward'
+     77617264
+0012 0A        2401            db 0x0A
+0013 0D        2402            db 0x0D
+0014 00        2403            db 0x00
+0015           2404   __str_2:
+0015 4C656674  2405            db 'Left'
+0019 0A        2406            db 0x0A
+001A 0D        2407            db 0x0D
+001B 00        2408            db 0x00
+001C           2409   __str_3:
+001C 52696768  2410            db 'Right'
+     74
+0021 0A        2411            db 0x0A
+0022 0D        2412            db 0x0D
+0023 00        2413            db 0x00
+0024           2414   __str_4:
+0024 53746F70  2415            db 'Stop'
+0028 0A        2416            db 0x0A
+0029 0D        2417            db 0x0D
+002A 00        2418            db 0x00
+002B           2419   __str_5:
+002B 57616974  2420            db 'Waiting for the signal to be 1'
+     696E6720
+     666F7220
+     74686520
+     7369676E
+     616C2074
+     6F206265
+     2031
+0049 0A        2421            db 0x0A
+004A 0D        2422            db 0x0D
+004B 00        2423            db 0x00
+004C           2424   __str_6:
+004C 566F6C74  2425            db 'Volt at ADC: %f'
+     20617420
+     4144433A
+     202566
+005B 0A        2426            db 0x0A
+005C 0D        2427            db 0x0D
+005D 00        2428            db 0x00
+005E           2429   __str_7:
+005E 5369676E  2430            db 'Signal is 0'
+     616C2069
+     732030
+0069 0A        2431            db 0x0A
+006A 0D        2432            db 0x0D
+006B 00        2433            db 0x00
+006C           2434   __str_8:
+006C 53746172  2435            db 'Start Timer'
+     74205469
+     6D6572
+0077 0A        2436            db 0x0A
+0078 0D        2437            db 0x0D
+0079 00        2438            db 0x00
+007A           2439   __str_9:
+007A 53746F70  2440            db 'Stop Timer'
+     2054696D
+     6572
+0084 0A        2441            db 0x0A
+0085 0D        2442            db 0x0D
+0086 00        2443            db 0x00
+0087           2444   __str_10:
+0087 5475726E  2445            db 'Turn right '
+     20726967
+     687420
+0092 0D        2446            db 0x0D
+0093 0A        2447            db 0x0A
+0094 00        2448            db 0x00
+0095           2449   __str_11:
+0095 5475726E  2450            db 'Turn left '
+     206C6566
+     7420
+009F 0D        2451            db 0x0D
+00A0 0A        2452            db 0x0A
+00A1 00        2453            db 0x00
+00A2           2454   __str_12:
+00A2 476F2053  2455            db 'Go Straight '
+     74726169
+     67687420
+00AE 0D        2456            db 0x0D
+00AF 0A        2457            db 0x0A
+00B0 00        2458            db 0x00
+00B1           2459   __str_13:
+00B1 1B        2460            db 0x1B
+00B2 5B324A    2461            db '[2J'
+00B5 00        2462            db 0x00
+00B6           2463   __str_14:
+00B6 53717561  2464            db 'Square wave generator for the EFM8LB1.'
+     72652077
+     61766520
+     67656E65
+     7261746F
+     7220666F
+     72207468
+     65204546
+     4D384C42
+     312E
+00DC 0D        2465            db 0x0D
+00DD 0A        2466            db 0x0A
+00DE 43686563  2467            db 'Check pins P2.2 and '
+     6B207069
+     6E732050
+     322E3220
+     616E6420
+00F2 50322E31  2468            db 'P2.1 with the oscilloscope.'
+     20776974
+     68207468
+     65206F73
+     63696C6C
+     6F73636F
+     70652E
+010D 0D        2469            db 0x0D
+010E 0A        2470            db 0x0A
+010F 00        2471            db 0x00
+0110           2472   __str_15:
+0110 0A        2473            db 0x0A
+0111 0D        2474            db 0x0D
+0112 00        2475            db 0x00
+0113           2476   __str_16:
+0113 0D        2477            db 0x0D
+0114 543D2566  2478            db 'T=%f ms   '
+     206D7320
+     2020
+011E 0A        2479            db 0x0A
+011F 20        2480            db ' '
+0120 00        2481            db 0x00
+0121           2482   
+002E           2483            CSEG
+002E           2484   
+002E           2485   end
