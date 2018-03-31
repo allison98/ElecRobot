@@ -217,11 +217,11 @@ void Timer2_ISR(void) interrupt 5
 		pwm_count = 0;
 
 	// this will move the robot forward and backwards if the joystick
-	motorR1 = pwm_count>pwmSig1 ? 0 : 1;
-	motorR2 = pwm_count>pwmSig2 ? 0 : 1;
+	motorR1 = pwm_count>pwmSig1 ? 0 : 1;  //rightforward
+	motorR2 = pwm_count>pwmSig2 ? 0 : 1;  //rightbackward
 	
-	motorL1 = pwm_count>pwmSig3 ? 0 : 1;
-	motorL2 = pwm_count>pwmSig4 ? 0 : 1;
+	motorL1 = pwm_count>pwmSig3 ? 0 : 1;  //leftforward
+	motorL2 = pwm_count>pwmSig4 ? 0 : 1;  //leftbackward
 
 	OUT0=pwm_count>80?0:1;
 }
@@ -289,7 +289,7 @@ void PWMforward(void) {
 	pwmSig2 = 0;
 	
 	pwmSig3 = 0;
-	pwmSig4 =99;
+	pwmSig4 = 99;
 	printf("Forward\n\r");
 }
 
@@ -303,20 +303,19 @@ void PWMbackward(void) {
 }
 
 void PWMLeft(void) {
-	pwmSig1 = 0;
-	pwmSig2 = 0;
-	
-	pwmSig3 = 70;
-	pwmSig4 = 0;
+      pwmSig1 = 0;
+      pwmSig2 = 99;
+      pwmSig3 = 0;
+      pwmSig4 = 99;
 	printf("Left\n\r");
 }
 
 void PWMRight(void) {
-	pwmSig1 = 99;
-	pwmSig2 = 0;
-	
-	pwmSig3 = 0;
-	pwmSig4 = 0;
+      pwmSig1 = 99;
+      pwmSig2 = 0;
+      
+      pwmSig3 = 99;
+      pwmSig4 = 0;
 	printf("Right\n\r");
 }
 
@@ -429,49 +428,22 @@ void detectobstacle(float threshold){
     if(threshold <= 0.6 ){
       //Turn right 90 degrees
       printf("Turn right \r\n");
-      pwmSig1 = 99;
-      pwmSig2 = 0;
-      pwmSig3 = 0;
-      pwmSig4 = 0;
+      PWMRight();
       waitms(500); //Make waits longer
       waitms(500); 
-      waitms(500); 
+      waitms(300); 
       //stop, check again for obstacle
-      pwmSig1 = 0;
-      pwmSig2 = 0;
-      pwmSig3 = 0;
-      pwmSig4 = 0;
+      PWMStop();
       waitms(500);
       waitms(250);
     }
-    if(threshold <= 0.6){
-      //turn left 180 degrees
-      printf("Turn left \r\n");
-      pwmSig1 = 0;
-      pwmSig2 = 0;
-      pwmSig3 = 0;
-      pwmSig4 = 99;
-      waitms(500);
-      waitms(500);
-      waitms(500); 
-      waitms(500); 
-      waitms(500); 
-      waitms(500); 
-      //stop, check again for obstacle
-      pwmSig1 = 0;
-      pwmSig2 = 0;
-      pwmSig3 = 0;
-      pwmSig4 = 0;
-      waitms(500);
-      waitms(250);
-      }
 
-	printf("Go Straight \r\n");
-      // if no obstacle, go straight
-      pwmSig1= 99;
-      pwmSig2 = 0;
-      pwmSig3 = 0;
-      pwmSig4 = 99;
+
+ 	 else{
+ 	 	printf("Go Straight \r\n");
+      	// if no obstacle, go straight
+      	PWMforward();
+      }
 
 
     //}
