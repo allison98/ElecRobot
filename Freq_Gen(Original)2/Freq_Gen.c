@@ -230,6 +230,7 @@ void main (void)
     unsigned int rx_size;
 	int newF;
 	unsigned long reload;
+//	char frequency = "15150\0";
 	
 	
 	// Configure pins as analog inputs
@@ -259,18 +260,18 @@ void main (void)
 	
 	while (1)
 	{
-    	SerialTransmit("Frequency: ");
-        rx_size = SerialReceive(buf, 128); // wait here until data is received
- 
+    	/*SerialTransmit("Frequency: ");
+        rx_size = frequency//SerialReceive(buf, 128); // wait here until data is received
+ */		rx_size=1;
         if( rx_size > 0)
         { 
-		    newF=myAtoi(buf);
+		    newF=15150;/*
 		    if(newF>200000L)
 		    {
 		       SerialTransmit("Warning: High frequencies will cause the interrupt service routine for\r\n"
 		             "the timer to take all available processor time.  Capping to 200000Hz.\r\n");
 		       newF=200000L;
-		    }
+		    }*/
 		    if(newF>0)
 		    {
 			    reload=(SYSCLK/(newF*2L))-1;
@@ -286,12 +287,16 @@ void main (void)
         while(1){
       		readVolt();
       		printf("Voltage1: X:%f  Y:%f\r\n", voltagex, voltagey);
-      		
+      
+      		/*
       		//Forward // this is good :)
       		if((voltagey>=0 && voltagey<=0.5) && (voltagex>=1.4 && voltagex<=1.8 )) {
       			MsDelay(100000);
       			MsDelay(100000);
+      			MsDelay(100000);
 				T1CONbits.ON = 0;
+				MsDelay(100000);
+				MsDelay(100000);
 				MsDelay(100000);
 				MsDelay(100000);
 	        	while(1) {	        	
@@ -301,7 +306,10 @@ void main (void)
 						T1CONbits.ON = 1;
 						MsDelay(100000);
 						MsDelay(100000);
+						MsDelay(100000);
 						T1CONbits.ON = 0;
+						MsDelay(100000);
+						MsDelay(100000);
 						MsDelay(100000);
 						MsDelay(100000);
 					}	
@@ -314,8 +322,12 @@ void main (void)
 				
 			else if((voltagey>=2.8 && voltagey<=3.3) && (voltagex>=1.4 && voltagex<=1.8 )) {	
 				MsDelay(100000);
-		
+				MsDelay(100000);
+				MsDelay(100000);
 				T1CONbits.ON = 0;
+				MsDelay(100000);
+				MsDelay(100000);
+				MsDelay(100000);
 				MsDelay(100000);
 				MsDelay(100000);
 								
@@ -324,8 +336,12 @@ void main (void)
 					if((voltagey>=2.8 && voltagey<=3.3) && (voltagex>=1.4 && voltagex<=1.8 )) {
 						T1CONbits.ON = 1;
 						MsDelay(100000);
-									
+						MsDelay(100000);
+						MsDelay(100000);			
 						T1CONbits.ON = 0;
+						MsDelay(100000);
+						MsDelay(100000);
+						MsDelay(100000);
 						MsDelay(100000);
 						MsDelay(100000);
 					}
@@ -338,7 +354,12 @@ void main (void)
 			//Left
 			else if(voltagex>=0 && voltagex<=0.5 && (voltagey>=1.4 && voltagey<=1.8 )) {
 				MsDelay(100000);
+				MsDelay(100000);
+				MsDelay(100000);
 				T1CONbits.ON = 0;
+				MsDelay(100000);
+				MsDelay(100000);
+				MsDelay(100000);
 				MsDelay(100000);
 				MsDelay(100000);
 				MsDelay(100000);
@@ -347,7 +368,12 @@ void main (void)
 					if((voltagex>=0 && voltagex<=0.5) && (voltagey>=1.4 && voltagey<=1.8 ) ) {
 						T1CONbits.ON = 1;
 						MsDelay(100000);
+						MsDelay(100000);
+						MsDelay(100000);
 						T1CONbits.ON = 0;
+						MsDelay(100000);
+						MsDelay(100000);
+						MsDelay(100000);
 						MsDelay(100000);
 						MsDelay(100000);
 						MsDelay(100000);
@@ -361,7 +387,12 @@ void main (void)
 			//Right
 			else if(voltagex>=2.8 && voltagex<=3.3 && (voltagey>=1.4 && voltagey<=1.8 )) {		
 				MsDelay(100000);
+				MsDelay(100000);
+				MsDelay(100000);
 				T1CONbits.ON = 0;
+				MsDelay(100000);
+				MsDelay(100000);
+				MsDelay(100000);
 				MsDelay(100000);
 				MsDelay(100000);
 				MsDelay(100000);
@@ -371,7 +402,12 @@ void main (void)
 					if(voltagex>=2.8 && voltagex<=3.3 && (voltagey>=1.4 && voltagey<=1.8 )) {
 						T1CONbits.ON = 1;
 						MsDelay(100000);
+						MsDelay(100000);
+						MsDelay(100000);
 						T1CONbits.ON = 0;
+						MsDelay(100000);
+						MsDelay(100000);
+						MsDelay(100000);
 						MsDelay(100000);
 						MsDelay(100000);
 						MsDelay(100000);
@@ -386,19 +422,43 @@ void main (void)
 			//Stop //works great
 
 			else {
-				while(1){
+				MsDelay(100000);
+	      			MsDelay(100000);
+	      			MsDelay(100000);
 					T1CONbits.ON = 0;
-					printf("hi\r\n");
+					MsDelay(100000);
+					MsDelay(100000);
+					MsDelay(100000);
+					MsDelay(100000);
+						MsDelay(100000);
+						MsDelay(100000);
+						MsDelay(100000);
+						MsDelay(100000);
+						
+				while(1){
 					readVolt();
-					if((voltagex>=1.4 && voltagex<=1.8) && (voltagey>=1.4 && voltagey<=1.8))
-						T1CONbits.ON = 0; // keep square wave off while joystick is not moving
+					if((voltagex>=1.4 && voltagex<=1.8) && (voltagey>=1.4 && voltagey<=1.8)) {
+						T1CONbits.ON = 1;
+						MsDelay(100000);
+						MsDelay(100000);
+						MsDelay(100000);
+						T1CONbits.ON = 0;
+						MsDelay(100000);
+						MsDelay(100000);
+						MsDelay(100000);
+						MsDelay(100000);
+						MsDelay(100000);		
+						MsDelay(100000);
+						MsDelay(100000);
+						MsDelay(100000);
+					} // keep square wave off while joystick is not moving
 					else {
 						T1CONbits.ON = 1; // exit while look and turn square wave back on
 						break;	
 					}
 				}
 			}			
-						
+		*/				
 			
 			//checkCommand(voltagex, voltagey);
         }
