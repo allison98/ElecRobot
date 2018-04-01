@@ -1,7 +1,11 @@
 0000              1   ;--------------------------------------------------------
 0000              2   ; File Created by C51
 0000              3   ; Version 1.0.0 #1069 (Apr 23 2015) (MSVC)
+<<<<<<< HEAD
 0000              4   ; This file was generated Sat Mar 31 16:21:04 2018
+=======
+0000              4   ; This file was generated Fri Mar 30 18:52:39 2018
+>>>>>>> 78f7b0e586dde8b7494c045e91bc03f46e4be7aa
 0000              5   ;--------------------------------------------------------
                   5   $name Sam_Test
                   6   $optc51 --model-small
@@ -551,6 +555,7 @@
 0038            551            ds 8
 0040            552   _command:
 0040            553            ds 8
+<<<<<<< HEAD
 0048            554   ;--------------------------------------------------------
 0048            555   ; overlayable items in internal ram 
 0048            556   ;--------------------------------------------------------
@@ -2149,6 +2154,1781 @@
 002A 00        2146            db 0x00
 002B           2147   __str_5:
 002B 57616974  2148            db 'Waiting for the signal to be 1'
+=======
+0048            554   _checkTime_overflow_count_1_73:
+0048            555            ds 2
+004A            556   _checkTime_sloc0_1_0:
+004A            557            ds 4
+004E            558   ;--------------------------------------------------------
+004E            559   ; overlayable items in internal ram 
+004E            560   ;--------------------------------------------------------
+0000            561            rseg    R_OSEG
+0000            562            rseg    R_OSEG
+0000            563            rseg    R_OSEG
+0000            564   _InitPinADC_PARM_2:
+0000            565            ds 1
+0001            566   ;--------------------------------------------------------
+0001            567   ; indirectly addressable internal ram data
+0001            568   ;--------------------------------------------------------
+0000            569            rseg R_ISEG
+0000            570   ;--------------------------------------------------------
+0000            571   ; absolute internal ram data
+0000            572   ;--------------------------------------------------------
+0000            573            DSEG
+0000            574   ;--------------------------------------------------------
+0000            575   ; bit data
+0000            576   ;--------------------------------------------------------
+0000            577            rseg R_BSEG
+0000            578   _Timer2_ISR_sloc0_1_0:
+0000            579            DBIT    1
+0001            580   ;--------------------------------------------------------
+0001            581   ; paged external ram data
+0001            582   ;--------------------------------------------------------
+0000            583            rseg R_PSEG
+0000            584   ;--------------------------------------------------------
+0000            585   ; external ram data
+0000            586   ;--------------------------------------------------------
+0000            587            rseg R_XSEG
+0000            588   ;--------------------------------------------------------
+0000            589   ; absolute external ram data
+0000            590   ;--------------------------------------------------------
+0000            591            XSEG
+0000            592   ;--------------------------------------------------------
+0000            593   ; external initialized ram data
+0000            594   ;--------------------------------------------------------
+0000            595            rseg R_IXSEG
+0000            596            rseg R_HOME
+0000            597            rseg R_GSINIT
+0000            598            rseg R_CSEG
+0000            599   ;--------------------------------------------------------
+0000            600   ; Reset entry point and interrupt vectors
+0000            601   ;--------------------------------------------------------
+0000            602            CSEG at 0x0000
+0000 020100     603            ljmp    _crt0
+002B            604            CSEG at 0x002b
+002B 020100     605            ljmp    _Timer2_ISR
+002E            606   ;--------------------------------------------------------
+002E            607   ; global & static initialisations
+002E            608   ;--------------------------------------------------------
+0000            609            rseg R_HOME
+0000            610            rseg R_GSINIT
+0000            611            rseg R_GSINIT
+0000            612   ;--------------------------------------------------------
+0000            613   ; data variables initialization
+0000            614   ;--------------------------------------------------------
+0000            615            rseg R_DINIT
+0000            616   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:50: volatile unsigned char pwm_count = 0; // used in the timer 2 ISR
+0000 75F000     617            mov     _pwm_count,#0x00
+0003            618   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:51: volatile unsigned char pwm_count1 = 0; // this will be usec in the timer 3 ISR
+0003 75F000     619            mov     _pwm_count1,#0x00
+0006            620   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:52: volatile unsigned char pwm_count2 = 0; // this will be used in the timer 4 ISR
+0006 75B000     621            mov     _pwm_count2,#0x00
+0009            622   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:53: volatile unsigned char pwm_count3 = 0; //
+0009 757000     623            mov     _pwm_count3,#0x00
+000C            624   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:68: volatile int flag = 0;
+000C E4         625            clr     a
+000D F530       626            mov     _flag,a
+000F F531       627            mov     (_flag + 1),a
+0011            628   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:69: volatile int claw_flag = 0;
+0011 E4         629            clr     a
+0012 F5F0       630            mov     _claw_flag,a
+0014 F5F1       631            mov     (_claw_flag + 1),a
+0016            632   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:70: int stop[]={1,0,0,0};
+0016 75B001     633            mov     _stop,#0x01
+0019 75B100     634            mov     (_stop + 1),#0x00
+001C 75B200     635            mov     (_stop + 0x0002),#0x00
+001F 75B300     636            mov     ((_stop + 0x0002) + 1),#0x00
+0022 75B400     637            mov     (_stop + 0x0004),#0x00
+0025 75B500     638            mov     ((_stop + 0x0004) + 1),#0x00
+0028 75B600     639            mov     (_stop + 0x0006),#0x00
+002B 75B700     640            mov     ((_stop + 0x0006) + 1),#0x00
+002E            641   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:71: int forward[]={1,1,1,1};
+002E 757001     642            mov     _forward,#0x01
+0031 757100     643            mov     (_forward + 1),#0x00
+0034 757201     644            mov     (_forward + 0x0002),#0x01
+0037 757300     645            mov     ((_forward + 0x0002) + 1),#0x00
+003A 757401     646            mov     (_forward + 0x0004),#0x01
+003D 757500     647            mov     ((_forward + 0x0004) + 1),#0x00
+0040 757601     648            mov     (_forward + 0x0006),#0x01
+0043 757700     649            mov     ((_forward + 0x0006) + 1),#0x00
+0046            650   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:72: int backward[]={1,0,0,0};
+0046 753001     651            mov     _backward,#0x01
+0049 753100     652            mov     (_backward + 1),#0x00
+004C 753200     653            mov     (_backward + 0x0002),#0x00
+004F 753300     654            mov     ((_backward + 0x0002) + 1),#0x00
+0052 753400     655            mov     (_backward + 0x0004),#0x00
+0055 753500     656            mov     ((_backward + 0x0004) + 1),#0x00
+0058 753600     657            mov     (_backward + 0x0006),#0x00
+005B 753700     658            mov     ((_backward + 0x0006) + 1),#0x00
+005E            659   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:73: int left[]={1,0,1,0};
+005E 75F001     660            mov     _left,#0x01
+0061 75F100     661            mov     (_left + 1),#0x00
+0064 75F200     662            mov     (_left + 0x0002),#0x00
+0067 75F300     663            mov     ((_left + 0x0002) + 1),#0x00
+006A 75F401     664            mov     (_left + 0x0004),#0x01
+006D 75F500     665            mov     ((_left + 0x0004) + 1),#0x00
+0070 75F600     666            mov     (_left + 0x0006),#0x00
+0073 75F700     667            mov     ((_left + 0x0006) + 1),#0x00
+0076            668   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:74: int right[]={1,1,0,1};
+0076 75B001     669            mov     _right,#0x01
+0079 75B100     670            mov     (_right + 1),#0x00
+007C 75B201     671            mov     (_right + 0x0002),#0x01
+007F 75B300     672            mov     ((_right + 0x0002) + 1),#0x00
+0082 75B400     673            mov     (_right + 0x0004),#0x00
+0085 75B500     674            mov     ((_right + 0x0004) + 1),#0x00
+0088 75B601     675            mov     (_right + 0x0006),#0x01
+008B 75B700     676            mov     ((_right + 0x0006) + 1),#0x00
+008E            677   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:76: int command[4] = {0,0,0,0};
+008E 757000     678            mov     _command,#0x00
+0091 757100     679            mov     (_command + 1),#0x00
+0094 757200     680            mov     (_command + 0x0002),#0x00
+0097 757300     681            mov     ((_command + 0x0002) + 1),#0x00
+009A 757400     682            mov     (_command + 0x0004),#0x00
+009D 757500     683            mov     ((_command + 0x0004) + 1),#0x00
+00A0 757600     684            mov     (_command + 0x0006),#0x00
+00A3 757700     685            mov     ((_command + 0x0006) + 1),#0x00
+00A6            686            ; The linker places a 'ret' at the end of segment R_DINIT.
+00A6            687   ;--------------------------------------------------------
+00A6            688   ; code
+00A6            689   ;--------------------------------------------------------
+0000            690            rseg R_CSEG
+0000            691   ;------------------------------------------------------------
+0000            692   ;Allocation info for local variables in function '_c51_external_startup'
+0000            693   ;------------------------------------------------------------
+0000            694   ;------------------------------------------------------------
+0000            695   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:78: char _c51_external_startup(void)
+0000            696   ;        -----------------------------------------
+0000            697   ;         function _c51_external_startup
+0000            698   ;        -----------------------------------------
+0000            699   __c51_external_startup:
+0000            700            using   0
+0000            701   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:81: SFRPAGE = 0x00;
+0000 75A700     702            mov     _SFRPAGE,#0x00
+0003            703   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:82: WDTCN = 0xDE; //First key
+0003 7597DE     704            mov     _WDTCN,#0xDE
+0006            705   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:83: WDTCN = 0xAD; //Second key
+0006 7597AD     706            mov     _WDTCN,#0xAD
+0009            707   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:85: VDM0CN = 0x80;       // enable VDD monitor
+0009 75FF80     708            mov     _VDM0CN,#0x80
+000C            709   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:86: RSTSRC = 0x02 | 0x04;  // Enable reset on missing clock detector and VDD
+000C 75EF06     710            mov     _RSTSRC,#0x06
+000F            711   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:93: SFRPAGE = 0x10;
+000F 75A710     712            mov     _SFRPAGE,#0x10
+0012            713   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:94: PFE0CN = 0x20; // SYSCLK < 75 MHz.
+0012 75C120     714            mov     _PFE0CN,#0x20
+0015            715   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:95: SFRPAGE = 0x00;
+0015 75A700     716            mov     _SFRPAGE,#0x00
+0018            717   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:116: CLKSEL = 0x00;
+0018 75A900     718            mov     _CLKSEL,#0x00
+001B            719   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:117: CLKSEL = 0x00;
+001B 75A900     720            mov     _CLKSEL,#0x00
+001E            721   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:118: while ((CLKSEL & 0x80) == 0);
+001E            722   L002001?:
+001E E5A9       723            mov     a,_CLKSEL
+0020 30E720     724            jnb     acc.7,L002001?
+0023            725   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:119: CLKSEL = 0x03;
+0023 75A903     726            mov     _CLKSEL,#0x03
+0026            727   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:120: CLKSEL = 0x03;
+0026 75A903     728            mov     _CLKSEL,#0x03
+0029            729   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:121: while ((CLKSEL & 0x80) == 0);
+0029            730   L002004?:
+0029 E5A9       731            mov     a,_CLKSEL
+002B 30E7A0     732            jnb     acc.7,L002004?
+002E            733   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:126: P0MDOUT |= 0x10; // Enable UART0 TX as push-pull output
+002E 43A410     734            orl     _P0MDOUT,#0x10
+0031            735   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:127: XBR0 = 0x01; // Enable UART0 on P0.4(TX) and P0.5(RX)
+0031 75E101     736            mov     _XBR0,#0x01
+0034            737   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:128: XBR1 = 0X00;
+0034 75E200     738            mov     _XBR1,#0x00
+0037            739   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:129: XBR2 = 0x40; // Enable crossbar and weak pull-ups
+0037 75E340     740            mov     _XBR2,#0x40
+003A            741   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:135: SCON0 = 0x10;
+003A 759810     742            mov     _SCON0,#0x10
+003D            743   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:136: TH1 = 0x100 - ((SYSCLK / BAUDRATE) / (2L * 12L));
+003D 758DE6     744            mov     _TH1,#0xE6
+0040            745   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:137: TL1 = TH1;      // Init Timer1
+0040 858D8B     746            mov     _TL1,_TH1
+0043            747   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:138: TMOD &= ~0xf0;  // TMOD: timer 1 in 8-bit auto-reload
+0043 53890F     748            anl     _TMOD,#0x0F
+0046            749   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:139: TMOD |= 0x20;
+0046 438920     750            orl     _TMOD,#0x20
+0049            751   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:140: TR1 = 1; // START Timer1
+0049 D28E       752            setb    _TR1
+004B            753   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:141: TI = 1;  // Indicate TX0 ready
+004B D299       754            setb    _TI
+004D            755   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:144: TMR2CN0 = 0x00;   // Stop Timer2; Clear TF2;
+004D 75C800     756            mov     _TMR2CN0,#0x00
+0050            757   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:145: CKCON0 |= 0b_0001_0000; // Timer 2 uses the system clock
+0050 438E10     758            orl     _CKCON0,#0x10
+0053            759   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:146: TMR2RL = (0x10000L - (SYSCLK / 10000L)); // Initialize reload value
+0053 75CAE0     760            mov     _TMR2RL,#0xE0
+0056 75CBE3     761            mov     (_TMR2RL >> 8),#0xE3
+0059            762   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:147: TMR2 = 0xffff;   // Set to reload immediately
+0059 75CEFF     763            mov     _TMR2,#0xFF
+005C 75CFFF     764            mov     (_TMR2 >> 8),#0xFF
+005F            765   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:148: ET2 = 1;         // Enable Timer2 interrupts
+005F D2AD       766            setb    _ET2
+0061            767   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:149: TR2 = 1;         // Start Timer2 (TMR2CN is bit addressable)
+0061 D2CA       768            setb    _TR2
+0063            769   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:166: EA = 1; // Enable interrupts
+0063 D2AF       770            setb    _EA
+0065            771   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:169: return 0;
+0065 758200     772            mov     dpl,#0x00
+0068 22         773            ret
+0069            774   ;------------------------------------------------------------
+0069            775   ;Allocation info for local variables in function 'Timer3us'
+0069            776   ;------------------------------------------------------------
+0069            777   ;us                        Allocated to registers r2 r3 
+0069            778   ;i                         Allocated to registers r4 r5 
+0069            779   ;------------------------------------------------------------
+0069            780   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:171: void Timer3us(unsigned int us)
+0069            781   ;        -----------------------------------------
+0069            782   ;         function Timer3us
+0069            783   ;        -----------------------------------------
+0069            784   _Timer3us:
+0069 AA82       785            mov     r2,dpl
+006B AB83       786            mov     r3,dph
+006D            787   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:176: CKCON0|=0b_0100_0000;
+006D 438E40     788            orl     _CKCON0,#0x40
+0070            789   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:178: TMR3RL = (-(SYSCLK)/1000000L); // Set Timer3 to overflow in 1us.
+0070 7592B8     790            mov     _TMR3RL,#0xB8
+0073 7593FF     791            mov     (_TMR3RL >> 8),#0xFF
+0076            792   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:179: TMR3 = TMR3RL;                 // Initialize Timer3 for first overflow
+0076 859294     793            mov     _TMR3,_TMR3RL
+0079 859395     794            mov     (_TMR3 >> 8),(_TMR3RL >> 8)
+007C            795   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:181: TMR3CN0 = 0x04;                 // Sart Timer3 and clear overflow flag
+007C 759104     796            mov     _TMR3CN0,#0x04
+007F            797   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:182: for (i = 0; i < us; i++)       // Count <us> overflows
+007F 7C00       798            mov     r4,#0x00
+0081 7D00       799            mov     r5,#0x00
+0083            800   L003004?:
+0083 C3         801            clr     c
+0084 EC         802            mov     a,r4
+0085 9A         803            subb    a,r2
+0086 ED         804            mov     a,r5
+0087 9B         805            subb    a,r3
+0088 5001       806            jnc     L003007?
+008A            807   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:184: while (!(TMR3CN0 & 0x80));  // Wait for overflow
+008A            808   L003001?:
+008A E591       809            mov     a,_TMR3CN0
+008C 30E7E8     810            jnb     acc.7,L003001?
+008F            811   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:185: TMR3CN0 &= ~(0x80);         // Clear overflow indicator
+008F 53917F     812            anl     _TMR3CN0,#0x7F
+0092            813   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:182: for (i = 0; i < us; i++)       // Count <us> overflows
+0092 0C         814            inc     r4
+0093 BC0060     815            cjne    r4,#0x00,L003004?
+0096 0D         816            inc     r5
+0097 8001       817            sjmp    L003004?
+0099            818   L003007?:
+0099            819   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:187: TMR3CN0 = 0 ;                   // Stop Timer3 and clear overflow flag
+0099 759100     820            mov     _TMR3CN0,#0x00
+009C 22         821            ret
+009D            822   ;------------------------------------------------------------
+009D            823   ;Allocation info for local variables in function 'waitms'
+009D            824   ;------------------------------------------------------------
+009D            825   ;ms                        Allocated to registers r2 r3 
+009D            826   ;j                         Allocated to registers r4 r5 
+009D            827   ;k                         Allocated to registers r6 
+009D            828   ;------------------------------------------------------------
+009D            829   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:189: void waitms (unsigned int ms)
+009D            830   ;        -----------------------------------------
+009D            831   ;         function waitms
+009D            832   ;        -----------------------------------------
+009D            833   _waitms:
+009D AA82       834            mov     r2,dpl
+009F AB83       835            mov     r3,dph
+00A1            836   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:193: for(j=0; j<ms; j++)
+00A1 7C00       837            mov     r4,#0x00
+00A3 7D00       838            mov     r5,#0x00
+00A5            839   L004005?:
+00A5 C3         840            clr     c
+00A6 EC         841            mov     a,r4
+00A7 9A         842            subb    a,r2
+00A8 ED         843            mov     a,r5
+00A9 9B         844            subb    a,r3
+00AA 5001       845            jnc     L004009?
+00AC            846   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:194: for (k=0; k<4; k++) Timer3us(250);
+00AC 7E00       847            mov     r6,#0x00
+00AE            848   L004001?:
+00AE BE04E8     849            cjne    r6,#0x04,L004018?
+00B1            850   L004018?:
+00B1 5001       851            jnc     L004007?
+00B3 9000FA     852            mov     dptr,#0x00FA
+00B6 C002       853            push    ar2
+00B8 C003       854            push    ar3
+00BA C004       855            push    ar4
+00BC C005       856            push    ar5
+00BE C006       857            push    ar6
+00C0 120100     858            lcall   _Timer3us
+00C3 D006       859            pop     ar6
+00C5 D005       860            pop     ar5
+00C7 D004       861            pop     ar4
+00C9 D003       862            pop     ar3
+00CB D002       863            pop     ar2
+00CD 0E         864            inc     r6
+00CE 8001       865            sjmp    L004001?
+00D0            866   L004007?:
+00D0            867   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:193: for(j=0; j<ms; j++)
+00D0 0C         868            inc     r4
+00D1 BC0028     869            cjne    r4,#0x00,L004005?
+00D4 0D         870            inc     r5
+00D5 8001       871            sjmp    L004005?
+00D7            872   L004009?:
+00D7 22         873            ret
+00D8            874   ;------------------------------------------------------------
+00D8            875   ;Allocation info for local variables in function 'ADC_at_Pin'
+00D8            876   ;------------------------------------------------------------
+00D8            877   ;pin                       Allocated to registers 
+00D8            878   ;------------------------------------------------------------
+00D8            879   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:197: unsigned int ADC_at_Pin(unsigned char pin)
+00D8            880   ;        -----------------------------------------
+00D8            881   ;         function ADC_at_Pin
+00D8            882   ;        -----------------------------------------
+00D8            883   _ADC_at_Pin:
+00D8 8582BB     884            mov     _ADC0MX,dpl
+00DB            885   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:200: ADBUSY = 1;       // Dummy conversion first to select new pin
+00DB D2EC       886            setb    _ADBUSY
+00DD            887   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:201: while (ADBUSY); // Wait for dummy conversion to finish
+00DD            888   L005001?:
+00DD 20EC68     889            jb      _ADBUSY,L005001?
+00E0            890   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:202: ADBUSY = 1;     // Convert voltage at the pin
+00E0 D2EC       891            setb    _ADBUSY
+00E2            892   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:203: while (ADBUSY); // Wait for conversion to complete
+00E2            893   L005004?:
+00E2 20ECA8     894            jb      _ADBUSY,L005004?
+00E5            895   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:204: return (ADC0);
+00E5 85BD82     896            mov     dpl,_ADC0
+00E8 85BE83     897            mov     dph,(_ADC0 >> 8)
+00EB 22         898            ret
+00EC            899   ;------------------------------------------------------------
+00EC            900   ;Allocation info for local variables in function 'Timer2_ISR'
+00EC            901   ;------------------------------------------------------------
+00EC            902   ;------------------------------------------------------------
+00EC            903   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:208: void Timer2_ISR(void) interrupt 5
+00EC            904   ;        -----------------------------------------
+00EC            905   ;         function Timer2_ISR
+00EC            906   ;        -----------------------------------------
+00EC            907   _Timer2_ISR:
+00EC C0E0       908            push    acc
+00EE C002       909            push    ar2
+00F0 C003       910            push    ar3
+00F2 C0D0       911            push    psw
+00F4 75D000     912            mov     psw,#0x00
+00F7            913   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:210: TF2H = 0; // Clear Timer2 interrupt flag
+00F7 C2CF       914            clr     _TF2H
+00F9            915   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:212: pwm_count++;
+00F9 05F0       916            inc     _pwm_count
+00FB            917   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:213: if (pwm_count>100)
+00FB E5F0       918            mov     a,_pwm_count
+00FD 249B       919            add     a,#0xff - 0x64
+00FF 5001       920            jnc     L006002?
+0101            921   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:214: pwm_count = 0;
+0101 75F000     922            mov     _pwm_count,#0x00
+0104            923   L006002?:
+0104            924   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:217: motorR1 = pwm_count>pwmSig1 ? 0 : 1;
+0104 AAF0       925            mov     r2,_pwm_count
+0106 7B00       926            mov     r3,#0x00
+0108 C3         927            clr     c
+0109 E530       928            mov     a,_pwmSig1
+010B 9A         929            subb    a,r2
+010C E531       930            mov     a,(_pwmSig1 + 1)
+010E 9B         931            subb    a,r3
+010F 92A0       932            mov  _Timer2_ISR_sloc0_1_0,c
+0111 B3         933            cpl     c
+0112 9294       934            mov     _P1_4,c
+0114            935   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:218: motorR2 = pwm_count>pwmSig2 ? 0 : 1;
+0114 AAF0       936            mov     r2,_pwm_count
+0116 7B00       937            mov     r3,#0x00
+0118 C3         938            clr     c
+0119 E5F0       939            mov     a,_pwmSig2
+011B 9A         940            subb    a,r2
+011C E5F1       941            mov     a,(_pwmSig2 + 1)
+011E 9B         942            subb    a,r3
+011F 92A0       943            mov  _Timer2_ISR_sloc0_1_0,c
+0121 B3         944            cpl     c
+0122 9295       945            mov     _P1_5,c
+0124            946   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:220: motorL1 = pwm_count>pwmSig1 ? 0 : 1;
+0124 AAF0       947            mov     r2,_pwm_count
+0126 7B00       948            mov     r3,#0x00
+0128 C3         949            clr     c
+0129 E530       950            mov     a,_pwmSig1
+012B 9A         951            subb    a,r2
+012C E531       952            mov     a,(_pwmSig1 + 1)
+012E 9B         953            subb    a,r3
+012F 92A0       954            mov  _Timer2_ISR_sloc0_1_0,c
+0131 B3         955            cpl     c
+0132 9292       956            mov     _P1_2,c
+0134            957   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:221: motorL2 = pwm_count>pwmSig2 ? 0 : 1;
+0134 AAF0       958            mov     r2,_pwm_count
+0136 7B00       959            mov     r3,#0x00
+0138 C3         960            clr     c
+0139 E5F0       961            mov     a,_pwmSig2
+013B 9A         962            subb    a,r2
+013C E5F1       963            mov     a,(_pwmSig2 + 1)
+013E 9B         964            subb    a,r3
+013F 92A0       965            mov  _Timer2_ISR_sloc0_1_0,c
+0141 B3         966            cpl     c
+0142 9293       967            mov     _P1_3,c
+0144 D0D0       968            pop     psw
+0146 D003       969            pop     ar3
+0148 D002       970            pop     ar2
+014A D0E0       971            pop     acc
+014C 32         972            reti
+014D            973   ;        eliminated unneeded push/pop dpl
+014D            974   ;        eliminated unneeded push/pop dph
+014D            975   ;        eliminated unneeded push/pop b
+014D            976   ;------------------------------------------------------------
+014D            977   ;Allocation info for local variables in function 'InitADC'
+014D            978   ;------------------------------------------------------------
+014D            979   ;------------------------------------------------------------
+014D            980   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:227: void InitADC(void)
+014D            981   ;        -----------------------------------------
+014D            982   ;         function InitADC
+014D            983   ;        -----------------------------------------
+014D            984   _InitADC:
+014D            985   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:229: SFRPAGE = 0x00;
+014D 75A700     986            mov     _SFRPAGE,#0x00
+0150            987   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:230: ADC0CN1 = 0b_10_000_000; //14-bit,  Right justified no shifting applied, perform and Accumulate 1 conversion.
+0150 75B280     988            mov     _ADC0CN1,#0x80
+0153            989   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:231: ADC0CF0 = 0b_11111_0_00; // SYSCLK/32
+0153 75BCF8     990            mov     _ADC0CF0,#0xF8
+0156            991   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:232: ADC0CF1 = 0b_0_0_011110; // Same as default for now
+0156 75B91E     992            mov     _ADC0CF1,#0x1E
+0159            993   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:233: ADC0CN0 = 0b_0_0_0_0_0_00_0; // Same as default for now
+0159 75E800     994            mov     _ADC0CN0,#0x00
+015C            995   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:234: ADC0CF2 = 0b_0_01_11111; // GND pin, Vref=VDD
+015C 75DF3F     996            mov     _ADC0CF2,#0x3F
+015F            997   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:235: ADC0CN2 = 0b_0_000_0000;  // Same as default for now. ADC0 conversion initiated on write of 1 to ADBUSY.
+015F 75B300     998            mov     _ADC0CN2,#0x00
+0162            999   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:236: ADEN = 1; // Enable ADC
+0162 D2EF      1000            setb    _ADEN
+0164 22        1001            ret
+0165           1002   ;------------------------------------------------------------
+0165           1003   ;Allocation info for local variables in function 'TIMER0_Init'
+0165           1004   ;------------------------------------------------------------
+0165           1005   ;------------------------------------------------------------
+0165           1006   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:238: void TIMER0_Init(void)
+0165           1007   ;        -----------------------------------------
+0165           1008   ;         function TIMER0_Init
+0165           1009   ;        -----------------------------------------
+0165           1010   _TIMER0_Init:
+0165           1011   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:240: TMOD &= 0b_1111_0000; // Set the bits of Timer/Counter 0 to zero
+0165 5389F0    1012            anl     _TMOD,#0xF0
+0168           1013   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:241: TMOD |= 0b_0000_0001; // Timer/Counter 0 used as a 16-bit timer
+0168 438901    1014            orl     _TMOD,#0x01
+016B           1015   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:242: TR0 = 0; // Stop Timer/Counter 0
+016B C28C      1016            clr     _TR0
+016D 22        1017            ret
+016E           1018   ;------------------------------------------------------------
+016E           1019   ;Allocation info for local variables in function 'Volts_at_Pin'
+016E           1020   ;------------------------------------------------------------
+016E           1021   ;pin                       Allocated to registers r2 
+016E           1022   ;------------------------------------------------------------
+016E           1023   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:247: float Volts_at_Pin(unsigned char pin)
+016E           1024   ;        -----------------------------------------
+016E           1025   ;         function Volts_at_Pin
+016E           1026   ;        -----------------------------------------
+016E           1027   _Volts_at_Pin:
+016E           1028   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:249: return ((ADC_at_Pin(pin)*VDD) / 0b_0011_1111_1111_1111);
+016E 120100    1029            lcall   _ADC_at_Pin
+0171 120100    1030            lcall   ___uint2fs
+0174 AA82      1031            mov     r2,dpl
+0176 AB83      1032            mov     r3,dph
+0178 ACF0      1033            mov     r4,b
+017A FD        1034            mov     r5,a
+017B C002      1035            push    ar2
+017D C003      1036            push    ar3
+017F C004      1037            push    ar4
+0181 C005      1038            push    ar5
+0183 906C8B    1039            mov     dptr,#0x6C8B
+0186 75F053    1040            mov     b,#0x53
+0189 7440      1041            mov     a,#0x40
+018B 120100    1042            lcall   ___fsmul
+018E AA82      1043            mov     r2,dpl
+0190 AB83      1044            mov     r3,dph
+0192 ACF0      1045            mov     r4,b
+0194 FD        1046            mov     r5,a
+0195 E581      1047            mov     a,sp
+0197 24FC      1048            add     a,#0xfc
+0199 F581      1049            mov     sp,a
+019B E4        1050            clr     a
+019C C0E0      1051            push    acc
+019E 74FC      1052            mov     a,#0xFC
+01A0 C0E0      1053            push    acc
+01A2 747F      1054            mov     a,#0x7F
+01A4 C0E0      1055            push    acc
+01A6 7446      1056            mov     a,#0x46
+01A8 C0E0      1057            push    acc
+01AA 8A82      1058            mov     dpl,r2
+01AC 8B83      1059            mov     dph,r3
+01AE 8CF0      1060            mov     b,r4
+01B0 ED        1061            mov     a,r5
+01B1 120100    1062            lcall   ___fsdiv
+01B4 AA82      1063            mov     r2,dpl
+01B6 AB83      1064            mov     r3,dph
+01B8 ACF0      1065            mov     r4,b
+01BA FD        1066            mov     r5,a
+01BB E581      1067            mov     a,sp
+01BD 24FC      1068            add     a,#0xfc
+01BF F581      1069            mov     sp,a
+01C1 8A82      1070            mov     dpl,r2
+01C3 8B83      1071            mov     dph,r3
+01C5 8CF0      1072            mov     b,r4
+01C7 ED        1073            mov     a,r5
+01C8 22        1074            ret
+01C9           1075   ;------------------------------------------------------------
+01C9           1076   ;Allocation info for local variables in function 'InitPinADC'
+01C9           1077   ;------------------------------------------------------------
+01C9           1078   ;pinno                     Allocated with name '_InitPinADC_PARM_2'
+01C9           1079   ;portno                    Allocated to registers r2 
+01C9           1080   ;mask                      Allocated to registers r3 
+01C9           1081   ;------------------------------------------------------------
+01C9           1082   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:251: void InitPinADC(unsigned char portno, unsigned char pinno)
+01C9           1083   ;        -----------------------------------------
+01C9           1084   ;         function InitPinADC
+01C9           1085   ;        -----------------------------------------
+01C9           1086   _InitPinADC:
+01C9 AA82      1087            mov     r2,dpl
+01CB           1088   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:255: mask = 1 << pinno;
+01CB 8590F0    1089            mov     b,_InitPinADC_PARM_2
+01CE 05F0      1090            inc     b
+01D0 7401      1091            mov     a,#0x01
+01D2 8001      1092            sjmp    L010013?
+01D4           1093   L010011?:
+01D4 25E0      1094            add     a,acc
+01D6           1095   L010013?:
+01D6 D5F0E8    1096            djnz    b,L010011?
+01D9 FB        1097            mov     r3,a
+01DA           1098   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:257: SFRPAGE = 0x20;
+01DA 75A720    1099            mov     _SFRPAGE,#0x20
+01DD           1100   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:258: switch (portno)
+01DD BA0028    1101            cjne    r2,#0x00,L010014?
+01E0 8001      1102            sjmp    L010001?
+01E2           1103   L010014?:
+01E2 BA01A8    1104            cjne    r2,#0x01,L010015?
+01E5 8001      1105            sjmp    L010002?
+01E7           1106   L010015?:
+01E7           1107   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:260: case 0:
+01E7 BA0228    1108            cjne    r2,#0x02,L010005?
+01EA 8001      1109            sjmp    L010003?
+01EC           1110   L010001?:
+01EC           1111   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:261: P0MDIN &= (~mask); // Set pin as analog input
+01EC EB        1112            mov     a,r3
+01ED F4        1113            cpl     a
+01EE FA        1114            mov     r2,a
+01EF 52F1      1115            anl     _P0MDIN,a
+01F1           1116   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:262: P0SKIP |= mask; // Skip Crossbar decoding for this pin
+01F1 EB        1117            mov     a,r3
+01F2 42D4      1118            orl     _P0SKIP,a
+01F4           1119   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:263: break;
+01F4           1120   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:264: case 1:
+01F4 8001      1121            sjmp    L010005?
+01F6           1122   L010002?:
+01F6           1123   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:265: P1MDIN &= (~mask); // Set pin as analog input
+01F6 EB        1124            mov     a,r3
+01F7 F4        1125            cpl     a
+01F8 FA        1126            mov     r2,a
+01F9 52F2      1127            anl     _P1MDIN,a
+01FB           1128   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:266: P1SKIP |= mask; // Skip Crossbar decoding for this pin
+01FB EB        1129            mov     a,r3
+01FC 42D5      1130            orl     _P1SKIP,a
+01FE           1131   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:267: break;
+01FE           1132   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:268: case 2:
+01FE 8001      1133            sjmp    L010005?
+0200           1134   L010003?:
+0200           1135   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:269: P2MDIN &= (~mask); // Set pin as analog input
+0200 EB        1136            mov     a,r3
+0201 F4        1137            cpl     a
+0202 FA        1138            mov     r2,a
+0203 52F3      1139            anl     _P2MDIN,a
+0205           1140   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:270: P2SKIP |= mask; // Skip Crossbar decoding for this pin
+0205 EB        1141            mov     a,r3
+0206 42CC      1142            orl     _P2SKIP,a
+0208           1143   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:274: }
+0208           1144   L010005?:
+0208           1145   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:275: SFRPAGE = 0x00;
+0208 75A700    1146            mov     _SFRPAGE,#0x00
+020B 22        1147            ret
+020C           1148   ;------------------------------------------------------------
+020C           1149   ;Allocation info for local variables in function 'PWMforward'
+020C           1150   ;------------------------------------------------------------
+020C           1151   ;------------------------------------------------------------
+020C           1152   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:284: void PWMforward(void) {
+020C           1153   ;        -----------------------------------------
+020C           1154   ;         function PWMforward
+020C           1155   ;        -----------------------------------------
+020C           1156   _PWMforward:
+020C           1157   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:285: pwmSig1 = 99;
+020C 753063    1158            mov     _pwmSig1,#0x63
+020F E4        1159            clr     a
+0210 F531      1160            mov     (_pwmSig1 + 1),a
+0212           1161   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:286: pwmSig2 = 0;
+0212           1162   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:288: pwmSig3 = 0;
+0212 E4        1163            clr     a
+0213 F5F0      1164            mov     _pwmSig2,a
+0215 F5F1      1165            mov     (_pwmSig2 + 1),a
+0217 F5B0      1166            mov     _pwmSig3,a
+0219 F5B1      1167            mov     (_pwmSig3 + 1),a
+021B           1168   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:289: pwmSig4 =99;
+021B 757063    1169            mov     _pwmSig4,#0x63
+021E E4        1170            clr     a
+021F F571      1171            mov     (_pwmSig4 + 1),a
+0221           1172   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:290: printf("Forward\n\r");
+0221 74A8      1173            mov     a,#__str_0
+0223 C0E0      1174            push    acc
+0225 74C5      1175            mov     a,#(__str_0 >> 8)
+0227 C0E0      1176            push    acc
+0229 7480      1177            mov     a,#0x80
+022B C0E0      1178            push    acc
+022D 120100    1179            lcall   _printf
+0230 1581      1180            dec     sp
+0232 1581      1181            dec     sp
+0234 1581      1182            dec     sp
+0236 22        1183            ret
+0237           1184   ;------------------------------------------------------------
+0237           1185   ;Allocation info for local variables in function 'PWMbackward'
+0237           1186   ;------------------------------------------------------------
+0237           1187   ;------------------------------------------------------------
+0237           1188   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:293: void PWMbackward(void) {
+0237           1189   ;        -----------------------------------------
+0237           1190   ;         function PWMbackward
+0237           1191   ;        -----------------------------------------
+0237           1192   _PWMbackward:
+0237           1193   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:294: pwmSig1 = 0;
+0237 E4        1194            clr     a
+0238 F530      1195            mov     _pwmSig1,a
+023A F531      1196            mov     (_pwmSig1 + 1),a
+023C           1197   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:295: pwmSig2 = 99;
+023C 75F063    1198            mov     _pwmSig2,#0x63
+023F E4        1199            clr     a
+0240 F5F1      1200            mov     (_pwmSig2 + 1),a
+0242           1201   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:297: pwmSig3 = 99;
+0242 75B063    1202            mov     _pwmSig3,#0x63
+0245 E4        1203            clr     a
+0246 F5B1      1204            mov     (_pwmSig3 + 1),a
+0248           1205   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:298: pwmSig4 = 0;
+0248 E4        1206            clr     a
+0249 F570      1207            mov     _pwmSig4,a
+024B F571      1208            mov     (_pwmSig4 + 1),a
+024D           1209   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:299: printf("Backward\n\r");
+024D 7428      1210            mov     a,#__str_1
+024F C0E0      1211            push    acc
+0251 74C6      1212            mov     a,#(__str_1 >> 8)
+0253 C0E0      1213            push    acc
+0255 7480      1214            mov     a,#0x80
+0257 C0E0      1215            push    acc
+0259 120100    1216            lcall   _printf
+025C 1581      1217            dec     sp
+025E 1581      1218            dec     sp
+0260 1581      1219            dec     sp
+0262 22        1220            ret
+0263           1221   ;------------------------------------------------------------
+0263           1222   ;Allocation info for local variables in function 'PWMLeft'
+0263           1223   ;------------------------------------------------------------
+0263           1224   ;------------------------------------------------------------
+0263           1225   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:302: void PWMLeft(void) {
+0263           1226   ;        -----------------------------------------
+0263           1227   ;         function PWMLeft
+0263           1228   ;        -----------------------------------------
+0263           1229   _PWMLeft:
+0263           1230   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:303: pwmSig1 = 0;
+0263           1231   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:304: pwmSig2 = 0;
+0263 E4        1232            clr     a
+0264 F530      1233            mov     _pwmSig1,a
+0266 F531      1234            mov     (_pwmSig1 + 1),a
+0268 F5F0      1235            mov     _pwmSig2,a
+026A F5F1      1236            mov     (_pwmSig2 + 1),a
+026C           1237   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:306: pwmSig3 = 70;
+026C 75B046    1238            mov     _pwmSig3,#0x46
+026F E4        1239            clr     a
+0270 F5B1      1240            mov     (_pwmSig3 + 1),a
+0272           1241   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:307: pwmSig4 = 0;
+0272 E4        1242            clr     a
+0273 F570      1243            mov     _pwmSig4,a
+0275 F571      1244            mov     (_pwmSig4 + 1),a
+0277           1245   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:308: printf("Left\n\r");
+0277 7468      1246            mov     a,#__str_2
+0279 C0E0      1247            push    acc
+027B 74C6      1248            mov     a,#(__str_2 >> 8)
+027D C0E0      1249            push    acc
+027F 7480      1250            mov     a,#0x80
+0281 C0E0      1251            push    acc
+0283 120100    1252            lcall   _printf
+0286 1581      1253            dec     sp
+0288 1581      1254            dec     sp
+028A 1581      1255            dec     sp
+028C 22        1256            ret
+028D           1257   ;------------------------------------------------------------
+028D           1258   ;Allocation info for local variables in function 'PWMRight'
+028D           1259   ;------------------------------------------------------------
+028D           1260   ;------------------------------------------------------------
+028D           1261   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:311: void PWMRight(void) {
+028D           1262   ;        -----------------------------------------
+028D           1263   ;         function PWMRight
+028D           1264   ;        -----------------------------------------
+028D           1265   _PWMRight:
+028D           1266   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:312: pwmSig1 = 99;
+028D 753063    1267            mov     _pwmSig1,#0x63
+0290 E4        1268            clr     a
+0291 F531      1269            mov     (_pwmSig1 + 1),a
+0293           1270   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:313: pwmSig2 = 0;
+0293           1271   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:315: pwmSig3 = 0;
+0293           1272   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:316: pwmSig4 = 0;
+0293 E4        1273            clr     a
+0294 F5F0      1274            mov     _pwmSig2,a
+0296 F5F1      1275            mov     (_pwmSig2 + 1),a
+0298 F5B0      1276            mov     _pwmSig3,a
+029A F5B1      1277            mov     (_pwmSig3 + 1),a
+029C F570      1278            mov     _pwmSig4,a
+029E F571      1279            mov     (_pwmSig4 + 1),a
+02A0           1280   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:317: printf("Right\n\r");
+02A0 74A8      1281            mov     a,#__str_3
+02A2 C0E0      1282            push    acc
+02A4 74C6      1283            mov     a,#(__str_3 >> 8)
+02A6 C0E0      1284            push    acc
+02A8 7480      1285            mov     a,#0x80
+02AA C0E0      1286            push    acc
+02AC 120100    1287            lcall   _printf
+02AF 1581      1288            dec     sp
+02B1 1581      1289            dec     sp
+02B3 1581      1290            dec     sp
+02B5 22        1291            ret
+02B6           1292   ;------------------------------------------------------------
+02B6           1293   ;Allocation info for local variables in function 'PWMStop'
+02B6           1294   ;------------------------------------------------------------
+02B6           1295   ;------------------------------------------------------------
+02B6           1296   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:320: void PWMStop(void) {
+02B6           1297   ;        -----------------------------------------
+02B6           1298   ;         function PWMStop
+02B6           1299   ;        -----------------------------------------
+02B6           1300   _PWMStop:
+02B6           1301   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:321: pwmSig1 = 0;
+02B6           1302   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:322: pwmSig2 = 0;
+02B6           1303   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:324: pwmSig3 = 0;
+02B6           1304   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:325: pwmSig4 = 0;
+02B6 E4        1305            clr     a
+02B7 F530      1306            mov     _pwmSig1,a
+02B9 F531      1307            mov     (_pwmSig1 + 1),a
+02BB F5F0      1308            mov     _pwmSig2,a
+02BD F5F1      1309            mov     (_pwmSig2 + 1),a
+02BF F5B0      1310            mov     _pwmSig3,a
+02C1 F5B1      1311            mov     (_pwmSig3 + 1),a
+02C3 F570      1312            mov     _pwmSig4,a
+02C5 F571      1313            mov     (_pwmSig4 + 1),a
+02C7           1314   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:326: printf("Stop\n\r");
+02C7 74E8      1315            mov     a,#__str_4
+02C9 C0E0      1316            push    acc
+02CB 74C6      1317            mov     a,#(__str_4 >> 8)
+02CD C0E0      1318            push    acc
+02CF 7480      1319            mov     a,#0x80
+02D1 C0E0      1320            push    acc
+02D3 120100    1321            lcall   _printf
+02D6 1581      1322            dec     sp
+02D8 1581      1323            dec     sp
+02DA 1581      1324            dec     sp
+02DC 22        1325            ret
+02DD           1326   ;------------------------------------------------------------
+02DD           1327   ;Allocation info for local variables in function 'checkTime'
+02DD           1328   ;------------------------------------------------------------
+02DD           1329   ;time                      Allocated to registers r2 r3 r4 r5 
+02DD           1330   ;overflow_count            Allocated with name '_checkTime_overflow_count_1_73'
+02DD           1331   ;sloc0                     Allocated with name '_checkTime_sloc0_1_0'
+02DD           1332   ;------------------------------------------------------------
+02DD           1333   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:332: float checkTime (void) {
+02DD           1334   ;        -----------------------------------------
+02DD           1335   ;         function checkTime
+02DD           1336   ;        -----------------------------------------
+02DD           1337   _checkTime:
+02DD           1338   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:336: TL0=0; 
+02DD 758A00    1339            mov     _TL0,#0x00
+02E0           1340   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:337: TH0=0;
+02E0 758C00    1341            mov     _TH0,#0x00
+02E3           1342   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:338: TF0=0;
+02E3 C28D      1343            clr     _TF0
+02E5           1344   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:340: TR0=0;
+02E5 C28C      1345            clr     _TR0
+02E7           1346   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:345: printf("Waiting for the signal to be 1\n\r");
+02E7 7428      1347            mov     a,#__str_5
+02E9 C0E0      1348            push    acc
+02EB 74C7      1349            mov     a,#(__str_5 >> 8)
+02ED C0E0      1350            push    acc
+02EF 7480      1351            mov     a,#0x80
+02F1 C0E0      1352            push    acc
+02F3 120100    1353            lcall   _printf
+02F6 1581      1354            dec     sp
+02F8 1581      1355            dec     sp
+02FA 1581      1356            dec     sp
+02FC           1357   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:346: printf("Volt at ADC: %f\n\r", Volts_at_Pin(QFP32_MUX_P1_6));
+02FC 75820C    1358            mov     dpl,#0x0C
+02FF 120100    1359            lcall   _Volts_at_Pin
+0302 AA82      1360            mov     r2,dpl
+0304 AB83      1361            mov     r3,dph
+0306 ACF0      1362            mov     r4,b
+0308 FD        1363            mov     r5,a
+0309 C002      1364            push    ar2
+030B C003      1365            push    ar3
+030D C004      1366            push    ar4
+030F C005      1367            push    ar5
+0311 7468      1368            mov     a,#__str_6
+0313 C0E0      1369            push    acc
+0315 74C7      1370            mov     a,#(__str_6 >> 8)
+0317 C0E0      1371            push    acc
+0319 7480      1372            mov     a,#0x80
+031B C0E0      1373            push    acc
+031D 120100    1374            lcall   _printf
+0320 E581      1375            mov     a,sp
+0322 24F9      1376            add     a,#0xf9
+0324 F581      1377            mov     sp,a
+0326           1378   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:347: while(Volts_at_Pin(QFP32_MUX_P1_6) < thresholdVolt);
+0326           1379   L016001?:
+0326 75820C    1380            mov     dpl,#0x0C
+0329 120100    1381            lcall   _Volts_at_Pin
+032C AA82      1382            mov     r2,dpl
+032E AB83      1383            mov     r3,dph
+0330 ACF0      1384            mov     r4,b
+0332 FD        1385            mov     r5,a
+0333 74CD      1386            mov     a,#0xCD
+0335 C0E0      1387            push    acc
+0337 74CC      1388            mov     a,#0xCC
+0339 C0E0      1389            push    acc
+033B 744C      1390            mov     a,#0x4C
+033D C0E0      1391            push    acc
+033F 743D      1392            mov     a,#0x3D
+0341 C0E0      1393            push    acc
+0343 8A82      1394            mov     dpl,r2
+0345 8B83      1395            mov     dph,r3
+0347 8CF0      1396            mov     b,r4
+0349 ED        1397            mov     a,r5
+034A 120100    1398            lcall   ___fslt
+034D AA82      1399            mov     r2,dpl
+034F E581      1400            mov     a,sp
+0351 24FC      1401            add     a,#0xfc
+0353 F581      1402            mov     sp,a
+0355 EA        1403            mov     a,r2
+0356 7001      1404            jnz     L016001?
+0358           1405   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:348: while(Volts_at_Pin(QFP32_MUX_P1_6) >= thresholdVolt); //wait for the signal to be 0
+0358           1406   L016004?:
+0358 75820C    1407            mov     dpl,#0x0C
+035B 120100    1408            lcall   _Volts_at_Pin
+035E AA82      1409            mov     r2,dpl
+0360 AB83      1410            mov     r3,dph
+0362 ACF0      1411            mov     r4,b
+0364 FD        1412            mov     r5,a
+0365 74CD      1413            mov     a,#0xCD
+0367 C0E0      1414            push    acc
+0369 74CC      1415            mov     a,#0xCC
+036B C0E0      1416            push    acc
+036D 744C      1417            mov     a,#0x4C
+036F C0E0      1418            push    acc
+0371 743D      1419            mov     a,#0x3D
+0373 C0E0      1420            push    acc
+0375 8A82      1421            mov     dpl,r2
+0377 8B83      1422            mov     dph,r3
+0379 8CF0      1423            mov     b,r4
+037B ED        1424            mov     a,r5
+037C 120100    1425            lcall   ___fslt
+037F AA82      1426            mov     r2,dpl
+0381 E581      1427            mov     a,sp
+0383 24FC      1428            add     a,#0xfc
+0385 F581      1429            mov     sp,a
+0387 EA        1430            mov     a,r2
+0388 6001      1431            jz      L016004?
+038A           1432   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:349: printf("Signal is 0\n\r");
+038A 7468      1433            mov     a,#__str_7
+038C C0E0      1434            push    acc
+038E 74C8      1435            mov     a,#(__str_7 >> 8)
+0390 C0E0      1436            push    acc
+0392 7480      1437            mov     a,#0x80
+0394 C0E0      1438            push    acc
+0396 120100    1439            lcall   _printf
+0399 1581      1440            dec     sp
+039B 1581      1441            dec     sp
+039D 1581      1442            dec     sp
+039F           1443   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:350: printf("Volt at ADC: %f\n\r", Volts_at_Pin(QFP32_MUX_P1_6));
+039F 75820C    1444            mov     dpl,#0x0C
+03A2 120100    1445            lcall   _Volts_at_Pin
+03A5 AA82      1446            mov     r2,dpl
+03A7 AB83      1447            mov     r3,dph
+03A9 ACF0      1448            mov     r4,b
+03AB FD        1449            mov     r5,a
+03AC C002      1450            push    ar2
+03AE C003      1451            push    ar3
+03B0 C004      1452            push    ar4
+03B2 C005      1453            push    ar5
+03B4 7468      1454            mov     a,#__str_6
+03B6 C0E0      1455            push    acc
+03B8 74C7      1456            mov     a,#(__str_6 >> 8)
+03BA C0E0      1457            push    acc
+03BC 7480      1458            mov     a,#0x80
+03BE C0E0      1459            push    acc
+03C0 120100    1460            lcall   _printf
+03C3 E581      1461            mov     a,sp
+03C5 24F9      1462            add     a,#0xf9
+03C7 F581      1463            mov     sp,a
+03C9           1464   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:351: printf("Start Timer\n\r");
+03C9 74A8      1465            mov     a,#__str_8
+03CB C0E0      1466            push    acc
+03CD 74C8      1467            mov     a,#(__str_8 >> 8)
+03CF C0E0      1468            push    acc
+03D1 7480      1469            mov     a,#0x80
+03D3 C0E0      1470            push    acc
+03D5 120100    1471            lcall   _printf
+03D8 1581      1472            dec     sp
+03DA 1581      1473            dec     sp
+03DC 1581      1474            dec     sp
+03DE           1475   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:352: TR0=1; // Start the timer
+03DE D28C      1476            setb    _TR0
+03E0           1477   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:354: while (Volts_at_Pin(QFP32_MUX_P1_6) < thresholdVolt) {    // wait for signal to be 1
+03E0 E4        1478            clr     a
+03E1 F500      1479            mov     _checkTime_overflow_count_1_73,a
+03E3 F501      1480            mov     (_checkTime_overflow_count_1_73 + 1),a
+03E5           1481   L016009?:
+03E5 75820C    1482            mov     dpl,#0x0C
+03E8 120100    1483            lcall   _Volts_at_Pin
+03EB AC82      1484            mov     r4,dpl
+03ED AD83      1485            mov     r5,dph
+03EF AEF0      1486            mov     r6,b
+03F1 FF        1487            mov     r7,a
+03F2 74CD      1488            mov     a,#0xCD
+03F4 C0E0      1489            push    acc
+03F6 74CC      1490            mov     a,#0xCC
+03F8 C0E0      1491            push    acc
+03FA 744C      1492            mov     a,#0x4C
+03FC C0E0      1493            push    acc
+03FE 743D      1494            mov     a,#0x3D
+0400 C0E0      1495            push    acc
+0402 8C82      1496            mov     dpl,r4
+0404 8D83      1497            mov     dph,r5
+0406 8EF0      1498            mov     b,r6
+0408 EF        1499            mov     a,r7
+0409 120100    1500            lcall   ___fslt
+040C AC82      1501            mov     r4,dpl
+040E E581      1502            mov     a,sp
+0410 24FC      1503            add     a,#0xfc
+0412 F581      1504            mov     sp,a
+0414 EC        1505            mov     a,r4
+0415 6001      1506            jz      L016011?
+0417           1507   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:355: printf("Volt at ADC: %f\n\r", Volts_at_Pin(QFP32_MUX_P1_6));
+0417 75820C    1508            mov     dpl,#0x0C
+041A 120100    1509            lcall   _Volts_at_Pin
+041D AC82      1510            mov     r4,dpl
+041F AD83      1511            mov     r5,dph
+0421 AEF0      1512            mov     r6,b
+0423 FF        1513            mov     r7,a
+0424 C004      1514            push    ar4
+0426 C005      1515            push    ar5
+0428 C006      1516            push    ar6
+042A C007      1517            push    ar7
+042C 7468      1518            mov     a,#__str_6
+042E C0E0      1519            push    acc
+0430 74C7      1520            mov     a,#(__str_6 >> 8)
+0432 C0E0      1521            push    acc
+0434 7480      1522            mov     a,#0x80
+0436 C0E0      1523            push    acc
+0438 120100    1524            lcall   _printf
+043B E581      1525            mov     a,sp
+043D 24F9      1526            add     a,#0xf9
+043F F581      1527            mov     sp,a
+0441           1528   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:356: if(TF0==1) { // Did the 16-bit timer overflow                     {
+0441           1529   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:357: TF0=0;
+0441 108D68    1530            jbc     _TF0,L016035?
+0444 8001      1531            sjmp    L016009?
+0446           1532   L016035?:
+0446           1533   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:358: overflow_count++;
+0446 0500      1534            inc     _checkTime_overflow_count_1_73
+0448 E4        1535            clr     a
+0449 B500E8    1536            cjne    a,_checkTime_overflow_count_1_73,L016009?
+044C 0501      1537            inc     (_checkTime_overflow_count_1_73 + 1)
+044E 8001      1538            sjmp    L016009?
+0450           1539   L016011?:
+0450           1540   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:367: if ((overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK)*1000 < 10) {
+0450 850082    1541            mov     dpl,_checkTime_overflow_count_1_73
+0453 850183    1542            mov     dph,(_checkTime_overflow_count_1_73 + 1)
+0456 120100    1543            lcall   ___sint2fs
+0459 AC82      1544            mov     r4,dpl
+045B AD83      1545            mov     r5,dph
+045D AEF0      1546            mov     r6,b
+045F FF        1547            mov     r7,a
+0460 C004      1548            push    ar4
+0462 C005      1549            push    ar5
+0464 C006      1550            push    ar6
+0466 C007      1551            push    ar7
+0468 C004      1552            push    ar4
+046A C005      1553            push    ar5
+046C C006      1554            push    ar6
+046E C007      1555            push    ar7
+0470 900000    1556            mov     dptr,#0x0000
+0473 75F080    1557            mov     b,#0x80
+0476 7447      1558            mov     a,#0x47
+0478 120100    1559            lcall   ___fsmul
+047B 858250    1560            mov     _checkTime_sloc0_1_0,dpl
+047E 858351    1561            mov     (_checkTime_sloc0_1_0 + 1),dph
+0481 85F052    1562            mov     (_checkTime_sloc0_1_0 + 2),b
+0484 F553      1563            mov     (_checkTime_sloc0_1_0 + 3),a
+0486 E581      1564            mov     a,sp
+0488 24FC      1565            add     a,#0xfc
+048A F581      1566            mov     sp,a
+048C 858C82    1567            mov     dpl,_TH0
+048F 120100    1568            lcall   ___uchar2fs
+0492 AA82      1569            mov     r2,dpl
+0494 AB83      1570            mov     r3,dph
+0496 A8F0      1571            mov     r0,b
+0498 F9        1572            mov     r1,a
+0499 C002      1573            push    ar2
+049B C003      1574            push    ar3
+049D C000      1575            push    ar0
+049F C001      1576            push    ar1
+04A1 900000    1577            mov     dptr,#0x0000
+04A4 75F080    1578            mov     b,#0x80
+04A7 7443      1579            mov     a,#0x43
+04A9 120100    1580            lcall   ___fsmul
+04AC AA82      1581            mov     r2,dpl
+04AE AB83      1582            mov     r3,dph
+04B0 A8F0      1583            mov     r0,b
+04B2 F9        1584            mov     r1,a
+04B3 E581      1585            mov     a,sp
+04B5 24FC      1586            add     a,#0xfc
+04B7 F581      1587            mov     sp,a
+04B9 C002      1588            push    ar2
+04BB C003      1589            push    ar3
+04BD C000      1590            push    ar0
+04BF C001      1591            push    ar1
+04C1 855082    1592            mov     dpl,_checkTime_sloc0_1_0
+04C4 855183    1593            mov     dph,(_checkTime_sloc0_1_0 + 1)
+04C7 8552F0    1594            mov     b,(_checkTime_sloc0_1_0 + 2)
+04CA E553      1595            mov     a,(_checkTime_sloc0_1_0 + 3)
+04CC 120100    1596            lcall   ___fsadd
+04CF 858250    1597            mov     _checkTime_sloc0_1_0,dpl
+04D2 858351    1598            mov     (_checkTime_sloc0_1_0 + 1),dph
+04D5 85F052    1599            mov     (_checkTime_sloc0_1_0 + 2),b
+04D8 F553      1600            mov     (_checkTime_sloc0_1_0 + 3),a
+04DA E581      1601            mov     a,sp
+04DC 24FC      1602            add     a,#0xfc
+04DE F581      1603            mov     sp,a
+04E0 AA8A      1604            mov     r2,_TL0
+04E2 7B00      1605            mov     r3,#0x00
+04E4 8A82      1606            mov     dpl,r2
+04E6 8B83      1607            mov     dph,r3
+04E8 120100    1608            lcall   ___sint2fs
+04EB AA82      1609            mov     r2,dpl
+04ED AB83      1610            mov     r3,dph
+04EF A8F0      1611            mov     r0,b
+04F1 F9        1612            mov     r1,a
+04F2 C002      1613            push    ar2
+04F4 C003      1614            push    ar3
+04F6 C000      1615            push    ar0
+04F8 C001      1616            push    ar1
+04FA 855082    1617            mov     dpl,_checkTime_sloc0_1_0
+04FD 855183    1618            mov     dph,(_checkTime_sloc0_1_0 + 1)
+0500 8552F0    1619            mov     b,(_checkTime_sloc0_1_0 + 2)
+0503 E553      1620            mov     a,(_checkTime_sloc0_1_0 + 3)
+0505 120100    1621            lcall   ___fsadd
+0508 AA82      1622            mov     r2,dpl
+050A AB83      1623            mov     r3,dph
+050C A8F0      1624            mov     r0,b
+050E F9        1625            mov     r1,a
+050F E581      1626            mov     a,sp
+0511 24FC      1627            add     a,#0xfc
+0513 F581      1628            mov     sp,a
+0515 C002      1629            push    ar2
+0517 C003      1630            push    ar3
+0519 C000      1631            push    ar0
+051B C001      1632            push    ar1
+051D 90C33E    1633            mov     dptr,#0xC33E
+0520 75F02E    1634            mov     b,#0x2E
+0523 7439      1635            mov     a,#0x39
+0525 120100    1636            lcall   ___fsmul
+0528 AA82      1637            mov     r2,dpl
+052A AB83      1638            mov     r3,dph
+052C A8F0      1639            mov     r0,b
+052E F9        1640            mov     r1,a
+052F E581      1641            mov     a,sp
+0531 24FC      1642            add     a,#0xfc
+0533 F581      1643            mov     sp,a
+0535 E4        1644            clr     a
+0536 C0E0      1645            push    acc
+0538 C0E0      1646            push    acc
+053A 7420      1647            mov     a,#0x20
+053C C0E0      1648            push    acc
+053E 7441      1649            mov     a,#0x41
+0540 C0E0      1650            push    acc
+0542 8A82      1651            mov     dpl,r2
+0544 8B83      1652            mov     dph,r3
+0546 88F0      1653            mov     b,r0
+0548 E9        1654            mov     a,r1
+0549 120100    1655            lcall   ___fslt
+054C AA82      1656            mov     r2,dpl
+054E E581      1657            mov     a,sp
+0550 24FC      1658            add     a,#0xfc
+0552 F581      1659            mov     sp,a
+0554 D007      1660            pop     ar7
+0556 D006      1661            pop     ar6
+0558 D005      1662            pop     ar5
+055A D004      1663            pop     ar4
+055C EA        1664            mov     a,r2
+055D 7001      1665            jnz     L016037?
+055F 020100    1666            ljmp    L016018?
+0562           1667   L016037?:
+0562           1668   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:368: while (Volts_at_Pin(QFP32_MUX_P1_6) < thresholdVolt) {    // wait for signal to be 1
+0562           1669   L016014?:
+0562 75820C    1670            mov     dpl,#0x0C
+0565 C004      1671            push    ar4
+0567 C005      1672            push    ar5
+0569 C006      1673            push    ar6
+056B C007      1674            push    ar7
+056D 120100    1675            lcall   _Volts_at_Pin
+0570 A882      1676            mov     r0,dpl
+0572 A983      1677            mov     r1,dph
+0574 AAF0      1678            mov     r2,b
+0576 FB        1679            mov     r3,a
+0577 74CD      1680            mov     a,#0xCD
+0579 C0E0      1681            push    acc
+057B 74CC      1682            mov     a,#0xCC
+057D C0E0      1683            push    acc
+057F 744C      1684            mov     a,#0x4C
+0581 C0E0      1685            push    acc
+0583 743D      1686            mov     a,#0x3D
+0585 C0E0      1687            push    acc
+0587 8882      1688            mov     dpl,r0
+0589 8983      1689            mov     dph,r1
+058B 8AF0      1690            mov     b,r2
+058D EB        1691            mov     a,r3
+058E 120100    1692            lcall   ___fslt
+0591 AA82      1693            mov     r2,dpl
+0593 E581      1694            mov     a,sp
+0595 24FC      1695            add     a,#0xfc
+0597 F581      1696            mov     sp,a
+0599 D007      1697            pop     ar7
+059B D006      1698            pop     ar6
+059D D005      1699            pop     ar5
+059F D004      1700            pop     ar4
+05A1 EA        1701            mov     a,r2
+05A2 6001      1702            jz      L016018?
+05A4           1703   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:369: printf("Volt at ADC: %f\n\r", Volts_at_Pin(QFP32_MUX_P1_6));
+05A4 75820C    1704            mov     dpl,#0x0C
+05A7 C004      1705            push    ar4
+05A9 C005      1706            push    ar5
+05AB C006      1707            push    ar6
+05AD C007      1708            push    ar7
+05AF 120100    1709            lcall   _Volts_at_Pin
+05B2 AA82      1710            mov     r2,dpl
+05B4 AB83      1711            mov     r3,dph
+05B6 A8F0      1712            mov     r0,b
+05B8 F9        1713            mov     r1,a
+05B9 C002      1714            push    ar2
+05BB C003      1715            push    ar3
+05BD C000      1716            push    ar0
+05BF C001      1717            push    ar1
+05C1 7468      1718            mov     a,#__str_6
+05C3 C0E0      1719            push    acc
+05C5 74C7      1720            mov     a,#(__str_6 >> 8)
+05C7 C0E0      1721            push    acc
+05C9 7480      1722            mov     a,#0x80
+05CB C0E0      1723            push    acc
+05CD 120100    1724            lcall   _printf
+05D0 E581      1725            mov     a,sp
+05D2 24F9      1726            add     a,#0xf9
+05D4 F581      1727            mov     sp,a
+05D6 D007      1728            pop     ar7
+05D8 D006      1729            pop     ar6
+05DA D005      1730            pop     ar5
+05DC D004      1731            pop     ar4
+05DE           1732   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:370: if(TF0==1) { // Did the 16-bit timer overflow                     {
+05DE           1733   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:371: TF0=0;
+05DE 108D28    1734            jbc     _TF0,L016039?
+05E1 020100    1735            ljmp    L016014?
+05E4           1736   L016039?:
+05E4           1737   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:372: overflow_count++;
+05E4 0500      1738            inc     _checkTime_overflow_count_1_73
+05E6 E4        1739            clr     a
+05E7 B50068    1740            cjne    a,_checkTime_overflow_count_1_73,L016040?
+05EA 0501      1741            inc     (_checkTime_overflow_count_1_73 + 1)
+05EC           1742   L016040?:
+05EC 020100    1743            ljmp    L016014?
+05EF           1744   L016018?:
+05EF           1745   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:383: TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
+05EF C28C      1746            clr     _TR0
+05F1           1747   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:384: printf("Stop Timer\n\r");
+05F1 C004      1748            push    ar4
+05F3 C005      1749            push    ar5
+05F5 C006      1750            push    ar6
+05F7 C007      1751            push    ar7
+05F9 74A8      1752            mov     a,#__str_9
+05FB C0E0      1753            push    acc
+05FD 74CB      1754            mov     a,#(__str_9 >> 8)
+05FF C0E0      1755            push    acc
+0601 7480      1756            mov     a,#0x80
+0603 C0E0      1757            push    acc
+0605 120100    1758            lcall   _printf
+0608 1581      1759            dec     sp
+060A 1581      1760            dec     sp
+060C 1581      1761            dec     sp
+060E           1762   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:385: time=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
+060E 900000    1763            mov     dptr,#0x0000
+0611 75F080    1764            mov     b,#0x80
+0614 7447      1765            mov     a,#0x47
+0616 120100    1766            lcall   ___fsmul
+0619 AA82      1767            mov     r2,dpl
+061B AB83      1768            mov     r3,dph
+061D ACF0      1769            mov     r4,b
+061F FD        1770            mov     r5,a
+0620 E581      1771            mov     a,sp
+0622 24FC      1772            add     a,#0xfc
+0624 F581      1773            mov     sp,a
+0626 858C82    1774            mov     dpl,_TH0
+0629 C002      1775            push    ar2
+062B C003      1776            push    ar3
+062D C004      1777            push    ar4
+062F C005      1778            push    ar5
+0631 120100    1779            lcall   ___uchar2fs
+0634 AE82      1780            mov     r6,dpl
+0636 AF83      1781            mov     r7,dph
+0638 A8F0      1782            mov     r0,b
+063A F9        1783            mov     r1,a
+063B C006      1784            push    ar6
+063D C007      1785            push    ar7
+063F C000      1786            push    ar0
+0641 C001      1787            push    ar1
+0643 900000    1788            mov     dptr,#0x0000
+0646 75F080    1789            mov     b,#0x80
+0649 7443      1790            mov     a,#0x43
+064B 120100    1791            lcall   ___fsmul
+064E AE82      1792            mov     r6,dpl
+0650 AF83      1793            mov     r7,dph
+0652 A8F0      1794            mov     r0,b
+0654 F9        1795            mov     r1,a
+0655 E581      1796            mov     a,sp
+0657 24FC      1797            add     a,#0xfc
+0659 F581      1798            mov     sp,a
+065B D005      1799            pop     ar5
+065D D004      1800            pop     ar4
+065F D003      1801            pop     ar3
+0661 D002      1802            pop     ar2
+0663 C006      1803            push    ar6
+0665 C007      1804            push    ar7
+0667 C000      1805            push    ar0
+0669 C001      1806            push    ar1
+066B 8A82      1807            mov     dpl,r2
+066D 8B83      1808            mov     dph,r3
+066F 8CF0      1809            mov     b,r4
+0671 ED        1810            mov     a,r5
+0672 120100    1811            lcall   ___fsadd
+0675 AA82      1812            mov     r2,dpl
+0677 AB83      1813            mov     r3,dph
+0679 ACF0      1814            mov     r4,b
+067B FD        1815            mov     r5,a
+067C E581      1816            mov     a,sp
+067E 24FC      1817            add     a,#0xfc
+0680 F581      1818            mov     sp,a
+0682 AE8A      1819            mov     r6,_TL0
+0684 7F00      1820            mov     r7,#0x00
+0686 8E82      1821            mov     dpl,r6
+0688 8F83      1822            mov     dph,r7
+068A C002      1823            push    ar2
+068C C003      1824            push    ar3
+068E C004      1825            push    ar4
+0690 C005      1826            push    ar5
+0692 120100    1827            lcall   ___sint2fs
+0695 AE82      1828            mov     r6,dpl
+0697 AF83      1829            mov     r7,dph
+0699 A8F0      1830            mov     r0,b
+069B F9        1831            mov     r1,a
+069C D005      1832            pop     ar5
+069E D004      1833            pop     ar4
+06A0 D003      1834            pop     ar3
+06A2 D002      1835            pop     ar2
+06A4 C006      1836            push    ar6
+06A6 C007      1837            push    ar7
+06A8 C000      1838            push    ar0
+06AA C001      1839            push    ar1
+06AC 8A82      1840            mov     dpl,r2
+06AE 8B83      1841            mov     dph,r3
+06B0 8CF0      1842            mov     b,r4
+06B2 ED        1843            mov     a,r5
+06B3 120100    1844            lcall   ___fsadd
+06B6 AA82      1845            mov     r2,dpl
+06B8 AB83      1846            mov     r3,dph
+06BA ACF0      1847            mov     r4,b
+06BC FD        1848            mov     r5,a
+06BD E581      1849            mov     a,sp
+06BF 24FC      1850            add     a,#0xfc
+06C1 F581      1851            mov     sp,a
+06C3 C002      1852            push    ar2
+06C5 C003      1853            push    ar3
+06C7 C004      1854            push    ar4
+06C9 C005      1855            push    ar5
+06CB 90F4FC    1856            mov     dptr,#0xF4FC
+06CE 75F032    1857            mov     b,#0x32
+06D1 7434      1858            mov     a,#0x34
+06D3 120100    1859            lcall   ___fsmul
+06D6 AA82      1860            mov     r2,dpl
+06D8 AB83      1861            mov     r3,dph
+06DA ACF0      1862            mov     r4,b
+06DC FD        1863            mov     r5,a
+06DD E581      1864            mov     a,sp
+06DF 24FC      1865            add     a,#0xfc
+06E1 F581      1866            mov     sp,a
+06E3           1867   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:386: return time*1000; //return period of high pulse in seconds                
+06E3 C002      1868            push    ar2
+06E5 C003      1869            push    ar3
+06E7 C004      1870            push    ar4
+06E9 C005      1871            push    ar5
+06EB 900000    1872            mov     dptr,#0x0000
+06EE 75F07A    1873            mov     b,#0x7A
+06F1 7444      1874            mov     a,#0x44
+06F3 120100    1875            lcall   ___fsmul
+06F6 AA82      1876            mov     r2,dpl
+06F8 AB83      1877            mov     r3,dph
+06FA ACF0      1878            mov     r4,b
+06FC FD        1879            mov     r5,a
+06FD E581      1880            mov     a,sp
+06FF 24FC      1881            add     a,#0xfc
+0701 F581      1882            mov     sp,a
+0703 8A82      1883            mov     dpl,r2
+0705 8B83      1884            mov     dph,r3
+0707 8CF0      1885            mov     b,r4
+0709 ED        1886            mov     a,r5
+070A 22        1887            ret
+070B           1888   ;------------------------------------------------------------
+070B           1889   ;Allocation info for local variables in function 'voltsAtPeak'
+070B           1890   ;------------------------------------------------------------
+070B           1891   ;------------------------------------------------------------
+070B           1892   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:393: float voltsAtPeak(void) {
+070B           1893   ;        -----------------------------------------
+070B           1894   ;         function voltsAtPeak
+070B           1895   ;        -----------------------------------------
+070B           1896   _voltsAtPeak:
+070B           1897   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:394: while(ADC_at_Pin(QFP32_MUX_P1_6)==0); //input pin waiting to be  
+070B           1898   L017001?:
+070B 75820C    1899            mov     dpl,#0x0C
+070E 120100    1900            lcall   _ADC_at_Pin
+0711 E582      1901            mov     a,dpl
+0713 8583F0    1902            mov     b,dph
+0716 45F0      1903            orl     a,b
+0718 6001      1904            jz      L017001?
+071A           1905   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:395: while(ADC_at_Pin(QFP32_MUX_P1_6)==0); //this waiting for the pin to be high/ 1 
+071A           1906   L017004?:
+071A 75820C    1907            mov     dpl,#0x0C
+071D 120100    1908            lcall   _ADC_at_Pin
+0720 E582      1909            mov     a,dpl
+0722 8583F0    1910            mov     b,dph
+0725 45F0      1911            orl     a,b
+0727 6001      1912            jz      L017004?
+0729           1913   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:396: Timer3us((PERIOD*1.0E6)/4.0); //PERIOD IS DEFINED
+0729 900000    1914            mov     dptr,#0x0000
+072C 120100    1915            lcall   _Timer3us
+072F           1916   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:397: return(Volts_at_Pin(QFP32_MUX_P1_6));
+072F 75820C    1917            mov     dpl,#0x0C
+0732 020100    1918            ljmp    _Volts_at_Pin
+0735           1919   ;------------------------------------------------------------
+0735           1920   ;Allocation info for local variables in function 'waitquarterperiod'
+0735           1921   ;------------------------------------------------------------
+0735           1922   ;------------------------------------------------------------
+0735           1923   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:410: void waitquarterperiod(void){
+0735           1924   ;        -----------------------------------------
+0735           1925   ;         function waitquarterperiod
+0735           1926   ;        -----------------------------------------
+0735           1927   _waitquarterperiod:
+0735           1928   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:411: waitms(constant_delay_time);
+0735 90000A    1929            mov     dptr,#0x000A
+0738 020100    1930            ljmp    _waitms
+073B           1931   ;------------------------------------------------------------
+073B           1932   ;Allocation info for local variables in function 'main'
+073B           1933   ;------------------------------------------------------------
+073B           1934   ;checkcommand              Allocated to registers 
+073B           1935   ;i                         Allocated with name '_main_i_1_84'
+073B           1936   ;sig1                      Allocated to registers 
+073B           1937   ;sig2                      Allocated to registers 
+073B           1938   ;peak                      Allocated to registers 
+073B           1939   ;voltspeak                 Allocated to registers 
+073B           1940   ;periodpwm                 Allocated to registers 
+073B           1941   ;time                      Allocated to registers r2 r3 r4 r5 
+073B           1942   ;pasttime                  Allocated to registers 
+073B           1943   ;period                    Allocated to registers 
+073B           1944   ;overflow_count            Allocated to registers 
+073B           1945   ;------------------------------------------------------------
+073B           1946   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:415: void main(void)
+073B           1947   ;        -----------------------------------------
+073B           1948   ;         function main
+073B           1949   ;        -----------------------------------------
+073B           1950   _main:
+073B           1951   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:427: TIMER0_Init();
+073B 120100    1952            lcall   _TIMER0_Init
+073E           1953   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:429: InitPinADC(1, 6); // Configure P2.5 as analog input
+073E 759006    1954            mov     _InitPinADC_PARM_2,#0x06
+0741 758201    1955            mov     dpl,#0x01
+0744 120100    1956            lcall   _InitPinADC
+0747           1957   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:431: InitADC();
+0747 120100    1958            lcall   _InitADC
+074A           1959   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:432: printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
+074A 7468      1960            mov     a,#__str_10
+074C C0E0      1961            push    acc
+074E 74CC      1962            mov     a,#(__str_10 >> 8)
+0750 C0E0      1963            push    acc
+0752 7480      1964            mov     a,#0x80
+0754 C0E0      1965            push    acc
+0756 120100    1966            lcall   _printf
+0759 1581      1967            dec     sp
+075B 1581      1968            dec     sp
+075D 1581      1969            dec     sp
+075F           1970   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:434: "Check pins P2.2 and P2.1 with the oscilloscope.\r\n");
+075F 74A8      1971            mov     a,#__str_11
+0761 C0E0      1972            push    acc
+0763 74CC      1973            mov     a,#(__str_11 >> 8)
+0765 C0E0      1974            push    acc
+0767 7480      1975            mov     a,#0x80
+0769 C0E0      1976            push    acc
+076B 120100    1977            lcall   _printf
+076E 1581      1978            dec     sp
+0770 1581      1979            dec     sp
+0772 1581      1980            dec     sp
+0774           1981   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:436: printf("\n\r");
+0774 74E8      1982            mov     a,#__str_12
+0776 C0E0      1983            push    acc
+0778 74CC      1984            mov     a,#(__str_12 >> 8)
+077A C0E0      1985            push    acc
+077C 7480      1986            mov     a,#0x80
+077E C0E0      1987            push    acc
+0780 120100    1988            lcall   _printf
+0783 1581      1989            dec     sp
+0785 1581      1990            dec     sp
+0787 1581      1991            dec     sp
+0789           1992   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:439: while (1)
+0789           1993   L019020?:
+0789           1994   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:442: time = checkTime();
+0789 120100    1995            lcall   _checkTime
+078C AA82      1996            mov     r2,dpl
+078E AB83      1997            mov     r3,dph
+0790 ACF0      1998            mov     r4,b
+0792 FD        1999            mov     r5,a
+0793           2000   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:443: printf("%f\t\n\r", time);
+0793 C002      2001            push    ar2
+0795 C003      2002            push    ar3
+0797 C004      2003            push    ar4
+0799 C005      2004            push    ar5
+079B C002      2005            push    ar2
+079D C003      2006            push    ar3
+079F C004      2007            push    ar4
+07A1 C005      2008            push    ar5
+07A3 7468      2009            mov     a,#__str_13
+07A5 C0E0      2010            push    acc
+07A7 74CD      2011            mov     a,#(__str_13 >> 8)
+07A9 C0E0      2012            push    acc
+07AB 7480      2013            mov     a,#0x80
+07AD C0E0      2014            push    acc
+07AF 120100    2015            lcall   _printf
+07B2 E581      2016            mov     a,sp
+07B4 24F9      2017            add     a,#0xf9
+07B6 F581      2018            mov     sp,a
+07B8 D005      2019            pop     ar5
+07BA D004      2020            pop     ar4
+07BC D003      2021            pop     ar3
+07BE D002      2022            pop     ar2
+07C0           2023   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:444: if(time>100) {            
+07C0 C002      2024            push    ar2
+07C2 C003      2025            push    ar3
+07C4 C004      2026            push    ar4
+07C6 C005      2027            push    ar5
+07C8 E4        2028            clr     a
+07C9 C0E0      2029            push    acc
+07CB C0E0      2030            push    acc
+07CD 74C8      2031            mov     a,#0xC8
+07CF C0E0      2032            push    acc
+07D1 7442      2033            mov     a,#0x42
+07D3 C0E0      2034            push    acc
+07D5 8A82      2035            mov     dpl,r2
+07D7 8B83      2036            mov     dph,r3
+07D9 8CF0      2037            mov     b,r4
+07DB ED        2038            mov     a,r5
+07DC 120100    2039            lcall   ___fsgt
+07DF AE82      2040            mov     r6,dpl
+07E1 E581      2041            mov     a,sp
+07E3 24FC      2042            add     a,#0xfc
+07E5 F581      2043            mov     sp,a
+07E7 D005      2044            pop     ar5
+07E9 D004      2045            pop     ar4
+07EB D003      2046            pop     ar3
+07ED D002      2047            pop     ar2
+07EF EE        2048            mov     a,r6
+07F0 7001      2049            jnz     L019034?
+07F2 020100    2050            ljmp    L019017?
+07F5           2051   L019034?:
+07F5           2052   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:445: if(time>=700 && time<=720){
+07F5 C002      2053            push    ar2
+07F7 C003      2054            push    ar3
+07F9 C004      2055            push    ar4
+07FB C005      2056            push    ar5
+07FD E4        2057            clr     a
+07FE C0E0      2058            push    acc
+0800 C0E0      2059            push    acc
+0802 742F      2060            mov     a,#0x2F
+0804 C0E0      2061            push    acc
+0806 7444      2062            mov     a,#0x44
+0808 C0E0      2063            push    acc
+080A 8A82      2064            mov     dpl,r2
+080C 8B83      2065            mov     dph,r3
+080E 8CF0      2066            mov     b,r4
+0810 ED        2067            mov     a,r5
+0811 120100    2068            lcall   ___fslt
+0814 AE82      2069            mov     r6,dpl
+0816 E581      2070            mov     a,sp
+0818 24FC      2071            add     a,#0xfc
+081A F581      2072            mov     sp,a
+081C D005      2073            pop     ar5
+081E D004      2074            pop     ar4
+0820 D003      2075            pop     ar3
+0822 D002      2076            pop     ar2
+0824 EE        2077            mov     a,r6
+0825 7001      2078            jnz     L019013?
+0827 C002      2079            push    ar2
+0829 C003      2080            push    ar3
+082B C004      2081            push    ar4
+082D C005      2082            push    ar5
+082F E4        2083            clr     a
+0830 C0E0      2084            push    acc
+0832 C0E0      2085            push    acc
+0834 7434      2086            mov     a,#0x34
+0836 C0E0      2087            push    acc
+0838 7444      2088            mov     a,#0x44
+083A C0E0      2089            push    acc
+083C 8A82      2090            mov     dpl,r2
+083E 8B83      2091            mov     dph,r3
+0840 8CF0      2092            mov     b,r4
+0842 ED        2093            mov     a,r5
+0843 120100    2094            lcall   ___fsgt
+0846 AE82      2095            mov     r6,dpl
+0848 E581      2096            mov     a,sp
+084A 24FC      2097            add     a,#0xfc
+084C F581      2098            mov     sp,a
+084E D005      2099            pop     ar5
+0850 D004      2100            pop     ar4
+0852 D003      2101            pop     ar3
+0854 D002      2102            pop     ar2
+0856 EE        2103            mov     a,r6
+0857 7001      2104            jnz     L019013?
+0859           2105   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:446: PWMbackward(); 
+0859 120100    2106            lcall   _PWMbackward
+085C 020100    2107            ljmp    L019018?
+085F           2108   L019013?:
+085F           2109   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:449: else if(time>=340 && time<=360){
+085F C002      2110            push    ar2
+0861 C003      2111            push    ar3
+0863 C004      2112            push    ar4
+0865 C005      2113            push    ar5
+0867 E4        2114            clr     a
+0868 C0E0      2115            push    acc
+086A C0E0      2116            push    acc
+086C 74AA      2117            mov     a,#0xAA
+086E C0E0      2118            push    acc
+0870 7443      2119            mov     a,#0x43
+0872 C0E0      2120            push    acc
+0874 8A82      2121            mov     dpl,r2
+0876 8B83      2122            mov     dph,r3
+0878 8CF0      2123            mov     b,r4
+087A ED        2124            mov     a,r5
+087B 120100    2125            lcall   ___fslt
+087E AE82      2126            mov     r6,dpl
+0880 E581      2127            mov     a,sp
+0882 24FC      2128            add     a,#0xfc
+0884 F581      2129            mov     sp,a
+0886 D005      2130            pop     ar5
+0888 D004      2131            pop     ar4
+088A D003      2132            pop     ar3
+088C D002      2133            pop     ar2
+088E EE        2134            mov     a,r6
+088F 7001      2135            jnz     L019009?
+0891 C002      2136            push    ar2
+0893 C003      2137            push    ar3
+0895 C004      2138            push    ar4
+0897 C005      2139            push    ar5
+0899 E4        2140            clr     a
+089A C0E0      2141            push    acc
+089C C0E0      2142            push    acc
+089E 74B4      2143            mov     a,#0xB4
+08A0 C0E0      2144            push    acc
+08A2 7443      2145            mov     a,#0x43
+08A4 C0E0      2146            push    acc
+08A6 8A82      2147            mov     dpl,r2
+08A8 8B83      2148            mov     dph,r3
+08AA 8CF0      2149            mov     b,r4
+08AC ED        2150            mov     a,r5
+08AD 120100    2151            lcall   ___fsgt
+08B0 AE82      2152            mov     r6,dpl
+08B2 E581      2153            mov     a,sp
+08B4 24FC      2154            add     a,#0xfc
+08B6 F581      2155            mov     sp,a
+08B8 D005      2156            pop     ar5
+08BA D004      2157            pop     ar4
+08BC D003      2158            pop     ar3
+08BE D002      2159            pop     ar2
+08C0 EE        2160            mov     a,r6
+08C1 7001      2161            jnz     L019009?
+08C3           2162   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:450: PWMforward(); 
+08C3 120100    2163            lcall   _PWMforward
+08C6           2164   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:451: printf("Forward\n\r");
+08C6 74A8      2165            mov     a,#__str_0
+08C8 C0E0      2166            push    acc
+08CA 74C5      2167            mov     a,#(__str_0 >> 8)
+08CC C0E0      2168            push    acc
+08CE 7480      2169            mov     a,#0x80
+08D0 C0E0      2170            push    acc
+08D2 120100    2171            lcall   _printf
+08D5 1581      2172            dec     sp
+08D7 1581      2173            dec     sp
+08D9 1581      2174            dec     sp
+08DB 020100    2175            ljmp    L019018?
+08DE           2176   L019009?:
+08DE           2177   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:453: else if(time>=1410 && time<=1440){
+08DE C002      2178            push    ar2
+08E0 C003      2179            push    ar3
+08E2 C004      2180            push    ar4
+08E4 C005      2181            push    ar5
+08E6 E4        2182            clr     a
+08E7 C0E0      2183            push    acc
+08E9 7440      2184            mov     a,#0x40
+08EB C0E0      2185            push    acc
+08ED 74B0      2186            mov     a,#0xB0
+08EF C0E0      2187            push    acc
+08F1 7444      2188            mov     a,#0x44
+08F3 C0E0      2189            push    acc
+08F5 8A82      2190            mov     dpl,r2
+08F7 8B83      2191            mov     dph,r3
+08F9 8CF0      2192            mov     b,r4
+08FB ED        2193            mov     a,r5
+08FC 120100    2194            lcall   ___fslt
+08FF AE82      2195            mov     r6,dpl
+0901 E581      2196            mov     a,sp
+0903 24FC      2197            add     a,#0xfc
+0905 F581      2198            mov     sp,a
+0907 D005      2199            pop     ar5
+0909 D004      2200            pop     ar4
+090B D003      2201            pop     ar3
+090D D002      2202            pop     ar2
+090F EE        2203            mov     a,r6
+0910 7001      2204            jnz     L019005?
+0912 C002      2205            push    ar2
+0914 C003      2206            push    ar3
+0916 C004      2207            push    ar4
+0918 C005      2208            push    ar5
+091A E4        2209            clr     a
+091B C0E0      2210            push    acc
+091D C0E0      2211            push    acc
+091F 74B4      2212            mov     a,#0xB4
+0921 C0E0      2213            push    acc
+0923 7444      2214            mov     a,#0x44
+0925 C0E0      2215            push    acc
+0927 8A82      2216            mov     dpl,r2
+0929 8B83      2217            mov     dph,r3
+092B 8CF0      2218            mov     b,r4
+092D ED        2219            mov     a,r5
+092E 120100    2220            lcall   ___fsgt
+0931 AE82      2221            mov     r6,dpl
+0933 E581      2222            mov     a,sp
+0935 24FC      2223            add     a,#0xfc
+0937 F581      2224            mov     sp,a
+0939 D005      2225            pop     ar5
+093B D004      2226            pop     ar4
+093D D003      2227            pop     ar3
+093F D002      2228            pop     ar2
+0941 EE        2229            mov     a,r6
+0942 7001      2230            jnz     L019005?
+0944           2231   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:454: PWMRight(); 
+0944 120100    2232            lcall   _PWMRight
+0947 8001      2233            sjmp    L019018?
+0949           2234   L019005?:
+0949           2235   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:457: else if(time>=1060 && time<=1090){
+0949 C002      2236            push    ar2
+094B C003      2237            push    ar3
+094D C004      2238            push    ar4
+094F C005      2239            push    ar5
+0951 E4        2240            clr     a
+0952 C0E0      2241            push    acc
+0954 7480      2242            mov     a,#0x80
+0956 C0E0      2243            push    acc
+0958 7484      2244            mov     a,#0x84
+095A C0E0      2245            push    acc
+095C 7444      2246            mov     a,#0x44
+095E C0E0      2247            push    acc
+0960 8A82      2248            mov     dpl,r2
+0962 8B83      2249            mov     dph,r3
+0964 8CF0      2250            mov     b,r4
+0966 ED        2251            mov     a,r5
+0967 120100    2252            lcall   ___fslt
+096A AE82      2253            mov     r6,dpl
+096C E581      2254            mov     a,sp
+096E 24FC      2255            add     a,#0xfc
+0970 F581      2256            mov     sp,a
+0972 D005      2257            pop     ar5
+0974 D004      2258            pop     ar4
+0976 D003      2259            pop     ar3
+0978 D002      2260            pop     ar2
+097A EE        2261            mov     a,r6
+097B 7001      2262            jnz     L019018?
+097D C0E0      2263            push    acc
+097F 7440      2264            mov     a,#0x40
+0981 C0E0      2265            push    acc
+0983 7488      2266            mov     a,#0x88
+0985 C0E0      2267            push    acc
+0987 7444      2268            mov     a,#0x44
+0989 C0E0      2269            push    acc
+098B 8A82      2270            mov     dpl,r2
+098D 8B83      2271            mov     dph,r3
+098F 8CF0      2272            mov     b,r4
+0991 ED        2273            mov     a,r5
+0992 120100    2274            lcall   ___fsgt
+0995 AA82      2275            mov     r2,dpl
+0997 E581      2276            mov     a,sp
+0999 24FC      2277            add     a,#0xfc
+099B F581      2278            mov     sp,a
+099D EA        2279            mov     a,r2
+099E 7001      2280            jnz     L019018?
+09A0           2281   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:458: PWMLeft(); 
+09A0 120100    2282            lcall   _PWMLeft
+09A3 8001      2283            sjmp    L019018?
+09A5           2284   L019017?:
+09A5           2285   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:464: PWMStop();
+09A5 120100    2286            lcall   _PWMStop
+09A8           2287   L019018?:
+09A8           2288   ;        C:\Users\allisony\Documents\ElecRobot\Sam_Test.c:465: waitms(1000);
+09A8 9003E8    2289            mov     dptr,#0x03E8
+09AB 120100    2290            lcall   _waitms
+09AE 020100    2291            ljmp    L019020?
+09B1           2292            rseg R_CSEG
+09B1           2293   
+0000           2294            rseg R_XINIT
+0000           2295   
+0000           2296            rseg R_CONST
+0000           2297   __str_0:
+0000 466F7277  2298            db 'Forward'
+     617264
+0007 0A        2299            db 0x0A
+0008 0D        2300            db 0x0D
+0009 00        2301            db 0x00
+000A           2302   __str_1:
+000A 4261636B  2303            db 'Backward'
+     77617264
+0012 0A        2304            db 0x0A
+0013 0D        2305            db 0x0D
+0014 00        2306            db 0x00
+0015           2307   __str_2:
+0015 4C656674  2308            db 'Left'
+0019 0A        2309            db 0x0A
+001A 0D        2310            db 0x0D
+001B 00        2311            db 0x00
+001C           2312   __str_3:
+001C 52696768  2313            db 'Right'
+     74
+0021 0A        2314            db 0x0A
+0022 0D        2315            db 0x0D
+0023 00        2316            db 0x00
+0024           2317   __str_4:
+0024 53746F70  2318            db 'Stop'
+0028 0A        2319            db 0x0A
+0029 0D        2320            db 0x0D
+002A 00        2321            db 0x00
+002B           2322   __str_5:
+002B 57616974  2323            db 'Waiting for the signal to be 1'
+>>>>>>> 78f7b0e586dde8b7494c045e91bc03f46e4be7aa
      696E6720
      666F7220
      74686520
@@ -2156,6 +3936,7 @@
      616C2074
      6F206265
      2031
+<<<<<<< HEAD
 0049 0A        2149            db 0x0A
 004A 0D        2150            db 0x0D
 004B 00        2151            db 0x00
@@ -2194,6 +3975,46 @@
 008B 00        2175            db 0x00
 008C           2176   __str_11:
 008C 53717561  2177            db 'Square wave generator for the EFM8LB1.'
+=======
+0049 0A        2324            db 0x0A
+004A 0D        2325            db 0x0D
+004B 00        2326            db 0x00
+004C           2327   __str_6:
+004C 566F6C74  2328            db 'Volt at ADC: %f'
+     20617420
+     4144433A
+     202566
+005B 0A        2329            db 0x0A
+005C 0D        2330            db 0x0D
+005D 00        2331            db 0x00
+005E           2332   __str_7:
+005E 5369676E  2333            db 'Signal is 0'
+     616C2069
+     732030
+0069 0A        2334            db 0x0A
+006A 0D        2335            db 0x0D
+006B 00        2336            db 0x00
+006C           2337   __str_8:
+006C 53746172  2338            db 'Start Timer'
+     74205469
+     6D6572
+0077 0A        2339            db 0x0A
+0078 0D        2340            db 0x0D
+0079 00        2341            db 0x00
+007A           2342   __str_9:
+007A 53746F70  2343            db 'Stop Timer'
+     2054696D
+     6572
+0084 0A        2344            db 0x0A
+0085 0D        2345            db 0x0D
+0086 00        2346            db 0x00
+0087           2347   __str_10:
+0087 1B        2348            db 0x1B
+0088 5B324A    2349            db '[2J'
+008B 00        2350            db 0x00
+008C           2351   __str_11:
+008C 53717561  2352            db 'Square wave generator for the EFM8LB1.'
+>>>>>>> 78f7b0e586dde8b7494c045e91bc03f46e4be7aa
      72652077
      61766520
      67656E65
@@ -2203,20 +4024,31 @@
      65204546
      4D384C42
      312E
+<<<<<<< HEAD
 00B2 0D        2178            db 0x0D
 00B3 0A        2179            db 0x0A
 00B4 43686563  2180            db 'Check pins P2.2 and '
+=======
+00B2 0D        2353            db 0x0D
+00B3 0A        2354            db 0x0A
+00B4 43686563  2355            db 'Check pins P2.2 and '
+>>>>>>> 78f7b0e586dde8b7494c045e91bc03f46e4be7aa
      6B207069
      6E732050
      322E3220
      616E6420
+<<<<<<< HEAD
 00C8 50322E31  2181            db 'P2.1 with the oscilloscope.'
+=======
+00C8 50322E31  2356            db 'P2.1 with the oscilloscope.'
+>>>>>>> 78f7b0e586dde8b7494c045e91bc03f46e4be7aa
      20776974
      68207468
      65206F73
      63696C6C
      6F73636F
      70652E
+<<<<<<< HEAD
 00E3 0D        2182            db 0x0D
 00E4 0A        2183            db 0x0A
 00E5 00        2184            db 0x00
@@ -2242,3 +4074,22 @@
 002E           2202            CSEG
 002E           2203   
 002E           2204   end
+=======
+00E3 0D        2357            db 0x0D
+00E4 0A        2358            db 0x0A
+00E5 00        2359            db 0x00
+00E6           2360   __str_12:
+00E6 0A        2361            db 0x0A
+00E7 0D        2362            db 0x0D
+00E8 00        2363            db 0x00
+00E9           2364   __str_13:
+00E9 2566      2365            db '%f'
+00EB 09        2366            db 0x09
+00EC 0A        2367            db 0x0A
+00ED 0D        2368            db 0x0D
+00EE 00        2369            db 0x00
+00EF           2370   
+002E           2371            CSEG
+002E           2372   
+002E           2373   end
+>>>>>>> 78f7b0e586dde8b7494c045e91bc03f46e4be7aa

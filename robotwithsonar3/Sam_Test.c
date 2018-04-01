@@ -38,7 +38,10 @@
 
 //#define LCD_D5 P2_3
 
-#define INPUT P2_0
+#define OUT0 P2_0
+#define OUT1 P2_1
+
+//#define INPUT P2_0
 #define constant_delay_time 10 //how long the delay for each signal is 
 
 #define FORWARDTIME 10
@@ -214,13 +217,13 @@ void Timer2_ISR(void) interrupt 5
 		pwm_count = 0;
 
 	// this will move the robot forward and backwards if the joystick
-	motorR1 = pwm_count>pwmSig1 ? 0 : 1;
-	motorR2 = pwm_count>pwmSig2 ? 0 : 1;
+	motorR1 = pwm_count>pwmSig1 ? 0 : 1;  //rightforward
+	motorR2 = pwm_count>pwmSig2 ? 0 : 1;  //rightbackward
 	
-	motorL1 = pwm_count>pwmSig1 ? 0 : 1;
-	motorL2 = pwm_count>pwmSig2 ? 0 : 1;
+	motorL1 = pwm_count>pwmSig3 ? 0 : 1;  //leftforward
+	motorL2 = pwm_count>pwmSig4 ? 0 : 1;  //leftbackward
 
-	
+	OUT0=pwm_count>80?0:1;
 }
 
 
@@ -286,7 +289,7 @@ void PWMforward(void) {
 	pwmSig2 = 0;
 	
 	pwmSig3 = 0;
-	pwmSig4 =99;
+	pwmSig4 = 99;
 	printf("Forward\n\r");
 }
 
@@ -300,20 +303,19 @@ void PWMbackward(void) {
 }
 
 void PWMLeft(void) {
-	pwmSig1 = 0;
-	pwmSig2 = 0;
-	
-	pwmSig3 = 70;
-	pwmSig4 = 0;
+      pwmSig1 = 0;
+      pwmSig2 = 99;
+      pwmSig3 = 0;
+      pwmSig4 = 99;
 	printf("Left\n\r");
 }
 
 void PWMRight(void) {
-	pwmSig1 = 99;
-	pwmSig2 = 0;
-	
-	pwmSig3 = 0;
-	pwmSig4 = 0;
+      pwmSig1 = 99;
+      pwmSig2 = 0;
+      
+      pwmSig3 = 99;
+      pwmSig4 = 0;
 	printf("Right\n\r");
 }
 
@@ -357,13 +359,6 @@ float checkTime (void) {
 				TF0=0;
 				overflow_count++;
 			}
-<<<<<<< HEAD
-			
-		/*	if ((overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK)*1000 >= STOPTIME){
-			printf("Possibly a STOP. break out of the loop and stop timer. \n\r");
-			break;
-			}  */
-=======
 			/*
 			if ((overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK)*1000 >= STOPTIME){
 			printf("Possibly a STOP. break out of the loop and stop timer. \n\r");
@@ -383,7 +378,6 @@ float checkTime (void) {
 			printf("Possibly a STOP. break out of the loop and stop timer. \n\r");
 			break;
 			}*/
->>>>>>> 78f7b0e586dde8b7494c045e91bc03f46e4be7aa
 			
 		}	
 	}
@@ -419,10 +413,46 @@ void waitquarterperiod(void){
 	waitms(constant_delay_time);
 }
 
+//Automation
+void detectobstacle(float threshold){
+
+  //int turnOnAutomation = 1;
+
+  //motorR1 = pwm_count>pwmSig1 ? 0 : 1;
+  //motorR2 = pwm_count>pwmSig2 ? 0 : 1;
+
+  //motorL1 = pwm_count>pwmSig3 ? 0 : 1;
+  //motorL2 = pwm_count>pwmSig4 ? 0 : 1;
+  
+  //while(turnOnAutomation == 1){
+    if(threshold <= 0.6 ){
+      //Turn right 90 degrees
+      printf("Turn right \r\n");
+      PWMRight();
+      waitms(500); //Make waits longer
+      waitms(500); 
+      waitms(300); 
+      //stop, check again for obstacle
+      PWMStop();
+      waitms(500);
+      waitms(250);
+    }
+
+
+ 	 else{
+ 	 	printf("Go Straight \r\n");
+      	// if no obstacle, go straight
+      	PWMforward();
+      }
+
+
+    //}
+}
+
 
 void main(void)
 {
-	int checkcommand= 0, i ;
+	int checkcommand= 0, i=0 ;
 	int sig1 = 0;
 	int sig2 = 0;
 	float  peak = 0;
@@ -432,6 +462,10 @@ void main(void)
 	
 		float period = 0;
 		int overflow_count=0;
+		
+	TL0=0; 
+	TH0=0;
+	TF0=0;
 	TIMER0_Init();
 
 	InitPinADC(1, 6); // Configure P2.5 as analog input
@@ -446,28 +480,17 @@ void main(void)
 	pasttime=0; 
 	while (1)
 	{   
+    	/*
     	//PWMStop();
-<<<<<<< HEAD
-   
-  		time = checkTime();
-  		printf("Time : %f\t\n\r", time);
-  		
-  	    	
-=======
  		time = checkTime();
   		printf("%f\t\n\r", time);
   		if(time>100) {	    	
->>>>>>> 78f7b0e586dde8b7494c045e91bc03f46e4be7aa
 	    	if(time>=700 && time<=720){
 	    		PWMbackward(); 
 	    //		printf("%f\t\n\r", time);
 	    		}
 	    	else if(time>=340 && time<=360){
-<<<<<<< HEAD
-	    		PWMforward(); 
-=======
 				PWMforward(); 
->>>>>>> 78f7b0e586dde8b7494c045e91bc03f46e4be7aa
 				printf("Forward\n\r");
 	    		}
 	    	else if(time>=1410 && time<=1440){
@@ -482,14 +505,47 @@ void main(void)
 		}		   			
    		else  
 	   			PWMStop();
-<<<<<<< HEAD
-				   			
-   	
-   		//	waitms(100);
-=======
    			waitms(1000);
->>>>>>> 78f7b0e586dde8b7494c045e91bc03f46e4be7aa
    		//	pasttime = time;
-   			
+   		*/
+   		overflow_count=0;
+		TL0=0; 
+		TH0=0;
+		TF0=0;
+	
+		while(P2_1!=0); // Wait for the signal to be zero
+		while(P2_1!=1); // Wait for the signal to be one
+		TR0=1; // Start the timer
+		while(P2_1!=0) // Wait for the signal to be zero
+		{
+			if(TF0==1) // Did the 16-bit timer overflow?
+			{
+				TF0=0;
+				overflow_count++;
+			}
+		}
+		/*while(P2_1!=1) // Wait for the signal to be one
+		{
+			if(TF0==1) // Did the 16-bit timer overflow?
+			{
+				TF0=0;
+				overflow_count++;
+			}
+		}*/
+		TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
+		period=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
+		// Send the period to the serial port
+		printf( "\rT=%f ms   \n ", period*1000.0);
+				waitms(50);
+		detectobstacle(period*1000.0);
+		
+		//use period to create limit commands
+		
+		///speed=343.00;
+	//	distance=speed*period*1000;
+	//	distance=(period*10000000)*0.0061;
+	//	printf( "\rdistance = %f cm\n ", (distance));
+		
+		waitms(50);	
 	} 
 }

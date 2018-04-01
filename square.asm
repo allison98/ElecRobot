@@ -1,7 +1,7 @@
 ;--------------------------------------------------------
 ; File Created by C51
 ; Version 1.0.0 #1069 (Apr 23 2015) (MSVC)
-; This file was generated Sun Mar 25 15:04:45 2018
+; This file was generated Fri Mar 30 17:02:46 2018
 ;--------------------------------------------------------
 $name square
 $optc51 --model-small
@@ -788,8 +788,8 @@ _PWMLeft:
 	mov	(_pwmSig1 + 1),a
 	mov	_pwmSig2,a
 	mov	(_pwmSig2 + 1),a
-;	C:\Users\allisony\Documents\ElecRobot\square.c:146: pwmSig3 = 70;
-	mov	_pwmSig3,#0x46
+;	C:\Users\allisony\Documents\ElecRobot\square.c:146: pwmSig3 = 90;
+	mov	_pwmSig3,#0x5A
 	clr	a
 	mov	(_pwmSig3 + 1),a
 ;	C:\Users\allisony\Documents\ElecRobot\square.c:147: pwmSig4 = 0;

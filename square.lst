@@ -1,7 +1,7 @@
 0000              1   ;--------------------------------------------------------
 0000              2   ; File Created by C51
 0000              3   ; Version 1.0.0 #1069 (Apr 23 2015) (MSVC)
-0000              4   ; This file was generated Sun Mar 25 15:04:45 2018
+0000              4   ; This file was generated Fri Mar 30 17:02:46 2018
 0000              5   ;--------------------------------------------------------
                   5   $name square
                   6   $optc51 --model-small
@@ -551,9 +551,9 @@
 0000            551   ;--------------------------------------------------------
 0000            552            rseg R_DINIT
 0000            553   ;        C:\Users\allisony\Documents\ElecRobot\square.c:21: volatile unsigned char pwm_count=0;
-0000 755000     554            mov     _pwm_count,#0x00
+0000 75B800     554            mov     _pwm_count,#0x00
 0003            555   ;        C:\Users\allisony\Documents\ElecRobot\square.c:22: volatile unsigned char pwm_count1=0;
-0003 751000     556            mov     _pwm_count1,#0x00
+0003 757800     556            mov     _pwm_count1,#0x00
 0006            557            ; The linker places a 'ret' at the end of segment R_DINIT.
 0006            558   ;--------------------------------------------------------
 0006            559   ; code
@@ -592,7 +592,7 @@
 001E            592   ;        C:\Users\allisony\Documents\ElecRobot\square.c:70: while ((CLKSEL & 0x80) == 0);
 001E            593   L002001?:
 001E E5A9       594            mov     a,_CLKSEL
-0020 30E7F8     595            jnb     acc.7,L002001?
+0020 30E758     595            jnb     acc.7,L002001?
 0023            596   ;        C:\Users\allisony\Documents\ElecRobot\square.c:71: CLKSEL = 0x03;
 0023 75A903     597            mov     _CLKSEL,#0x03
 0026            598   ;        C:\Users\allisony\Documents\ElecRobot\square.c:72: CLKSEL = 0x03;
@@ -600,7 +600,7 @@
 0029            600   ;        C:\Users\allisony\Documents\ElecRobot\square.c:73: while ((CLKSEL & 0x80) == 0);
 0029            601   L002004?:
 0029 E5A9       602            mov     a,_CLKSEL
-002B 30E778     603            jnb     acc.7,L002004?
+002B 30E7D8     603            jnb     acc.7,L002004?
 002E            604   ;        C:\Users\allisony\Documents\ElecRobot\square.c:78: P0MDOUT |= 0x10; // Enable UART0 TX as push-pull output
 002E 43A410     605            orl     _P0MDOUT,#0x10
 0031            606   ;        C:\Users\allisony\Documents\ElecRobot\square.c:79: XBR0     = 0x01; // Enable UART0 on P0.4(TX) and P0.5(RX)                     
@@ -659,58 +659,58 @@
 0074            659   ;        C:\Users\allisony\Documents\ElecRobot\square.c:111: TF2H = 0; // Clear Timer2 interrupt flag
 0074 C2CF       660            clr     _TF2H
 0076            661   ;        C:\Users\allisony\Documents\ElecRobot\square.c:113: pwm_count++;
-0076 0550       662            inc     _pwm_count
+0076 05B8       662            inc     _pwm_count
 0078            663   ;        C:\Users\allisony\Documents\ElecRobot\square.c:114: pwm_count1++;
-0078 0510       664            inc     _pwm_count1
+0078 0578       664            inc     _pwm_count1
 007A            665   ;        C:\Users\allisony\Documents\ElecRobot\square.c:115: if(pwm_count>100) {
-007A E550       666            mov     a,_pwm_count
+007A E5B8       666            mov     a,_pwm_count
 007C 249B       667            add     a,#0xff - 0x64
 007E 5001       668            jnc     L003002?
 0080            669   ;        C:\Users\allisony\Documents\ElecRobot\square.c:116: pwm_count=0;
-0080 755000     670            mov     _pwm_count,#0x00
+0080 75B800     670            mov     _pwm_count,#0x00
 0083            671   L003002?:
 0083            672   ;        C:\Users\allisony\Documents\ElecRobot\square.c:119: OUT0=pwm_count>pwmSig1?0:1;
-0083 AA50       673            mov     r2,_pwm_count
+0083 AAB8       673            mov     r2,_pwm_count
 0085 7B00       674            mov     r3,#0x00
 0087 C3         675            clr     c
-0088 E5D0       676            mov     a,_pwmSig1
+0088 E538       676            mov     a,_pwmSig1
 008A 9A         677            subb    a,r2
-008B E5D1       678            mov     a,(_pwmSig1 + 1)
+008B E539       678            mov     a,(_pwmSig1 + 1)
 008D 9B         679            subb    a,r3
-008E 9278       680            mov  _Timer2_ISR_sloc0_1_0,c
+008E 92D8       680            mov  _Timer2_ISR_sloc0_1_0,c
 0090 B3         681            cpl     c
 0091 92A4       682            mov     _P2_4,c
 0093            683   ;        C:\Users\allisony\Documents\ElecRobot\square.c:120: OUT1=pwm_count>pwmSig2?0:1;
-0093 AA50       684            mov     r2,_pwm_count
+0093 AAB8       684            mov     r2,_pwm_count
 0095 7B00       685            mov     r3,#0x00
 0097 C3         686            clr     c
-0098 E590       687            mov     a,_pwmSig2
+0098 E5F8       687            mov     a,_pwmSig2
 009A 9A         688            subb    a,r2
-009B E591       689            mov     a,(_pwmSig2 + 1)
+009B E5F9       689            mov     a,(_pwmSig2 + 1)
 009D 9B         690            subb    a,r3
-009E 9278       691            mov  _Timer2_ISR_sloc0_1_0,c
+009E 92D8       691            mov  _Timer2_ISR_sloc0_1_0,c
 00A0 B3         692            cpl     c
 00A1 92A5       693            mov     _P2_5,c
 00A3            694   ;        C:\Users\allisony\Documents\ElecRobot\square.c:122: OUT2=pwm_count>pwmSig3?0:1;
-00A3 AA50       695            mov     r2,_pwm_count
+00A3 AAB8       695            mov     r2,_pwm_count
 00A5 7B00       696            mov     r3,#0x00
 00A7 C3         697            clr     c
-00A8 E550       698            mov     a,_pwmSig3
+00A8 E5B8       698            mov     a,_pwmSig3
 00AA 9A         699            subb    a,r2
-00AB E551       700            mov     a,(_pwmSig3 + 1)
+00AB E5B9       700            mov     a,(_pwmSig3 + 1)
 00AD 9B         701            subb    a,r3
-00AE 9278       702            mov  _Timer2_ISR_sloc0_1_0,c
+00AE 92D8       702            mov  _Timer2_ISR_sloc0_1_0,c
 00B0 B3         703            cpl     c
 00B1 9296       704            mov     _P1_6,c
 00B3            705   ;        C:\Users\allisony\Documents\ElecRobot\square.c:123: OUT3=pwm_count>pwmSig4?0:1;
-00B3 AA50       706            mov     r2,_pwm_count
+00B3 AAB8       706            mov     r2,_pwm_count
 00B5 7B00       707            mov     r3,#0x00
 00B7 C3         708            clr     c
-00B8 E510       709            mov     a,_pwmSig4
+00B8 E578       709            mov     a,_pwmSig4
 00BA 9A         710            subb    a,r2
-00BB E511       711            mov     a,(_pwmSig4 + 1)
+00BB E579       711            mov     a,(_pwmSig4 + 1)
 00BD 9B         712            subb    a,r3
-00BE 9278       713            mov  _Timer2_ISR_sloc0_1_0,c
+00BE 92D8       713            mov  _Timer2_ISR_sloc0_1_0,c
 00C0 B3         714            cpl     c
 00C1 9295       715            mov     _P1_5,c
 00C3 D0D0       716            pop     psw
@@ -731,20 +731,20 @@
 00CC            731   ;        -----------------------------------------
 00CC            732   _PWMStraight:
 00CC            733   ;        C:\Users\allisony\Documents\ElecRobot\square.c:127: pwmSig1 = 99;
-00CC 75D063     734            mov     _pwmSig1,#0x63
+00CC 753863     734            mov     _pwmSig1,#0x63
 00CF E4         735            clr     a
-00D0 F5D1       736            mov     (_pwmSig1 + 1),a
+00D0 F539       736            mov     (_pwmSig1 + 1),a
 00D2            737   ;        C:\Users\allisony\Documents\ElecRobot\square.c:128: pwmSig2 = 0;
 00D2            738   ;        C:\Users\allisony\Documents\ElecRobot\square.c:130: pwmSig3 = 0;
 00D2 E4         739            clr     a
-00D3 F590       740            mov     _pwmSig2,a
-00D5 F591       741            mov     (_pwmSig2 + 1),a
-00D7 F550       742            mov     _pwmSig3,a
-00D9 F551       743            mov     (_pwmSig3 + 1),a
+00D3 F5F8       740            mov     _pwmSig2,a
+00D5 F5F9       741            mov     (_pwmSig2 + 1),a
+00D7 F5B8       742            mov     _pwmSig3,a
+00D9 F5B9       743            mov     (_pwmSig3 + 1),a
 00DB            744   ;        C:\Users\allisony\Documents\ElecRobot\square.c:131: pwmSig4 =99;
-00DB 751063     745            mov     _pwmSig4,#0x63
+00DB 757863     745            mov     _pwmSig4,#0x63
 00DE E4         746            clr     a
-00DF F511       747            mov     (_pwmSig4 + 1),a
+00DF F579       747            mov     (_pwmSig4 + 1),a
 00E1 22         748            ret
 00E2            749   ;------------------------------------------------------------
 00E2            750   ;Allocation info for local variables in function 'PWMback'
@@ -757,20 +757,20 @@
 00E2            757   _PWMback:
 00E2            758   ;        C:\Users\allisony\Documents\ElecRobot\square.c:135: pwmSig1 = 0;
 00E2 E4         759            clr     a
-00E3 F5D0       760            mov     _pwmSig1,a
-00E5 F5D1       761            mov     (_pwmSig1 + 1),a
+00E3 F538       760            mov     _pwmSig1,a
+00E5 F539       761            mov     (_pwmSig1 + 1),a
 00E7            762   ;        C:\Users\allisony\Documents\ElecRobot\square.c:136: pwmSig2 = 99;
-00E7 759063     763            mov     _pwmSig2,#0x63
+00E7 75F863     763            mov     _pwmSig2,#0x63
 00EA E4         764            clr     a
-00EB F591       765            mov     (_pwmSig2 + 1),a
+00EB F5F9       765            mov     (_pwmSig2 + 1),a
 00ED            766   ;        C:\Users\allisony\Documents\ElecRobot\square.c:138: pwmSig3 = 99;
-00ED 755063     767            mov     _pwmSig3,#0x63
+00ED 75B863     767            mov     _pwmSig3,#0x63
 00F0 E4         768            clr     a
-00F1 F551       769            mov     (_pwmSig3 + 1),a
+00F1 F5B9       769            mov     (_pwmSig3 + 1),a
 00F3            770   ;        C:\Users\allisony\Documents\ElecRobot\square.c:139: pwmSig4 = 0;
 00F3 E4         771            clr     a
-00F4 F510       772            mov     _pwmSig4,a
-00F6 F511       773            mov     (_pwmSig4 + 1),a
+00F4 F578       772            mov     _pwmSig4,a
+00F6 F579       773            mov     (_pwmSig4 + 1),a
 00F8 22         774            ret
 00F9            775   ;------------------------------------------------------------
 00F9            776   ;Allocation info for local variables in function 'PWMLeft'
@@ -784,18 +784,18 @@
 00F9            784   ;        C:\Users\allisony\Documents\ElecRobot\square.c:143: pwmSig1 = 0;
 00F9            785   ;        C:\Users\allisony\Documents\ElecRobot\square.c:144: pwmSig2 = 0;
 00F9 E4         786            clr     a
-00FA F5D0       787            mov     _pwmSig1,a
-00FC F5D1       788            mov     (_pwmSig1 + 1),a
-00FE F590       789            mov     _pwmSig2,a
-0100 F591       790            mov     (_pwmSig2 + 1),a
-0102            791   ;        C:\Users\allisony\Documents\ElecRobot\square.c:146: pwmSig3 = 70;
-0102 755046     792            mov     _pwmSig3,#0x46
+00FA F538       787            mov     _pwmSig1,a
+00FC F539       788            mov     (_pwmSig1 + 1),a
+00FE F5F8       789            mov     _pwmSig2,a
+0100 F5F9       790            mov     (_pwmSig2 + 1),a
+0102            791   ;        C:\Users\allisony\Documents\ElecRobot\square.c:146: pwmSig3 = 90;
+0102 75B85A     792            mov     _pwmSig3,#0x5A
 0105 E4         793            clr     a
-0106 F551       794            mov     (_pwmSig3 + 1),a
+0106 F5B9       794            mov     (_pwmSig3 + 1),a
 0108            795   ;        C:\Users\allisony\Documents\ElecRobot\square.c:147: pwmSig4 = 0;
 0108 E4         796            clr     a
-0109 F510       797            mov     _pwmSig4,a
-010B F511       798            mov     (_pwmSig4 + 1),a
+0109 F578       797            mov     _pwmSig4,a
+010B F579       798            mov     (_pwmSig4 + 1),a
 010D 22         799            ret
 010E            800   ;------------------------------------------------------------
 010E            801   ;Allocation info for local variables in function 'PWMRight'
@@ -807,19 +807,19 @@
 010E            807   ;        -----------------------------------------
 010E            808   _PWMRight:
 010E            809   ;        C:\Users\allisony\Documents\ElecRobot\square.c:151: pwmSig1 = 99;
-010E 75D063     810            mov     _pwmSig1,#0x63
+010E 753863     810            mov     _pwmSig1,#0x63
 0111 E4         811            clr     a
-0112 F5D1       812            mov     (_pwmSig1 + 1),a
+0112 F539       812            mov     (_pwmSig1 + 1),a
 0114            813   ;        C:\Users\allisony\Documents\ElecRobot\square.c:152: pwmSig2 = 0;
 0114            814   ;        C:\Users\allisony\Documents\ElecRobot\square.c:154: pwmSig3 = 0;
 0114            815   ;        C:\Users\allisony\Documents\ElecRobot\square.c:155: pwmSig4 = 0;
 0114 E4         816            clr     a
-0115 F590       817            mov     _pwmSig2,a
-0117 F591       818            mov     (_pwmSig2 + 1),a
-0119 F550       819            mov     _pwmSig3,a
-011B F551       820            mov     (_pwmSig3 + 1),a
-011D F510       821            mov     _pwmSig4,a
-011F F511       822            mov     (_pwmSig4 + 1),a
+0115 F5F8       817            mov     _pwmSig2,a
+0117 F5F9       818            mov     (_pwmSig2 + 1),a
+0119 F5B8       819            mov     _pwmSig3,a
+011B F5B9       820            mov     (_pwmSig3 + 1),a
+011D F578       821            mov     _pwmSig4,a
+011F F579       822            mov     (_pwmSig4 + 1),a
 0121 22         823            ret
 0122            824   ;------------------------------------------------------------
 0122            825   ;Allocation info for local variables in function 'main'
@@ -831,7 +831,7 @@
 0122            831   ;        -----------------------------------------
 0122            832   _main:
 0122            833   ;        C:\Users\allisony\Documents\ElecRobot\square.c:161: printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
-0122 7478       834            mov     a,#__str_0
+0122 74D8       834            mov     a,#__str_0
 0124 C0E0       835            push    acc
 0126 74B7       836            mov     a,#(__str_0 >> 8)
 0128 C0E0       837            push    acc
@@ -842,7 +842,7 @@
 0133 1581       842            dec     sp
 0135 1581       843            dec     sp
 0137            844   ;        C:\Users\allisony\Documents\ElecRobot\square.c:163: "Check pins P2.0 and P2.1 with the oscilloscope.\r\n");
-0137 7438       845            mov     a,#__str_1
+0137 7498       845            mov     a,#__str_1
 0139 C0E0       846            push    acc
 013B 74B8       847            mov     a,#(__str_1 >> 8)
 013D C0E0       848            push    acc
