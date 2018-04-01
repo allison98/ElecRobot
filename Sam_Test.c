@@ -360,10 +360,10 @@ float checkTime (void) {
 				overflow_count++;
 			}
 			
-			if ((overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK)*1000 >= STOPTIME){
+		/*	if ((overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK)*1000 >= STOPTIME){
 			printf("Possibly a STOP. break out of the loop and stop timer. \n\r");
 			break;
-			}
+			}  */
 			
 	}
 		
@@ -429,20 +429,16 @@ void main(void)
     	//PWMStop();
    
   		time = checkTime();
-  		printf("%f\t\n\r", time);
-  	//	if(time>100) {
-	    	
+  		printf("Time : %f\t\n\r", time);
+  		
+  	    	
 	    	if(time>=700 && time<=720){
 	    		PWMbackward(); 
 	    		printf("%f\t\n\r", time);
 	    		}
 	    	else if(time>=340 && time<=360){
-	    			pwmSig1 = 99;
-					pwmSig2 = 0;
-		
-					pwmSig3 = 0;
-					pwmSig4 =99;
-					printf("Forward\n\r");
+	    		PWMforward(); 
+				printf("Forward\n\r");
 	    		}
 	    	else if(time>=1410 && time<=1440){
 	    		PWMRight(); 
@@ -453,9 +449,9 @@ void main(void)
 	    		printf("%f\t\n\r", time); } 
 	    	else  
 	   			PWMStop();
-	//	}		   			
+				   			
    	
-   			waitms(100);
+   		//	waitms(100);
    		//	pasttime = time;
    			
 	} 
