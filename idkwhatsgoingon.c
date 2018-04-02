@@ -371,6 +371,8 @@ float zero_time_calc(void) {
 				TF0=0;
 				overflow_count++;
 			}
+			if ((overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK)*1000 >1800) 
+				return 1800;
 		}		
 		
 		TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
@@ -462,7 +464,6 @@ void recieveData (){
   
   }
  
-
 }
 
 void main(void)
@@ -492,39 +493,31 @@ void main(void)
 	
 	while (1)
 	{
-  		// RIGHT	:  2519.331200
-  		// FORWARD 	:  1439.454200
-  		// BACKWARD	:  1799.532600
-  		// LEFT		:  2159.571200
-  		// STOP		:  2876.402000 
+  		// RIGHT	:   1434.768000
+  		// FORWARD 	:   358.21148
+  		// BACKWARD	:  	716.532600
+  		// LEFT		:   1075.370900
+  		// STOP		:  	1794.120500 
   		
   		time=zero_time_calc(); 
   		printf("Time: %f\n\t\r", time);
-  	/*	if(time>=2400 && time<=2600){
-  				printf("RIGHT\n\r");
-  					pwmSig1 = 99;
-					pwmSig2 = 0;
-					pwmSig3 = 99;
-					pwmSig4 = 0;
-  				//PWMRight();
-  				}
-  		if(time<100)
-  				PWMRight();
-  	/*	if((time>=2400 && time<=2600)||(time>=1350 && time<=1500)||
-  		(time>=1700 && time<=1900)||(time>=2000 && time<=2300) || (time>=2700 && time<=2900) ){
-  			if(time>=2400 && time<=2600){
+  	
+  		
+  		if((time>=300 && time<=450)||(time>=1400 && time<=1500)||
+  		(time>=1060 && time<=1090)||(time>=1780) || (time>=600 && time<=750) ){
+  			if(time>=1400 && time<=1500){
   				printf("RIGHT\n\r");
   				PWMRight();
   				}
-  			else if(time>=1350 && time<=1500){
+  			else if(time>=300 && time<=450){
   				printf("FORWARD\n\r");
   				PWMforward();
   			}
-  			else if(time>=1700 && time<=1900){
+  			else if(time>=600 && time<=750){
   				printf("BACKWARD\n\r");
   				PWMbackward();
   			}
-  			else if(time>=2000 && time<=2300){
+  			else if(time>=1060 && time<=1090){
   				printf("LEFT\n\r");
   				PWMLeft();
   			}
@@ -534,7 +527,7 @@ void main(void)
   			}
   		}
   	
-  //	else{
+ /* //	else{
   	//		printf("STOP\n\r");
   			//PWMStop();
   	//	}
