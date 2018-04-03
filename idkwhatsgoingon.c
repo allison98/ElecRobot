@@ -46,6 +46,12 @@
 #define BUTTON1 P3_2
 #define BUTTON2 P3_3
 
+#define LEDGREEN P0_3
+#define LEDWHITE P0_1
+#define LEDRED P0_6
+
+#define SPEAKER P2_6
+
 volatile unsigned char pwm_count = 0; // used in the timer 2 ISR
 volatile unsigned char pwm_count1 = 0; // this will be usec in the timer 3 ISR
 volatile unsigned char pwm_count2 = 0; // this will be used in the timer 4 ISR
@@ -315,6 +321,10 @@ void PWMforward(void) {
 	pwmSig3 = 0;
 	pwmSig4 =99;
 
+	LEDRED = 1;
+	LEDGREEN = 1;
+	LEDWHITE = 1;
+	SPEAKER = 0;
 }
 
 void PWMbackward(void) {
@@ -324,6 +334,10 @@ void PWMbackward(void) {
 	pwmSig3 = 99;
 	pwmSig4 = 0;
 
+	LEDRED = 1;
+	LEDGREEN = 1;
+	LEDWHITE = 0;
+	SPEAKER = 1;
 }
 
 void PWMLeft(void) {
@@ -332,6 +346,11 @@ void PWMLeft(void) {
 	
 	pwmSig3 = 0;
 	pwmSig4 = 99;
+	
+	LEDRED = 1;
+	LEDGREEN = 0;
+	LEDWHITE = 1;
+	SPEAKER = 0;
 
 }
 
@@ -341,6 +360,12 @@ void PWMRight(void) {
 	
 	pwmSig3 = 99;
 	pwmSig4 = 0;
+	
+	LEDRED = 1;
+	LEDGREEN = 0;
+	LEDWHITE = 1;
+	SPEAKER = 0;	
+	
 //	printf("Right\n\r");
 }
 
@@ -351,6 +376,11 @@ void PWMStop(void) {
 	pwmSig3 = 0;
 	pwmSig4 = 0;
 	//printf("Stop\n\r");
+	
+	LEDRED = 0;
+	LEDGREEN = 1;
+	LEDWHITE = 1;
+	SPEAKER = 0;
 }
 
 float zero_time_calc(void) {
