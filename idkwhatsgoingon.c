@@ -28,8 +28,8 @@
 //#define clawC P2_6
 
 // the cart system for the crane
-#define motorF P3_0
-#define motorB P3_1
+//#define motorF P3_0
+//#define motorB P3_1
 
 
 #define thresholdVolt 0.05 //50/1000
@@ -43,14 +43,19 @@
 #define OUT1 P2_1
 #define constant_delay_time 10 //how long the delay for each signal is 
 
-#define BUTTON1 P3_2
+#define BUTTON1 P3_1
 #define BUTTON2 P3_3
+#define BUTTON3 P3_7
 
-#define LEDGREEN P0_3
-#define LEDWHITE P0_1
-#define LEDRED P0_6
+#define LEDGREEN P0_6
+#define LEDWHITE P1_0
+#define LEDRED P0_7
 
-#define SPEAKER P2_6
+#define SPEAKER P2_5
+#define LASER P3_0
+#define PIR P2_4
+#define TEMPSENSOR P2_6
+
 
 volatile unsigned char pwm_count = 0; // used in the timer 2 ISR
 volatile unsigned char pwm_count1 = 0; // this will be usec in the timer 3 ISR
@@ -155,7 +160,8 @@ char _c51_external_startup(void)
 	ET2 = 1;         // Enable Timer2 interrupts
 	TR2 = 1;         // Start Timer2 (TMR2CN is bit addressable)
 	
-/*					 // Initialize timer 4 for periodic interrupts
+/*
+					 // Initialize timer 4 for periodic interrupts
 	TMR4CN0 = 0x00;
 	CKCON0 |= 0b_0001_0000;
 	TMR4RL = (0x10000L - (SYSCLK / 10000L));
@@ -201,6 +207,35 @@ void waitms (unsigned int ms)
 		for (k=0; k<4; k++) Timer3us(250);
 }
 
+/*
+void Timer4_ISR (void) interrupt INTERRUPT_TIMER4
+{
+	SFRPAGE=0x10;
+	TF4H = 0; // Clear Timer4 interrupt flag
+	// Since the maximum time we can achieve with this timer in the
+	// configuration above is about 10ms, implement a simple state
+	// machine to produce the required 20ms period.
+	switch (pwm_state2)
+	{
+	   case 0:
+	      PWMOUT2=1;
+	      TMR4RL=RELOAD_10MS;
+	      pwm_state2=1;
+	      count20ms2++;
+	   break;
+	   case 1:
+	      PWMOUT2=0;
+	      TMR4RL=RELOAD_10MS-pwm_reload2;
+	      pwm_state2=2;
+	   break;
+	   default:
+	      PWMOUT2=0;
+	      TMR4RL=pwm_reload2;
+	      pwm_state2=0;
+	   break;
+	}
+}
+*/	
 unsigned int ADC_at_Pin(unsigned char pin)
 {
 	ADC0MX = pin;   // Select input from pin
@@ -514,6 +549,11 @@ int checkMode(){
 		x = 1;
 		return 1;
 	}
+	else if(!BUTTON3 || x == 3){
+		while(!BUTTON3);
+		x = 3;
+		return 3;
+	}
 	else{
 		x = 2;
 		return 2;
@@ -556,6 +596,19 @@ void detectobstacle(float threshold){
     //}
 }
 
+void laserPattern(float rate){
+	LASER = 0;
+	if(rate<0.8)
+		waitms(200);
+	else if(rate>=0.8 && rate<2.0)
+		waitms(500);
+	else if(rate>=2.0 && rate<2.8)
+		waitms(800);
+	else
+		waitms(1000);
+	LASER = 1;
+}
+
 void main(void)
 {
 	int checkcommand= 0;
@@ -568,25 +621,29 @@ void main(void)
 	
 	float period = 0;
 	int overflow_count=0;
+	float pir_voltage;
 	
 	int mode_toggle = 2; //0 = auto ; 1 = manual ; 2 = do nothing
+	
 	TL0=0;
 	TH0=0;
 	TF0=0;	
 	TIMER0_Init();
 
 	InitPinADC(1, 6); // Configure P2.5 as analog input
-
+	InitPinADC(2, 4);
+	InitPinADC(2, 5);
+	InitPinADC(2, 6);
 	InitADC();
+		
 	printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
 	printf("Square wave generator for the EFM8LB1.\r\n"
 		"Check pins P2.2 and P2.1 with the oscilloscope.\r\n");
 
 	printf("\n\r");
 	time = 0;
-	//P2_1=0;
 	PWMStop();
-
+	SPEAKER = 0;
 	while (1)
 	{
 		mode_toggle = checkMode();
@@ -624,6 +681,7 @@ void main(void)
 			printf( "\rT=%f ms   \n ", period*1000.0);
 					waitms(50);
 			detectobstacle(period*1000.0);
+			laserPattern(period*1000);
 			
 			//use period to create limit commands
 			
@@ -672,11 +730,16 @@ void main(void)
 	  			}
 	  		}
   		}
-	  //	else{
-	  	//		printf("STOP\n\r");
-	  			//PWMStop();
-	  	//	}
-	  		//waitms(1000);
+		else if( mode_toggle == 3){
+			pir_voltage = Volts_at_Pin(QFP32_MUX_P2_4);
+			if(pir_voltage >= 3.0 && pir_voltage <= 3.4)
+				PWMStop();
+			else
+				PWMforward();
+			waitms(100);
+			printf("pir_voltage: %f \r\n", pir_voltage);
+		
+		}
 		else{
 			printf("Do nothing\r\n");	
 		 }

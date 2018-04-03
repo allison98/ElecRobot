@@ -218,9 +218,7 @@ void Timer2_ISR(void) interrupt 5
 	motorR2 = pwm_count>pwmSig2 ? 0 : 1;
 	
 	motorL1 = pwm_count>pwmSig1 ? 0 : 1;
-	motorL2 = pwm_count>pwmSig2 ? 0 : 1;
-
-	
+	motorL2 = pwm_count>pwmSig2 ? 0 : 1;	
 }
 
 
@@ -235,6 +233,7 @@ void InitADC(void)
 	ADC0CN2 = 0b_0_000_0000;  // Same as default for now. ADC0 conversion initiated on write of 1 to ADBUSY.
 	ADEN = 1; // Enable ADC
 }
+
 void TIMER0_Init(void)
 {
 	TMOD &= 0b_1111_0000; // Set the bits of Timer/Counter 0 to zero
