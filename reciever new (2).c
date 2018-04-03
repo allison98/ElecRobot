@@ -1,25 +1,19 @@
-// ADC.c:  Shows how to use the 14-bit ADC.  This program
-// measures the voltage from some pins of the EFM8LB1 using the ADC.
-//
-// (c) 2008-2018, Jesus Calvino-Fraga
+//  square.c: Uses timer 2 interrupt to generate a square wave in pin
+//  P2.0 and a 75% duty cycle wave in pin P2.1
+//  Copyright (c) 2010-2018 Jesus Calvino-Fraga
+//  ~C51~
+// This will be the main control code for the claw servo attached to the robot
 //
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <EFM8LB1.h>
 
-// ~C51~  
+// ~C51~
 
 #define SYSCLK 72000000L
 #define BAUDRATE 115200L
-#define LCD_RS P2_6
-#define LCD_D4 P2_4
-#define LCD_D5 P2_3
-#define LCD_D6 P2_2
-#define LCD_D7 P2_1
-#define LCD_E  P2_5
-#define CHARS_PER_LINE 16
-
+#define PERIOD 1/15412
 
 // for the motor 1
 #define motorR1 P1_4
@@ -38,35 +32,14 @@
 #define motorB P3_1
 
 
-#define thresholdVolt 0.05 //50/1000
-//14550/14580 - doable 
-//15150- 14550
-
-//14550	RIGHT
-//14700 BACKWARD
-//14850 STOP
-//15000 FORWARD
-//15150	LEFT
-#define STOP 		14800 
-#define FORWARD		15000
-#define BACKWARD 	14650
-#define LEFT		15150
-#define RIGHT 		14550
-#define ERR			50
+#define thresholdVolt 0.5 //50/1000
 
 //#define LCD_D4 P2_4
 
 //#define LCD_D5 P2_3
 
-//#define INPUT P2_0
-#define OUT0 P2_0
-#define OUT1 P2_1
-#define constant_delay_time 10 //how long the delay for each signal is 
-
-#define BUTTON1 P3_2
-#define BUTTON2 P3_3
-
-
+#define INPUT P2_0
+#define constant_delay_time 20 //how long the delay for each signal is 
 
 volatile unsigned char pwm_count = 0; // used in the timer 2 ISR
 volatile unsigned char pwm_count1 = 0; // this will be usec in the timer 3 ISR
@@ -88,15 +61,13 @@ volatile unsigned int cartMoveB;
 
 volatile int flag = 0;
 volatile int claw_flag = 0;
-int stop[]={1,0,0,0};
+int stop[]={0,0,0,0};
 int forward[]={1,1,1,1};
-int backward[]={1,0,0,0};
-int left[]={1,0,1,0};
-int right[]={1,1,0,1};
+int backward[]={1,0,1,1};
+int left[]={1,0,0,1};
+int right[]={1,0,0,0};
 
 int command[4] = {0,0,0,0};
-
-volatile unsigned int x = 2;
 
 char _c51_external_startup(void)
 {
@@ -153,7 +124,7 @@ char _c51_external_startup(void)
 
 				 // Configure Uart 0
 #if (((SYSCLK/BAUDRATE)/(2L*12L))>0xFFL)
-#error Timer 0 reload value is incorrect because (SYSCLK/BAUDRATE)/(2L*12L) > 0xFF
+//#error Timer 0 reload value is incorrect because (SYSCLK/BAUDRATE)/(2L*12L) > 0xFF
 #endif
 	SCON0 = 0x10;
 	TH1 = 0x100 - ((SYSCLK / BAUDRATE) / (2L * 12L));
@@ -212,6 +183,8 @@ void Timer3us(unsigned int us)
 void waitms (unsigned int ms)
 {
 	unsigned int j;
+
+
 	unsigned char k;
 	for(j=0; j<ms; j++)
 		for (k=0; k<4; k++) Timer3us(250);
@@ -243,7 +216,7 @@ void Timer2_ISR(void) interrupt 5
 	motorL1 = pwm_count>pwmSig3 ? 0 : 1;
 	motorL2 = pwm_count>pwmSig4 ? 0 : 1;
 
-	OUT0=pwm_count>80?0:1;
+	
 }
 
 // interrupt for the wheels
@@ -336,7 +309,7 @@ void PWMforward(void) {
 	
 	pwmSig3 = 0;
 	pwmSig4 =99;
-
+	printf("Forward\n\r");
 }
 
 void PWMbackward(void) {
@@ -345,26 +318,25 @@ void PWMbackward(void) {
 	
 	pwmSig3 = 99;
 	pwmSig4 = 0;
-
-
+	printf("Backward\n\r");
 }
 
 void PWMLeft(void) {
 	pwmSig1 = 0;
-	pwmSig2 = 99;
+	pwmSig2 = 0;
 	
-	pwmSig3 = 0;
-	pwmSig4 = 99;
-
+	pwmSig3 = 70;
+	pwmSig4 = 0;
+	printf("Left\n\r");
 }
 
 void PWMRight(void) {
 	pwmSig1 = 99;
 	pwmSig2 = 0;
 	
-	pwmSig3 = 99;
+	pwmSig3 = 0;
 	pwmSig4 = 0;
-//	printf("Right\n\r");
+	printf("Right\n\r");
 }
 
 void PWMStop(void) {
@@ -373,118 +345,19 @@ void PWMStop(void) {
 	
 	pwmSig3 = 0;
 	pwmSig4 = 0;
-	//printf("Stop\n\r");
+	printf("Stop\n\r");
 }
 
-
-float freq_calc(void){
-	int overflow_count, period1; 
-	// Reset the counter
-	TL0=0;  
-	TH0=0;
-	TF0=0;	
-	overflow_count=0;
+float periodcalc(void) {
+		float period1;
+		int overflow_count;
 		
-		
-	while(P1_6!=0); // Wait for the signal to be zero
-	while(P1_6!=1) // Wait for the signal to be one
-	{	
-		TR0=1;
-	/*	if((overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK)>1000){
-			TR0=0; 
-			return 1;//1000; 
-			//break ; 
-		}*/
-	}
-		TL0=0;  
-		TH0=0;
-		TF0=0;	
-		overflow_count=0;
-		TR0=1; // Start the timer
-		while(P1_6!=0) // Wait for the signal to be zero
-		{
-			if(TF0==1) // Did the 16-bit timer overflow?
-			{
-				TF0=0;
-				overflow_count++;
-			}
-		/*	if((overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK)>1000){
-				TR0=0; 
-				return 1;///1000; 
-			}
-	*/
-		}
-		while(P1_6!=1) // Wait for the signal to be one
-		{
-			if(TF0==1) // Did the 16-bit timer overflow?
-			{
-				TF0=0;
-				overflow_count++;
-			}
-		/*	if((overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK)>1000){
-				TR0=0; 
-				return 1;///1000; 
-
-			}*/
-			
-		}
-		TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
-		period1=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
-		// Send the period to the serial port
-		printf( "\rf=%f Hz ,  Period=%fms\n", 1/(period1), period1*1000.0);
-		return 1/period1; 
-
-}
-
-void main (void)
-{	
-	float freq, period1, overflow_count; 
-	int i;
-	int max=0;   
-	TL0=0; 
-	TH0=0;
-	TF0=0;
-	overflow_count=0; 
-	TIMER0_Init();
-
-    waitms(500); // Give PuTTy a chance to start before sending
-	printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
-	
-	printf ("ADC test program\n"
-	        "File: %s\n"
-	        "Compiled: %s, %s\n\n",
-	        __FILE__, __DATE__, __TIME__);
-	
-	
-	InitPinADC(1, 2); // Configure P2.3 as analog input
-	InitPinADC(1, 3); // Configure P2.4 as analog input
-
-    InitADC();
-	
-	//InitPinADC(1, 2); // Configure P2.3 as analog input
-	//InitPinADC(1, 3); // Configure P2.4 as analog input
-
-    //InitADC();
-   
-		//STOP: 	1/1000
-		//FORWARD: 	14705
-		//BACKWARD:	14850
-		//LEFT:		15000
-		//RIGHT: 	15300
-	while (1)
-    {
-    	//freq=freq_calc(); 
-    	//if((freq>=300 && freq<=450)||(freq>=1400 && freq<=1500)||
-  		//(freq>=1060 && freq<=1090)||(time>=1780) || (time>=600 && time<=750) ){
-  		
-  		// Reset the counter
-		TL0=0;  
+		TL0=0; 
 		TH0=0;
 		TF0=0;
 		overflow_count=0;
+		TR0=0;
 		
-		
-		//***TEST SIGNAL PERIOD***//
 		while(P1_6!=0); // Wait for the signal to be zero
 		while(P1_6!=1); // Wait for the signal to be one
 		TR0=1; // Start the timer
@@ -495,46 +368,146 @@ void main (void)
 				TF0=0;
 				overflow_count++;
 			}
-		}
-		while(P1_6!=1) // Wait for the signal to be one
+			
+		}	
+		while(P1_6!=1) // Wait for the signal to be zero
 		{
 			if(TF0==1) // Did the 16-bit timer overflow?
 			{
 				TF0=0;
 				overflow_count++;
 			}
-		}
+			
+		}		
 		
 		TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
 		period1=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
-		freq=1/period1; 
-		// Send the period to the serial port
-		printf( "\rf=%f Hz ,     Period=%fms\n", 1/(period1), period1*1000.0);
-  		
-  		
-  		
-  		///***** CHECK COMMAND *****////
-  			if(freq>=RIGHT-(ERR) && freq<=RIGHT+ERR){
-  				printf("RIGHT\n\r");
-  				PWMRight();
-  				}
-  			else if(freq>=FORWARD-ERR && freq<=FORWARD+ERR){
-  				printf("FORWARD\n\r");
-  				PWMforward();
-  			}
-  			else if(freq>=BACKWARD-ERR && freq<=BACKWARD+ERR){
-  				printf("BACKWARD\n\r");
-  				PWMbackward();
-  			}
-  			else if(freq>=LEFT-ERR && freq<=LEFT+ERR){
-  				printf("LEFT\n\r");
-  				PWMLeft();
-  			}
-  			else //if (freq>=STOP-ERR && freq<=STOP+ERR)//if(time>=2700 && time<=2900){
-  			{	printf("STOP\n\r");
-  				PWMStop();
-  			}
-		waitms(1500);
-    }
+		printf("%f\n\r", period1);
+		return period1*1000; //return period of high pulse in seconds
+}
+
+//compare two arrays and returns true if same else returns false 
+int arrayEqual (int arr1[], int size, int arr2[]){
+  int i; 
+  for(i=0; i<size; i++){
+    if(arr1[i]!=arr2[i])
+      return 0; 
+  }
+  return 1; 
+}
+
+//checks the signal sent from the transmitter and checks the predetermined commands
+//does different activities depending on the command sent
+  
+void checkCommands (void){
+ if(arrayEqual(command, 4, stop)) PWMStop();
+ else if (arrayEqual(command,4,forward)) PWMforward(); 
+ else if (arrayEqual(command,4,backward)) PWMbackward(); 
+ else if (arrayEqual(command,4, left)) PWMLeft(); 
+ else if (arrayEqual(command,4, right)) PWMRight(); 
+ else PWMStop(); //defaults to a halt (redundant)
+ waitms(350);
+}
+
+
+//****HARDWARE APPROACH*****//
+
+//WITH THE HELP OF PEAK DETECTOR 
+//try to get the signal from zero cross: zero cross gives the period
+//get it from the peak detector
+
+
+//**************************************//
+// 		TURN ANALOG TO DIGITAL CODE		//
+//**************************************//
+//read the signal from the Inductor. 
+//The signal from the indcor is called 
+//Signal_Inductor
+
+int getDigitalSignal (void){
+  
+ 	if (Volts_at_Pin(QFP32_MUX_P2_3)>=thresholdVolt) //not too low to be a noise/ a valid signal for high, 1
+ 		{
+ 		printf("\nread 1:  at pin 2.3: %f\r", Volts_at_Pin(QFP32_MUX_P2_3));
+ 		return 1;
+ 		} 
+ 	else //if (Volts_at_Pin(QFP32_MUX_P2_3)<thresholdVolt){ //noise or too low to be recognozed as a high, 1 
+ 	//	printf("\nread 0: Volt at pin 2.3: %f\r", Volts_at_Pin(QFP32_MUX_P2_3));
+ 		return 0; 
+ 		
+}
+
+
+//wait for a quarter period
+void waitquarterperiod(void){
+	waitms(constant_delay_time);
+}
+
+
+//read the one bit data from getDigitalSignal and group together inside command array that we 
+//compare with the pre-defined left,right,forward and backward arrays using the checkCommands() function
+void recieveData (){
+	int checkcomm= 0; 
+	int i; 
+  
+  while(getDigitalSignal()==0); 	//wait for the signal to be 1 
+  //if (getDigitalSignal()==1){	//gets the first 1 that identifies a command 
+  //waitms(60);//175);
+  //if (getDigitalSignal()==1)
+  waitms(175);	//wait 
+  command[0] = 1;
+  
+  for( i=1; i<4; i++){
+  	waitms(358); //wait for a period
+  	command[i]=getDigitalSignal();	
+  	}
+  	
+  	checkCommands();				//does activity depending on the command given 
+  //	command[0] = 0;
+  //	command[1] = 0;
+  //	command[2] = 0;
+  //	command[3] = 0; 			//clear the command array 
+  
+  
+}
+
+void main(void){
+
+	int checkcommand= 0, i ;//fv
+	int sig1 = 0;
+	int sig2 = 0;
+	float  peak = 0;
+	float voltspeak=0;
+	float periodpwm = 0;
 	
+		float period = 0;
+		int overflow_count=0;
+	TIMER0_Init();
+
+	InitPinADC(2, 3); // Configure P2.5 as analog input
+
+	InitADC();
+	printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
+	printf("Square wave generator for the EFM8LB1.\r\n"
+		"Check pins P2.2 and P2.1 with the oscilloscope.\r\n");
+
+	printf("\n\r");
+	P2_1=0;
+//	PWMStop();
+	while (1)
+	{
+    //	PWMStop();
+    	recieveData();	//keep reading data continously 
+    	printf("Command: ");
+    	for(i=0; i<4; i++)
+    		 printf("%d\t", command[i]);
+    	printf("\n\r");
+    	command[0] = 0;
+  		command[1] = 0;
+  		command[2] = 0;
+  		command[3] = 0;
+		
+	//periodcalc(); 
+		
+	} 
 }
