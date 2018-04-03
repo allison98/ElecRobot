@@ -993,7 +993,7 @@ E5 82
 12 addr16(_PWMRight;)  
 80 rel2(L018015?;)
 12 addr16(_PWMStop;)  
-90 01 5E
+90 01 66
 02 addr16(_waitms;)  
 75 82 0C
 12 addr16(_ADC_at_Pin;)  

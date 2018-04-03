@@ -453,7 +453,8 @@ void checkCommands (void){
  else if (arrayEqual(command,4, left)) PWMLeft(); 
  else if (arrayEqual(command,4, right)) PWMRight(); 
  else PWMStop(); //defaults to a halt (redundant)
- waitms(350);
+ waitms(358);
+ 
 }
 
 //***SOFTWARE APPROACH*****//
@@ -468,6 +469,10 @@ float voltsAtPeak(void) {
 }
 
 
+void checkerror (void){
+
+
+}
 //****HARDWARE APPROACH*****//
 
 //WITH THE HELP OF PEAK DETECTOR 
@@ -515,7 +520,8 @@ void recieveData (){
   	command[i]=getDigitalSignal();	
   	}
   	
-  	checkCommands();				//does activity depending on the command given 
+  	checkCommands();
+  //	waitms(4*358);				//does activity depending on the command given 
   //	command[0] = 0;
   //	command[1] = 0;
   //	command[2] = 0;
