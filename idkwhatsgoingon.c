@@ -32,7 +32,7 @@
 //#define motorB P3_1
 
 
-#define thresholdVolt 0.05 //50/1000
+#define thresholdVolt 0.5 //50/1000
 
 //#define LCD_D4 P2_4
 
@@ -41,7 +41,7 @@
 //#define INPUT P2_0
 #define OUT0 P2_0
 #define OUT1 P2_1
-#define constant_delay_time 10 //how long the delay for each signal is 
+#define constant_delay_time 20 //how long the delay for each signal is 
 
 #define BUTTON1 P3_1
 #define BUTTON2 P3_3
@@ -77,11 +77,11 @@ volatile unsigned int cartMoveB;
 
 volatile int flag = 0;
 volatile int claw_flag = 0;
-int stop[]={1,0,0,0};
+int stop[]={0,0,0,0};
 int forward[]={1,1,1,1};
-int backward[]={1,0,0,0};
-int left[]={1,0,1,0};
-int right[]={1,1,0,1};
+int backward[]={1,0,1,1};
+int left[]={1,0,0,1};
+int right[]={1,0,0,0};
 
 int command[4] = {0,0,0,0};
 
@@ -207,35 +207,7 @@ void waitms (unsigned int ms)
 		for (k=0; k<4; k++) Timer3us(250);
 }
 
-/*
-void Timer4_ISR (void) interrupt INTERRUPT_TIMER4
-{
-	SFRPAGE=0x10;
-	TF4H = 0; // Clear Timer4 interrupt flag
-	// Since the maximum time we can achieve with this timer in the
-	// configuration above is about 10ms, implement a simple state
-	// machine to produce the required 20ms period.
-	switch (pwm_state2)
-	{
-	   case 0:
-	      PWMOUT2=1;
-	      TMR4RL=RELOAD_10MS;
-	      pwm_state2=1;
-	      count20ms2++;
-	   break;
-	   case 1:
-	      PWMOUT2=0;
-	      TMR4RL=RELOAD_10MS-pwm_reload2;
-	      pwm_state2=2;
-	   break;
-	   default:
-	      PWMOUT2=0;
-	      TMR4RL=pwm_reload2;
-	      pwm_state2=0;
-	   break;
-	}
-}
-*/	
+
 unsigned int ADC_at_Pin(unsigned char pin)
 {
 	ADC0MX = pin;   // Select input from pin
@@ -360,6 +332,7 @@ void PWMforward(void) {
 	LEDGREEN = 1;
 	LEDWHITE = 1;
 	SPEAKER = 0;
+	printf("Forward\n\r");
 }
 
 void PWMbackward(void) {
@@ -373,6 +346,7 @@ void PWMbackward(void) {
 	LEDGREEN = 1;
 	LEDWHITE = 0;
 	SPEAKER = 1;
+	printf("Backward\n\r");
 }
 
 void PWMLeft(void) {
@@ -387,6 +361,7 @@ void PWMLeft(void) {
 	LEDWHITE = 1;
 	SPEAKER = 0;
 
+	printf("Left\n\r");
 }
 
 void PWMRight(void) {
@@ -401,7 +376,7 @@ void PWMRight(void) {
 	LEDWHITE = 1;
 	SPEAKER = 0;	
 	
-//	printf("Right\n\r");
+	printf("Right\n\r");
 }
 
 void PWMStop(void) {
@@ -410,15 +385,16 @@ void PWMStop(void) {
 	
 	pwmSig3 = 0;
 	pwmSig4 = 0;
-	//printf("Stop\n\r");
 	
 	LEDRED = 0;
 	LEDGREEN = 1;
 	LEDWHITE = 1;
 	SPEAKER = 0;
+	
+	printf("Stop\n\r");
 }
 
-float zero_time_calc(void) {
+float periodcalc(void) {
 		float period1;
 		int overflow_count;
 		
@@ -428,31 +404,34 @@ float zero_time_calc(void) {
 		overflow_count=0;
 		TR0=0;
 		
-		//Volts_at_Pin(QFP32_MUX_P1_6)>=therodhold  : 1
-		////Volts_at_Pin(QFP32_MUX_P1_6)<therodhold  : 0
-		
-		while(Volts_at_Pin(QFP32_MUX_P1_6)<thresholdVolt);
-		 // Wait for the signal to be zero //==1
-		while(Volts_at_Pin(QFP32_MUX_P1_6)>=thresholdVolt);
-		 // Wait for the signal to be one
+		while(P1_6!=0); // Wait for the signal to be zero
+		while(P1_6!=1); // Wait for the signal to be one
 		TR0=1; // Start the timer
-		while(Volts_at_Pin(QFP32_MUX_P1_6)<thresholdVolt) // (overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK)*1000<1000) // Wait for the signal to be zero
+		while(P1_6!=0) // Wait for the signal to be zero
 		{
 			if(TF0==1) // Did the 16-bit timer overflow?
 			{
 				TF0=0;
 				overflow_count++;
 			}
-			if ((overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK)*1000 >1800) 
-				return 1800;
+			
+		}	
+		while(P1_6!=1) // Wait for the signal to be zero
+		{
+			if(TF0==1) // Did the 16-bit timer overflow?
+			{
+				TF0=0;
+				overflow_count++;
+			}
+			
 		}		
 		
 		TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
-		period1=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK)*1000;
-	//	if (period1 < 1000 )
-		//	return
-		return period1; //return period of high pulse in seconds
+		period1=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
+		printf("%f\n\r", period1);
+		return period1*1000; //return period of high pulse in seconds
 }
+
 
 //compare two arrays and returns true if same else returns false 
 int arrayEqual (int arr1[], int size, int arr2[]){
@@ -474,6 +453,7 @@ void checkCommands (void){
  else if (arrayEqual(command,4, left)) PWMLeft(); 
  else if (arrayEqual(command,4, right)) PWMRight(); 
  else PWMStop(); //defaults to a halt (redundant)
+ waitms(350);
 }
 
 //***SOFTWARE APPROACH*****//
@@ -498,16 +478,15 @@ float voltsAtPeak(void) {
 //read the signal from the Inductor. The signal from the indcor is called Signal_Inductor
 int getDigitalSignal (void){
   
- 	if (voltsAtPeak()>=thresholdVolt) //not too low to be a noise/ a valid signal for high, 1
+ 	if (Volts_at_Pin(QFP32_MUX_P2_3)>=thresholdVolt) //not too low to be a noise/ a valid signal for high, 1
  		{
- 		printf("\nread 1:  at pin 1.6: %f\r", voltsAtPeak());
+ 		printf("\nread 1:  at pin 2.3: %f\r", Volts_at_Pin(QFP32_MUX_P2_3));
  		return 1;
  		} 
- 	else{ //(voltsAtPeak()<LowerBound) //noise or too low to be recognozed as a high, 1 
- 		printf("\nread 0: Volt at pin 1.6: %f\r", voltsAtPeak());
+ 	else //if (Volts_at_Pin(QFP32_MUX_P2_3)<thresholdVolt){ //noise or too low to be recognozed as a high, 1 
+ 	//	printf("\nread 0: Volt at pin 2.3: %f\r", Volts_at_Pin(QFP32_MUX_P2_3));
  		return 0; 
- 		}
- //	else return 0; 
+ 		
 }
 
 
@@ -525,17 +504,24 @@ void recieveData (){
 	int i; 
   
   while(getDigitalSignal()==0); 	//wait for the signal to be 1 
-  if (getDigitalSignal()==1){	//gets the first 1 that identifies a command 
-  	command[0]=1;
-  	for( i=1; i<4; i++){
-  		waitms(constant_delay_time);
-  		command[i]=getDigitalSignal();	
+  //if (getDigitalSignal()==1){	//gets the first 1 that identifies a command 
+  //waitms(60);//175);
+  //if (getDigitalSignal()==1)
+  waitms(175);	//wait 
+  command[0] = 1;
+  
+  for( i=1; i<4; i++){
+  	waitms(358); //wait for a period
+  	command[i]=getDigitalSignal();	
   	}
   	
   	checkCommands();				//does activity depending on the command given 
+  //	command[0] = 0;
+  //	command[1] = 0;
+  //	command[2] = 0;
+  //	command[3] = 0; 			//clear the command array 
   
-  }
- 
+  
 }
 
 int checkMode(){
@@ -611,13 +597,12 @@ void laserPattern(float rate){
 
 void main(void)
 {
-	int checkcommand= 0;
+	int checkcommand= 0, i;
 	int sig1 = 0;
 	int sig2 = 0;
 	float  peak = 0;
 	float voltspeak=0;
 	float periodpwm = 0;
-	float time; 
 	
 	float period = 0;
 	int overflow_count=0;
@@ -631,9 +616,9 @@ void main(void)
 	TIMER0_Init();
 
 	InitPinADC(1, 6); // Configure P2.5 as analog input
-	InitPinADC(2, 4);
-	InitPinADC(2, 5);
-	InitPinADC(2, 6);
+	InitPinADC(2, 3); //???	
+	InitPinADC(2, 4); //PIR
+	InitPinADC(2, 6); //Temp Sensor
 	InitADC();
 		
 	printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
@@ -641,9 +626,9 @@ void main(void)
 		"Check pins P2.2 and P2.1 with the oscilloscope.\r\n");
 
 	printf("\n\r");
-	time = 0;
-	PWMStop();
-	SPEAKER = 0;
+	//time = 0;
+	//PWMStop();
+	//SPEAKER = 0;
 	while (1)
 	{
 		mode_toggle = checkMode();
@@ -695,40 +680,17 @@ void main(void)
 		}
 		//Manual
 		else if(mode_toggle == 1){
-			printf("manual \r\n");
-	  		// RIGHT	:   1434.768000
-	  		// FORWARD 	:   358.21148
-	  		// BACKWARD	:  	716.532600
-	  		// LEFT		:   1075.370900
-	  		// STOP		:  	1794.120500 
-	  		
-	  		time=zero_time_calc(); 
-	  		printf("Time: %f\n\t\r", time);
-	  	
-	  		
-	  		if((time>=300 && time<=450)||(time>=1400 && time<=1500)||
-	  		(time>=1060 && time<=1090)||(time>=1780) || (time>=600 && time<=750) ){
-	  			if(time>=1400 && time<=1500){
-	  				printf("RIGHT\n\r");
-	  				PWMRight();
-	  				}
-	  			else if(time>=300 && time<=450){
-	  				printf("FORWARD\n\r");
-	  				PWMforward();
-	  			}
-	  			else if(time>=600 && time<=750){
-	  				printf("BACKWARD\n\r");
-	  				PWMbackward();
-	  			}
-	  			else if(time>=1060 && time<=1090){
-	  				printf("LEFT\n\r");
-	  				PWMLeft();
-	  			}
-	  			else //if(time>=2700 && time<=2900){
-	  			{	printf("STOP\n\r");
-	  				PWMStop();
-	  			}
-	  		}
+			recieveData();	//keep reading data continously 
+	    	printf("Command: ");
+	    	for(i=0; i<4; i++)
+	    		 printf("%d\t", command[i]);
+	    	printf("\n\r");
+	    	command[0] = 0;
+	  		command[1] = 0;
+	  		command[2] = 0;
+	  		command[3] = 0;
+			
+			//periodcalc(); 
   		}
 		else if( mode_toggle == 3){
 			pir_voltage = Volts_at_Pin(QFP32_MUX_P2_4);
