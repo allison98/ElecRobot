@@ -28,18 +28,39 @@
 //#define clawC P2_6
 
 // the cart system for the crane
-#define motorF P3_0
-#define motorB P3_1
+//#define motorF P3_0
+//#define motorB P3_1
 
 
-#define thresholdVolt 0.5 //50/1000
+#define thresholdVolt 0.05 //50/1000
 
 //#define LCD_D4 P2_4
 
 //#define LCD_D5 P2_3
 
-#define INPUT P2_0
-#define constant_delay_time 100 //how long the delay for each signal is 
+//#define INPUT P2_0
+#define OUT0 P2_0
+#define OUT1 P2_1
+#define constant_delay_time 10 //how long the delay for each signal is 
+
+#define BUTTON1 P3_3
+#define BUTTON2 P3_2
+#define BUTTON3 P3_1
+#define BUTTON4 P3_0
+
+#define LEDGREEN P0_3
+#define LEDWHITE P0_1
+#define LEDRED P0_6
+
+#define SPEAKER P2_6
+#define LASER P3_0
+#define PIR P2_4
+#define TEMPSENSOR P2_5
+
+
+#define RELOAD_10MS (0x10000L-(SYSCLK/(12L*100L)))
+#define TIMER_4_FREQ 5000L
+#define PWMOUT2 P2_6
 
 volatile unsigned char pwm_count = 0; // used in the timer 2 ISR
 volatile unsigned char pwm_count1 = 0; // this will be usec in the timer 3 ISR
@@ -68,6 +89,11 @@ int left[]={1,0,1,0};
 int right[]={1,1,0,1};
 
 int command[4] = {0,0,0,0};
+
+volatile unsigned int x = 2;
+volatile unsigned int pwm_reload2;
+volatile unsigned char pwm_state2 = 0;
+volatile unsigned char count20ms2;
 
 char _c51_external_startup(void)
 {
@@ -141,8 +167,16 @@ char _c51_external_startup(void)
 	TMR2 = 0xffff;   // Set to reload immediately
 	ET2 = 1;         // Enable Timer2 interrupts
 	TR2 = 1;         // Start Timer2 (TMR2CN is bit addressable)
+
+	SFRPAGE=0x10;
+	TMR4CN0=0x00;   // Stop Timer4; Clear TF4; WARNING: lives in SFR page 0x10
+	pwm_reload2=0x10000L-(SYSCLK*1.5e-3)/12.0;
+	TMR4=0xffff;   // Set to reload immediately
+	EIE2|=0b_0000_0100;     // Enable Timer4 interrupts
+	TR4=1;
 	
-/*					 // Initialize timer 4 for periodic interrupts
+/*
+					 // Initialize timer 4 for periodic interrupts
 	TMR4CN0 = 0x00;
 	CKCON0 |= 0b_0001_0000;
 	TMR4RL = (0x10000L - (SYSCLK / 10000L));
@@ -183,13 +217,40 @@ void Timer3us(unsigned int us)
 void waitms (unsigned int ms)
 {
 	unsigned int j;
-
-
 	unsigned char k;
 	for(j=0; j<ms; j++)
 		for (k=0; k<4; k++) Timer3us(250);
 }
 
+
+void Timer4_ISR (void) interrupt INTERRUPT_TIMER4
+{
+	SFRPAGE=0x10;
+	TF4H = 0; // Clear Timer4 interrupt flag
+	// Since the maximum time we can achieve with this timer in the
+	// configuration above is about 10ms, implement a simple state
+	// machine to produce the required 20ms period.
+	switch (pwm_state2)
+	{
+	   case 0:
+	      PWMOUT2=1;
+	      TMR4RL=RELOAD_10MS;
+	      pwm_state2=1;
+	      count20ms2++;
+	   break;
+	   case 1:
+	      PWMOUT2=0;
+	      TMR4RL=RELOAD_10MS-pwm_reload2;
+	      pwm_state2=2;
+	   break;
+	   default:
+	      PWMOUT2=0;
+	      TMR4RL=pwm_reload2;
+	      pwm_state2=0;
+	   break;
+	}
+}
+	
 unsigned int ADC_at_Pin(unsigned char pin)
 {
 	ADC0MX = pin;   // Select input from pin
@@ -216,7 +277,7 @@ void Timer2_ISR(void) interrupt 5
 	motorL1 = pwm_count>pwmSig3 ? 0 : 1;
 	motorL2 = pwm_count>pwmSig4 ? 0 : 1;
 
-	
+	OUT0=pwm_count>80?0:1;
 }
 
 // interrupt for the wheels
@@ -309,7 +370,11 @@ void PWMforward(void) {
 	
 	pwmSig3 = 0;
 	pwmSig4 =99;
-	printf("Forward\n\r");
+
+	LEDRED = 1;
+	LEDGREEN = 1;
+	LEDWHITE = 1;
+	SPEAKER = 0;
 }
 
 void PWMbackward(void) {
@@ -318,25 +383,40 @@ void PWMbackward(void) {
 	
 	pwmSig3 = 99;
 	pwmSig4 = 0;
-	printf("Backward\n\r");
+
+	LEDRED = 1;
+	LEDGREEN = 1;
+	LEDWHITE = 0;
+	SPEAKER = 1;
 }
 
 void PWMLeft(void) {
 	pwmSig1 = 0;
-	pwmSig2 = 0;
+	pwmSig2 = 99;
 	
-	pwmSig3 = 70;
-	pwmSig4 = 0;
-	printf("Left\n\r");
+	pwmSig3 = 0;
+	pwmSig4 = 99;
+	
+	LEDRED = 1;
+	LEDGREEN = 0;
+	LEDWHITE = 1;
+	SPEAKER = 0;
+
 }
 
 void PWMRight(void) {
 	pwmSig1 = 99;
 	pwmSig2 = 0;
 	
-	pwmSig3 = 0;
+	pwmSig3 = 99;
 	pwmSig4 = 0;
-	printf("Right\n\r");
+	
+	LEDRED = 1;
+	LEDGREEN = 0;
+	LEDWHITE = 1;
+	SPEAKER = 0;	
+	
+//	printf("Right\n\r");
 }
 
 void PWMStop(void) {
@@ -345,10 +425,15 @@ void PWMStop(void) {
 	
 	pwmSig3 = 0;
 	pwmSig4 = 0;
-	printf("Stop\n\r");
+	//printf("Stop\n\r");
+	
+	LEDRED = 0;
+	LEDGREEN = 1;
+	LEDWHITE = 1;
+	SPEAKER = 0;
 }
 
-float periodcalc(void) {
+float zero_time_calc(void) {
 		float period1;
 		int overflow_count;
 		
@@ -358,23 +443,30 @@ float periodcalc(void) {
 		overflow_count=0;
 		TR0=0;
 		
-		while(P1_7!=0); // Wait for the signal to be zero
-		while(P1_7!=1); // Wait for the signal to be one
+		//Volts_at_Pin(QFP32_MUX_P1_6)>=therodhold  : 1
+		////Volts_at_Pin(QFP32_MUX_P1_6)<therodhold  : 0
+		
+		while(Volts_at_Pin(QFP32_MUX_P1_6)<thresholdVolt);
+		 // Wait for the signal to be zero //==1
+		while(Volts_at_Pin(QFP32_MUX_P1_6)>=thresholdVolt);
+		 // Wait for the signal to be one
 		TR0=1; // Start the timer
-		while(P1_7!=0) // Wait for the signal to be zero
+		while(Volts_at_Pin(QFP32_MUX_P1_6)<thresholdVolt) // (overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK)*1000<1000) // Wait for the signal to be zero
 		{
 			if(TF0==1) // Did the 16-bit timer overflow?
 			{
 				TF0=0;
 				overflow_count++;
 			}
-			
+			if ((overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK)*1000 >1800) 
+				return 1800;
 		}		
 		
 		TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
-		period1=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
-		
-		return period1*1000; //return period of high pulse in seconds
+		period1=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK)*1000;
+	//	if (period1 < 1000 )
+		//	return
+		return period1; //return period of high pulse in seconds
 }
 
 //compare two arrays and returns true if same else returns false 
@@ -418,24 +510,19 @@ float voltsAtPeak(void) {
 //get it from the peak detector
 
 
-//**************************************//
-// 		TURN ANALOG TO DIGITAL CODE		//
-//**************************************//
-//read the signal from the Inductor. 
-//The signal from the indcor is called 
-//Signal_Inductor
-
+//read the signal from the Inductor. The signal from the indcor is called Signal_Inductor
 int getDigitalSignal (void){
   
- 	if (Volts_at_Pin(QFP32_MUX_P2_3)>=thresholdVolt) //not too low to be a noise/ a valid signal for high, 1
+ 	if (voltsAtPeak()>=thresholdVolt) //not too low to be a noise/ a valid signal for high, 1
  		{
- 		printf("\nread 1:  at pin 2.3: %f\r", voltsAtPeak());
+ 		printf("\nread 1:  at pin 1.6: %f\r", voltsAtPeak());
  		return 1;
  		} 
- 	else if (Volts_at_Pin(QFP32_MUX_P2_3)<thresholdVolt){ //noise or too low to be recognozed as a high, 1 
- 		printf("\nread 0: Volt at pin 2.3: %f\r", voltsAtPeak());
+ 	else{ //(voltsAtPeak()<LowerBound) //noise or too low to be recognozed as a high, 1 
+ 		printf("\nread 0: Volt at pin 1.6: %f\r", voltsAtPeak());
  		return 0; 
  		}
+ //	else return 0; 
 }
 
 
@@ -461,50 +548,159 @@ void recieveData (){
   	}
   	
   	checkCommands();				//does activity depending on the command given 
-  //	command[0] = 0;
-  //	command[1] = 0;
-  //	command[2] = 0;
-  //	command[3] = 0; 			//clear the command array 
-  }
   
+  }
+ 
 }
 
-void main(void){
+int checkMode(){
+	if(!BUTTON1 || x == 0){
+		while(!BUTTON1);
+		x= 0;
+		return 0;
+	}
+	else if(!BUTTON2 || x == 1){
+		while(!BUTTON2);
+		x = 1;
+		return 1;
+	}
+	else if(!BUTTON3 || x == 3){
+		while(!BUTTON3);
+		x = 3;
+		return 3;
+	}
+	else if(!BUTTON4 || x == 4){
+		while(!BUTTON4);
+		x = 4;
+		return 4;
+	}
+	else{
+		x = 2;
+		return 2;
+	}
+}
 
-	int checkcommand= 0, i ;//fv
+//Automation
+void detectobstacle(float threshold){
+
+  //int turnOnAutomation = 1;
+
+  //motorR1 = pwm_count>pwmSig1 ? 0 : 1;
+  //motorR2 = pwm_count>pwmSig2 ? 0 : 1;
+
+  //motorL1 = pwm_count>pwmSig3 ? 0 : 1;
+  //motorL2 = pwm_count>pwmSig4 ? 0 : 1;
+  
+  //while(turnOnAutomation == 1){
+    if(threshold <= 0.6 ){
+      //Turn right 90 degrees
+      printf("Turn right \r\n");
+      PWMRight();
+      waitms(500); //Make waits longer
+      waitms(500); 
+      waitms(300); 
+      //stop, check again for obstacle
+      PWMStop();
+      waitms(500);
+      waitms(250);
+    }
+
+
+ 	 else{
+ 	 	printf("Go Straight \r\n");
+      	// if no obstacle, go straight
+      	PWMforward();
+      }
+
+
+    //}
+}
+
+void laserPattern(int rate){
+	LASER = 0;
+	waitms(rate*1000);
+	LASER = 1;
+}
+
+void main(void)
+{
+	int checkcommand= 0;
 	int sig1 = 0;
 	int sig2 = 0;
 	float  peak = 0;
 	float voltspeak=0;
 	float periodpwm = 0;
+	float time; 
 	
-		float period = 0;
-		int overflow_count=0;
+	float period = 0;
+	int overflow_count=0;
+	float pir_voltage;
+	float temp_sensor_voltages[3];
+	
+	float pulse_width2, left2, right2;
+
+	
+	
+	int mode_toggle = 2; //0 = auto ; 1 = manual ; 2 = do nothing
+	
+	count20ms2 = 0;
+	TL0=0;
+	TH0=0;
+	TF0=0;	
 	TIMER0_Init();
 
-	InitPinADC(2, 3); // Configure P2.5 as analog input
-
+	InitPinADC(1, 6); // Configure P2.5 as analog input
+	InitPinADC(2, 4);
+	InitPinADC(2, 5);
+	InitPinADC(2, 6);
 	InitADC();
+	
+	pulse_width2 = 1.5;
+	
 	printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
 	printf("Square wave generator for the EFM8LB1.\r\n"
 		"Check pins P2.2 and P2.1 with the oscilloscope.\r\n");
 
 	printf("\n\r");
-	P2_1=0;
+	time = 0;
+	//P2_1=0;
 	PWMStop();
+
 	while (1)
 	{
-    //	PWMStop();
-    	recieveData();	//keep reading data continously 
-    	printf("Command: ");
-    	for(i=0; i<4; i++)
-    		 printf("%d\t", command[i]);
-    	printf("\n\r");
-    	command[0] = 0;
-  		command[1] = 0;
-  		command[2] = 0;
-  		command[3] = 0;
-		
-		waitms(1000);
-	} 
-}
+		if( mode_toggle == 4){
+			PWMforward();
+			if (pulse_width2 <0.5)
+				pulse_width2 = 0.5;
+			else if (pulse_width2 >2.8)
+				pulse_width2 = 2.8;
+			
+			pwm_reload2=0x10000L-(SYSCLK*pulse_width2*1.0e-3)/12.0;
+	 		left2 = Volts_at_Pin(QFP32_MUX_P2_2);
+	 		right2 = Volts_at_Pin(QFP32_MUX_P2_3);
+	 
+			waitms(100);
+			temp_sensor_voltages[0] = Volts_at_Pin(QFP32_MUX_P2_5);
+				pulse_width2 = pulse_width2+0.05;
+			waitms(100);
+			temp_sensor_voltages[1] = Volts_at_Pin(QFP32_MUX_P2_5);
+				pulse_width2 = pulse_width2-0.05;
+			waitms(100);
+			temp_sensor_voltages[2] = Volts_at_Pin(QFP32_MUX_P2_5);
+			
+			if(temp_sensor_voltages[0] > temp_sensor_voltages[1]){
+				if(temp_sensor_voltages[0] > temp_sensor_voltages[2])
+					PWMforward();
+				else
+					PWMLeft();
+			}
+			else{
+				if(temp_sensor_voltages[1]>temp_sensor_voltages[2])
+					PWMRight();
+				else
+					PWMLeft();
+			}
+			waitms(500);
+		}		
+	}
+} 
