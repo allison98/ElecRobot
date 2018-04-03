@@ -32,14 +32,19 @@
 #define motorB P3_1
 
 
-#define thresholdVolt 0.5 //50/1000
+#define thresholdVolt 0.05 //50/1000
 
 //#define LCD_D4 P2_4
 
 //#define LCD_D5 P2_3
 
-#define INPUT P2_0
+//#define INPUT P2_0
+#define OUT0 P2_0
+#define OUT1 P2_1
 #define constant_delay_time 10 //how long the delay for each signal is 
+
+#define BUTTON1 P3_2
+#define BUTTON2 P3_3
 
 volatile unsigned char pwm_count = 0; // used in the timer 2 ISR
 volatile unsigned char pwm_count1 = 0; // this will be usec in the timer 3 ISR
@@ -68,6 +73,8 @@ int left[]={1,0,1,0};
 int right[]={1,1,0,1};
 
 int command[4] = {0,0,0,0};
+
+volatile unsigned int x = 2;
 
 char _c51_external_startup(void)
 {
@@ -214,7 +221,7 @@ void Timer2_ISR(void) interrupt 5
 	motorL1 = pwm_count>pwmSig3 ? 0 : 1;
 	motorL2 = pwm_count>pwmSig4 ? 0 : 1;
 
-	
+	OUT0=pwm_count>80?0:1;
 }
 
 // interrupt for the wheels
@@ -466,9 +473,62 @@ void recieveData (){
  
 }
 
+int checkMode(){
+	if(!BUTTON1 || x == 0){
+		while(!BUTTON1);
+		x= 0;
+		return 0;
+	}
+	else if(!BUTTON2 || x == 1){
+		while(!BUTTON2);
+		x = 1;
+		return 1;
+	}
+	else{
+		x = 2;
+		return 2;
+	}
+}
+
+//Automation
+void detectobstacle(float threshold){
+
+  //int turnOnAutomation = 1;
+
+  //motorR1 = pwm_count>pwmSig1 ? 0 : 1;
+  //motorR2 = pwm_count>pwmSig2 ? 0 : 1;
+
+  //motorL1 = pwm_count>pwmSig3 ? 0 : 1;
+  //motorL2 = pwm_count>pwmSig4 ? 0 : 1;
+  
+  //while(turnOnAutomation == 1){
+    if(threshold <= 0.6 ){
+      //Turn right 90 degrees
+      printf("Turn right \r\n");
+      PWMRight();
+      waitms(500); //Make waits longer
+      waitms(500); 
+      waitms(300); 
+      //stop, check again for obstacle
+      PWMStop();
+      waitms(500);
+      waitms(250);
+    }
+
+
+ 	 else{
+ 	 	printf("Go Straight \r\n");
+      	// if no obstacle, go straight
+      	PWMforward();
+      }
+
+
+    //}
+}
+
 void main(void)
 {
-	int checkcommand= 0, i ;
+	int checkcommand= 0;
 	int sig1 = 0;
 	int sig2 = 0;
 	float  peak = 0;
@@ -476,8 +536,13 @@ void main(void)
 	float periodpwm = 0;
 	float time; 
 	
-		float period = 0;
-		int overflow_count=0;
+	float period = 0;
+	int overflow_count=0;
+	
+	int mode_toggle = 2; //0 = auto ; 1 = manual ; 2 = do nothing
+	TL0=0;
+	TH0=0;
+	TF0=0;	
 	TIMER0_Init();
 
 	InitPinADC(1, 6); // Configure P2.5 as analog input
@@ -488,52 +553,102 @@ void main(void)
 		"Check pins P2.2 and P2.1 with the oscilloscope.\r\n");
 
 	printf("\n\r");
-	P2_1=0;
+	time = 0;
+	//P2_1=0;
 	PWMStop();
-	
+
 	while (1)
 	{
-  		// RIGHT	:   1434.768000
-  		// FORWARD 	:   358.21148
-  		// BACKWARD	:  	716.532600
-  		// LEFT		:   1075.370900
-  		// STOP		:  	1794.120500 
-  		
-  		time=zero_time_calc(); 
-  		printf("Time: %f\n\t\r", time);
-  	
-  		
-  		if((time>=300 && time<=450)||(time>=1400 && time<=1500)||
-  		(time>=1060 && time<=1090)||(time>=1780) || (time>=600 && time<=750) ){
-  			if(time>=1400 && time<=1500){
-  				printf("RIGHT\n\r");
-  				PWMRight();
-  				}
-  			else if(time>=300 && time<=450){
-  				printf("FORWARD\n\r");
-  				PWMforward();
-  			}
-  			else if(time>=600 && time<=750){
-  				printf("BACKWARD\n\r");
-  				PWMbackward();
-  			}
-  			else if(time>=1060 && time<=1090){
-  				printf("LEFT\n\r");
-  				PWMLeft();
-  			}
-  			else //if(time>=2700 && time<=2900){
-  			{	printf("STOP\n\r");
-  				PWMStop();
-  			}
-  		}
-  	
- /* //	else{
-  	//		printf("STOP\n\r");
-  			//PWMStop();
-  	//	}
-  		//waitms(1000);
-		
-	*/
+		mode_toggle = checkMode();
 	
-	} 
+		//Auto
+		if(mode_toggle == 0){
+		printf("auto \r\n");
+			overflow_count=0;
+			TL0=0; 
+			TH0=0;
+			TF0=0;
+		
+			while(P2_1!=0); // Wait for the signal to be zero
+			while(P2_1!=1); // Wait for the signal to be one
+			TR0=1; // Start the timer
+			while(P2_1!=0) // Wait for the signal to be zero
+			{
+				if(TF0==1) // Did the 16-bit timer overflow?
+				{
+					TF0=0;
+					overflow_count++;
+				}
+			}
+			/*while(P2_1!=1) // Wait for the signal to be one
+			{
+				if(TF0==1) // Did the 16-bit timer overflow?
+				{
+					TF0=0;
+					overflow_count++;
+				}
+			}*/
+			TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
+			period=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
+			// Send the period to the serial port
+			printf( "\rT=%f ms   \n ", period*1000.0);
+					waitms(50);
+			detectobstacle(period*1000.0);
+			
+			//use period to create limit commands
+			
+			///speed=343.00;
+		//	distance=speed*period*1000;
+		//	distance=(period*10000000)*0.0061;
+		//	printf( "\rdistance = %f cm\n ", (distance));
+			
+			waitms(50);	
+			
+		}
+		//Manual
+		else if(mode_toggle == 1){
+			printf("manual \r\n");
+	  		// RIGHT	:   1434.768000
+	  		// FORWARD 	:   358.21148
+	  		// BACKWARD	:  	716.532600
+	  		// LEFT		:   1075.370900
+	  		// STOP		:  	1794.120500 
+	  		
+	  		time=zero_time_calc(); 
+	  		printf("Time: %f\n\t\r", time);
+	  	
+	  		
+	  		if((time>=300 && time<=450)||(time>=1400 && time<=1500)||
+	  		(time>=1060 && time<=1090)||(time>=1780) || (time>=600 && time<=750) ){
+	  			if(time>=1400 && time<=1500){
+	  				printf("RIGHT\n\r");
+	  				PWMRight();
+	  				}
+	  			else if(time>=300 && time<=450){
+	  				printf("FORWARD\n\r");
+	  				PWMforward();
+	  			}
+	  			else if(time>=600 && time<=750){
+	  				printf("BACKWARD\n\r");
+	  				PWMbackward();
+	  			}
+	  			else if(time>=1060 && time<=1090){
+	  				printf("LEFT\n\r");
+	  				PWMLeft();
+	  			}
+	  			else //if(time>=2700 && time<=2900){
+	  			{	printf("STOP\n\r");
+	  				PWMStop();
+	  			}
+	  		}
+  		}
+	  //	else{
+	  	//		printf("STOP\n\r");
+	  			//PWMStop();
+	  	//	}
+	  		//waitms(1000);
+		else{
+			printf("Do nothing\r\n");	
+		 }
+	}
 } 

@@ -1,7 +1,7 @@
 ;--------------------------------------------------------
 ; File Created by C51
 ; Version 1.0.0 #1069 (Apr 23 2015) (MSVC)
-; This file was generated Sat Mar 31 14:40:53 2018
+; This file was generated Mon Apr 02 16:12:59 2018
 ;--------------------------------------------------------
 $name Sam_Test
 $optc51 --model-small
@@ -922,7 +922,7 @@ _Timer2_ISR:
 ;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:217: pwm_count = 0;
 	mov	_pwm_count,#0x00
 L006002?:
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:220: motorR1 = pwm_count>pwmSig1 ? 0 : 1;
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:220: motorR1 = pwm_count>pwmSig1 ? 0 : 1;  //rightforward
 	mov	r2,_pwm_count
 	mov	r3,#0x00
 	clr	c
@@ -933,7 +933,7 @@ L006002?:
 	mov  _Timer2_ISR_sloc0_1_0,c
 	cpl	c
 	mov	_P1_4,c
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:221: motorR2 = pwm_count>pwmSig2 ? 0 : 1;
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:221: motorR2 = pwm_count>pwmSig2 ? 0 : 1;  //rightbackward
 	mov	r2,_pwm_count
 	mov	r3,#0x00
 	clr	c
@@ -944,7 +944,7 @@ L006002?:
 	mov  _Timer2_ISR_sloc0_1_0,c
 	cpl	c
 	mov	_P1_5,c
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:223: motorL1 = pwm_count>pwmSig3 ? 0 : 1;
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:223: motorL1 = pwm_count>pwmSig3 ? 0 : 1;  //leftforward
 	mov	r2,_pwm_count
 	mov	r3,#0x00
 	clr	c
@@ -955,7 +955,7 @@ L006002?:
 	mov  _Timer2_ISR_sloc0_1_0,c
 	cpl	c
 	mov	_P1_2,c
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:224: motorL2 = pwm_count>pwmSig4 ? 0 : 1;
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:224: motorL2 = pwm_count>pwmSig4 ? 0 : 1;  //leftbackward
 	mov	r2,_pwm_count
 	mov	r3,#0x00
 	clr	c
@@ -1172,7 +1172,7 @@ _PWMforward:
 	mov	(_pwmSig2 + 1),a
 	mov	_pwmSig3,a
 	mov	(_pwmSig3 + 1),a
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:292: pwmSig4 =99;
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:292: pwmSig4 = 99;
 	mov	_pwmSig4,#0x63
 	clr	a
 	mov	(_pwmSig4 + 1),a
@@ -1235,21 +1235,22 @@ _PWMbackward:
 ;	-----------------------------------------
 _PWMLeft:
 ;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:306: pwmSig1 = 0;
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:307: pwmSig2 = 0;
 	clr	a
 	mov	_pwmSig1,a
 	mov	(_pwmSig1 + 1),a
-	mov	_pwmSig2,a
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:307: pwmSig2 = 99;
+	mov	_pwmSig2,#0x63
+	clr	a
 	mov	(_pwmSig2 + 1),a
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:309: pwmSig3 = 70;
-	mov	_pwmSig3,#0x46
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:308: pwmSig3 = 0;
 	clr	a
+	mov	_pwmSig3,a
 	mov	(_pwmSig3 + 1),a
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:310: pwmSig4 = 0;
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:309: pwmSig4 = 99;
+	mov	_pwmSig4,#0x63
 	clr	a
-	mov	_pwmSig4,a
 	mov	(_pwmSig4 + 1),a
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:311: printf("Left\n\r");
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:310: printf("Left\n\r");
 	mov	a,#__str_2
 	push	acc
 	mov	a,#(__str_2 >> 8)
@@ -1265,26 +1266,28 @@ _PWMLeft:
 ;Allocation info for local variables in function 'PWMRight'
 ;------------------------------------------------------------
 ;------------------------------------------------------------
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:314: void PWMRight(void) {
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:313: void PWMRight(void) {
 ;	-----------------------------------------
 ;	 function PWMRight
 ;	-----------------------------------------
 _PWMRight:
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:315: pwmSig1 = 99;
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:314: pwmSig1 = 99;
 	mov	_pwmSig1,#0x63
 	clr	a
 	mov	(_pwmSig1 + 1),a
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:316: pwmSig2 = 0;
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:318: pwmSig3 = 0;
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:319: pwmSig4 = 0;
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:315: pwmSig2 = 0;
 	clr	a
 	mov	_pwmSig2,a
 	mov	(_pwmSig2 + 1),a
-	mov	_pwmSig3,a
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:317: pwmSig3 = 99;
+	mov	_pwmSig3,#0x63
+	clr	a
 	mov	(_pwmSig3 + 1),a
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:318: pwmSig4 = 0;
+	clr	a
 	mov	_pwmSig4,a
 	mov	(_pwmSig4 + 1),a
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:320: printf("Right\n\r");
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:319: printf("Right\n\r");
 	mov	a,#__str_3
 	push	acc
 	mov	a,#(__str_3 >> 8)
@@ -1300,15 +1303,15 @@ _PWMRight:
 ;Allocation info for local variables in function 'PWMStop'
 ;------------------------------------------------------------
 ;------------------------------------------------------------
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:323: void PWMStop(void) {
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:322: void PWMStop(void) {
 ;	-----------------------------------------
 ;	 function PWMStop
 ;	-----------------------------------------
 _PWMStop:
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:324: pwmSig1 = 0;
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:325: pwmSig2 = 0;
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:327: pwmSig3 = 0;
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:328: pwmSig4 = 0;
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:323: pwmSig1 = 0;
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:324: pwmSig2 = 0;
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:326: pwmSig3 = 0;
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:327: pwmSig4 = 0;
 	clr	a
 	mov	_pwmSig1,a
 	mov	(_pwmSig1 + 1),a
@@ -1318,7 +1321,7 @@ _PWMStop:
 	mov	(_pwmSig3 + 1),a
 	mov	_pwmSig4,a
 	mov	(_pwmSig4 + 1),a
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:329: printf("Stop\n\r");
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:328: printf("Stop\n\r");
 	mov	a,#__str_4
 	push	acc
 	mov	a,#(__str_4 >> 8)
@@ -1337,20 +1340,20 @@ _PWMStop:
 ;overflow_count            Allocated with name '_checkTime_overflow_count_1_73'
 ;sloc0                     Allocated with name '_checkTime_sloc0_1_0'
 ;------------------------------------------------------------
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:335: float checkTime (void) {
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:334: float checkTime (void) {
 ;	-----------------------------------------
 ;	 function checkTime
 ;	-----------------------------------------
 _checkTime:
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:339: TL0=0; 
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:338: TL0=0; 
 	mov	_TL0,#0x00
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:340: TH0=0;
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:339: TH0=0;
 	mov	_TH0,#0x00
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:341: TF0=0;
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:340: TF0=0;
 	clr	_TF0
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:343: TR0=0;
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:342: TR0=0;
 	clr	_TR0
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:348: printf("Waiting for the signal to be 1\n\r");
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:347: printf("Waiting for the signal to be 1\n\r");
 	mov	a,#__str_5
 	push	acc
 	mov	a,#(__str_5 >> 8)
@@ -1361,7 +1364,7 @@ _checkTime:
 	dec	sp
 	dec	sp
 	dec	sp
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:349: printf("Volt at ADC: %f\n\r", Volts_at_Pin(QFP32_MUX_P1_6));
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:348: printf("Volt at ADC: %f\n\r", Volts_at_Pin(QFP32_MUX_P1_6));
 	mov	dpl,#0x0C
 	lcall	_Volts_at_Pin
 	mov	r2,dpl
@@ -1382,7 +1385,7 @@ _checkTime:
 	mov	a,sp
 	add	a,#0xf9
 	mov	sp,a
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:350: while(Volts_at_Pin(QFP32_MUX_P1_6) < thresholdVolt);
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:349: while(Volts_at_Pin(QFP32_MUX_P1_6) < thresholdVolt);
 L016001?:
 	mov	dpl,#0x0C
 	lcall	_Volts_at_Pin
@@ -1409,7 +1412,7 @@ L016001?:
 	mov	sp,a
 	mov	a,r2
 	jnz	L016001?
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:351: while(Volts_at_Pin(QFP32_MUX_P1_6) >= thresholdVolt); //wait for the signal to be 0
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:350: while(Volts_at_Pin(QFP32_MUX_P1_6) >= thresholdVolt); //wait for the signal to be 0
 L016004?:
 	mov	dpl,#0x0C
 	lcall	_Volts_at_Pin
@@ -1436,7 +1439,7 @@ L016004?:
 	mov	sp,a
 	mov	a,r2
 	jz	L016004?
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:352: printf("Signal is 0\n\r");
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:351: printf("Signal is 0\n\r");
 	mov	a,#__str_7
 	push	acc
 	mov	a,#(__str_7 >> 8)
@@ -1447,7 +1450,7 @@ L016004?:
 	dec	sp
 	dec	sp
 	dec	sp
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:353: printf("Volt at ADC: %f\n\r", Volts_at_Pin(QFP32_MUX_P1_6));
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:352: printf("Volt at ADC: %f\n\r", Volts_at_Pin(QFP32_MUX_P1_6));
 	mov	dpl,#0x0C
 	lcall	_Volts_at_Pin
 	mov	r2,dpl
@@ -1468,7 +1471,7 @@ L016004?:
 	mov	a,sp
 	add	a,#0xf9
 	mov	sp,a
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:354: printf("Start Timer\n\r");
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:353: printf("Start Timer\n\r");
 	mov	a,#__str_8
 	push	acc
 	mov	a,#(__str_8 >> 8)
@@ -1479,9 +1482,9 @@ L016004?:
 	dec	sp
 	dec	sp
 	dec	sp
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:355: TR0=1; // Start the timer
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:354: TR0=1; // Start the timer
 	setb	_TR0
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:357: while (Volts_at_Pin(QFP32_MUX_P1_6) < thresholdVolt) {	// wait for signal to be 1
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:356: while (Volts_at_Pin(QFP32_MUX_P1_6) < thresholdVolt) {	// wait for signal to be 1
 	clr	a
 	mov	_checkTime_overflow_count_1_73,a
 	mov	(_checkTime_overflow_count_1_73 + 1),a
@@ -1511,7 +1514,7 @@ L016009?:
 	mov	sp,a
 	mov	a,r4
 	jz	L016011?
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:358: printf("Volt at ADC: %f\n\r", Volts_at_Pin(QFP32_MUX_P1_6));
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:357: printf("Volt at ADC: %f\n\r", Volts_at_Pin(QFP32_MUX_P1_6));
 	mov	dpl,#0x0C
 	lcall	_Volts_at_Pin
 	mov	r4,dpl
@@ -1532,19 +1535,19 @@ L016009?:
 	mov	a,sp
 	add	a,#0xf9
 	mov	sp,a
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:359: if(TF0==1) { // Did the 16-bit timer overflow			{
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:360: TF0=0;
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:358: if(TF0==1) { // Did the 16-bit timer overflow			{
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:359: TF0=0;
 	jbc	_TF0,L016035?
 	sjmp	L016009?
 L016035?:
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:361: overflow_count++;
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:360: overflow_count++;
 	inc	_checkTime_overflow_count_1_73
 	clr	a
 	cjne	a,_checkTime_overflow_count_1_73,L016009?
 	inc	(_checkTime_overflow_count_1_73 + 1)
 	sjmp	L016009?
 L016011?:
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:370: if ((overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK)*1000 < 10) {
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:369: if ((overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK)*1000 < 10) {
 	mov	dpl,_checkTime_overflow_count_1_73
 	mov	dph,(_checkTime_overflow_count_1_73 + 1)
 	lcall	___sint2fs
@@ -1672,7 +1675,7 @@ L016011?:
 	jnz	L016037?
 	ljmp	L016018?
 L016037?:
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:371: while (Volts_at_Pin(QFP32_MUX_P1_6) < thresholdVolt) {	// wait for signal to be 1
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:370: while (Volts_at_Pin(QFP32_MUX_P1_6) < thresholdVolt) {	// wait for signal to be 1
 L016014?:
 	mov	dpl,#0x0C
 	push	ar4
@@ -1707,7 +1710,7 @@ L016014?:
 	pop	ar4
 	mov	a,r2
 	jz	L016018?
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:372: printf("Volt at ADC: %f\n\r", Volts_at_Pin(QFP32_MUX_P1_6));
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:371: printf("Volt at ADC: %f\n\r", Volts_at_Pin(QFP32_MUX_P1_6));
 	mov	dpl,#0x0C
 	push	ar4
 	push	ar5
@@ -1736,12 +1739,12 @@ L016014?:
 	pop	ar6
 	pop	ar5
 	pop	ar4
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:373: if(TF0==1) { // Did the 16-bit timer overflow			{
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:374: TF0=0;
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:372: if(TF0==1) { // Did the 16-bit timer overflow			{
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:373: TF0=0;
 	jbc	_TF0,L016039?
 	ljmp	L016014?
 L016039?:
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:375: overflow_count++;
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:374: overflow_count++;
 	inc	_checkTime_overflow_count_1_73
 	clr	a
 	cjne	a,_checkTime_overflow_count_1_73,L016040?
@@ -1749,9 +1752,9 @@ L016039?:
 L016040?:
 	ljmp	L016014?
 L016018?:
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:386: TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:385: TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
 	clr	_TR0
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:387: printf("Stop Timer\n\r");
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:386: printf("Stop Timer\n\r");
 	push	ar4
 	push	ar5
 	push	ar6
@@ -1766,7 +1769,7 @@ L016018?:
 	dec	sp
 	dec	sp
 	dec	sp
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:388: time=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:387: time=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
 	mov	dptr,#0x0000
 	mov	b,#0x80
 	mov	a,#0x47
@@ -1871,7 +1874,7 @@ L016018?:
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:389: return time*1000; //return period of high pulse in seconds		
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:388: return time*1000; //return period of high pulse in seconds		
 	push	ar2
 	push	ar3
 	push	ar4
@@ -1896,12 +1899,12 @@ L016018?:
 ;Allocation info for local variables in function 'voltsAtPeak'
 ;------------------------------------------------------------
 ;------------------------------------------------------------
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:396: float voltsAtPeak(void) {
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:395: float voltsAtPeak(void) {
 ;	-----------------------------------------
 ;	 function voltsAtPeak
 ;	-----------------------------------------
 _voltsAtPeak:
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:397: while(ADC_at_Pin(QFP32_MUX_P1_6)==0); //input pin waiting to be  
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:396: while(ADC_at_Pin(QFP32_MUX_P1_6)==0); //input pin waiting to be  
 L017001?:
 	mov	dpl,#0x0C
 	lcall	_ADC_at_Pin
@@ -1909,7 +1912,7 @@ L017001?:
 	mov	b,dph
 	orl	a,b
 	jz	L017001?
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:398: while(ADC_at_Pin(QFP32_MUX_P1_6)==0); //this waiting for the pin to be high/ 1 
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:397: while(ADC_at_Pin(QFP32_MUX_P1_6)==0); //this waiting for the pin to be high/ 1 
 L017004?:
 	mov	dpl,#0x0C
 	lcall	_ADC_at_Pin
@@ -1917,22 +1920,22 @@ L017004?:
 	mov	b,dph
 	orl	a,b
 	jz	L017004?
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:399: Timer3us((PERIOD*1.0E6)/4.0); //PERIOD IS DEFINED
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:398: Timer3us((PERIOD*1.0E6)/4.0); //PERIOD IS DEFINED
 	mov	dptr,#0x0000
 	lcall	_Timer3us
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:400: return(Volts_at_Pin(QFP32_MUX_P1_6));
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:399: return(Volts_at_Pin(QFP32_MUX_P1_6));
 	mov	dpl,#0x0C
 	ljmp	_Volts_at_Pin
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'waitquarterperiod'
 ;------------------------------------------------------------
 ;------------------------------------------------------------
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:413: void waitquarterperiod(void){
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:412: void waitquarterperiod(void){
 ;	-----------------------------------------
 ;	 function waitquarterperiod
 ;	-----------------------------------------
 _waitquarterperiod:
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:414: waitms(constant_delay_time);
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:413: waitms(constant_delay_time);
 	mov	dptr,#0x000A
 	ljmp	_waitms
 ;------------------------------------------------------------
@@ -1940,7 +1943,7 @@ _waitquarterperiod:
 ;------------------------------------------------------------
 ;threshold                 Allocated to registers r2 r3 r4 r5 
 ;------------------------------------------------------------
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:418: void detectobstacle(float threshold){
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:417: void detectobstacle(float threshold){
 ;	-----------------------------------------
 ;	 function detectobstacle
 ;	-----------------------------------------
@@ -1949,7 +1952,7 @@ _detectobstacle:
 	mov	r3,dph
 	mov	r4,b
 	mov	r5,a
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:429: if(threshold <= 0.6 ){
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:428: if(threshold <= 0.6 ){
 	mov	a,#0x9A
 	push	acc
 	mov	a,#0x99
@@ -1969,8 +1972,7 @@ _detectobstacle:
 	mov	sp,a
 	mov	a,r2
 	jnz	L019002?
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:431: printf("Turn right \r\n");
-	push	ar2
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:430: printf("Turn right \r\n");
 	mov	a,#__str_10
 	push	acc
 	mov	a,#(__str_10 >> 8)
@@ -1981,54 +1983,27 @@ _detectobstacle:
 	dec	sp
 	dec	sp
 	dec	sp
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:432: pwmSig1 = 99;
-	mov	_pwmSig1,#0x63
-	clr	a
-	mov	(_pwmSig1 + 1),a
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:433: pwmSig2 = 0;
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:434: pwmSig3 = 0;
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:435: pwmSig4 = 0;
-	clr	a
-	mov	_pwmSig2,a
-	mov	(_pwmSig2 + 1),a
-	mov	_pwmSig3,a
-	mov	(_pwmSig3 + 1),a
-	mov	_pwmSig4,a
-	mov	(_pwmSig4 + 1),a
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:436: waitms(500); //Make waits longer
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:431: PWMRight();
+	lcall	_PWMRight
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:432: waitms(500); //Make waits longer
 	mov	dptr,#0x01F4
 	lcall	_waitms
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:437: waitms(500); 
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:433: waitms(500); 
 	mov	dptr,#0x01F4
 	lcall	_waitms
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:438: waitms(500); 
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:434: waitms(300); 
+	mov	dptr,#0x012C
+	lcall	_waitms
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:436: PWMStop();
+	lcall	_PWMStop
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:437: waitms(500);
 	mov	dptr,#0x01F4
 	lcall	_waitms
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:440: pwmSig1 = 0;
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:441: pwmSig2 = 0;
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:442: pwmSig3 = 0;
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:443: pwmSig4 = 0;
-	clr	a
-	mov	_pwmSig1,a
-	mov	(_pwmSig1 + 1),a
-	mov	_pwmSig2,a
-	mov	(_pwmSig2 + 1),a
-	mov	_pwmSig3,a
-	mov	(_pwmSig3 + 1),a
-	mov	_pwmSig4,a
-	mov	(_pwmSig4 + 1),a
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:444: waitms(500);
-	mov	dptr,#0x01F4
-	lcall	_waitms
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:445: waitms(250);
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:438: waitms(250);
 	mov	dptr,#0x00FA
-	lcall	_waitms
-	pop	ar2
+	ljmp	_waitms
 L019002?:
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:447: if(threshold <= 0.6){
-	mov	a,r2
-	jnz	L019004?
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:449: printf("Turn left \r\n");
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:443: printf("Go Straight \r\n");
 	mov	a,#__str_11
 	push	acc
 	mov	a,#(__str_11 >> 8)
@@ -2039,85 +2014,8 @@ L019002?:
 	dec	sp
 	dec	sp
 	dec	sp
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:450: pwmSig1 = 0;
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:451: pwmSig2 = 0;
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:452: pwmSig3 = 0;
-	clr	a
-	mov	_pwmSig1,a
-	mov	(_pwmSig1 + 1),a
-	mov	_pwmSig2,a
-	mov	(_pwmSig2 + 1),a
-	mov	_pwmSig3,a
-	mov	(_pwmSig3 + 1),a
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:453: pwmSig4 = 99;
-	mov	_pwmSig4,#0x63
-	clr	a
-	mov	(_pwmSig4 + 1),a
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:454: waitms(500);
-	mov	dptr,#0x01F4
-	lcall	_waitms
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:455: waitms(500);
-	mov	dptr,#0x01F4
-	lcall	_waitms
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:456: waitms(500); 
-	mov	dptr,#0x01F4
-	lcall	_waitms
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:457: waitms(500); 
-	mov	dptr,#0x01F4
-	lcall	_waitms
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:458: waitms(500); 
-	mov	dptr,#0x01F4
-	lcall	_waitms
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:459: waitms(500); 
-	mov	dptr,#0x01F4
-	lcall	_waitms
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:461: pwmSig1 = 0;
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:462: pwmSig2 = 0;
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:463: pwmSig3 = 0;
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:464: pwmSig4 = 0;
-	clr	a
-	mov	_pwmSig1,a
-	mov	(_pwmSig1 + 1),a
-	mov	_pwmSig2,a
-	mov	(_pwmSig2 + 1),a
-	mov	_pwmSig3,a
-	mov	(_pwmSig3 + 1),a
-	mov	_pwmSig4,a
-	mov	(_pwmSig4 + 1),a
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:465: waitms(500);
-	mov	dptr,#0x01F4
-	lcall	_waitms
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:466: waitms(250);
-	mov	dptr,#0x00FA
-	lcall	_waitms
-L019004?:
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:469: printf("Go Straight \r\n");
-	mov	a,#__str_12
-	push	acc
-	mov	a,#(__str_12 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	dec	sp
-	dec	sp
-	dec	sp
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:471: pwmSig1= 99;
-	mov	_pwmSig1,#0x63
-	clr	a
-	mov	(_pwmSig1 + 1),a
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:472: pwmSig2 = 0;
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:473: pwmSig3 = 0;
-	clr	a
-	mov	_pwmSig2,a
-	mov	(_pwmSig2 + 1),a
-	mov	_pwmSig3,a
-	mov	(_pwmSig3 + 1),a
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:474: pwmSig4 = 99;
-	mov	_pwmSig4,#0x63
-	clr	a
-	mov	(_pwmSig4 + 1),a
-	ret
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:445: PWMforward();
+	ljmp	_PWMforward
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'main'
 ;------------------------------------------------------------
@@ -2133,26 +2031,37 @@ L019004?:
 ;period                    Allocated to registers r2 r3 r4 r5 
 ;overflow_count            Allocated to registers r2 r3 
 ;------------------------------------------------------------
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:481: void main(void)
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:453: void main(void)
 ;	-----------------------------------------
 ;	 function main
 ;	-----------------------------------------
 _main:
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:494: TL0=0; 
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:466: TL0=0; 
 	mov	_TL0,#0x00
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:495: TH0=0;
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:467: TH0=0;
 	mov	_TH0,#0x00
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:496: TF0=0;
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:468: TF0=0;
 	clr	_TF0
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:497: TIMER0_Init();
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:469: TIMER0_Init();
 	lcall	_TIMER0_Init
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:499: InitPinADC(1, 6); // Configure P2.5 as analog input
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:471: InitPinADC(1, 6); // Configure P2.5 as analog input
 	mov	_InitPinADC_PARM_2,#0x06
 	mov	dpl,#0x01
 	lcall	_InitPinADC
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:501: InitADC();
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:473: InitADC();
 	lcall	_InitADC
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:502: printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:474: printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
+	mov	a,#__str_12
+	push	acc
+	mov	a,#(__str_12 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	dec	sp
+	dec	sp
+	dec	sp
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:476: "Check pins P2.2 and P2.1 with the oscilloscope.\r\n");
 	mov	a,#__str_13
 	push	acc
 	mov	a,#(__str_13 >> 8)
@@ -2163,7 +2072,7 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:504: "Check pins P2.2 and P2.1 with the oscilloscope.\r\n");
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:478: printf("\n\r");
 	mov	a,#__str_14
 	push	acc
 	mov	a,#(__str_14 >> 8)
@@ -2174,52 +2083,41 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:506: printf("\n\r");
-	mov	a,#__str_15
-	push	acc
-	mov	a,#(__str_15 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	dec	sp
-	dec	sp
-	dec	sp
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:509: while (1)
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:481: while (1)
 L020013?:
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:540: TL0=0; 
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:512: TL0=0; 
 	mov	_TL0,#0x00
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:541: TH0=0;
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:513: TH0=0;
 	mov	_TH0,#0x00
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:542: TF0=0;
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:514: TF0=0;
 	clr	_TF0
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:544: while(P2_1!=0); // Wait for the signal to be zero
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:516: while(P2_1!=0); // Wait for the signal to be zero
 L020001?:
 	jb	_P2_1,L020001?
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:545: while(P2_1!=1); // Wait for the signal to be one
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:517: while(P2_1!=1); // Wait for the signal to be one
 L020004?:
 	jnb	_P2_1,L020004?
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:546: TR0=1; // Start the timer
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:518: TR0=1; // Start the timer
 	setb	_TR0
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:547: while(P2_1!=0) // Wait for the signal to be zero
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:519: while(P2_1!=0) // Wait for the signal to be zero
 	mov	r2,#0x00
 	mov	r3,#0x00
 L020009?:
 	jnb	_P2_1,L020011?
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:549: if(TF0==1) // Did the 16-bit timer overflow?
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:551: TF0=0;
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:521: if(TF0==1) // Did the 16-bit timer overflow?
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:523: TF0=0;
 	jbc	_TF0,L020028?
 	sjmp	L020009?
 L020028?:
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:552: overflow_count++;
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:524: overflow_count++;
 	inc	r2
 	cjne	r2,#0x00,L020009?
 	inc	r3
 	sjmp	L020009?
 L020011?:
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:563: TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:535: TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
 	clr	_TR0
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:564: period=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:536: period=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
 	mov	dpl,r2
 	mov	dph,r3
 	lcall	___sint2fs
@@ -2335,7 +2233,7 @@ L020011?:
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:566: printf( "\rT=%f ms   \n ", period*1000.0);
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:538: printf( "\rT=%f ms   \n ", period*1000.0);
 	push	ar2
 	push	ar3
 	push	ar4
@@ -2359,9 +2257,9 @@ L020011?:
 	push	ar3
 	push	ar4
 	push	ar5
-	mov	a,#__str_16
+	mov	a,#__str_15
 	push	acc
-	mov	a,#(__str_16 >> 8)
+	mov	a,#(__str_15 >> 8)
 	push	acc
 	mov	a,#0x80
 	push	acc
@@ -2369,20 +2267,20 @@ L020011?:
 	mov	a,sp
 	add	a,#0xf9
 	mov	sp,a
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:567: waitms(50);
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:539: waitms(50);
 	mov	dptr,#0x0032
 	lcall	_waitms
 	pop	ar5
 	pop	ar4
 	pop	ar3
 	pop	ar2
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:568: detectobstacle(period*1000.0);
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:540: detectobstacle(period*1000.0);
 	mov	dpl,r2
 	mov	dph,r3
 	mov	b,r4
 	mov	a,r5
 	lcall	_detectobstacle
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:577: waitms(50);	
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\robotwithsonar3\Sam_Test.c:549: waitms(50);	
 	mov	dptr,#0x0032
 	lcall	_waitms
 	ljmp	L020013?
@@ -2447,20 +2345,15 @@ __str_10:
 	db 0x0A
 	db 0x00
 __str_11:
-	db 'Turn left '
-	db 0x0D
-	db 0x0A
-	db 0x00
-__str_12:
 	db 'Go Straight '
 	db 0x0D
 	db 0x0A
 	db 0x00
-__str_13:
+__str_12:
 	db 0x1B
 	db '[2J'
 	db 0x00
-__str_14:
+__str_13:
 	db 'Square wave generator for the EFM8LB1.'
 	db 0x0D
 	db 0x0A
@@ -2469,11 +2362,11 @@ __str_14:
 	db 0x0D
 	db 0x0A
 	db 0x00
-__str_15:
+__str_14:
 	db 0x0A
 	db 0x0D
 	db 0x00
-__str_16:
+__str_15:
 	db 0x0D
 	db 'T=%f ms   '
 	db 0x0A
