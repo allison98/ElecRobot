@@ -46,21 +46,16 @@
 #define BUTTON1 P3_3
 #define BUTTON2 P3_2
 #define BUTTON3 P3_1
-#define BUTTON4 P3_0
 
-#define LEDGREEN P0_3
-#define LEDWHITE P0_1
-#define LEDRED P0_6
+#define LEDGREEN P0_6
+#define LEDWHITE P0_5
+#define LEDRED P0_7
 
-#define SPEAKER P2_6
+#define SPEAKER P2_5
 #define LASER P3_0
 #define PIR P2_4
-#define TEMPSENSOR P2_5
+#define TEMPSENSOR P2_6
 
-
-//#define RELOAD_10MS (0x10000L-(SYSCLK/(12L*100L)))
-//#define TIMER_4_FREQ 5000L
-//#define PWMOUT2 P2_6
 
 volatile unsigned char pwm_count = 0; // used in the timer 2 ISR
 volatile unsigned char pwm_count1 = 0; // this will be usec in the timer 3 ISR
@@ -91,9 +86,6 @@ int right[]={1,1,0,1};
 int command[4] = {0,0,0,0};
 
 volatile unsigned int x = 2;
-volatile unsigned int pwm_reload2;
-volatile unsigned char pwm_state2 = 0;
-volatile unsigned char count20ms2;
 
 char _c51_external_startup(void)
 {
@@ -167,13 +159,6 @@ char _c51_external_startup(void)
 	TMR2 = 0xffff;   // Set to reload immediately
 	ET2 = 1;         // Enable Timer2 interrupts
 	TR2 = 1;         // Start Timer2 (TMR2CN is bit addressable)
-
-	SFRPAGE=0x10;
-	TMR4CN0=0x00;   // Stop Timer4; Clear TF4; WARNING: lives in SFR page 0x10
-	pwm_reload2=0x10000L-(SYSCLK*1.5e-3)/12.0;
-	TMR4=0xffff;   // Set to reload immediately
-	EIE2|=0b_0000_0100;     // Enable Timer4 interrupts
-	TR4=1;
 	
 /*
 					 // Initialize timer 4 for periodic interrupts
@@ -569,11 +554,6 @@ int checkMode(){
 		x = 3;
 		return 3;
 	}
-	else if(!BUTTON4 || x == 4){
-		while(!BUTTON4);
-		x = 4;
-		return 4;
-	}
 	else{
 		x = 2;
 		return 2;
@@ -616,9 +596,16 @@ void detectobstacle(float threshold){
     //}
 }
 
-void laserPattern(int rate){
+void laserPattern(float rate){
 	LASER = 0;
-	waitms(rate*1000);
+	if(rate<0.8)
+		waitms(200);
+	else if(rate>=0.8 && rate<2.0)
+		waitms(500);
+	else if(rate>=2.0 && rate<2.8)
+		waitms(800);
+	else
+		waitms(1000);
 	LASER = 1;
 }
 
@@ -635,15 +622,9 @@ void main(void)
 	float period = 0;
 	int overflow_count=0;
 	float pir_voltage;
-	//float temp_sensor_voltages[3];
-	
-	//float pulse_width2, left2, right2;
-
-	
 	
 	int mode_toggle = 2; //0 = auto ; 1 = manual ; 2 = do nothing
 	
-	count20ms2 = 0;
 	TL0=0;
 	TH0=0;
 	TF0=0;	
@@ -652,10 +633,7 @@ void main(void)
 	InitPinADC(1, 6); // Configure P2.5 as analog input
 	InitPinADC(2, 4);
 	InitPinADC(2, 5);
-	//InitPinADC(2, 6);
 	InitADC();
-	
-	//pulse_width2 = 1.5;
 		
 	printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
 	printf("Square wave generator for the EFM8LB1.\r\n"
@@ -663,9 +641,8 @@ void main(void)
 
 	printf("\n\r");
 	time = 0;
-	//P2_1=0;
 	PWMStop();
-
+	SPEAKER = 0;
 	while (1)
 	{
 		mode_toggle = checkMode();
@@ -761,45 +738,6 @@ void main(void)
 			waitms(100);
 		
 		}
-		/*else if( mode_toggle == 4){
-			PWMforward();
-			if (pulse_width2 <0.5)
-				pulse_width2 = 0.5;
-			else if (pulse_width2 >2.8)
-				pulse_width2 = 2.8;
-			
-			pwm_reload2=0x10000L-(SYSCLK*pulse_width2*1.0e-3)/12.0;
-	 		left2 = Volts_at_Pin(QFP32_MUX_P2_2);
-	 		right2 = Volts_at_Pin(QFP32_MUX_P2_3);
-	 
-			waitms(100);
-			temp_sensor_voltages[0] = Volts_at_Pin(QFP32_MUX_P2_5);
-				pulse_width2 = pulse_width2+0.05;
-			waitms(100);
-			temp_sensor_voltages[1] = Volts_at_Pin(QFP32_MUX_P2_5);
-				pulse_width2 = pulse_width2-0.05;
-			waitms(100);
-			temp_sensor_voltages[2] = Volts_at_Pin(QFP32_MUX_P2_5);
-			
-			if(temp_sensor_voltages[0] > temp_sensor_voltages[1]){
-				if(temp_sensor_voltages[0] > temp_sensor_voltages[2])
-					PWMforward();
-				else
-					PWMLeft();
-			}
-			else{
-				if(temp_sensor_voltages[1]>temp_sensor_voltages[2])
-					PWMRight();
-				else
-					PWMLeft();
-			}
-			waitms(500);
-			
-			
-			
-			
-		}
-		*/
 		else{
 			printf("Do nothing\r\n");	
 		 }
