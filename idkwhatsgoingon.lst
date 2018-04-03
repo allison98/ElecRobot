@@ -1,7 +1,7 @@
 0000              1   ;--------------------------------------------------------
 0000              2   ; File Created by C51
 0000              3   ; Version 1.0.0 #1069 (Apr 23 2015) (MSVC)
-0000              4   ; This file was generated Tue Apr 03 10:10:19 2018
+0000              4   ; This file was generated Tue Apr 03 10:38:35 2018
 0000              5   ;--------------------------------------------------------
                   5   $name idkwhatsgoingon
                   6   $optc51 --model-small
@@ -1203,7 +1203,7 @@
 022C           1203   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:360: LEDGREEN = 1;
 022C D286      1204            setb    _P0_6
 022E           1205   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:361: LEDWHITE = 1;
-022E D285      1206            setb    _P0_5
+022E D290      1206            setb    _P1_0
 0230           1207   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:362: SPEAKER = 0;
 0230 C2A5      1208            clr     _P2_5
 0232 22        1209            ret
@@ -1237,7 +1237,7 @@
 024B           1237   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:373: LEDGREEN = 1;
 024B D286      1238            setb    _P0_6
 024D           1239   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:374: LEDWHITE = 0;
-024D C285      1240            clr     _P0_5
+024D C290      1240            clr     _P1_0
 024F           1241   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:375: SPEAKER = 1;
 024F D2A5      1242            setb    _P2_5
 0251 22        1243            ret
@@ -1271,7 +1271,7 @@
 026A           1271   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:386: LEDGREEN = 0;
 026A C286      1272            clr     _P0_6
 026C           1273   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:387: LEDWHITE = 1;
-026C D285      1274            setb    _P0_5
+026C D290      1274            setb    _P1_0
 026E           1275   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:388: SPEAKER = 0;
 026E C2A5      1276            clr     _P2_5
 0270 22        1277            ret
@@ -1305,7 +1305,7 @@
 0289           1305   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:400: LEDGREEN = 0;
 0289 C286      1306            clr     _P0_6
 028B           1307   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:401: LEDWHITE = 1;
-028B D285      1308            setb    _P0_5
+028B D290      1308            setb    _P1_0
 028D           1309   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:402: SPEAKER = 0;   
 028D C2A5      1310            clr     _P2_5
 028F 22        1311            ret
@@ -1336,7 +1336,7 @@
 02A3           1336   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:416: LEDGREEN = 1;
 02A3 D286      1337            setb    _P0_6
 02A5           1338   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:417: LEDWHITE = 1;
-02A5 D285      1339            setb    _P0_5
+02A5 D290      1339            setb    _P1_0
 02A7           1340   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:418: SPEAKER = 0;
 02A7 C2A5      1341            clr     _P2_5
 02A9 22        1342            ret
@@ -2133,13 +2133,13 @@
 07E0           2133   ;        -----------------------------------------
 07E0           2134   _checkMode:
 07E0           2135   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:542: if(!BUTTON1 || x == 0){
-07E0 30B308    2136            jnb     _P3_3,L023001?
+07E0 30B108    2136            jnb     _P3_1,L023001?
 07E3 E5A0      2137            mov     a,_x
 07E5 45A1      2138            orl     a,(_x + 1)
 07E7 7001      2139            jnz     L023019?
 07E9           2140   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:543: while(!BUTTON1);
 07E9           2141   L023001?:
-07E9 30B308    2142            jnb     _P3_3,L023001?
+07E9 30B108    2142            jnb     _P3_1,L023001?
 07EC           2143   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:544: x= 0;
 07EC           2144   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:545: return 0;
 07EC E4        2145            clr     a
@@ -2150,7 +2150,7 @@
 07F5 22        2150            ret
 07F6           2151   L023019?:
 07F6           2152   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:547: else if(!BUTTON2 || x == 1){
-07F6 30B288    2153            jnb     _P3_2,L023004?
+07F6 30B388    2153            jnb     _P3_3,L023004?
 07F9 7401      2154            mov     a,#0x01
 07FB B5A0C8    2155            cjne    a,_x,L023037?
 07FE E4        2156            clr     a
@@ -2161,7 +2161,7 @@
 0806           2161   L023038?:
 0806           2162   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:548: while(!BUTTON2);
 0806           2163   L023004?:
-0806 30B288    2164            jnb     _P3_2,L023004?
+0806 30B388    2164            jnb     _P3_3,L023004?
 0809           2165   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:549: x = 1;
 0809 75A001    2166            mov     _x,#0x01
 080C E4        2167            clr     a
@@ -2171,7 +2171,7 @@
 0812 22        2171            ret
 0813           2172   L023015?:
 0813           2173   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:552: else if(!BUTTON3 || x == 3){
-0813 30B188    2174            jnb     _P3_1,L023007?
+0813 30B788    2174            jnb     _P3_7,L023007?
 0816 7403      2175            mov     a,#0x03
 0818 B5A0C8    2176            cjne    a,_x,L023041?
 081B E4        2177            clr     a
@@ -2182,7 +2182,7 @@
 0823           2182   L023042?:
 0823           2183   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:553: while(!BUTTON3);
 0823           2184   L023007?:
-0823 30B188    2185            jnb     _P3_1,L023007?
+0823 30B788    2185            jnb     _P3_7,L023007?
 0826           2186   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:554: x = 3;
 0826 75A003    2187            mov     _x,#0x03
 0829 E4        2188            clr     a
@@ -2454,971 +2454,1018 @@
 09B8 75F005    2454            mov     _InitPinADC_PARM_2,#0x05
 09BB 758202    2455            mov     dpl,#0x02
 09BE 120100    2456            lcall   _InitPinADC
-09C1           2457   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:636: InitADC();
-09C1 120100    2458            lcall   _InitADC
-09C4           2459   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:638: printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
-09C4 7448      2460            mov     a,#__str_4
-09C6 C0E0      2461            push    acc
-09C8 74D1      2462            mov     a,#(__str_4 >> 8)
-09CA C0E0      2463            push    acc
-09CC 7480      2464            mov     a,#0x80
-09CE C0E0      2465            push    acc
-09D0 120100    2466            lcall   _printf
-09D3 1581      2467            dec     sp
-09D5 1581      2468            dec     sp
-09D7 1581      2469            dec     sp
-09D9           2470   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:640: "Check pins P2.2 and P2.1 with the oscilloscope.\r\n");
-09D9 7488      2471            mov     a,#__str_5
-09DB C0E0      2472            push    acc
-09DD 74D1      2473            mov     a,#(__str_5 >> 8)
-09DF C0E0      2474            push    acc
-09E1 7480      2475            mov     a,#0x80
-09E3 C0E0      2476            push    acc
-09E5 120100    2477            lcall   _printf
-09E8 1581      2478            dec     sp
-09EA 1581      2479            dec     sp
-09EC 1581      2480            dec     sp
-09EE           2481   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:642: printf("\n\r");
-09EE 74C8      2482            mov     a,#__str_6
-09F0 C0E0      2483            push    acc
-09F2 74D1      2484            mov     a,#(__str_6 >> 8)
-09F4 C0E0      2485            push    acc
-09F6 7480      2486            mov     a,#0x80
-09F8 C0E0      2487            push    acc
-09FA 120100    2488            lcall   _printf
-09FD 1581      2489            dec     sp
-09FF 1581      2490            dec     sp
-0A01 1581      2491            dec     sp
-0A03           2492   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:644: PWMStop();
-0A03 120100    2493            lcall   _PWMStop
-0A06           2494   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:645: SPEAKER = 0;
-0A06 C2A5      2495            clr     _P2_5
-0A08           2496   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:646: while (1)
-0A08           2497   L026052?:
-0A08           2498   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:648: mode_toggle = checkMode();
-0A08 120100    2499            lcall   _checkMode
-0A0B AA82      2500            mov     r2,dpl
-0A0D AB83      2501            mov     r3,dph
-0A0F           2502   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:651: if(mode_toggle == 0){
-0A0F EA        2503            mov     a,r2
-0A10 4B        2504            orl     a,r3
-0A11 6001      2505            jz      L026082?
-0A13 020100    2506            ljmp    L026049?
-0A16           2507   L026082?:
-0A16           2508   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:652: printf("auto \r\n");
-0A16 74C8      2509            mov     a,#__str_7
-0A18 C0E0      2510            push    acc
-0A1A 74D2      2511            mov     a,#(__str_7 >> 8)
-0A1C C0E0      2512            push    acc
-0A1E 7480      2513            mov     a,#0x80
-0A20 C0E0      2514            push    acc
-0A22 120100    2515            lcall   _printf
-0A25 1581      2516            dec     sp
-0A27 1581      2517            dec     sp
-0A29 1581      2518            dec     sp
-0A2B           2519   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:654: TL0=0; 
-0A2B 758A00    2520            mov     _TL0,#0x00
-0A2E           2521   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:655: TH0=0;
-0A2E 758C00    2522            mov     _TH0,#0x00
-0A31           2523   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:656: TF0=0;
-0A31 C28D      2524            clr     _TF0
-0A33           2525   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:658: while(P2_1!=0); // Wait for the signal to be zero
-0A33           2526   L026001?:
-0A33 20A108    2527            jb      _P2_1,L026001?
-0A36           2528   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:659: while(P2_1!=1); // Wait for the signal to be one
-0A36           2529   L026004?:
-0A36 30A148    2530            jnb     _P2_1,L026004?
-0A39           2531   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:660: TR0=1; // Start the timer
-0A39 D28C      2532            setb    _TR0
-0A3B           2533   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:661: while(P2_1!=0) // Wait for the signal to be zero
-0A3B 7C00      2534            mov     r4,#0x00
-0A3D 7D00      2535            mov     r5,#0x00
-0A3F           2536   L026009?:
-0A3F 30A1C8    2537            jnb     _P2_1,L026011?
-0A42           2538   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:663: if(TF0==1) // Did the 16-bit timer overflow?
-0A42           2539   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:665: TF0=0;
-0A42 108D08    2540            jbc     _TF0,L026086?
-0A45 8001      2541            sjmp    L026009?
-0A47           2542   L026086?:
-0A47           2543   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:666: overflow_count++;
-0A47 0C        2544            inc     r4
-0A48 BC0088    2545            cjne    r4,#0x00,L026009?
-0A4B 0D        2546            inc     r5
-0A4C 8001      2547            sjmp    L026009?
-0A4E           2548   L026011?:
-0A4E           2549   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:677: TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
-0A4E C28C      2550            clr     _TR0
-0A50           2551   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:678: period=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
-0A50 8C82      2552            mov     dpl,r4
-0A52 8D83      2553            mov     dph,r5
-0A54 120100    2554            lcall   ___sint2fs
-0A57 AC82      2555            mov     r4,dpl
-0A59 AD83      2556            mov     r5,dph
-0A5B AEF0      2557            mov     r6,b
-0A5D FF        2558            mov     r7,a
-0A5E C004      2559            push    ar4
-0A60 C005      2560            push    ar5
-0A62 C006      2561            push    ar6
-0A64 C007      2562            push    ar7
-0A66 900000    2563            mov     dptr,#0x0000
-0A69 75F080    2564            mov     b,#0x80
-0A6C 7447      2565            mov     a,#0x47
-0A6E 120100    2566            lcall   ___fsmul
-0A71 858228    2567            mov     _main_sloc0_1_0,dpl
-0A74 858329    2568            mov     (_main_sloc0_1_0 + 1),dph
-0A77 85F02A    2569            mov     (_main_sloc0_1_0 + 2),b
-0A7A F52B      2570            mov     (_main_sloc0_1_0 + 3),a
-0A7C E581      2571            mov     a,sp
-0A7E 24FC      2572            add     a,#0xfc
-0A80 F581      2573            mov     sp,a
-0A82 858C82    2574            mov     dpl,_TH0
-0A85 120100    2575            lcall   ___uchar2fs
-0A88 A882      2576            mov     r0,dpl
-0A8A A983      2577            mov     r1,dph
-0A8C ACF0      2578            mov     r4,b
-0A8E FD        2579            mov     r5,a
-0A8F C000      2580            push    ar0
-0A91 C001      2581            push    ar1
-0A93 C004      2582            push    ar4
-0A95 C005      2583            push    ar5
-0A97 900000    2584            mov     dptr,#0x0000
-0A9A 75F080    2585            mov     b,#0x80
-0A9D 7443      2586            mov     a,#0x43
-0A9F 120100    2587            lcall   ___fsmul
-0AA2 AC82      2588            mov     r4,dpl
-0AA4 AD83      2589            mov     r5,dph
-0AA6 AEF0      2590            mov     r6,b
-0AA8 FF        2591            mov     r7,a
-0AA9 E581      2592            mov     a,sp
-0AAB 24FC      2593            add     a,#0xfc
-0AAD F581      2594            mov     sp,a
-0AAF C004      2595            push    ar4
-0AB1 C005      2596            push    ar5
-0AB3 C006      2597            push    ar6
-0AB5 C007      2598            push    ar7
-0AB7 852882    2599            mov     dpl,_main_sloc0_1_0
-0ABA 852983    2600            mov     dph,(_main_sloc0_1_0 + 1)
-0ABD 852AF0    2601            mov     b,(_main_sloc0_1_0 + 2)
-0AC0 E52B      2602            mov     a,(_main_sloc0_1_0 + 3)
-0AC2 120100    2603            lcall   ___fsadd
-0AC5 858228    2604            mov     _main_sloc0_1_0,dpl
-0AC8 858329    2605            mov     (_main_sloc0_1_0 + 1),dph
-0ACB 85F02A    2606            mov     (_main_sloc0_1_0 + 2),b
-0ACE F52B      2607            mov     (_main_sloc0_1_0 + 3),a
-0AD0 E581      2608            mov     a,sp
-0AD2 24FC      2609            add     a,#0xfc
-0AD4 F581      2610            mov     sp,a
-0AD6 A88A      2611            mov     r0,_TL0
-0AD8 7900      2612            mov     r1,#0x00
-0ADA 8882      2613            mov     dpl,r0
-0ADC 8983      2614            mov     dph,r1
-0ADE 120100    2615            lcall   ___sint2fs
-0AE1 A882      2616            mov     r0,dpl
-0AE3 A983      2617            mov     r1,dph
-0AE5 ACF0      2618            mov     r4,b
-0AE7 FD        2619            mov     r5,a
-0AE8 C000      2620            push    ar0
-0AEA C001      2621            push    ar1
-0AEC C004      2622            push    ar4
-0AEE C005      2623            push    ar5
-0AF0 852882    2624            mov     dpl,_main_sloc0_1_0
-0AF3 852983    2625            mov     dph,(_main_sloc0_1_0 + 1)
-0AF6 852AF0    2626            mov     b,(_main_sloc0_1_0 + 2)
-0AF9 E52B      2627            mov     a,(_main_sloc0_1_0 + 3)
-0AFB 120100    2628            lcall   ___fsadd
-0AFE AC82      2629            mov     r4,dpl
-0B00 AD83      2630            mov     r5,dph
-0B02 AEF0      2631            mov     r6,b
-0B04 FF        2632            mov     r7,a
-0B05 E581      2633            mov     a,sp
-0B07 24FC      2634            add     a,#0xfc
-0B09 F581      2635            mov     sp,a
-0B0B C004      2636            push    ar4
-0B0D C005      2637            push    ar5
-0B0F C006      2638            push    ar6
-0B11 C007      2639            push    ar7
-0B13 90F4FC    2640            mov     dptr,#0xF4FC
-0B16 75F032    2641            mov     b,#0x32
-0B19 7434      2642            mov     a,#0x34
-0B1B 120100    2643            lcall   ___fsmul
-0B1E AC82      2644            mov     r4,dpl
-0B20 AD83      2645            mov     r5,dph
-0B22 AEF0      2646            mov     r6,b
-0B24 FF        2647            mov     r7,a
-0B25 E581      2648            mov     a,sp
-0B27 24FC      2649            add     a,#0xfc
-0B29 F581      2650            mov     sp,a
-0B2B           2651   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:680: printf( "\rT=%f ms   \n ", period*1000.0);
-0B2B C004      2652            push    ar4
-0B2D C005      2653            push    ar5
-0B2F C006      2654            push    ar6
-0B31 C007      2655            push    ar7
-0B33 900000    2656            mov     dptr,#0x0000
-0B36 75F07A    2657            mov     b,#0x7A
-0B39 7444      2658            mov     a,#0x44
-0B3B 120100    2659            lcall   ___fsmul
-0B3E AC82      2660            mov     r4,dpl
-0B40 AD83      2661            mov     r5,dph
-0B42 AEF0      2662            mov     r6,b
-0B44 FF        2663            mov     r7,a
-0B45 E581      2664            mov     a,sp
-0B47 24FC      2665            add     a,#0xfc
-0B49 F581      2666            mov     sp,a
-0B4B C004      2667            push    ar4
-0B4D C005      2668            push    ar5
-0B4F C006      2669            push    ar6
-0B51 C007      2670            push    ar7
-0B53 C004      2671            push    ar4
-0B55 C005      2672            push    ar5
-0B57 C006      2673            push    ar6
-0B59 C007      2674            push    ar7
-0B5B 7448      2675            mov     a,#__str_8
-0B5D C0E0      2676            push    acc
-0B5F 74D4      2677            mov     a,#(__str_8 >> 8)
-0B61 C0E0      2678            push    acc
-0B63 7480      2679            mov     a,#0x80
-0B65 C0E0      2680            push    acc
-0B67 120100    2681            lcall   _printf
-0B6A E581      2682            mov     a,sp
-0B6C 24F9      2683            add     a,#0xf9
-0B6E F581      2684            mov     sp,a
-0B70           2685   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:681: waitms(50);
-0B70 900032    2686            mov     dptr,#0x0032
-0B73 120100    2687            lcall   _waitms
-0B76 D007      2688            pop     ar7
-0B78 D006      2689            pop     ar6
-0B7A D005      2690            pop     ar5
-0B7C D004      2691            pop     ar4
-0B7E           2692   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:682: detectobstacle(period*1000.0);
-0B7E 8C82      2693            mov     dpl,r4
-0B80 8D83      2694            mov     dph,r5
-0B82 8EF0      2695            mov     b,r6
-0B84 EF        2696            mov     a,r7
-0B85 C004      2697            push    ar4
-0B87 C005      2698            push    ar5
-0B89 C006      2699            push    ar6
-0B8B C007      2700            push    ar7
-0B8D 120100    2701            lcall   _detectobstacle
-0B90 D007      2702            pop     ar7
-0B92 D006      2703            pop     ar6
-0B94 D005      2704            pop     ar5
-0B96 D004      2705            pop     ar4
-0B98           2706   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:683: laserPattern(period*1000);
-0B98 8C82      2707            mov     dpl,r4
-0B9A 8D83      2708            mov     dph,r5
-0B9C 8EF0      2709            mov     b,r6
-0B9E EF        2710            mov     a,r7
-0B9F 120100    2711            lcall   _laserPattern
-0BA2           2712   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:692: waitms(50);    
-0BA2 900032    2713            mov     dptr,#0x0032
-0BA5 120100    2714            lcall   _waitms
-0BA8 020100    2715            ljmp    L026052?
-0BAB           2716   L026049?:
-0BAB           2717   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:696: else if(mode_toggle == 1){
-0BAB BA0188    2718            cjne    r2,#0x01,L026087?
-0BAE BB0088    2719            cjne    r3,#0x00,L026087?
-0BB1 8001      2720            sjmp    L026088?
-0BB3           2721   L026087?:
-0BB3 020100    2722            ljmp    L026046?
-0BB6           2723   L026088?:
-0BB6           2724   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:697: printf("manual \r\n");
-0BB6 7448      2725            mov     a,#__str_9
-0BB8 C0E0      2726            push    acc
-0BBA 74D5      2727            mov     a,#(__str_9 >> 8)
-0BBC C0E0      2728            push    acc
-0BBE 7480      2729            mov     a,#0x80
-0BC0 C0E0      2730            push    acc
-0BC2 120100    2731            lcall   _printf
-0BC5 1581      2732            dec     sp
-0BC7 1581      2733            dec     sp
-0BC9 1581      2734            dec     sp
-0BCB           2735   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:704: time=zero_time_calc(); 
-0BCB 120100    2736            lcall   _zero_time_calc
-0BCE AC82      2737            mov     r4,dpl
-0BD0 AD83      2738            mov     r5,dph
-0BD2 AEF0      2739            mov     r6,b
-0BD4 FF        2740            mov     r7,a
-0BD5           2741   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:705: printf("Time: %f\n\t\r", time);
-0BD5 C004      2742            push    ar4
-0BD7 C005      2743            push    ar5
-0BD9 C006      2744            push    ar6
-0BDB C007      2745            push    ar7
-0BDD C004      2746            push    ar4
-0BDF C005      2747            push    ar5
-0BE1 C006      2748            push    ar6
-0BE3 C007      2749            push    ar7
-0BE5 7488      2750            mov     a,#__str_10
-0BE7 C0E0      2751            push    acc
-0BE9 74D5      2752            mov     a,#(__str_10 >> 8)
-0BEB C0E0      2753            push    acc
-0BED 7480      2754            mov     a,#0x80
-0BEF C0E0      2755            push    acc
-0BF1 120100    2756            lcall   _printf
-0BF4 E581      2757            mov     a,sp
-0BF6 24F9      2758            add     a,#0xf9
-0BF8 F581      2759            mov     sp,a
-0BFA D007      2760            pop     ar7
-0BFC D006      2761            pop     ar6
-0BFE D005      2762            pop     ar5
-0C00 D004      2763            pop     ar4
-0C02           2764   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:708: if((time>=300 && time<=450)||(time>=1400 && time<=1500)||
-0C02 C004      2765            push    ar4
-0C04 C005      2766            push    ar5
-0C06 C006      2767            push    ar6
-0C08 C007      2768            push    ar7
-0C0A E4        2769            clr     a
-0C0B C0E0      2770            push    acc
-0C0D C0E0      2771            push    acc
-0C0F 7496      2772            mov     a,#0x96
-0C11 C0E0      2773            push    acc
-0C13 7443      2774            mov     a,#0x43
-0C15 C0E0      2775            push    acc
-0C17 8C82      2776            mov     dpl,r4
-0C19 8D83      2777            mov     dph,r5
-0C1B 8EF0      2778            mov     b,r6
-0C1D EF        2779            mov     a,r7
-0C1E 120100    2780            lcall   ___fslt
-0C21 A882      2781            mov     r0,dpl
-0C23 E581      2782            mov     a,sp
-0C25 24FC      2783            add     a,#0xfc
-0C27 F581      2784            mov     sp,a
-0C29 D007      2785            pop     ar7
-0C2B D006      2786            pop     ar6
-0C2D D005      2787            pop     ar5
-0C2F D004      2788            pop     ar4
-0C31 E8        2789            mov     a,r0
-0C32 7001      2790            jnz     L026032?
-0C34 C004      2791            push    ar4
-0C36 C005      2792            push    ar5
-0C38 C006      2793            push    ar6
-0C3A C007      2794            push    ar7
-0C3C C000      2795            push    ar0
-0C3E E4        2796            clr     a
-0C3F C0E0      2797            push    acc
-0C41 C0E0      2798            push    acc
-0C43 74E1      2799            mov     a,#0xE1
-0C45 C0E0      2800            push    acc
-0C47 7443      2801            mov     a,#0x43
-0C49 C0E0      2802            push    acc
-0C4B 8C82      2803            mov     dpl,r4
-0C4D 8D83      2804            mov     dph,r5
-0C4F 8EF0      2805            mov     b,r6
-0C51 EF        2806            mov     a,r7
-0C52 120100    2807            lcall   ___fsgt
-0C55 A982      2808            mov     r1,dpl
-0C57 E581      2809            mov     a,sp
-0C59 24FC      2810            add     a,#0xfc
-0C5B F581      2811            mov     sp,a
-0C5D D000      2812            pop     ar0
-0C5F D007      2813            pop     ar7
-0C61 D006      2814            pop     ar6
-0C63 D005      2815            pop     ar5
-0C65 D004      2816            pop     ar4
-0C67 E9        2817            mov     a,r1
-0C68 7001      2818            jnz     L026090?
-0C6A 020100    2819            ljmp    L026028?
-0C6D           2820   L026090?:
-0C6D           2821   L026032?:
-0C6D C004      2822            push    ar4
-0C6F C005      2823            push    ar5
-0C71 C006      2824            push    ar6
-0C73 C007      2825            push    ar7
-0C75 C000      2826            push    ar0
-0C77 E4        2827            clr     a
-0C78 C0E0      2828            push    acc
-0C7A C0E0      2829            push    acc
-0C7C 74AF      2830            mov     a,#0xAF
-0C7E C0E0      2831            push    acc
-0C80 7444      2832            mov     a,#0x44
-0C82 C0E0      2833            push    acc
-0C84 8C82      2834            mov     dpl,r4
-0C86 8D83      2835            mov     dph,r5
-0C88 8EF0      2836            mov     b,r6
-0C8A EF        2837            mov     a,r7
-0C8B 120100    2838            lcall   ___fslt
-0C8E A982      2839            mov     r1,dpl
-0C90 E581      2840            mov     a,sp
-0C92 24FC      2841            add     a,#0xfc
-0C94 F581      2842            mov     sp,a
-0C96 D000      2843            pop     ar0
-0C98 D007      2844            pop     ar7
-0C9A D006      2845            pop     ar6
-0C9C D005      2846            pop     ar5
-0C9E D004      2847            pop     ar4
-0CA0 E9        2848            mov     a,r1
-0CA1 7001      2849            jnz     L026034?
-0CA3 C004      2850            push    ar4
-0CA5 C005      2851            push    ar5
-0CA7 C006      2852            push    ar6
-0CA9 C007      2853            push    ar7
-0CAB C000      2854            push    ar0
-0CAD E4        2855            clr     a
-0CAE C0E0      2856            push    acc
-0CB0 7480      2857            mov     a,#0x80
-0CB2 C0E0      2858            push    acc
-0CB4 74BB      2859            mov     a,#0xBB
-0CB6 C0E0      2860            push    acc
-0CB8 7444      2861            mov     a,#0x44
-0CBA C0E0      2862            push    acc
-0CBC 8C82      2863            mov     dpl,r4
-0CBE 8D83      2864            mov     dph,r5
-0CC0 8EF0      2865            mov     b,r6
-0CC2 EF        2866            mov     a,r7
-0CC3 120100    2867            lcall   ___fsgt
-0CC6 A982      2868            mov     r1,dpl
-0CC8 E581      2869            mov     a,sp
-0CCA 24FC      2870            add     a,#0xfc
-0CCC F581      2871            mov     sp,a
-0CCE D000      2872            pop     ar0
-0CD0 D007      2873            pop     ar7
-0CD2 D006      2874            pop     ar6
-0CD4 D005      2875            pop     ar5
-0CD6 D004      2876            pop     ar4
-0CD8 E9        2877            mov     a,r1
-0CD9 7001      2878            jnz     L026092?
-0CDB 020100    2879            ljmp    L026028?
-0CDE           2880   L026092?:
-0CDE           2881   L026034?:
-0CDE           2882   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:709: (time>=1060 && time<=1090)||(time>=1780) || (time>=600 && time<=750) ){
-0CDE C004      2883            push    ar4
-0CE0 C005      2884            push    ar5
-0CE2 C006      2885            push    ar6
-0CE4 C007      2886            push    ar7
-0CE6 C000      2887            push    ar0
-0CE8 E4        2888            clr     a
-0CE9 C0E0      2889            push    acc
-0CEB 7480      2890            mov     a,#0x80
-0CED C0E0      2891            push    acc
-0CEF 7484      2892            mov     a,#0x84
-0CF1 C0E0      2893            push    acc
-0CF3 7444      2894            mov     a,#0x44
-0CF5 C0E0      2895            push    acc
-0CF7 8C82      2896            mov     dpl,r4
-0CF9 8D83      2897            mov     dph,r5
-0CFB 8EF0      2898            mov     b,r6
-0CFD EF        2899            mov     a,r7
-0CFE 120100    2900            lcall   ___fslt
-0D01 A982      2901            mov     r1,dpl
-0D03 E581      2902            mov     a,sp
-0D05 24FC      2903            add     a,#0xfc
-0D07 F581      2904            mov     sp,a
-0D09 D000      2905            pop     ar0
-0D0B D007      2906            pop     ar7
-0D0D D006      2907            pop     ar6
-0D0F D005      2908            pop     ar5
-0D11 D004      2909            pop     ar4
-0D13 E9        2910            mov     a,r1
-0D14 7001      2911            jnz     L026035?
-0D16 C004      2912            push    ar4
-0D18 C005      2913            push    ar5
-0D1A C006      2914            push    ar6
-0D1C C007      2915            push    ar7
-0D1E C000      2916            push    ar0
-0D20 E4        2917            clr     a
-0D21 C0E0      2918            push    acc
-0D23 7440      2919            mov     a,#0x40
-0D25 C0E0      2920            push    acc
-0D27 7488      2921            mov     a,#0x88
-0D29 C0E0      2922            push    acc
-0D2B 7444      2923            mov     a,#0x44
-0D2D C0E0      2924            push    acc
-0D2F 8C82      2925            mov     dpl,r4
-0D31 8D83      2926            mov     dph,r5
-0D33 8EF0      2927            mov     b,r6
-0D35 EF        2928            mov     a,r7
-0D36 120100    2929            lcall   ___fsgt
-0D39 A982      2930            mov     r1,dpl
-0D3B E581      2931            mov     a,sp
-0D3D 24FC      2932            add     a,#0xfc
-0D3F F581      2933            mov     sp,a
-0D41 D000      2934            pop     ar0
-0D43 D007      2935            pop     ar7
-0D45 D006      2936            pop     ar6
-0D47 D005      2937            pop     ar5
-0D49 D004      2938            pop     ar4
-0D4B E9        2939            mov     a,r1
-0D4C 7001      2940            jnz     L026094?
-0D4E 020100    2941            ljmp    L026028?
-0D51           2942   L026094?:
-0D51           2943   L026035?:
-0D51 C004      2944            push    ar4
-0D53 C005      2945            push    ar5
-0D55 C006      2946            push    ar6
-0D57 C007      2947            push    ar7
-0D59 C000      2948            push    ar0
-0D5B E4        2949            clr     a
-0D5C C0E0      2950            push    acc
-0D5E 7480      2951            mov     a,#0x80
-0D60 C0E0      2952            push    acc
-0D62 74DE      2953            mov     a,#0xDE
-0D64 C0E0      2954            push    acc
-0D66 7444      2955            mov     a,#0x44
-0D68 C0E0      2956            push    acc
-0D6A 8C82      2957            mov     dpl,r4
-0D6C 8D83      2958            mov     dph,r5
-0D6E 8EF0      2959            mov     b,r6
-0D70 EF        2960            mov     a,r7
-0D71 120100    2961            lcall   ___fslt
-0D74 A982      2962            mov     r1,dpl
-0D76 E581      2963            mov     a,sp
-0D78 24FC      2964            add     a,#0xfc
-0D7A F581      2965            mov     sp,a
-0D7C D000      2966            pop     ar0
-0D7E D007      2967            pop     ar7
-0D80 D006      2968            pop     ar6
-0D82 D005      2969            pop     ar5
-0D84 D004      2970            pop     ar4
-0D86 E9        2971            mov     a,r1
-0D87 6001      2972            jz      L026028?
-0D89 C004      2973            push    ar4
-0D8B C005      2974            push    ar5
-0D8D C006      2975            push    ar6
-0D8F C007      2976            push    ar7
-0D91 C000      2977            push    ar0
-0D93 E4        2978            clr     a
-0D94 C0E0      2979            push    acc
-0D96 C0E0      2980            push    acc
-0D98 7416      2981            mov     a,#0x16
-0D9A C0E0      2982            push    acc
-0D9C 7444      2983            mov     a,#0x44
-0D9E C0E0      2984            push    acc
-0DA0 8C82      2985            mov     dpl,r4
-0DA2 8D83      2986            mov     dph,r5
-0DA4 8EF0      2987            mov     b,r6
-0DA6 EF        2988            mov     a,r7
-0DA7 120100    2989            lcall   ___fslt
-0DAA A982      2990            mov     r1,dpl
-0DAC E581      2991            mov     a,sp
-0DAE 24FC      2992            add     a,#0xfc
-0DB0 F581      2993            mov     sp,a
-0DB2 D000      2994            pop     ar0
-0DB4 D007      2995            pop     ar7
-0DB6 D006      2996            pop     ar6
-0DB8 D005      2997            pop     ar5
-0DBA D004      2998            pop     ar4
-0DBC E9        2999            mov     a,r1
-0DBD 6001      3000            jz      L026096?
-0DBF 020100    3001            ljmp    L026052?
-0DC2           3002   L026096?:
-0DC2 C004      3003            push    ar4
-0DC4 C005      3004            push    ar5
-0DC6 C006      3005            push    ar6
-0DC8 C007      3006            push    ar7
-0DCA C000      3007            push    ar0
-0DCC E4        3008            clr     a
-0DCD C0E0      3009            push    acc
-0DCF 7480      3010            mov     a,#0x80
-0DD1 C0E0      3011            push    acc
-0DD3 743B      3012            mov     a,#0x3B
-0DD5 C0E0      3013            push    acc
-0DD7 7444      3014            mov     a,#0x44
-0DD9 C0E0      3015            push    acc
-0DDB 8C82      3016            mov     dpl,r4
-0DDD 8D83      3017            mov     dph,r5
-0DDF 8EF0      3018            mov     b,r6
-0DE1 EF        3019            mov     a,r7
-0DE2 120100    3020            lcall   ___fsgt
-0DE5 A982      3021            mov     r1,dpl
-0DE7 E581      3022            mov     a,sp
-0DE9 24FC      3023            add     a,#0xfc
-0DEB F581      3024            mov     sp,a
-0DED D000      3025            pop     ar0
-0DEF D007      3026            pop     ar7
-0DF1 D006      3027            pop     ar6
-0DF3 D005      3028            pop     ar5
-0DF5 D004      3029            pop     ar4
-0DF7 E9        3030            mov     a,r1
-0DF8 6001      3031            jz      L026097?
-0DFA 020100    3032            ljmp    L026052?
-0DFD           3033   L026097?:
-0DFD           3034   L026028?:
-0DFD           3035   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:710: if(time>=1400 && time<=1500){
-0DFD C004      3036            push    ar4
-0DFF C005      3037            push    ar5
-0E01 C006      3038            push    ar6
-0E03 C007      3039            push    ar7
-0E05 C000      3040            push    ar0
-0E07 E4        3041            clr     a
-0E08 C0E0      3042            push    acc
-0E0A C0E0      3043            push    acc
-0E0C 74AF      3044            mov     a,#0xAF
-0E0E C0E0      3045            push    acc
-0E10 7444      3046            mov     a,#0x44
-0E12 C0E0      3047            push    acc
-0E14 8C82      3048            mov     dpl,r4
-0E16 8D83      3049            mov     dph,r5
-0E18 8EF0      3050            mov     b,r6
-0E1A EF        3051            mov     a,r7
-0E1B 120100    3052            lcall   ___fslt
-0E1E A982      3053            mov     r1,dpl
-0E20 E581      3054            mov     a,sp
-0E22 24FC      3055            add     a,#0xfc
-0E24 F581      3056            mov     sp,a
-0E26 D000      3057            pop     ar0
-0E28 D007      3058            pop     ar7
-0E2A D006      3059            pop     ar6
-0E2C D005      3060            pop     ar5
-0E2E D004      3061            pop     ar4
-0E30 E9        3062            mov     a,r1
-0E31 7001      3063            jnz     L026025?
-0E33 C004      3064            push    ar4
-0E35 C005      3065            push    ar5
-0E37 C006      3066            push    ar6
-0E39 C007      3067            push    ar7
-0E3B C000      3068            push    ar0
-0E3D E4        3069            clr     a
-0E3E C0E0      3070            push    acc
-0E40 7480      3071            mov     a,#0x80
-0E42 C0E0      3072            push    acc
-0E44 74BB      3073            mov     a,#0xBB
-0E46 C0E0      3074            push    acc
-0E48 7444      3075            mov     a,#0x44
-0E4A C0E0      3076            push    acc
-0E4C 8C82      3077            mov     dpl,r4
-0E4E 8D83      3078            mov     dph,r5
-0E50 8EF0      3079            mov     b,r6
-0E52 EF        3080            mov     a,r7
-0E53 120100    3081            lcall   ___fsgt
-0E56 A982      3082            mov     r1,dpl
-0E58 E581      3083            mov     a,sp
-0E5A 24FC      3084            add     a,#0xfc
-0E5C F581      3085            mov     sp,a
-0E5E D000      3086            pop     ar0
-0E60 D007      3087            pop     ar7
-0E62 D006      3088            pop     ar6
-0E64 D005      3089            pop     ar5
-0E66 D004      3090            pop     ar4
-0E68 E9        3091            mov     a,r1
-0E69 7001      3092            jnz     L026025?
-0E6B           3093   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:711: printf("RIGHT\n\r");
-0E6B 7448      3094            mov     a,#__str_11
-0E6D C0E0      3095            push    acc
-0E6F 74D8      3096            mov     a,#(__str_11 >> 8)
-0E71 C0E0      3097            push    acc
-0E73 7480      3098            mov     a,#0x80
-0E75 C0E0      3099            push    acc
-0E77 120100    3100            lcall   _printf
-0E7A 1581      3101            dec     sp
-0E7C 1581      3102            dec     sp
-0E7E 1581      3103            dec     sp
-0E80           3104   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:712: PWMRight();
-0E80 120100    3105            lcall   _PWMRight
-0E83 020100    3106            ljmp    L026052?
-0E86           3107   L026025?:
-0E86           3108   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:714: else if(time>=300 && time<=450){
-0E86 E8        3109            mov     a,r0
-0E87 7001      3110            jnz     L026021?
-0E89 C004      3111            push    ar4
-0E8B C005      3112            push    ar5
-0E8D C006      3113            push    ar6
-0E8F C007      3114            push    ar7
-0E91 E4        3115            clr     a
-0E92 C0E0      3116            push    acc
-0E94 C0E0      3117            push    acc
-0E96 74E1      3118            mov     a,#0xE1
-0E98 C0E0      3119            push    acc
-0E9A 7443      3120            mov     a,#0x43
-0E9C C0E0      3121            push    acc
-0E9E 8C82      3122            mov     dpl,r4
-0EA0 8D83      3123            mov     dph,r5
-0EA2 8EF0      3124            mov     b,r6
-0EA4 EF        3125            mov     a,r7
-0EA5 120100    3126            lcall   ___fsgt
-0EA8 A882      3127            mov     r0,dpl
-0EAA E581      3128            mov     a,sp
-0EAC 24FC      3129            add     a,#0xfc
-0EAE F581      3130            mov     sp,a
-0EB0 D007      3131            pop     ar7
-0EB2 D006      3132            pop     ar6
-0EB4 D005      3133            pop     ar5
-0EB6 D004      3134            pop     ar4
-0EB8 E8        3135            mov     a,r0
-0EB9 7001      3136            jnz     L026021?
-0EBB           3137   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:715: printf("FORWARD\n\r");
-0EBB 74C8      3138            mov     a,#__str_12
-0EBD C0E0      3139            push    acc
-0EBF 74D8      3140            mov     a,#(__str_12 >> 8)
-0EC1 C0E0      3141            push    acc
-0EC3 7480      3142            mov     a,#0x80
-0EC5 C0E0      3143            push    acc
-0EC7 120100    3144            lcall   _printf
-0ECA 1581      3145            dec     sp
-0ECC 1581      3146            dec     sp
-0ECE 1581      3147            dec     sp
-0ED0           3148   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:716: PWMforward();
-0ED0 120100    3149            lcall   _PWMforward
-0ED3 020100    3150            ljmp    L026052?
-0ED6           3151   L026021?:
-0ED6           3152   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:718: else if(time>=600 && time<=750){
-0ED6 C004      3153            push    ar4
-0ED8 C005      3154            push    ar5
-0EDA C006      3155            push    ar6
-0EDC C007      3156            push    ar7
-0EDE E4        3157            clr     a
-0EDF C0E0      3158            push    acc
-0EE1 C0E0      3159            push    acc
-0EE3 7416      3160            mov     a,#0x16
-0EE5 C0E0      3161            push    acc
-0EE7 7444      3162            mov     a,#0x44
-0EE9 C0E0      3163            push    acc
-0EEB 8C82      3164            mov     dpl,r4
-0EED 8D83      3165            mov     dph,r5
-0EEF 8EF0      3166            mov     b,r6
-0EF1 EF        3167            mov     a,r7
-0EF2 120100    3168            lcall   ___fslt
-0EF5 A882      3169            mov     r0,dpl
-0EF7 E581      3170            mov     a,sp
-0EF9 24FC      3171            add     a,#0xfc
-0EFB F581      3172            mov     sp,a
-0EFD D007      3173            pop     ar7
-0EFF D006      3174            pop     ar6
-0F01 D005      3175            pop     ar5
-0F03 D004      3176            pop     ar4
-0F05 E8        3177            mov     a,r0
-0F06 7001      3178            jnz     L026017?
-0F08 C004      3179            push    ar4
-0F0A C005      3180            push    ar5
-0F0C C006      3181            push    ar6
-0F0E C007      3182            push    ar7
-0F10 E4        3183            clr     a
-0F11 C0E0      3184            push    acc
-0F13 7480      3185            mov     a,#0x80
-0F15 C0E0      3186            push    acc
-0F17 743B      3187            mov     a,#0x3B
-0F19 C0E0      3188            push    acc
-0F1B 7444      3189            mov     a,#0x44
-0F1D C0E0      3190            push    acc
-0F1F 8C82      3191            mov     dpl,r4
-0F21 8D83      3192            mov     dph,r5
-0F23 8EF0      3193            mov     b,r6
-0F25 EF        3194            mov     a,r7
-0F26 120100    3195            lcall   ___fsgt
-0F29 A882      3196            mov     r0,dpl
-0F2B E581      3197            mov     a,sp
-0F2D 24FC      3198            add     a,#0xfc
-0F2F F581      3199            mov     sp,a
-0F31 D007      3200            pop     ar7
-0F33 D006      3201            pop     ar6
-0F35 D005      3202            pop     ar5
-0F37 D004      3203            pop     ar4
-0F39 E8        3204            mov     a,r0
-0F3A 7001      3205            jnz     L026017?
-0F3C           3206   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:719: printf("BACKWARD\n\r");
-0F3C 7448      3207            mov     a,#__str_13
-0F3E C0E0      3208            push    acc
-0F40 74D9      3209            mov     a,#(__str_13 >> 8)
-0F42 C0E0      3210            push    acc
-0F44 7480      3211            mov     a,#0x80
-0F46 C0E0      3212            push    acc
-0F48 120100    3213            lcall   _printf
-0F4B 1581      3214            dec     sp
-0F4D 1581      3215            dec     sp
-0F4F 1581      3216            dec     sp
-0F51           3217   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:720: PWMbackward();
-0F51 120100    3218            lcall   _PWMbackward
-0F54 020100    3219            ljmp    L026052?
-0F57           3220   L026017?:
-0F57           3221   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:722: else if(time>=1060 && time<=1090){
-0F57 C004      3222            push    ar4
-0F59 C005      3223            push    ar5
-0F5B C006      3224            push    ar6
-0F5D C007      3225            push    ar7
-0F5F E4        3226            clr     a
-0F60 C0E0      3227            push    acc
-0F62 7480      3228            mov     a,#0x80
-0F64 C0E0      3229            push    acc
-0F66 7484      3230            mov     a,#0x84
-0F68 C0E0      3231            push    acc
-0F6A 7444      3232            mov     a,#0x44
-0F6C C0E0      3233            push    acc
-0F6E 8C82      3234            mov     dpl,r4
-0F70 8D83      3235            mov     dph,r5
-0F72 8EF0      3236            mov     b,r6
-0F74 EF        3237            mov     a,r7
-0F75 120100    3238            lcall   ___fslt
-0F78 A882      3239            mov     r0,dpl
-0F7A E581      3240            mov     a,sp
-0F7C 24FC      3241            add     a,#0xfc
-0F7E F581      3242            mov     sp,a
-0F80 D007      3243            pop     ar7
-0F82 D006      3244            pop     ar6
-0F84 D005      3245            pop     ar5
-0F86 D004      3246            pop     ar4
-0F88 E8        3247            mov     a,r0
-0F89 7001      3248            jnz     L026013?
-0F8B C0E0      3249            push    acc
-0F8D 7440      3250            mov     a,#0x40
-0F8F C0E0      3251            push    acc
-0F91 7488      3252            mov     a,#0x88
-0F93 C0E0      3253            push    acc
-0F95 7444      3254            mov     a,#0x44
-0F97 C0E0      3255            push    acc
-0F99 8C82      3256            mov     dpl,r4
-0F9B 8D83      3257            mov     dph,r5
-0F9D 8EF0      3258            mov     b,r6
-0F9F EF        3259            mov     a,r7
-0FA0 120100    3260            lcall   ___fsgt
-0FA3 AC82      3261            mov     r4,dpl
-0FA5 E581      3262            mov     a,sp
-0FA7 24FC      3263            add     a,#0xfc
-0FA9 F581      3264            mov     sp,a
-0FAB EC        3265            mov     a,r4
-0FAC 7001      3266            jnz     L026013?
-0FAE           3267   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:723: printf("LEFT\n\r");
-0FAE 74C8      3268            mov     a,#__str_14
-0FB0 C0E0      3269            push    acc
-0FB2 74D9      3270            mov     a,#(__str_14 >> 8)
-0FB4 C0E0      3271            push    acc
-0FB6 7480      3272            mov     a,#0x80
-0FB8 C0E0      3273            push    acc
-0FBA 120100    3274            lcall   _printf
-0FBD 1581      3275            dec     sp
-0FBF 1581      3276            dec     sp
-0FC1 1581      3277            dec     sp
-0FC3           3278   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:724: PWMLeft();
-0FC3 120100    3279            lcall   _PWMLeft
-0FC6 020100    3280            ljmp    L026052?
-0FC9           3281   L026013?:
-0FC9           3282   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:727: {      printf("STOP\n\r");
-0FC9 7408      3283            mov     a,#__str_15
-0FCB C0E0      3284            push    acc
-0FCD 74DA      3285            mov     a,#(__str_15 >> 8)
-0FCF C0E0      3286            push    acc
-0FD1 7480      3287            mov     a,#0x80
-0FD3 C0E0      3288            push    acc
-0FD5 120100    3289            lcall   _printf
-0FD8 1581      3290            dec     sp
-0FDA 1581      3291            dec     sp
-0FDC 1581      3292            dec     sp
-0FDE           3293   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:728: PWMStop();
-0FDE 120100    3294            lcall   _PWMStop
-0FE1 020100    3295            ljmp    L026052?
-0FE4           3296   L026046?:
-0FE4           3297   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:732: else if( mode_toggle == 3){
-0FE4 BA0348    3298            cjne    r2,#0x03,L026043?
-0FE7 BB0048    3299            cjne    r3,#0x00,L026043?
-0FEA           3300   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:733: pir_voltage = Volts_at_Pin(QFP32_MUX_P2_4);
-0FEA 758211    3301            mov     dpl,#0x11
-0FED 120100    3302            lcall   _Volts_at_Pin
-0FF0 AA82      3303            mov     r2,dpl
-0FF2 AB83      3304            mov     r3,dph
-0FF4 ACF0      3305            mov     r4,b
-0FF6 FD        3306            mov     r5,a
-0FF7           3307   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:734: if(pir_voltage >= 3.0 && pir_voltage <= 3.4)
-0FF7 C002      3308            push    ar2
-0FF9 C003      3309            push    ar3
-0FFB C004      3310            push    ar4
-0FFD C005      3311            push    ar5
-0FFF E4        3312            clr     a
-1000 C0E0      3313            push    acc
-1002 C0E0      3314            push    acc
-1004 7440      3315            mov     a,#0x40
-1006 C0E0      3316            push    acc
-1008 C0E0      3317            push    acc
-100A 8A82      3318            mov     dpl,r2
-100C 8B83      3319            mov     dph,r3
-100E 8CF0      3320            mov     b,r4
-1010 ED        3321            mov     a,r5
-1011 120100    3322            lcall   ___fslt
-1014 AE82      3323            mov     r6,dpl
-1016 E581      3324            mov     a,sp
-1018 24FC      3325            add     a,#0xfc
-101A F581      3326            mov     sp,a
-101C D005      3327            pop     ar5
-101E D004      3328            pop     ar4
-1020 D003      3329            pop     ar3
-1022 D002      3330            pop     ar2
-1024 EE        3331            mov     a,r6
-1025 7001      3332            jnz     L026039?
-1027 749A      3333            mov     a,#0x9A
-1029 C0E0      3334            push    acc
-102B 7499      3335            mov     a,#0x99
-102D C0E0      3336            push    acc
-102F 7459      3337            mov     a,#0x59
-1031 C0E0      3338            push    acc
-1033 7440      3339            mov     a,#0x40
-1035 C0E0      3340            push    acc
-1037 8A82      3341            mov     dpl,r2
-1039 8B83      3342            mov     dph,r3
-103B 8CF0      3343            mov     b,r4
-103D ED        3344            mov     a,r5
-103E 120100    3345            lcall   ___fsgt
-1041 AA82      3346            mov     r2,dpl
-1043 E581      3347            mov     a,sp
-1045 24FC      3348            add     a,#0xfc
-1047 F581      3349            mov     sp,a
-1049 EA        3350            mov     a,r2
-104A 7001      3351            jnz     L026039?
-104C           3352   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:735: PWMStop();
-104C 120100    3353            lcall   _PWMStop
-104F 8001      3354            sjmp    L026040?
-1051           3355   L026039?:
-1051           3356   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:737: PWMforward();
-1051 120100    3357            lcall   _PWMforward
-1054           3358   L026040?:
-1054           3359   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:738: waitms(100);
-1054 900064    3360            mov     dptr,#0x0064
-1057 120100    3361            lcall   _waitms
-105A 020100    3362            ljmp    L026052?
-105D           3363   L026043?:
-105D           3364   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:742: printf("Do nothing\r\n");      
-105D 7408      3365            mov     a,#__str_16
-105F C0E0      3366            push    acc
-1061 74DB      3367            mov     a,#(__str_16 >> 8)
-1063 C0E0      3368            push    acc
-1065 7480      3369            mov     a,#0x80
-1067 C0E0      3370            push    acc
-1069 120100    3371            lcall   _printf
-106C 1581      3372            dec     sp
-106E 1581      3373            dec     sp
-1070 1581      3374            dec     sp
-1072 020100    3375            ljmp    L026052?
-1075           3376            rseg R_CSEG
-1075           3377   
-0000           3378            rseg R_XINIT
-0000           3379   
-0000           3380            rseg R_CONST
-0000           3381   __str_0:
-0000 0A        3382            db 0x0A
-0001 72656164  3383            db 'read 1:  at pin 1.6: %f'
+09C1           2457   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:636: InitPinADC(2, 6);
+09C1 75F006    2458            mov     _InitPinADC_PARM_2,#0x06
+09C4 758202    2459            mov     dpl,#0x02
+09C7 120100    2460            lcall   _InitPinADC
+09CA           2461   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:637: InitADC();
+09CA 120100    2462            lcall   _InitADC
+09CD           2463   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:639: printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
+09CD 7448      2464            mov     a,#__str_4
+09CF C0E0      2465            push    acc
+09D1 74D1      2466            mov     a,#(__str_4 >> 8)
+09D3 C0E0      2467            push    acc
+09D5 7480      2468            mov     a,#0x80
+09D7 C0E0      2469            push    acc
+09D9 120100    2470            lcall   _printf
+09DC 1581      2471            dec     sp
+09DE 1581      2472            dec     sp
+09E0 1581      2473            dec     sp
+09E2           2474   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:641: "Check pins P2.2 and P2.1 with the oscilloscope.\r\n");
+09E2 7488      2475            mov     a,#__str_5
+09E4 C0E0      2476            push    acc
+09E6 74D1      2477            mov     a,#(__str_5 >> 8)
+09E8 C0E0      2478            push    acc
+09EA 7480      2479            mov     a,#0x80
+09EC C0E0      2480            push    acc
+09EE 120100    2481            lcall   _printf
+09F1 1581      2482            dec     sp
+09F3 1581      2483            dec     sp
+09F5 1581      2484            dec     sp
+09F7           2485   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:643: printf("\n\r");
+09F7 74C8      2486            mov     a,#__str_6
+09F9 C0E0      2487            push    acc
+09FB 74D1      2488            mov     a,#(__str_6 >> 8)
+09FD C0E0      2489            push    acc
+09FF 7480      2490            mov     a,#0x80
+0A01 C0E0      2491            push    acc
+0A03 120100    2492            lcall   _printf
+0A06 1581      2493            dec     sp
+0A08 1581      2494            dec     sp
+0A0A 1581      2495            dec     sp
+0A0C           2496   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:645: PWMStop();
+0A0C 120100    2497            lcall   _PWMStop
+0A0F           2498   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:646: SPEAKER = 0;
+0A0F C2A5      2499            clr     _P2_5
+0A11           2500   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:647: while (1)
+0A11           2501   L026052?:
+0A11           2502   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:649: mode_toggle = checkMode();
+0A11 120100    2503            lcall   _checkMode
+0A14 AA82      2504            mov     r2,dpl
+0A16 AB83      2505            mov     r3,dph
+0A18           2506   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:652: if(mode_toggle == 0){
+0A18 EA        2507            mov     a,r2
+0A19 4B        2508            orl     a,r3
+0A1A 6001      2509            jz      L026082?
+0A1C 020100    2510            ljmp    L026049?
+0A1F           2511   L026082?:
+0A1F           2512   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:653: printf("auto \r\n");
+0A1F 74C8      2513            mov     a,#__str_7
+0A21 C0E0      2514            push    acc
+0A23 74D2      2515            mov     a,#(__str_7 >> 8)
+0A25 C0E0      2516            push    acc
+0A27 7480      2517            mov     a,#0x80
+0A29 C0E0      2518            push    acc
+0A2B 120100    2519            lcall   _printf
+0A2E 1581      2520            dec     sp
+0A30 1581      2521            dec     sp
+0A32 1581      2522            dec     sp
+0A34           2523   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:655: TL0=0; 
+0A34 758A00    2524            mov     _TL0,#0x00
+0A37           2525   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:656: TH0=0;
+0A37 758C00    2526            mov     _TH0,#0x00
+0A3A           2527   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:657: TF0=0;
+0A3A C28D      2528            clr     _TF0
+0A3C           2529   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:659: while(P2_1!=0); // Wait for the signal to be zero
+0A3C           2530   L026001?:
+0A3C 20A108    2531            jb      _P2_1,L026001?
+0A3F           2532   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:660: while(P2_1!=1); // Wait for the signal to be one
+0A3F           2533   L026004?:
+0A3F 30A148    2534            jnb     _P2_1,L026004?
+0A42           2535   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:661: TR0=1; // Start the timer
+0A42 D28C      2536            setb    _TR0
+0A44           2537   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:662: while(P2_1!=0) // Wait for the signal to be zero
+0A44 7C00      2538            mov     r4,#0x00
+0A46 7D00      2539            mov     r5,#0x00
+0A48           2540   L026009?:
+0A48 30A1C8    2541            jnb     _P2_1,L026011?
+0A4B           2542   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:664: if(TF0==1) // Did the 16-bit timer overflow?
+0A4B           2543   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:666: TF0=0;
+0A4B 108D08    2544            jbc     _TF0,L026086?
+0A4E 8001      2545            sjmp    L026009?
+0A50           2546   L026086?:
+0A50           2547   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:667: overflow_count++;
+0A50 0C        2548            inc     r4
+0A51 BC0088    2549            cjne    r4,#0x00,L026009?
+0A54 0D        2550            inc     r5
+0A55 8001      2551            sjmp    L026009?
+0A57           2552   L026011?:
+0A57           2553   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:678: TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
+0A57 C28C      2554            clr     _TR0
+0A59           2555   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:679: period=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
+0A59 8C82      2556            mov     dpl,r4
+0A5B 8D83      2557            mov     dph,r5
+0A5D 120100    2558            lcall   ___sint2fs
+0A60 AC82      2559            mov     r4,dpl
+0A62 AD83      2560            mov     r5,dph
+0A64 AEF0      2561            mov     r6,b
+0A66 FF        2562            mov     r7,a
+0A67 C004      2563            push    ar4
+0A69 C005      2564            push    ar5
+0A6B C006      2565            push    ar6
+0A6D C007      2566            push    ar7
+0A6F 900000    2567            mov     dptr,#0x0000
+0A72 75F080    2568            mov     b,#0x80
+0A75 7447      2569            mov     a,#0x47
+0A77 120100    2570            lcall   ___fsmul
+0A7A 858228    2571            mov     _main_sloc0_1_0,dpl
+0A7D 858329    2572            mov     (_main_sloc0_1_0 + 1),dph
+0A80 85F02A    2573            mov     (_main_sloc0_1_0 + 2),b
+0A83 F52B      2574            mov     (_main_sloc0_1_0 + 3),a
+0A85 E581      2575            mov     a,sp
+0A87 24FC      2576            add     a,#0xfc
+0A89 F581      2577            mov     sp,a
+0A8B 858C82    2578            mov     dpl,_TH0
+0A8E 120100    2579            lcall   ___uchar2fs
+0A91 A882      2580            mov     r0,dpl
+0A93 A983      2581            mov     r1,dph
+0A95 ACF0      2582            mov     r4,b
+0A97 FD        2583            mov     r5,a
+0A98 C000      2584            push    ar0
+0A9A C001      2585            push    ar1
+0A9C C004      2586            push    ar4
+0A9E C005      2587            push    ar5
+0AA0 900000    2588            mov     dptr,#0x0000
+0AA3 75F080    2589            mov     b,#0x80
+0AA6 7443      2590            mov     a,#0x43
+0AA8 120100    2591            lcall   ___fsmul
+0AAB AC82      2592            mov     r4,dpl
+0AAD AD83      2593            mov     r5,dph
+0AAF AEF0      2594            mov     r6,b
+0AB1 FF        2595            mov     r7,a
+0AB2 E581      2596            mov     a,sp
+0AB4 24FC      2597            add     a,#0xfc
+0AB6 F581      2598            mov     sp,a
+0AB8 C004      2599            push    ar4
+0ABA C005      2600            push    ar5
+0ABC C006      2601            push    ar6
+0ABE C007      2602            push    ar7
+0AC0 852882    2603            mov     dpl,_main_sloc0_1_0
+0AC3 852983    2604            mov     dph,(_main_sloc0_1_0 + 1)
+0AC6 852AF0    2605            mov     b,(_main_sloc0_1_0 + 2)
+0AC9 E52B      2606            mov     a,(_main_sloc0_1_0 + 3)
+0ACB 120100    2607            lcall   ___fsadd
+0ACE 858228    2608            mov     _main_sloc0_1_0,dpl
+0AD1 858329    2609            mov     (_main_sloc0_1_0 + 1),dph
+0AD4 85F02A    2610            mov     (_main_sloc0_1_0 + 2),b
+0AD7 F52B      2611            mov     (_main_sloc0_1_0 + 3),a
+0AD9 E581      2612            mov     a,sp
+0ADB 24FC      2613            add     a,#0xfc
+0ADD F581      2614            mov     sp,a
+0ADF A88A      2615            mov     r0,_TL0
+0AE1 7900      2616            mov     r1,#0x00
+0AE3 8882      2617            mov     dpl,r0
+0AE5 8983      2618            mov     dph,r1
+0AE7 120100    2619            lcall   ___sint2fs
+0AEA A882      2620            mov     r0,dpl
+0AEC A983      2621            mov     r1,dph
+0AEE ACF0      2622            mov     r4,b
+0AF0 FD        2623            mov     r5,a
+0AF1 C000      2624            push    ar0
+0AF3 C001      2625            push    ar1
+0AF5 C004      2626            push    ar4
+0AF7 C005      2627            push    ar5
+0AF9 852882    2628            mov     dpl,_main_sloc0_1_0
+0AFC 852983    2629            mov     dph,(_main_sloc0_1_0 + 1)
+0AFF 852AF0    2630            mov     b,(_main_sloc0_1_0 + 2)
+0B02 E52B      2631            mov     a,(_main_sloc0_1_0 + 3)
+0B04 120100    2632            lcall   ___fsadd
+0B07 AC82      2633            mov     r4,dpl
+0B09 AD83      2634            mov     r5,dph
+0B0B AEF0      2635            mov     r6,b
+0B0D FF        2636            mov     r7,a
+0B0E E581      2637            mov     a,sp
+0B10 24FC      2638            add     a,#0xfc
+0B12 F581      2639            mov     sp,a
+0B14 C004      2640            push    ar4
+0B16 C005      2641            push    ar5
+0B18 C006      2642            push    ar6
+0B1A C007      2643            push    ar7
+0B1C 90F4FC    2644            mov     dptr,#0xF4FC
+0B1F 75F032    2645            mov     b,#0x32
+0B22 7434      2646            mov     a,#0x34
+0B24 120100    2647            lcall   ___fsmul
+0B27 AC82      2648            mov     r4,dpl
+0B29 AD83      2649            mov     r5,dph
+0B2B AEF0      2650            mov     r6,b
+0B2D FF        2651            mov     r7,a
+0B2E E581      2652            mov     a,sp
+0B30 24FC      2653            add     a,#0xfc
+0B32 F581      2654            mov     sp,a
+0B34           2655   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:681: printf( "\rT=%f ms   \n ", period*1000.0);
+0B34 C004      2656            push    ar4
+0B36 C005      2657            push    ar5
+0B38 C006      2658            push    ar6
+0B3A C007      2659            push    ar7
+0B3C 900000    2660            mov     dptr,#0x0000
+0B3F 75F07A    2661            mov     b,#0x7A
+0B42 7444      2662            mov     a,#0x44
+0B44 120100    2663            lcall   ___fsmul
+0B47 AC82      2664            mov     r4,dpl
+0B49 AD83      2665            mov     r5,dph
+0B4B AEF0      2666            mov     r6,b
+0B4D FF        2667            mov     r7,a
+0B4E E581      2668            mov     a,sp
+0B50 24FC      2669            add     a,#0xfc
+0B52 F581      2670            mov     sp,a
+0B54 C004      2671            push    ar4
+0B56 C005      2672            push    ar5
+0B58 C006      2673            push    ar6
+0B5A C007      2674            push    ar7
+0B5C C004      2675            push    ar4
+0B5E C005      2676            push    ar5
+0B60 C006      2677            push    ar6
+0B62 C007      2678            push    ar7
+0B64 7448      2679            mov     a,#__str_8
+0B66 C0E0      2680            push    acc
+0B68 74D4      2681            mov     a,#(__str_8 >> 8)
+0B6A C0E0      2682            push    acc
+0B6C 7480      2683            mov     a,#0x80
+0B6E C0E0      2684            push    acc
+0B70 120100    2685            lcall   _printf
+0B73 E581      2686            mov     a,sp
+0B75 24F9      2687            add     a,#0xf9
+0B77 F581      2688            mov     sp,a
+0B79           2689   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:682: waitms(50);
+0B79 900032    2690            mov     dptr,#0x0032
+0B7C 120100    2691            lcall   _waitms
+0B7F D007      2692            pop     ar7
+0B81 D006      2693            pop     ar6
+0B83 D005      2694            pop     ar5
+0B85 D004      2695            pop     ar4
+0B87           2696   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:683: detectobstacle(period*1000.0);
+0B87 8C82      2697            mov     dpl,r4
+0B89 8D83      2698            mov     dph,r5
+0B8B 8EF0      2699            mov     b,r6
+0B8D EF        2700            mov     a,r7
+0B8E C004      2701            push    ar4
+0B90 C005      2702            push    ar5
+0B92 C006      2703            push    ar6
+0B94 C007      2704            push    ar7
+0B96 120100    2705            lcall   _detectobstacle
+0B99 D007      2706            pop     ar7
+0B9B D006      2707            pop     ar6
+0B9D D005      2708            pop     ar5
+0B9F D004      2709            pop     ar4
+0BA1           2710   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:684: laserPattern(period*1000);
+0BA1 8C82      2711            mov     dpl,r4
+0BA3 8D83      2712            mov     dph,r5
+0BA5 8EF0      2713            mov     b,r6
+0BA7 EF        2714            mov     a,r7
+0BA8 120100    2715            lcall   _laserPattern
+0BAB           2716   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:693: waitms(50);    
+0BAB 900032    2717            mov     dptr,#0x0032
+0BAE 120100    2718            lcall   _waitms
+0BB1 020100    2719            ljmp    L026052?
+0BB4           2720   L026049?:
+0BB4           2721   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:697: else if(mode_toggle == 1){
+0BB4 BA0188    2722            cjne    r2,#0x01,L026087?
+0BB7 BB0088    2723            cjne    r3,#0x00,L026087?
+0BBA 8001      2724            sjmp    L026088?
+0BBC           2725   L026087?:
+0BBC 020100    2726            ljmp    L026046?
+0BBF           2727   L026088?:
+0BBF           2728   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:698: printf("manual \r\n");
+0BBF 7448      2729            mov     a,#__str_9
+0BC1 C0E0      2730            push    acc
+0BC3 74D5      2731            mov     a,#(__str_9 >> 8)
+0BC5 C0E0      2732            push    acc
+0BC7 7480      2733            mov     a,#0x80
+0BC9 C0E0      2734            push    acc
+0BCB 120100    2735            lcall   _printf
+0BCE 1581      2736            dec     sp
+0BD0 1581      2737            dec     sp
+0BD2 1581      2738            dec     sp
+0BD4           2739   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:705: time=zero_time_calc(); 
+0BD4 120100    2740            lcall   _zero_time_calc
+0BD7 AC82      2741            mov     r4,dpl
+0BD9 AD83      2742            mov     r5,dph
+0BDB AEF0      2743            mov     r6,b
+0BDD FF        2744            mov     r7,a
+0BDE           2745   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:706: printf("Time: %f\n\t\r", time);
+0BDE C004      2746            push    ar4
+0BE0 C005      2747            push    ar5
+0BE2 C006      2748            push    ar6
+0BE4 C007      2749            push    ar7
+0BE6 C004      2750            push    ar4
+0BE8 C005      2751            push    ar5
+0BEA C006      2752            push    ar6
+0BEC C007      2753            push    ar7
+0BEE 7488      2754            mov     a,#__str_10
+0BF0 C0E0      2755            push    acc
+0BF2 74D5      2756            mov     a,#(__str_10 >> 8)
+0BF4 C0E0      2757            push    acc
+0BF6 7480      2758            mov     a,#0x80
+0BF8 C0E0      2759            push    acc
+0BFA 120100    2760            lcall   _printf
+0BFD E581      2761            mov     a,sp
+0BFF 24F9      2762            add     a,#0xf9
+0C01 F581      2763            mov     sp,a
+0C03 D007      2764            pop     ar7
+0C05 D006      2765            pop     ar6
+0C07 D005      2766            pop     ar5
+0C09 D004      2767            pop     ar4
+0C0B           2768   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:709: if((time>=300 && time<=450)||(time>=1400 && time<=1500)||
+0C0B C004      2769            push    ar4
+0C0D C005      2770            push    ar5
+0C0F C006      2771            push    ar6
+0C11 C007      2772            push    ar7
+0C13 E4        2773            clr     a
+0C14 C0E0      2774            push    acc
+0C16 C0E0      2775            push    acc
+0C18 7496      2776            mov     a,#0x96
+0C1A C0E0      2777            push    acc
+0C1C 7443      2778            mov     a,#0x43
+0C1E C0E0      2779            push    acc
+0C20 8C82      2780            mov     dpl,r4
+0C22 8D83      2781            mov     dph,r5
+0C24 8EF0      2782            mov     b,r6
+0C26 EF        2783            mov     a,r7
+0C27 120100    2784            lcall   ___fslt
+0C2A A882      2785            mov     r0,dpl
+0C2C E581      2786            mov     a,sp
+0C2E 24FC      2787            add     a,#0xfc
+0C30 F581      2788            mov     sp,a
+0C32 D007      2789            pop     ar7
+0C34 D006      2790            pop     ar6
+0C36 D005      2791            pop     ar5
+0C38 D004      2792            pop     ar4
+0C3A E8        2793            mov     a,r0
+0C3B 7001      2794            jnz     L026032?
+0C3D C004      2795            push    ar4
+0C3F C005      2796            push    ar5
+0C41 C006      2797            push    ar6
+0C43 C007      2798            push    ar7
+0C45 C000      2799            push    ar0
+0C47 E4        2800            clr     a
+0C48 C0E0      2801            push    acc
+0C4A C0E0      2802            push    acc
+0C4C 74E1      2803            mov     a,#0xE1
+0C4E C0E0      2804            push    acc
+0C50 7443      2805            mov     a,#0x43
+0C52 C0E0      2806            push    acc
+0C54 8C82      2807            mov     dpl,r4
+0C56 8D83      2808            mov     dph,r5
+0C58 8EF0      2809            mov     b,r6
+0C5A EF        2810            mov     a,r7
+0C5B 120100    2811            lcall   ___fsgt
+0C5E A982      2812            mov     r1,dpl
+0C60 E581      2813            mov     a,sp
+0C62 24FC      2814            add     a,#0xfc
+0C64 F581      2815            mov     sp,a
+0C66 D000      2816            pop     ar0
+0C68 D007      2817            pop     ar7
+0C6A D006      2818            pop     ar6
+0C6C D005      2819            pop     ar5
+0C6E D004      2820            pop     ar4
+0C70 E9        2821            mov     a,r1
+0C71 7001      2822            jnz     L026090?
+0C73 020100    2823            ljmp    L026028?
+0C76           2824   L026090?:
+0C76           2825   L026032?:
+0C76 C004      2826            push    ar4
+0C78 C005      2827            push    ar5
+0C7A C006      2828            push    ar6
+0C7C C007      2829            push    ar7
+0C7E C000      2830            push    ar0
+0C80 E4        2831            clr     a
+0C81 C0E0      2832            push    acc
+0C83 C0E0      2833            push    acc
+0C85 74AF      2834            mov     a,#0xAF
+0C87 C0E0      2835            push    acc
+0C89 7444      2836            mov     a,#0x44
+0C8B C0E0      2837            push    acc
+0C8D 8C82      2838            mov     dpl,r4
+0C8F 8D83      2839            mov     dph,r5
+0C91 8EF0      2840            mov     b,r6
+0C93 EF        2841            mov     a,r7
+0C94 120100    2842            lcall   ___fslt
+0C97 A982      2843            mov     r1,dpl
+0C99 E581      2844            mov     a,sp
+0C9B 24FC      2845            add     a,#0xfc
+0C9D F581      2846            mov     sp,a
+0C9F D000      2847            pop     ar0
+0CA1 D007      2848            pop     ar7
+0CA3 D006      2849            pop     ar6
+0CA5 D005      2850            pop     ar5
+0CA7 D004      2851            pop     ar4
+0CA9 E9        2852            mov     a,r1
+0CAA 7001      2853            jnz     L026034?
+0CAC C004      2854            push    ar4
+0CAE C005      2855            push    ar5
+0CB0 C006      2856            push    ar6
+0CB2 C007      2857            push    ar7
+0CB4 C000      2858            push    ar0
+0CB6 E4        2859            clr     a
+0CB7 C0E0      2860            push    acc
+0CB9 7480      2861            mov     a,#0x80
+0CBB C0E0      2862            push    acc
+0CBD 74BB      2863            mov     a,#0xBB
+0CBF C0E0      2864            push    acc
+0CC1 7444      2865            mov     a,#0x44
+0CC3 C0E0      2866            push    acc
+0CC5 8C82      2867            mov     dpl,r4
+0CC7 8D83      2868            mov     dph,r5
+0CC9 8EF0      2869            mov     b,r6
+0CCB EF        2870            mov     a,r7
+0CCC 120100    2871            lcall   ___fsgt
+0CCF A982      2872            mov     r1,dpl
+0CD1 E581      2873            mov     a,sp
+0CD3 24FC      2874            add     a,#0xfc
+0CD5 F581      2875            mov     sp,a
+0CD7 D000      2876            pop     ar0
+0CD9 D007      2877            pop     ar7
+0CDB D006      2878            pop     ar6
+0CDD D005      2879            pop     ar5
+0CDF D004      2880            pop     ar4
+0CE1 E9        2881            mov     a,r1
+0CE2 7001      2882            jnz     L026092?
+0CE4 020100    2883            ljmp    L026028?
+0CE7           2884   L026092?:
+0CE7           2885   L026034?:
+0CE7           2886   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:710: (time>=1060 && time<=1090)||(time>=1780) || (time>=600 && time<=750) ){
+0CE7 C004      2887            push    ar4
+0CE9 C005      2888            push    ar5
+0CEB C006      2889            push    ar6
+0CED C007      2890            push    ar7
+0CEF C000      2891            push    ar0
+0CF1 E4        2892            clr     a
+0CF2 C0E0      2893            push    acc
+0CF4 7480      2894            mov     a,#0x80
+0CF6 C0E0      2895            push    acc
+0CF8 7484      2896            mov     a,#0x84
+0CFA C0E0      2897            push    acc
+0CFC 7444      2898            mov     a,#0x44
+0CFE C0E0      2899            push    acc
+0D00 8C82      2900            mov     dpl,r4
+0D02 8D83      2901            mov     dph,r5
+0D04 8EF0      2902            mov     b,r6
+0D06 EF        2903            mov     a,r7
+0D07 120100    2904            lcall   ___fslt
+0D0A A982      2905            mov     r1,dpl
+0D0C E581      2906            mov     a,sp
+0D0E 24FC      2907            add     a,#0xfc
+0D10 F581      2908            mov     sp,a
+0D12 D000      2909            pop     ar0
+0D14 D007      2910            pop     ar7
+0D16 D006      2911            pop     ar6
+0D18 D005      2912            pop     ar5
+0D1A D004      2913            pop     ar4
+0D1C E9        2914            mov     a,r1
+0D1D 7001      2915            jnz     L026035?
+0D1F C004      2916            push    ar4
+0D21 C005      2917            push    ar5
+0D23 C006      2918            push    ar6
+0D25 C007      2919            push    ar7
+0D27 C000      2920            push    ar0
+0D29 E4        2921            clr     a
+0D2A C0E0      2922            push    acc
+0D2C 7440      2923            mov     a,#0x40
+0D2E C0E0      2924            push    acc
+0D30 7488      2925            mov     a,#0x88
+0D32 C0E0      2926            push    acc
+0D34 7444      2927            mov     a,#0x44
+0D36 C0E0      2928            push    acc
+0D38 8C82      2929            mov     dpl,r4
+0D3A 8D83      2930            mov     dph,r5
+0D3C 8EF0      2931            mov     b,r6
+0D3E EF        2932            mov     a,r7
+0D3F 120100    2933            lcall   ___fsgt
+0D42 A982      2934            mov     r1,dpl
+0D44 E581      2935            mov     a,sp
+0D46 24FC      2936            add     a,#0xfc
+0D48 F581      2937            mov     sp,a
+0D4A D000      2938            pop     ar0
+0D4C D007      2939            pop     ar7
+0D4E D006      2940            pop     ar6
+0D50 D005      2941            pop     ar5
+0D52 D004      2942            pop     ar4
+0D54 E9        2943            mov     a,r1
+0D55 7001      2944            jnz     L026094?
+0D57 020100    2945            ljmp    L026028?
+0D5A           2946   L026094?:
+0D5A           2947   L026035?:
+0D5A C004      2948            push    ar4
+0D5C C005      2949            push    ar5
+0D5E C006      2950            push    ar6
+0D60 C007      2951            push    ar7
+0D62 C000      2952            push    ar0
+0D64 E4        2953            clr     a
+0D65 C0E0      2954            push    acc
+0D67 7480      2955            mov     a,#0x80
+0D69 C0E0      2956            push    acc
+0D6B 74DE      2957            mov     a,#0xDE
+0D6D C0E0      2958            push    acc
+0D6F 7444      2959            mov     a,#0x44
+0D71 C0E0      2960            push    acc
+0D73 8C82      2961            mov     dpl,r4
+0D75 8D83      2962            mov     dph,r5
+0D77 8EF0      2963            mov     b,r6
+0D79 EF        2964            mov     a,r7
+0D7A 120100    2965            lcall   ___fslt
+0D7D A982      2966            mov     r1,dpl
+0D7F E581      2967            mov     a,sp
+0D81 24FC      2968            add     a,#0xfc
+0D83 F581      2969            mov     sp,a
+0D85 D000      2970            pop     ar0
+0D87 D007      2971            pop     ar7
+0D89 D006      2972            pop     ar6
+0D8B D005      2973            pop     ar5
+0D8D D004      2974            pop     ar4
+0D8F E9        2975            mov     a,r1
+0D90 6001      2976            jz      L026028?
+0D92 C004      2977            push    ar4
+0D94 C005      2978            push    ar5
+0D96 C006      2979            push    ar6
+0D98 C007      2980            push    ar7
+0D9A C000      2981            push    ar0
+0D9C E4        2982            clr     a
+0D9D C0E0      2983            push    acc
+0D9F C0E0      2984            push    acc
+0DA1 7416      2985            mov     a,#0x16
+0DA3 C0E0      2986            push    acc
+0DA5 7444      2987            mov     a,#0x44
+0DA7 C0E0      2988            push    acc
+0DA9 8C82      2989            mov     dpl,r4
+0DAB 8D83      2990            mov     dph,r5
+0DAD 8EF0      2991            mov     b,r6
+0DAF EF        2992            mov     a,r7
+0DB0 120100    2993            lcall   ___fslt
+0DB3 A982      2994            mov     r1,dpl
+0DB5 E581      2995            mov     a,sp
+0DB7 24FC      2996            add     a,#0xfc
+0DB9 F581      2997            mov     sp,a
+0DBB D000      2998            pop     ar0
+0DBD D007      2999            pop     ar7
+0DBF D006      3000            pop     ar6
+0DC1 D005      3001            pop     ar5
+0DC3 D004      3002            pop     ar4
+0DC5 E9        3003            mov     a,r1
+0DC6 6001      3004            jz      L026096?
+0DC8 020100    3005            ljmp    L026052?
+0DCB           3006   L026096?:
+0DCB C004      3007            push    ar4
+0DCD C005      3008            push    ar5
+0DCF C006      3009            push    ar6
+0DD1 C007      3010            push    ar7
+0DD3 C000      3011            push    ar0
+0DD5 E4        3012            clr     a
+0DD6 C0E0      3013            push    acc
+0DD8 7480      3014            mov     a,#0x80
+0DDA C0E0      3015            push    acc
+0DDC 743B      3016            mov     a,#0x3B
+0DDE C0E0      3017            push    acc
+0DE0 7444      3018            mov     a,#0x44
+0DE2 C0E0      3019            push    acc
+0DE4 8C82      3020            mov     dpl,r4
+0DE6 8D83      3021            mov     dph,r5
+0DE8 8EF0      3022            mov     b,r6
+0DEA EF        3023            mov     a,r7
+0DEB 120100    3024            lcall   ___fsgt
+0DEE A982      3025            mov     r1,dpl
+0DF0 E581      3026            mov     a,sp
+0DF2 24FC      3027            add     a,#0xfc
+0DF4 F581      3028            mov     sp,a
+0DF6 D000      3029            pop     ar0
+0DF8 D007      3030            pop     ar7
+0DFA D006      3031            pop     ar6
+0DFC D005      3032            pop     ar5
+0DFE D004      3033            pop     ar4
+0E00 E9        3034            mov     a,r1
+0E01 6001      3035            jz      L026097?
+0E03 020100    3036            ljmp    L026052?
+0E06           3037   L026097?:
+0E06           3038   L026028?:
+0E06           3039   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:711: if(time>=1400 && time<=1500){
+0E06 C004      3040            push    ar4
+0E08 C005      3041            push    ar5
+0E0A C006      3042            push    ar6
+0E0C C007      3043            push    ar7
+0E0E C000      3044            push    ar0
+0E10 E4        3045            clr     a
+0E11 C0E0      3046            push    acc
+0E13 C0E0      3047            push    acc
+0E15 74AF      3048            mov     a,#0xAF
+0E17 C0E0      3049            push    acc
+0E19 7444      3050            mov     a,#0x44
+0E1B C0E0      3051            push    acc
+0E1D 8C82      3052            mov     dpl,r4
+0E1F 8D83      3053            mov     dph,r5
+0E21 8EF0      3054            mov     b,r6
+0E23 EF        3055            mov     a,r7
+0E24 120100    3056            lcall   ___fslt
+0E27 A982      3057            mov     r1,dpl
+0E29 E581      3058            mov     a,sp
+0E2B 24FC      3059            add     a,#0xfc
+0E2D F581      3060            mov     sp,a
+0E2F D000      3061            pop     ar0
+0E31 D007      3062            pop     ar7
+0E33 D006      3063            pop     ar6
+0E35 D005      3064            pop     ar5
+0E37 D004      3065            pop     ar4
+0E39 E9        3066            mov     a,r1
+0E3A 7001      3067            jnz     L026025?
+0E3C C004      3068            push    ar4
+0E3E C005      3069            push    ar5
+0E40 C006      3070            push    ar6
+0E42 C007      3071            push    ar7
+0E44 C000      3072            push    ar0
+0E46 E4        3073            clr     a
+0E47 C0E0      3074            push    acc
+0E49 7480      3075            mov     a,#0x80
+0E4B C0E0      3076            push    acc
+0E4D 74BB      3077            mov     a,#0xBB
+0E4F C0E0      3078            push    acc
+0E51 7444      3079            mov     a,#0x44
+0E53 C0E0      3080            push    acc
+0E55 8C82      3081            mov     dpl,r4
+0E57 8D83      3082            mov     dph,r5
+0E59 8EF0      3083            mov     b,r6
+0E5B EF        3084            mov     a,r7
+0E5C 120100    3085            lcall   ___fsgt
+0E5F A982      3086            mov     r1,dpl
+0E61 E581      3087            mov     a,sp
+0E63 24FC      3088            add     a,#0xfc
+0E65 F581      3089            mov     sp,a
+0E67 D000      3090            pop     ar0
+0E69 D007      3091            pop     ar7
+0E6B D006      3092            pop     ar6
+0E6D D005      3093            pop     ar5
+0E6F D004      3094            pop     ar4
+0E71 E9        3095            mov     a,r1
+0E72 7001      3096            jnz     L026025?
+0E74           3097   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:712: printf("RIGHT\n\r");
+0E74 7448      3098            mov     a,#__str_11
+0E76 C0E0      3099            push    acc
+0E78 74D8      3100            mov     a,#(__str_11 >> 8)
+0E7A C0E0      3101            push    acc
+0E7C 7480      3102            mov     a,#0x80
+0E7E C0E0      3103            push    acc
+0E80 120100    3104            lcall   _printf
+0E83 1581      3105            dec     sp
+0E85 1581      3106            dec     sp
+0E87 1581      3107            dec     sp
+0E89           3108   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:713: PWMRight();
+0E89 120100    3109            lcall   _PWMRight
+0E8C 020100    3110            ljmp    L026052?
+0E8F           3111   L026025?:
+0E8F           3112   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:715: else if(time>=300 && time<=450){
+0E8F E8        3113            mov     a,r0
+0E90 7001      3114            jnz     L026021?
+0E92 C004      3115            push    ar4
+0E94 C005      3116            push    ar5
+0E96 C006      3117            push    ar6
+0E98 C007      3118            push    ar7
+0E9A E4        3119            clr     a
+0E9B C0E0      3120            push    acc
+0E9D C0E0      3121            push    acc
+0E9F 74E1      3122            mov     a,#0xE1
+0EA1 C0E0      3123            push    acc
+0EA3 7443      3124            mov     a,#0x43
+0EA5 C0E0      3125            push    acc
+0EA7 8C82      3126            mov     dpl,r4
+0EA9 8D83      3127            mov     dph,r5
+0EAB 8EF0      3128            mov     b,r6
+0EAD EF        3129            mov     a,r7
+0EAE 120100    3130            lcall   ___fsgt
+0EB1 A882      3131            mov     r0,dpl
+0EB3 E581      3132            mov     a,sp
+0EB5 24FC      3133            add     a,#0xfc
+0EB7 F581      3134            mov     sp,a
+0EB9 D007      3135            pop     ar7
+0EBB D006      3136            pop     ar6
+0EBD D005      3137            pop     ar5
+0EBF D004      3138            pop     ar4
+0EC1 E8        3139            mov     a,r0
+0EC2 7001      3140            jnz     L026021?
+0EC4           3141   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:716: printf("FORWARD\n\r");
+0EC4 74C8      3142            mov     a,#__str_12
+0EC6 C0E0      3143            push    acc
+0EC8 74D8      3144            mov     a,#(__str_12 >> 8)
+0ECA C0E0      3145            push    acc
+0ECC 7480      3146            mov     a,#0x80
+0ECE C0E0      3147            push    acc
+0ED0 120100    3148            lcall   _printf
+0ED3 1581      3149            dec     sp
+0ED5 1581      3150            dec     sp
+0ED7 1581      3151            dec     sp
+0ED9           3152   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:717: PWMforward();
+0ED9 120100    3153            lcall   _PWMforward
+0EDC 020100    3154            ljmp    L026052?
+0EDF           3155   L026021?:
+0EDF           3156   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:719: else if(time>=600 && time<=750){
+0EDF C004      3157            push    ar4
+0EE1 C005      3158            push    ar5
+0EE3 C006      3159            push    ar6
+0EE5 C007      3160            push    ar7
+0EE7 E4        3161            clr     a
+0EE8 C0E0      3162            push    acc
+0EEA C0E0      3163            push    acc
+0EEC 7416      3164            mov     a,#0x16
+0EEE C0E0      3165            push    acc
+0EF0 7444      3166            mov     a,#0x44
+0EF2 C0E0      3167            push    acc
+0EF4 8C82      3168            mov     dpl,r4
+0EF6 8D83      3169            mov     dph,r5
+0EF8 8EF0      3170            mov     b,r6
+0EFA EF        3171            mov     a,r7
+0EFB 120100    3172            lcall   ___fslt
+0EFE A882      3173            mov     r0,dpl
+0F00 E581      3174            mov     a,sp
+0F02 24FC      3175            add     a,#0xfc
+0F04 F581      3176            mov     sp,a
+0F06 D007      3177            pop     ar7
+0F08 D006      3178            pop     ar6
+0F0A D005      3179            pop     ar5
+0F0C D004      3180            pop     ar4
+0F0E E8        3181            mov     a,r0
+0F0F 7001      3182            jnz     L026017?
+0F11 C004      3183            push    ar4
+0F13 C005      3184            push    ar5
+0F15 C006      3185            push    ar6
+0F17 C007      3186            push    ar7
+0F19 E4        3187            clr     a
+0F1A C0E0      3188            push    acc
+0F1C 7480      3189            mov     a,#0x80
+0F1E C0E0      3190            push    acc
+0F20 743B      3191            mov     a,#0x3B
+0F22 C0E0      3192            push    acc
+0F24 7444      3193            mov     a,#0x44
+0F26 C0E0      3194            push    acc
+0F28 8C82      3195            mov     dpl,r4
+0F2A 8D83      3196            mov     dph,r5
+0F2C 8EF0      3197            mov     b,r6
+0F2E EF        3198            mov     a,r7
+0F2F 120100    3199            lcall   ___fsgt
+0F32 A882      3200            mov     r0,dpl
+0F34 E581      3201            mov     a,sp
+0F36 24FC      3202            add     a,#0xfc
+0F38 F581      3203            mov     sp,a
+0F3A D007      3204            pop     ar7
+0F3C D006      3205            pop     ar6
+0F3E D005      3206            pop     ar5
+0F40 D004      3207            pop     ar4
+0F42 E8        3208            mov     a,r0
+0F43 7001      3209            jnz     L026017?
+0F45           3210   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:720: printf("BACKWARD\n\r");
+0F45 7448      3211            mov     a,#__str_13
+0F47 C0E0      3212            push    acc
+0F49 74D9      3213            mov     a,#(__str_13 >> 8)
+0F4B C0E0      3214            push    acc
+0F4D 7480      3215            mov     a,#0x80
+0F4F C0E0      3216            push    acc
+0F51 120100    3217            lcall   _printf
+0F54 1581      3218            dec     sp
+0F56 1581      3219            dec     sp
+0F58 1581      3220            dec     sp
+0F5A           3221   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:721: PWMbackward();
+0F5A 120100    3222            lcall   _PWMbackward
+0F5D 020100    3223            ljmp    L026052?
+0F60           3224   L026017?:
+0F60           3225   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:723: else if(time>=1060 && time<=1090){
+0F60 C004      3226            push    ar4
+0F62 C005      3227            push    ar5
+0F64 C006      3228            push    ar6
+0F66 C007      3229            push    ar7
+0F68 E4        3230            clr     a
+0F69 C0E0      3231            push    acc
+0F6B 7480      3232            mov     a,#0x80
+0F6D C0E0      3233            push    acc
+0F6F 7484      3234            mov     a,#0x84
+0F71 C0E0      3235            push    acc
+0F73 7444      3236            mov     a,#0x44
+0F75 C0E0      3237            push    acc
+0F77 8C82      3238            mov     dpl,r4
+0F79 8D83      3239            mov     dph,r5
+0F7B 8EF0      3240            mov     b,r6
+0F7D EF        3241            mov     a,r7
+0F7E 120100    3242            lcall   ___fslt
+0F81 A882      3243            mov     r0,dpl
+0F83 E581      3244            mov     a,sp
+0F85 24FC      3245            add     a,#0xfc
+0F87 F581      3246            mov     sp,a
+0F89 D007      3247            pop     ar7
+0F8B D006      3248            pop     ar6
+0F8D D005      3249            pop     ar5
+0F8F D004      3250            pop     ar4
+0F91 E8        3251            mov     a,r0
+0F92 7001      3252            jnz     L026013?
+0F94 C0E0      3253            push    acc
+0F96 7440      3254            mov     a,#0x40
+0F98 C0E0      3255            push    acc
+0F9A 7488      3256            mov     a,#0x88
+0F9C C0E0      3257            push    acc
+0F9E 7444      3258            mov     a,#0x44
+0FA0 C0E0      3259            push    acc
+0FA2 8C82      3260            mov     dpl,r4
+0FA4 8D83      3261            mov     dph,r5
+0FA6 8EF0      3262            mov     b,r6
+0FA8 EF        3263            mov     a,r7
+0FA9 120100    3264            lcall   ___fsgt
+0FAC AC82      3265            mov     r4,dpl
+0FAE E581      3266            mov     a,sp
+0FB0 24FC      3267            add     a,#0xfc
+0FB2 F581      3268            mov     sp,a
+0FB4 EC        3269            mov     a,r4
+0FB5 7001      3270            jnz     L026013?
+0FB7           3271   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:724: printf("LEFT\n\r");
+0FB7 74C8      3272            mov     a,#__str_14
+0FB9 C0E0      3273            push    acc
+0FBB 74D9      3274            mov     a,#(__str_14 >> 8)
+0FBD C0E0      3275            push    acc
+0FBF 7480      3276            mov     a,#0x80
+0FC1 C0E0      3277            push    acc
+0FC3 120100    3278            lcall   _printf
+0FC6 1581      3279            dec     sp
+0FC8 1581      3280            dec     sp
+0FCA 1581      3281            dec     sp
+0FCC           3282   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:725: PWMLeft();
+0FCC 120100    3283            lcall   _PWMLeft
+0FCF 020100    3284            ljmp    L026052?
+0FD2           3285   L026013?:
+0FD2           3286   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:728: {      printf("STOP\n\r");
+0FD2 7408      3287            mov     a,#__str_15
+0FD4 C0E0      3288            push    acc
+0FD6 74DA      3289            mov     a,#(__str_15 >> 8)
+0FD8 C0E0      3290            push    acc
+0FDA 7480      3291            mov     a,#0x80
+0FDC C0E0      3292            push    acc
+0FDE 120100    3293            lcall   _printf
+0FE1 1581      3294            dec     sp
+0FE3 1581      3295            dec     sp
+0FE5 1581      3296            dec     sp
+0FE7           3297   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:729: PWMStop();
+0FE7 120100    3298            lcall   _PWMStop
+0FEA 020100    3299            ljmp    L026052?
+0FED           3300   L026046?:
+0FED           3301   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:733: else if( mode_toggle == 3){
+0FED BA0348    3302            cjne    r2,#0x03,L026106?
+0FF0 BB0048    3303            cjne    r3,#0x00,L026106?
+0FF3 8001      3304            sjmp    L026107?
+0FF5           3305   L026106?:
+0FF5 020100    3306            ljmp    L026043?
+0FF8           3307   L026107?:
+0FF8           3308   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:734: pir_voltage = Volts_at_Pin(QFP32_MUX_P2_4);
+0FF8 758211    3309            mov     dpl,#0x11
+0FFB 120100    3310            lcall   _Volts_at_Pin
+0FFE AA82      3311            mov     r2,dpl
+1000 AB83      3312            mov     r3,dph
+1002 ACF0      3313            mov     r4,b
+1004 FD        3314            mov     r5,a
+1005           3315   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:735: if(pir_voltage >= 3.0 && pir_voltage <= 3.4)
+1005 C002      3316            push    ar2
+1007 C003      3317            push    ar3
+1009 C004      3318            push    ar4
+100B C005      3319            push    ar5
+100D E4        3320            clr     a
+100E C0E0      3321            push    acc
+1010 C0E0      3322            push    acc
+1012 7440      3323            mov     a,#0x40
+1014 C0E0      3324            push    acc
+1016 C0E0      3325            push    acc
+1018 8A82      3326            mov     dpl,r2
+101A 8B83      3327            mov     dph,r3
+101C 8CF0      3328            mov     b,r4
+101E ED        3329            mov     a,r5
+101F 120100    3330            lcall   ___fslt
+1022 AE82      3331            mov     r6,dpl
+1024 E581      3332            mov     a,sp
+1026 24FC      3333            add     a,#0xfc
+1028 F581      3334            mov     sp,a
+102A D005      3335            pop     ar5
+102C D004      3336            pop     ar4
+102E D003      3337            pop     ar3
+1030 D002      3338            pop     ar2
+1032 EE        3339            mov     a,r6
+1033 7001      3340            jnz     L026039?
+1035 C002      3341            push    ar2
+1037 C003      3342            push    ar3
+1039 C004      3343            push    ar4
+103B C005      3344            push    ar5
+103D 749A      3345            mov     a,#0x9A
+103F C0E0      3346            push    acc
+1041 7499      3347            mov     a,#0x99
+1043 C0E0      3348            push    acc
+1045 7459      3349            mov     a,#0x59
+1047 C0E0      3350            push    acc
+1049 7440      3351            mov     a,#0x40
+104B C0E0      3352            push    acc
+104D 8A82      3353            mov     dpl,r2
+104F 8B83      3354            mov     dph,r3
+1051 8CF0      3355            mov     b,r4
+1053 ED        3356            mov     a,r5
+1054 120100    3357            lcall   ___fsgt
+1057 AE82      3358            mov     r6,dpl
+1059 E581      3359            mov     a,sp
+105B 24FC      3360            add     a,#0xfc
+105D F581      3361            mov     sp,a
+105F D005      3362            pop     ar5
+1061 D004      3363            pop     ar4
+1063 D003      3364            pop     ar3
+1065 D002      3365            pop     ar2
+1067 EE        3366            mov     a,r6
+1068 7001      3367            jnz     L026039?
+106A           3368   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:736: PWMStop();
+106A C002      3369            push    ar2
+106C C003      3370            push    ar3
+106E C004      3371            push    ar4
+1070 C005      3372            push    ar5
+1072 120100    3373            lcall   _PWMStop
+1075 D005      3374            pop     ar5
+1077 D004      3375            pop     ar4
+1079 D003      3376            pop     ar3
+107B D002      3377            pop     ar2
+107D 8001      3378            sjmp    L026040?
+107F           3379   L026039?:
+107F           3380   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:738: PWMforward();
+107F C002      3381            push    ar2
+1081 C003      3382            push    ar3
+1083 C004      3383            push    ar4
+1085 C005      3384            push    ar5
+1087 120100    3385            lcall   _PWMforward
+108A D005      3386            pop     ar5
+108C D004      3387            pop     ar4
+108E D003      3388            pop     ar3
+1090 D002      3389            pop     ar2
+1092           3390   L026040?:
+1092           3391   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:739: waitms(100);
+1092 900064    3392            mov     dptr,#0x0064
+1095 C002      3393            push    ar2
+1097 C003      3394            push    ar3
+1099 C004      3395            push    ar4
+109B C005      3396            push    ar5
+109D 120100    3397            lcall   _waitms
+10A0           3398   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:740: printf("pir_voltage: %f \r\n", pir_voltage);
+10A0 7488      3399            mov     a,#__str_16
+10A2 C0E0      3400            push    acc
+10A4 74DB      3401            mov     a,#(__str_16 >> 8)
+10A6 C0E0      3402            push    acc
+10A8 7480      3403            mov     a,#0x80
+10AA C0E0      3404            push    acc
+10AC 120100    3405            lcall   _printf
+10AF E581      3406            mov     a,sp
+10B1 24F9      3407            add     a,#0xf9
+10B3 F581      3408            mov     sp,a
+10B5 020100    3409            ljmp    L026052?
+10B8           3410   L026043?:
+10B8           3411   ;        C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:744: printf("Do nothing\r\n");      
+10B8 74C8      3412            mov     a,#__str_17
+10BA C0E0      3413            push    acc
+10BC 74DB      3414            mov     a,#(__str_17 >> 8)
+10BE C0E0      3415            push    acc
+10C0 7480      3416            mov     a,#0x80
+10C2 C0E0      3417            push    acc
+10C4 120100    3418            lcall   _printf
+10C7 1581      3419            dec     sp
+10C9 1581      3420            dec     sp
+10CB 1581      3421            dec     sp
+10CD 020100    3422            ljmp    L026052?
+10D0           3423            rseg R_CSEG
+10D0           3424   
+0000           3425            rseg R_XINIT
+0000           3426   
+0000           3427            rseg R_CONST
+0000           3428   __str_0:
+0000 0A        3429            db 0x0A
+0001 72656164  3430            db 'read 1:  at pin 1.6: %f'
      20313A20
      20617420
      70696E20
      312E363A
      202566
-0018 0D        3384            db 0x0D
-0019 00        3385            db 0x00
-001A           3386   __str_1:
-001A 0A        3387            db 0x0A
-001B 72656164  3388            db 'read 0: Volt at pin 1.6: %f'
+0018 0D        3431            db 0x0D
+0019 00        3432            db 0x00
+001A           3433   __str_1:
+001A 0A        3434            db 0x0A
+001B 72656164  3435            db 'read 0: Volt at pin 1.6: %f'
      20303A20
      566F6C74
      20617420
      70696E20
      312E363A
      202566
-0036 0D        3389            db 0x0D
-0037 00        3390            db 0x00
-0038           3391   __str_2:
-0038 5475726E  3392            db 'Turn right '
+0036 0D        3436            db 0x0D
+0037 00        3437            db 0x00
+0038           3438   __str_2:
+0038 5475726E  3439            db 'Turn right '
      20726967
      687420
-0043 0D        3393            db 0x0D
-0044 0A        3394            db 0x0A
-0045 00        3395            db 0x00
-0046           3396   __str_3:
-0046 476F2053  3397            db 'Go Straight '
+0043 0D        3440            db 0x0D
+0044 0A        3441            db 0x0A
+0045 00        3442            db 0x00
+0046           3443   __str_3:
+0046 476F2053  3444            db 'Go Straight '
      74726169
      67687420
-0052 0D        3398            db 0x0D
-0053 0A        3399            db 0x0A
-0054 00        3400            db 0x00
-0055           3401   __str_4:
-0055 1B        3402            db 0x1B
-0056 5B324A    3403            db '[2J'
-0059 00        3404            db 0x00
-005A           3405   __str_5:
-005A 53717561  3406            db 'Square wave generator for the EFM8LB1.'
+0052 0D        3445            db 0x0D
+0053 0A        3446            db 0x0A
+0054 00        3447            db 0x00
+0055           3448   __str_4:
+0055 1B        3449            db 0x1B
+0056 5B324A    3450            db '[2J'
+0059 00        3451            db 0x00
+005A           3452   __str_5:
+005A 53717561  3453            db 'Square wave generator for the EFM8LB1.'
      72652077
      61766520
      67656E65
@@ -3428,90 +3475,98 @@
      65204546
      4D384C42
      312E
-0080 0D        3407            db 0x0D
-0081 0A        3408            db 0x0A
-0082 43686563  3409            db 'Check pins P2.2 and '
+0080 0D        3454            db 0x0D
+0081 0A        3455            db 0x0A
+0082 43686563  3456            db 'Check pins P2.2 and '
      6B207069
      6E732050
      322E3220
      616E6420
-0096 50322E31  3410            db 'P2.1 with the oscilloscope.'
+0096 50322E31  3457            db 'P2.1 with the oscilloscope.'
      20776974
      68207468
      65206F73
      63696C6C
      6F73636F
      70652E
-00B1 0D        3411            db 0x0D
-00B2 0A        3412            db 0x0A
-00B3 00        3413            db 0x00
-00B4           3414   __str_6:
-00B4 0A        3415            db 0x0A
-00B5 0D        3416            db 0x0D
-00B6 00        3417            db 0x00
-00B7           3418   __str_7:
-00B7 6175746F  3419            db 'auto '
+00B1 0D        3458            db 0x0D
+00B2 0A        3459            db 0x0A
+00B3 00        3460            db 0x00
+00B4           3461   __str_6:
+00B4 0A        3462            db 0x0A
+00B5 0D        3463            db 0x0D
+00B6 00        3464            db 0x00
+00B7           3465   __str_7:
+00B7 6175746F  3466            db 'auto '
      20
-00BC 0D        3420            db 0x0D
-00BD 0A        3421            db 0x0A
-00BE 00        3422            db 0x00
-00BF           3423   __str_8:
-00BF 0D        3424            db 0x0D
-00C0 543D2566  3425            db 'T=%f ms   '
+00BC 0D        3467            db 0x0D
+00BD 0A        3468            db 0x0A
+00BE 00        3469            db 0x00
+00BF           3470   __str_8:
+00BF 0D        3471            db 0x0D
+00C0 543D2566  3472            db 'T=%f ms   '
      206D7320
      2020
-00CA 0A        3426            db 0x0A
-00CB 20        3427            db ' '
-00CC 00        3428            db 0x00
-00CD           3429   __str_9:
-00CD 6D616E75  3430            db 'manual '
+00CA 0A        3473            db 0x0A
+00CB 20        3474            db ' '
+00CC 00        3475            db 0x00
+00CD           3476   __str_9:
+00CD 6D616E75  3477            db 'manual '
      616C20
-00D4 0D        3431            db 0x0D
-00D5 0A        3432            db 0x0A
-00D6 00        3433            db 0x00
-00D7           3434   __str_10:
-00D7 54696D65  3435            db 'Time: %f'
+00D4 0D        3478            db 0x0D
+00D5 0A        3479            db 0x0A
+00D6 00        3480            db 0x00
+00D7           3481   __str_10:
+00D7 54696D65  3482            db 'Time: %f'
      3A202566
-00DF 0A        3436            db 0x0A
-00E0 09        3437            db 0x09
-00E1 0D        3438            db 0x0D
-00E2 00        3439            db 0x00
-00E3           3440   __str_11:
-00E3 52494748  3441            db 'RIGHT'
+00DF 0A        3483            db 0x0A
+00E0 09        3484            db 0x09
+00E1 0D        3485            db 0x0D
+00E2 00        3486            db 0x00
+00E3           3487   __str_11:
+00E3 52494748  3488            db 'RIGHT'
      54
-00E8 0A        3442            db 0x0A
-00E9 0D        3443            db 0x0D
-00EA 00        3444            db 0x00
-00EB           3445   __str_12:
-00EB 464F5257  3446            db 'FORWARD'
+00E8 0A        3489            db 0x0A
+00E9 0D        3490            db 0x0D
+00EA 00        3491            db 0x00
+00EB           3492   __str_12:
+00EB 464F5257  3493            db 'FORWARD'
      415244
-00F2 0A        3447            db 0x0A
-00F3 0D        3448            db 0x0D
-00F4 00        3449            db 0x00
-00F5           3450   __str_13:
-00F5 4241434B  3451            db 'BACKWARD'
+00F2 0A        3494            db 0x0A
+00F3 0D        3495            db 0x0D
+00F4 00        3496            db 0x00
+00F5           3497   __str_13:
+00F5 4241434B  3498            db 'BACKWARD'
      57415244
-00FD 0A        3452            db 0x0A
-00FE 0D        3453            db 0x0D
-00FF 00        3454            db 0x00
-0100           3455   __str_14:
-0100 4C454654  3456            db 'LEFT'
-0104 0A        3457            db 0x0A
-0105 0D        3458            db 0x0D
-0106 00        3459            db 0x00
-0107           3460   __str_15:
-0107 53544F50  3461            db 'STOP'
-010B 0A        3462            db 0x0A
-010C 0D        3463            db 0x0D
-010D 00        3464            db 0x00
-010E           3465   __str_16:
-010E 446F206E  3466            db 'Do nothing'
+00FD 0A        3499            db 0x0A
+00FE 0D        3500            db 0x0D
+00FF 00        3501            db 0x00
+0100           3502   __str_14:
+0100 4C454654  3503            db 'LEFT'
+0104 0A        3504            db 0x0A
+0105 0D        3505            db 0x0D
+0106 00        3506            db 0x00
+0107           3507   __str_15:
+0107 53544F50  3508            db 'STOP'
+010B 0A        3509            db 0x0A
+010C 0D        3510            db 0x0D
+010D 00        3511            db 0x00
+010E           3512   __str_16:
+010E 7069725F  3513            db 'pir_voltage: %f '
+     766F6C74
+     6167653A
+     20256620
+011E 0D        3514            db 0x0D
+011F 0A        3515            db 0x0A
+0120 00        3516            db 0x00
+0121           3517   __str_17:
+0121 446F206E  3518            db 'Do nothing'
      6F746869
      6E67
-0118 0D        3467            db 0x0D
-0119 0A        3468            db 0x0A
-011A 00        3469            db 0x00
-011B           3470   
-002E           3471            CSEG
-002E           3472   
-002E           3473   end
+012B 0D        3519            db 0x0D
+012C 0A        3520            db 0x0A
+012D 00        3521            db 0x00
+012E           3522   
+002E           3523            CSEG
+002E           3524   
+002E           3525   end

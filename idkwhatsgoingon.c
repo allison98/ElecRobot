@@ -43,12 +43,12 @@
 #define OUT1 P2_1
 #define constant_delay_time 10 //how long the delay for each signal is 
 
-#define BUTTON1 P3_3
-#define BUTTON2 P3_2
-#define BUTTON3 P3_1
+#define BUTTON1 P3_1
+#define BUTTON2 P3_3
+#define BUTTON3 P3_7
 
 #define LEDGREEN P0_6
-#define LEDWHITE P0_5
+#define LEDWHITE P1_0
 #define LEDRED P0_7
 
 #define SPEAKER P2_5
@@ -633,6 +633,7 @@ void main(void)
 	InitPinADC(1, 6); // Configure P2.5 as analog input
 	InitPinADC(2, 4);
 	InitPinADC(2, 5);
+	InitPinADC(2, 6);
 	InitADC();
 		
 	printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
@@ -736,6 +737,7 @@ void main(void)
 			else
 				PWMforward();
 			waitms(100);
+			printf("pir_voltage: %f \r\n", pir_voltage);
 		
 		}
 		else{

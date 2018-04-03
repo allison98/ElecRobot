@@ -1,7 +1,7 @@
 ;--------------------------------------------------------
 ; File Created by C51
 ; Version 1.0.0 #1069 (Apr 23 2015) (MSVC)
-; This file was generated Tue Apr 03 10:10:19 2018
+; This file was generated Tue Apr 03 10:38:35 2018
 ;--------------------------------------------------------
 $name idkwhatsgoingon
 $optc51 --model-small
@@ -1203,7 +1203,7 @@ _PWMforward:
 ;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:360: LEDGREEN = 1;
 	setb	_P0_6
 ;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:361: LEDWHITE = 1;
-	setb	_P0_5
+	setb	_P1_0
 ;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:362: SPEAKER = 0;
 	clr	_P2_5
 	ret
@@ -1237,7 +1237,7 @@ _PWMbackward:
 ;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:373: LEDGREEN = 1;
 	setb	_P0_6
 ;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:374: LEDWHITE = 0;
-	clr	_P0_5
+	clr	_P1_0
 ;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:375: SPEAKER = 1;
 	setb	_P2_5
 	ret
@@ -1271,7 +1271,7 @@ _PWMLeft:
 ;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:386: LEDGREEN = 0;
 	clr	_P0_6
 ;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:387: LEDWHITE = 1;
-	setb	_P0_5
+	setb	_P1_0
 ;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:388: SPEAKER = 0;
 	clr	_P2_5
 	ret
@@ -1305,7 +1305,7 @@ _PWMRight:
 ;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:400: LEDGREEN = 0;
 	clr	_P0_6
 ;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:401: LEDWHITE = 1;
-	setb	_P0_5
+	setb	_P1_0
 ;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:402: SPEAKER = 0;	
 	clr	_P2_5
 	ret
@@ -1336,7 +1336,7 @@ _PWMStop:
 ;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:416: LEDGREEN = 1;
 	setb	_P0_6
 ;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:417: LEDWHITE = 1;
-	setb	_P0_5
+	setb	_P1_0
 ;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:418: SPEAKER = 0;
 	clr	_P2_5
 	ret
@@ -2133,13 +2133,13 @@ L022010?:
 ;	-----------------------------------------
 _checkMode:
 ;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:542: if(!BUTTON1 || x == 0){
-	jnb	_P3_3,L023001?
+	jnb	_P3_1,L023001?
 	mov	a,_x
 	orl	a,(_x + 1)
 	jnz	L023019?
 ;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:543: while(!BUTTON1);
 L023001?:
-	jnb	_P3_3,L023001?
+	jnb	_P3_1,L023001?
 ;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:544: x= 0;
 ;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:545: return 0;
 	clr	a
@@ -2150,7 +2150,7 @@ L023001?:
 	ret
 L023019?:
 ;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:547: else if(!BUTTON2 || x == 1){
-	jnb	_P3_2,L023004?
+	jnb	_P3_3,L023004?
 	mov	a,#0x01
 	cjne	a,_x,L023037?
 	clr	a
@@ -2161,7 +2161,7 @@ L023037?:
 L023038?:
 ;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:548: while(!BUTTON2);
 L023004?:
-	jnb	_P3_2,L023004?
+	jnb	_P3_3,L023004?
 ;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:549: x = 1;
 	mov	_x,#0x01
 	clr	a
@@ -2171,7 +2171,7 @@ L023004?:
 	ret
 L023015?:
 ;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:552: else if(!BUTTON3 || x == 3){
-	jnb	_P3_1,L023007?
+	jnb	_P3_7,L023007?
 	mov	a,#0x03
 	cjne	a,_x,L023041?
 	clr	a
@@ -2182,7 +2182,7 @@ L023041?:
 L023042?:
 ;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:553: while(!BUTTON3);
 L023007?:
-	jnb	_P3_1,L023007?
+	jnb	_P3_7,L023007?
 ;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:554: x = 3;
 	mov	_x,#0x03
 	clr	a
@@ -2454,9 +2454,13 @@ _main:
 	mov	_InitPinADC_PARM_2,#0x05
 	mov	dpl,#0x02
 	lcall	_InitPinADC
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:636: InitADC();
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:636: InitPinADC(2, 6);
+	mov	_InitPinADC_PARM_2,#0x06
+	mov	dpl,#0x02
+	lcall	_InitPinADC
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:637: InitADC();
 	lcall	_InitADC
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:638: printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:639: printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
 	mov	a,#__str_4
 	push	acc
 	mov	a,#(__str_4 >> 8)
@@ -2467,7 +2471,7 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:640: "Check pins P2.2 and P2.1 with the oscilloscope.\r\n");
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:641: "Check pins P2.2 and P2.1 with the oscilloscope.\r\n");
 	mov	a,#__str_5
 	push	acc
 	mov	a,#(__str_5 >> 8)
@@ -2478,7 +2482,7 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:642: printf("\n\r");
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:643: printf("\n\r");
 	mov	a,#__str_6
 	push	acc
 	mov	a,#(__str_6 >> 8)
@@ -2489,23 +2493,23 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:644: PWMStop();
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:645: PWMStop();
 	lcall	_PWMStop
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:645: SPEAKER = 0;
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:646: SPEAKER = 0;
 	clr	_P2_5
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:646: while (1)
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:647: while (1)
 L026052?:
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:648: mode_toggle = checkMode();
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:649: mode_toggle = checkMode();
 	lcall	_checkMode
 	mov	r2,dpl
 	mov	r3,dph
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:651: if(mode_toggle == 0){
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:652: if(mode_toggle == 0){
 	mov	a,r2
 	orl	a,r3
 	jz	L026082?
 	ljmp	L026049?
 L026082?:
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:652: printf("auto \r\n");
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:653: printf("auto \r\n");
 	mov	a,#__str_7
 	push	acc
 	mov	a,#(__str_7 >> 8)
@@ -2516,39 +2520,39 @@ L026082?:
 	dec	sp
 	dec	sp
 	dec	sp
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:654: TL0=0; 
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:655: TL0=0; 
 	mov	_TL0,#0x00
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:655: TH0=0;
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:656: TH0=0;
 	mov	_TH0,#0x00
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:656: TF0=0;
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:657: TF0=0;
 	clr	_TF0
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:658: while(P2_1!=0); // Wait for the signal to be zero
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:659: while(P2_1!=0); // Wait for the signal to be zero
 L026001?:
 	jb	_P2_1,L026001?
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:659: while(P2_1!=1); // Wait for the signal to be one
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:660: while(P2_1!=1); // Wait for the signal to be one
 L026004?:
 	jnb	_P2_1,L026004?
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:660: TR0=1; // Start the timer
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:661: TR0=1; // Start the timer
 	setb	_TR0
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:661: while(P2_1!=0) // Wait for the signal to be zero
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:662: while(P2_1!=0) // Wait for the signal to be zero
 	mov	r4,#0x00
 	mov	r5,#0x00
 L026009?:
 	jnb	_P2_1,L026011?
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:663: if(TF0==1) // Did the 16-bit timer overflow?
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:665: TF0=0;
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:664: if(TF0==1) // Did the 16-bit timer overflow?
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:666: TF0=0;
 	jbc	_TF0,L026086?
 	sjmp	L026009?
 L026086?:
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:666: overflow_count++;
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:667: overflow_count++;
 	inc	r4
 	cjne	r4,#0x00,L026009?
 	inc	r5
 	sjmp	L026009?
 L026011?:
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:677: TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:678: TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
 	clr	_TR0
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:678: period=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:679: period=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
 	mov	dpl,r4
 	mov	dph,r5
 	lcall	___sint2fs
@@ -2648,7 +2652,7 @@ L026011?:
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:680: printf( "\rT=%f ms   \n ", period*1000.0);
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:681: printf( "\rT=%f ms   \n ", period*1000.0);
 	push	ar4
 	push	ar5
 	push	ar6
@@ -2682,14 +2686,14 @@ L026011?:
 	mov	a,sp
 	add	a,#0xf9
 	mov	sp,a
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:681: waitms(50);
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:682: waitms(50);
 	mov	dptr,#0x0032
 	lcall	_waitms
 	pop	ar7
 	pop	ar6
 	pop	ar5
 	pop	ar4
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:682: detectobstacle(period*1000.0);
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:683: detectobstacle(period*1000.0);
 	mov	dpl,r4
 	mov	dph,r5
 	mov	b,r6
@@ -2703,25 +2707,25 @@ L026011?:
 	pop	ar6
 	pop	ar5
 	pop	ar4
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:683: laserPattern(period*1000);
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:684: laserPattern(period*1000);
 	mov	dpl,r4
 	mov	dph,r5
 	mov	b,r6
 	mov	a,r7
 	lcall	_laserPattern
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:692: waitms(50);	
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:693: waitms(50);	
 	mov	dptr,#0x0032
 	lcall	_waitms
 	ljmp	L026052?
 L026049?:
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:696: else if(mode_toggle == 1){
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:697: else if(mode_toggle == 1){
 	cjne	r2,#0x01,L026087?
 	cjne	r3,#0x00,L026087?
 	sjmp	L026088?
 L026087?:
 	ljmp	L026046?
 L026088?:
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:697: printf("manual \r\n");
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:698: printf("manual \r\n");
 	mov	a,#__str_9
 	push	acc
 	mov	a,#(__str_9 >> 8)
@@ -2732,13 +2736,13 @@ L026088?:
 	dec	sp
 	dec	sp
 	dec	sp
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:704: time=zero_time_calc(); 
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:705: time=zero_time_calc(); 
 	lcall	_zero_time_calc
 	mov	r4,dpl
 	mov	r5,dph
 	mov	r6,b
 	mov	r7,a
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:705: printf("Time: %f\n\t\r", time);
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:706: printf("Time: %f\n\t\r", time);
 	push	ar4
 	push	ar5
 	push	ar6
@@ -2761,7 +2765,7 @@ L026088?:
 	pop	ar6
 	pop	ar5
 	pop	ar4
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:708: if((time>=300 && time<=450)||(time>=1400 && time<=1500)||
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:709: if((time>=300 && time<=450)||(time>=1400 && time<=1500)||
 	push	ar4
 	push	ar5
 	push	ar6
@@ -2879,7 +2883,7 @@ L026032?:
 	ljmp	L026028?
 L026092?:
 L026034?:
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:709: (time>=1060 && time<=1090)||(time>=1780) || (time>=600 && time<=750) ){
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:710: (time>=1060 && time<=1090)||(time>=1780) || (time>=600 && time<=750) ){
 	push	ar4
 	push	ar5
 	push	ar6
@@ -3032,7 +3036,7 @@ L026096?:
 	ljmp	L026052?
 L026097?:
 L026028?:
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:710: if(time>=1400 && time<=1500){
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:711: if(time>=1400 && time<=1500){
 	push	ar4
 	push	ar5
 	push	ar6
@@ -3090,7 +3094,7 @@ L026028?:
 	pop	ar4
 	mov	a,r1
 	jnz	L026025?
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:711: printf("RIGHT\n\r");
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:712: printf("RIGHT\n\r");
 	mov	a,#__str_11
 	push	acc
 	mov	a,#(__str_11 >> 8)
@@ -3101,11 +3105,11 @@ L026028?:
 	dec	sp
 	dec	sp
 	dec	sp
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:712: PWMRight();
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:713: PWMRight();
 	lcall	_PWMRight
 	ljmp	L026052?
 L026025?:
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:714: else if(time>=300 && time<=450){
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:715: else if(time>=300 && time<=450){
 	mov	a,r0
 	jnz	L026021?
 	push	ar4
@@ -3134,7 +3138,7 @@ L026025?:
 	pop	ar4
 	mov	a,r0
 	jnz	L026021?
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:715: printf("FORWARD\n\r");
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:716: printf("FORWARD\n\r");
 	mov	a,#__str_12
 	push	acc
 	mov	a,#(__str_12 >> 8)
@@ -3145,11 +3149,11 @@ L026025?:
 	dec	sp
 	dec	sp
 	dec	sp
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:716: PWMforward();
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:717: PWMforward();
 	lcall	_PWMforward
 	ljmp	L026052?
 L026021?:
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:718: else if(time>=600 && time<=750){
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:719: else if(time>=600 && time<=750){
 	push	ar4
 	push	ar5
 	push	ar6
@@ -3203,7 +3207,7 @@ L026021?:
 	pop	ar4
 	mov	a,r0
 	jnz	L026017?
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:719: printf("BACKWARD\n\r");
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:720: printf("BACKWARD\n\r");
 	mov	a,#__str_13
 	push	acc
 	mov	a,#(__str_13 >> 8)
@@ -3214,11 +3218,11 @@ L026021?:
 	dec	sp
 	dec	sp
 	dec	sp
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:720: PWMbackward();
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:721: PWMbackward();
 	lcall	_PWMbackward
 	ljmp	L026052?
 L026017?:
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:722: else if(time>=1060 && time<=1090){
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:723: else if(time>=1060 && time<=1090){
 	push	ar4
 	push	ar5
 	push	ar6
@@ -3264,7 +3268,7 @@ L026017?:
 	mov	sp,a
 	mov	a,r4
 	jnz	L026013?
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:723: printf("LEFT\n\r");
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:724: printf("LEFT\n\r");
 	mov	a,#__str_14
 	push	acc
 	mov	a,#(__str_14 >> 8)
@@ -3275,11 +3279,11 @@ L026017?:
 	dec	sp
 	dec	sp
 	dec	sp
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:724: PWMLeft();
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:725: PWMLeft();
 	lcall	_PWMLeft
 	ljmp	L026052?
 L026013?:
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:727: {	printf("STOP\n\r");
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:728: {	printf("STOP\n\r");
 	mov	a,#__str_15
 	push	acc
 	mov	a,#(__str_15 >> 8)
@@ -3290,21 +3294,25 @@ L026013?:
 	dec	sp
 	dec	sp
 	dec	sp
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:728: PWMStop();
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:729: PWMStop();
 	lcall	_PWMStop
 	ljmp	L026052?
 L026046?:
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:732: else if( mode_toggle == 3){
-	cjne	r2,#0x03,L026043?
-	cjne	r3,#0x00,L026043?
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:733: pir_voltage = Volts_at_Pin(QFP32_MUX_P2_4);
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:733: else if( mode_toggle == 3){
+	cjne	r2,#0x03,L026106?
+	cjne	r3,#0x00,L026106?
+	sjmp	L026107?
+L026106?:
+	ljmp	L026043?
+L026107?:
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:734: pir_voltage = Volts_at_Pin(QFP32_MUX_P2_4);
 	mov	dpl,#0x11
 	lcall	_Volts_at_Pin
 	mov	r2,dpl
 	mov	r3,dph
 	mov	r4,b
 	mov	r5,a
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:734: if(pir_voltage >= 3.0 && pir_voltage <= 3.4)
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:735: if(pir_voltage >= 3.0 && pir_voltage <= 3.4)
 	push	ar2
 	push	ar3
 	push	ar4
@@ -3330,6 +3338,10 @@ L026046?:
 	pop	ar2
 	mov	a,r6
 	jnz	L026039?
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
 	mov	a,#0x9A
 	push	acc
 	mov	a,#0x99
@@ -3343,28 +3355,63 @@ L026046?:
 	mov	b,r4
 	mov	a,r5
 	lcall	___fsgt
-	mov	r2,dpl
+	mov	r6,dpl
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-	mov	a,r2
+	pop	ar5
+	pop	ar4
+	pop	ar3
+	pop	ar2
+	mov	a,r6
 	jnz	L026039?
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:735: PWMStop();
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:736: PWMStop();
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
 	lcall	_PWMStop
+	pop	ar5
+	pop	ar4
+	pop	ar3
+	pop	ar2
 	sjmp	L026040?
 L026039?:
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:737: PWMforward();
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:738: PWMforward();
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
 	lcall	_PWMforward
+	pop	ar5
+	pop	ar4
+	pop	ar3
+	pop	ar2
 L026040?:
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:738: waitms(100);
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:739: waitms(100);
 	mov	dptr,#0x0064
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
 	lcall	_waitms
-	ljmp	L026052?
-L026043?:
-;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:742: printf("Do nothing\r\n");	
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:740: printf("pir_voltage: %f \r\n", pir_voltage);
 	mov	a,#__str_16
 	push	acc
 	mov	a,#(__str_16 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	mov	a,sp
+	add	a,#0xf9
+	mov	sp,a
+	ljmp	L026052?
+L026043?:
+;	C:\Users\Dalto\Documents\GitHub\ElecRobot\idkwhatsgoingon.c:744: printf("Do nothing\r\n");	
+	mov	a,#__str_17
+	push	acc
+	mov	a,#(__str_17 >> 8)
 	push	acc
 	mov	a,#0x80
 	push	acc
@@ -3463,6 +3510,11 @@ __str_15:
 	db 0x0D
 	db 0x00
 __str_16:
+	db 'pir_voltage: %f '
+	db 0x0D
+	db 0x0A
+	db 0x00
+__str_17:
 	db 'Do nothing'
 	db 0x0D
 	db 0x0A
