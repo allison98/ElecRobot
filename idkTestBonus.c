@@ -32,7 +32,7 @@
 //#define motorB P3_1
 
 
-#define thresholdVolt 0.5 //50/1000
+#define thresholdVolt 1.3 //50/1000
 
 //#define LCD_D4 P2_4
 
@@ -53,10 +53,8 @@
 #define LEDWHITE P1_0
 #define LEDRED P0_7
 
-#define SPEAKER P2_5
 #define LASER P3_0
 #define PIR P2_4
-#define TEMPSENSOR P2_6
 
 
 volatile unsigned char pwm_count = 0; // used in the timer 2 ISR
@@ -83,7 +81,7 @@ int stop[]={0,0,0,0};
 int forward[]={1,1,1,1};
 int backward[]={1,0,1,1};
 int left[]={1,0,0,1};
-int right[]={1,0,0,0};
+int right[]={1,0,1,0};
 
 int command[4] = {0,0,0,0};
 
@@ -195,7 +193,6 @@ void UART1_Init (unsigned long baudrate)
 	SBCON1 |= 0x40;   // enable baud rate generator
 	SFRPAGE = 0x00;
 }
-
 
 void Timer3us(unsigned int us)
 {
@@ -337,7 +334,7 @@ void InitPinADC(unsigned char portno, unsigned char pinno)
 // straight: both wheels move forward
 // turning: one wheel is on
 
-void PWMforward(void) {
+void PWMbackward(void) {
 	pwmSig1 = 99;
 	pwmSig2 = 0;
 	
@@ -347,11 +344,10 @@ void PWMforward(void) {
 	LEDRED = 1;
 	LEDGREEN = 1;
 	LEDWHITE = 1;
-	SPEAKER = 0;
-	printf("Forward\n\r");
+	printf("Backward\n\r");
 }
 
-void PWMbackward(void) {
+void PWMforward(void) {
 	pwmSig1 = 0;
 	pwmSig2 = 99;
 	
@@ -361,11 +357,10 @@ void PWMbackward(void) {
 	LEDRED = 1;
 	LEDGREEN = 1;
 	LEDWHITE = 0;
-	SPEAKER = 1;
-	printf("Backward\n\r");
+	printf("Forward\n\r");
 }
 
-void PWMLeft(void) {
+void PWMRight(void) {
 	pwmSig1 = 0;
 	pwmSig2 = 99;
 	
@@ -375,12 +370,11 @@ void PWMLeft(void) {
 	LEDRED = 1;
 	LEDGREEN = 0;
 	LEDWHITE = 1;
-	SPEAKER = 0;
 
-	printf("Left\n\r");
+	printf("Right\n\r");
 }
 
-void PWMRight(void) {
+void PWMLeft(void) {
 	pwmSig1 = 99;
 	pwmSig2 = 0;
 	
@@ -390,9 +384,62 @@ void PWMRight(void) {
 	LEDRED = 1;
 	LEDGREEN = 0;
 	LEDWHITE = 1;
-	SPEAKER = 0;	
 	
+	printf("Left\n\r");
+}
+
+void PWMbackwardM(void) {
+	pwmSig1 = 50;
+	pwmSig2 = 0;
+	
+	pwmSig3 = 0;
+	pwmSig4 =50;
+
+	LEDRED = 1;
+	LEDGREEN = 1;
+	LEDWHITE = 1;
+	printf("Backward\n\r");
+}
+
+void PWMforwardM(void) {
+	pwmSig1 = 0;
+	pwmSig2 = 50;
+	
+	pwmSig3 = 50;
+	pwmSig4 = 0;
+
+	LEDRED = 1;
+	LEDGREEN = 1;
+	LEDWHITE = 0;
+	printf("Forward\n\r");
+}
+
+void PWMRightM(void) {
+	pwmSig1 = 0;
+	pwmSig2 = 50;
+	
+	pwmSig3 = 0;
+	pwmSig4 = 50;
+	
+	LEDRED = 1;
+	LEDGREEN = 0;
+	LEDWHITE = 1;
+
 	printf("Right\n\r");
+}
+
+void PWMLeftM(void) {
+	pwmSig1 = 50;
+	pwmSig2 = 0;
+	
+	pwmSig3 = 50;
+	pwmSig4 = 0;
+	
+	LEDRED = 1;
+	LEDGREEN = 0;
+	LEDWHITE = 1;
+	
+	printf("Left\n\r");
 }
 
 void PWMStop(void) {
@@ -405,7 +452,6 @@ void PWMStop(void) {
 	LEDRED = 0;
 	LEDGREEN = 1;
 	LEDWHITE = 1;
-	SPEAKER = 0;
 	
 	printf("Stop\n\r");
 }
@@ -464,10 +510,10 @@ int arrayEqual (int arr1[], int size, int arr2[]){
   
 void checkCommands (void){
  if(arrayEqual(command, 4, stop)) PWMStop();
- else if (arrayEqual(command,4,forward)) PWMforward(); 
- else if (arrayEqual(command,4,backward)) PWMbackward(); 
- else if (arrayEqual(command,4, left)) PWMLeft(); 
- else if (arrayEqual(command,4, right)) PWMRight(); 
+ else if (arrayEqual(command,4,forward)) PWMforwardM(); 
+ else if (arrayEqual(command,4,backward)) PWMbackwardM(); 
+ else if (arrayEqual(command,4, left)) PWMLeftM(); 
+ else if (arrayEqual(command,4, right)) PWMRightM(); 
  else PWMStop(); //defaults to a halt (redundant)
  waitms(350);
 }
@@ -556,16 +602,6 @@ int checkMode(){
 		x = 3;
 		return 3;
 	}
-	else if(!BUTTON4 || x == 4){
-		while(!BUTTON4);
-		x = 4;
-		return 4;
-	}
-	else if(!BUTTON5 || x == 5){
-		while(!BUTTON5);
-		x = 5;
-		return 5;
-	}	
 	else{
 		x = 2;
 		return 2;
@@ -584,7 +620,7 @@ void detectobstacle(float threshold){
   //motorL2 = pwm_count>pwmSig4 ? 0 : 1;
   
   //while(turnOnAutomation == 1){
-    if(threshold <= 0.6 ){
+    if(threshold <= 4.0 ){
       //Turn right 90 degrees
       printf("Turn right \r\n");
       PWMRight();
@@ -612,29 +648,13 @@ void laserPattern(float rate){
 	LASER = 0;
 	if(rate<0.8)
 		waitms(200);
-	else if(rate>=0.8 && rate<2.0)
+	else if(rate>=0.8 && rate<4.0)
 		waitms(500);
-	else if(rate>=2.0 && rate<2.8)
+	else if(rate>=8.0 && rate<8.8)
 		waitms(800);
 	else
 		waitms(1000);
 	LASER = 1;
-}
-
-//Bluetooth Stuff
-void putchar1 (char c) 
-{
-    SFRPAGE = 0x20;
-	if (c == '\n') 
-	{
-		while (!TI1);
-		TI1=0;
-		SBUF1 = '\r';
-	}
-	while (!TI1);
-	TI1=0;
-	SBUF1 = c;
-	SFRPAGE = 0x00;
 }
 
 char getchar1 (void)
@@ -649,115 +669,6 @@ char getchar1 (void)
 	SFRPAGE = 0x00;
 	return (c);
 }
-
-void puts1(char * buff)
-{
-	int j;
-	for(j=0; buff[j]!=0; j++) 
-		putchar1(buff[j]);
-
-}
-
-int checkRight(float threshold){
-	PWMRight();
-	if(threshold <= 0.6)
-		return 0;
-	else
-		return 1;
-}
-
-int checkLeft(float threshold){
-	PWMLeft();
-	if(threshold <= 0.6)
-		return 0;
-	else
-		return 1;
-}
-
-void forward1(){
-	PWMforward();
-	waitms(1100);
-	PWMStop();
-}
-
-void bluetoothMaze(int xcoord, int ycoord){
-	int x = 0;
-	int y = 0;
-	float threshold;
-	float period = 0;
-	int overflow_count=0;
-	
-	while(x<=5 && x>=0 && y<=5 && y>=0){
-		overflow_count=0;
-		TL0=0; 
-		TH0=0;
-		TF0=0;
-	
-		while(P2_1!=0); // Wait for the signal to be zero
-		while(P2_1!=1); // Wait for the signal to be one
-		TR0=1; // Start the timer
-		while(P2_1!=0) // Wait for the signal to be zero
-		{
-			if(TF0==1) // Did the 16-bit timer overflow?
-			{
-				TF0=0;
-				overflow_count++;
-			}
-		}
-		/*while(P2_1!=1) // Wait for the signal to be one
-		{
-			if(TF0==1) // Did the 16-bit timer overflow?
-			{
-				TF0=0;
-				overflow_count++;
-			}
-		}*/
-		TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
-		period=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
-		threshold = period*1000;
-		
-		
-		while(y != ycoord){
-			if(threshold <= 0.6){
-				if(checkRight(threshold) == 1){
-					forward1();
-					x++;
-				}
-				else if (checkLeft(threshold) == 1){
-					forward1();
-					x--;
-				}
-			}
-			else{
-				forward1();
-				y++;
-			}
-		}
-		while(x != xcoord){
-			if(threshold <= 0.6){ //threshold<=0.6
-				if(checkLeft(threshold) == 1){
-					forward1();
-					y--;
-				}
-				else if (checkLeft(threshold) == 1){
-					forward1();
-					y++;
-				}
-			}
-			else{
-				forward1();
-				x++;
-			}
-		}
-		while(y == ycoord && x == xcoord);
-	
-	}
-
-
-}
-
-
-
 
 void main(void)
 {
@@ -778,10 +689,11 @@ void main(void)
 	int count;
 	int getCoord = 0; //0 = no coord send; 1 = coord sent
 
+	
 	int mode_toggle = 2; //0 = auto ; 1 = manual ; 2 = do nothing
 	
 	UART1_Init(9600);
-	
+		
 	TL0=0;
 	TH0=0;
 	TF0=0;	
@@ -864,7 +776,7 @@ void main(void)
 			
 			//periodcalc(); 
   		}
-		else if( mode_toggle == 3){  //PIR
+		else if( mode_toggle == 3){
 			pir_voltage = Volts_at_Pin(QFP32_MUX_P2_4);
 			if(pir_voltage >= 3.0 && pir_voltage <= 3.4)
 				PWMStop();
@@ -873,24 +785,6 @@ void main(void)
 			waitms(100);
 			printf("pir_voltage: %f \r\n", pir_voltage);
 		
-		}
-		else if( mode_toggle == 4){   //Maze
-			while(getCoord == 0)
-			{
-				count = 0;
-				while(count<4){
-				temp[count] = getchar1();
-				count++;
-				}
-				count =0;
-				xcoord = temp[0];
-				ycoord = temp[1];
-				printf("XCOORD: %c , YCOORD: %c \n", xcoord, ycoord);
-				
-				if(temp[2] == 'g' && temp[3] == 'o')
-					getCoord = 1;
-			}
-				bluetoothMaze(xcoord, ycoord);
 		}
 		else if(mode_toggle == 5){   //Voice control
 			while(getCoord == 0) //Just reuse this stuff

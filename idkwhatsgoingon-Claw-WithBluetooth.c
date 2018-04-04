@@ -561,6 +561,11 @@ int checkMode(){
 		x = 4;
 		return 4;
 	}
+	else if(!BUTTON5 || x == 5){
+		while(!BUTTON5);
+		x = 5;
+		return 5;
+	}	
 	else{
 		x = 2;
 		return 2;
@@ -772,6 +777,7 @@ void main(void)
 	char temp[4];
 	int count;
 	int getCoord = 0; //0 = no coord send; 1 = coord sent
+	char temp;
 	
 	int mode_toggle = 2; //0 = auto ; 1 = manual ; 2 = do nothing
 	
@@ -887,6 +893,22 @@ void main(void)
 			}
 				bluetoothMaze(xcoord, ycoord);
 		}
+		else if(mode_toggle == 5){
+			temp = getchar1();
+			printf("Temp:%c \n", temp);
+		
+			recieveData();	//keep reading data continously 
+	    	printf("Command: ");
+	    	for(i=0; i<4; i++)
+	    		 printf("%d\t", command[i]);
+	    	printf("\n\r");
+	    	command[0] = 0;
+	  		command[1] = 0;
+	  		command[2] = 0;
+	  		command[3] = 0;
+			
+			//periodcalc(); 
+  		}
 		else{
 			printf("Do nothing\r\n");	
 		 }

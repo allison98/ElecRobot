@@ -46,15 +46,15 @@
 #define BUTTON1 P3_1
 #define BUTTON2 P3_3
 #define BUTTON3 P3_7
+#define BUTTON4 P0_5
+#define BUTTON5 P0_3
 
 #define LEDGREEN P0_6
 #define LEDWHITE P1_0
 #define LEDRED P0_7
 
-#define SPEAKER P2_5
 #define LASER P3_0
 #define PIR P2_4
-#define TEMPSENSOR P2_6
 
 
 volatile unsigned char pwm_count = 0; // used in the timer 2 ISR
@@ -81,7 +81,7 @@ int stop[]={0,0,0,0};
 int forward[]={1,1,1,1};
 int backward[]={1,0,1,1};
 int left[]={1,0,0,1};
-int right[]={1,0,0,0};
+int right[]={1,0,1,0};
 
 int command[4] = {0,0,0,0};
 
@@ -286,7 +286,7 @@ void TIMER0_Init(void)
 
 float Volts_at_Pin(unsigned char pin)
 {
-	return ((ADC_at_Pin(pin)*VDD) / 0b_0011_1111_1111_1111);
+	return ((ADC_at_Pin(pin)*VDD) / 0b_0011_1111_1111_1111); 
 }
 void InitPinADC(unsigned char portno, unsigned char pinno)
 {
@@ -321,7 +321,7 @@ void InitPinADC(unsigned char portno, unsigned char pinno)
 // straight: both wheels move forward
 // turning: one wheel is on
 
-void PWMforward(void) {
+void PWMbackward(void) {
 	pwmSig1 = 99;
 	pwmSig2 = 0;
 	
@@ -331,11 +331,10 @@ void PWMforward(void) {
 	LEDRED = 1;
 	LEDGREEN = 1;
 	LEDWHITE = 1;
-	SPEAKER = 0;
-	printf("Forward\n\r");
+	printf("Backward\n\r");
 }
 
-void PWMbackward(void) {
+void PWMforward(void) {
 	pwmSig1 = 0;
 	pwmSig2 = 99;
 	
@@ -345,11 +344,10 @@ void PWMbackward(void) {
 	LEDRED = 1;
 	LEDGREEN = 1;
 	LEDWHITE = 0;
-	SPEAKER = 1;
-	printf("Backward\n\r");
+	printf("Forward\n\r");
 }
 
-void PWMLeft(void) {
+void PWMRight(void) {
 	pwmSig1 = 0;
 	pwmSig2 = 99;
 	
@@ -359,12 +357,11 @@ void PWMLeft(void) {
 	LEDRED = 1;
 	LEDGREEN = 0;
 	LEDWHITE = 1;
-	SPEAKER = 0;
 
-	printf("Left\n\r");
+	printf("Right\n\r");
 }
 
-void PWMRight(void) {
+void PWMLeft(void) {
 	pwmSig1 = 99;
 	pwmSig2 = 0;
 	
@@ -374,9 +371,62 @@ void PWMRight(void) {
 	LEDRED = 1;
 	LEDGREEN = 0;
 	LEDWHITE = 1;
-	SPEAKER = 0;	
 	
+	printf("Left\n\r");
+}
+
+void PWMbackwardM(void) {
+	pwmSig1 = 50;
+	pwmSig2 = 0;
+	
+	pwmSig3 = 0;
+	pwmSig4 =50;
+
+	LEDRED = 1;
+	LEDGREEN = 1;
+	LEDWHITE = 1;
+	printf("Backward\n\r");
+}
+
+void PWMforwardM(void) {
+	pwmSig1 = 0;
+	pwmSig2 = 50;
+	
+	pwmSig3 = 50;
+	pwmSig4 = 0;
+
+	LEDRED = 1;
+	LEDGREEN = 1;
+	LEDWHITE = 0;
+	printf("Forward\n\r");
+}
+
+void PWMRightM(void) {
+	pwmSig1 = 0;
+	pwmSig2 = 50;
+	
+	pwmSig3 = 0;
+	pwmSig4 = 50;
+	
+	LEDRED = 1;
+	LEDGREEN = 0;
+	LEDWHITE = 1;
+
 	printf("Right\n\r");
+}
+
+void PWMLeftM(void) {
+	pwmSig1 = 50;
+	pwmSig2 = 0;
+	
+	pwmSig3 = 50;
+	pwmSig4 = 0;
+	
+	LEDRED = 1;
+	LEDGREEN = 0;
+	LEDWHITE = 1;
+	
+	printf("Left\n\r");
 }
 
 void PWMStop(void) {
@@ -389,7 +439,6 @@ void PWMStop(void) {
 	LEDRED = 0;
 	LEDGREEN = 1;
 	LEDWHITE = 1;
-	SPEAKER = 0;
 	
 	printf("Stop\n\r");
 }
@@ -448,10 +497,10 @@ int arrayEqual (int arr1[], int size, int arr2[]){
   
 void checkCommands (void){
  if(arrayEqual(command, 4, stop)) PWMStop();
- else if (arrayEqual(command,4,forward)) PWMforward(); 
- else if (arrayEqual(command,4,backward)) PWMbackward(); 
- else if (arrayEqual(command,4, left)) PWMLeft(); 
- else if (arrayEqual(command,4, right)) PWMRight(); 
+ else if (arrayEqual(command,4,forward)) PWMforwardM(); 
+ else if (arrayEqual(command,4,backward)) PWMbackwardM(); 
+ else if (arrayEqual(command,4, left)) PWMLeftM(); 
+ else if (arrayEqual(command,4, right)) PWMRightM(); 
  else PWMStop(); //defaults to a halt (redundant)
  waitms(350);
 }
@@ -558,7 +607,7 @@ void detectobstacle(float threshold){
   //motorL2 = pwm_count>pwmSig4 ? 0 : 1;
   
   //while(turnOnAutomation == 1){
-    if(threshold <= 0.6 ){
+    if(threshold <= 4.0 ){
       //Turn right 90 degrees
       printf("Turn right \r\n");
       PWMRight();
@@ -586,9 +635,9 @@ void laserPattern(float rate){
 	LASER = 0;
 	if(rate<0.8)
 		waitms(200);
-	else if(rate>=0.8 && rate<2.0)
+	else if(rate>=0.8 && rate<4.0)
 		waitms(500);
-	else if(rate>=2.0 && rate<2.8)
+	else if(rate>=8.0 && rate<8.8)
 		waitms(800);
 	else
 		waitms(1000);

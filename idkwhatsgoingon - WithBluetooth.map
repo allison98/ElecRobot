@@ -1,0 +1,852 @@
+Modules linked:
+   'idkwhatsgoingon' from 'idkwhatsgoingon - WithBluetooth.obj'
+   'gptrget' from 'C:\CrossIDE\Call51\Bin\..\lib\small\libc51f.lib'
+   'divulong' from 'C:\CrossIDE\Call51\Bin\..\lib\small\liblong.lib'
+   'uint2fs' from 'C:\CrossIDE\Call51\Bin\..\lib\small\libfloat.lib'
+   'fsgt' from 'C:\CrossIDE\Call51\Bin\..\lib\small\libfloat.lib'
+   'fslt' from 'C:\CrossIDE\Call51\Bin\..\lib\small\libfloat.lib'
+   'fsmul' from 'C:\CrossIDE\Call51\Bin\..\lib\small\libfloat.lib'
+   'uchar2fs' from 'C:\CrossIDE\Call51\Bin\..\lib\small\libfloat.lib'
+   'fsadd' from 'C:\CrossIDE\Call51\Bin\..\lib\small\libfloat.lib'
+   'vprintf' from 'C:\CrossIDE\Call51\Bin\..\lib\small\libc51f.lib'
+   'crt0' from 'C:\CrossIDE\Call51\Bin\..\lib\small\libc51f.lib'
+   'sint2fs' from 'C:\CrossIDE\Call51\Bin\..\lib\small\libfloat.lib'
+   'fsdiv' from 'C:\CrossIDE\Call51\Bin\..\lib\small\libfloat.lib'
+   'ulong2fs' from 'C:\CrossIDE\Call51\Bin\..\lib\small\libfloat.lib'
+   'fscmp' from 'C:\CrossIDE\Call51\Bin\..\lib\small\libfloat.lib'
+   'fsreturnval' from 'C:\CrossIDE\Call51\Bin\..\lib\small\libfloat.lib'
+   'fsnormalize' from 'C:\CrossIDE\Call51\Bin\..\lib\small\libfloat.lib'
+   'fsget2args' from 'C:\CrossIDE\Call51\Bin\..\lib\small\libfloat.lib'
+   'fsswapargs' from 'C:\CrossIDE\Call51\Bin\..\lib\small\libfloat.lib'
+   'fsrshift' from 'C:\CrossIDE\Call51\Bin\..\lib\small\libfloat.lib'
+   'print_format' from 'C:\CrossIDE\Call51\Bin\..\lib\small\libc51f.lib'
+   'bp' from 'C:\CrossIDE\Call51\Bin\..\lib\small\libc51f.lib'
+   'putchar' from 'C:\CrossIDE\Call51\Bin\..\lib\small\libc51f.lib'
+   'slong2fs' from 'C:\CrossIDE\Call51\Bin\..\lib\small\libfloat.lib'
+   'ftoa' from 'C:\CrossIDE\Call51\Bin\..\lib\small\libc51f.lib'
+   'gptrput' from 'C:\CrossIDE\Call51\Bin\..\lib\small\libc51f.lib'
+   'taos' from 'C:\CrossIDE\Call51\Bin\..\lib\small\libc51f.lib'
+   'strlen' from 'C:\CrossIDE\Call51\Bin\..\lib\small\libc51f.lib'
+
+Memory use per module linked:
+C:04953 D:111 I:000 B:001 X:00000 - idkwhatsgoingon
+C:00028 D:000 I:000 B:000 X:00000 - gptrget
+C:00101 D:004 I:000 B:000 X:00000 - divulong
+C:00012 D:000 I:000 B:000 X:00000 - uint2fs
+C:00048 D:000 I:000 B:000 X:00000 - fsgt
+C:00048 D:000 I:000 B:000 X:00000 - fslt
+C:00163 D:000 I:000 B:000 X:00000 - fsmul
+C:00011 D:000 I:000 B:000 X:00000 - uchar2fs
+C:00089 D:000 I:000 B:000 X:00000 - fsadd
+C:00054 D:001 I:000 B:000 X:00000 - vprintf
+C:00113 D:000 I:000 B:000 X:00000 - crt0
+C:00013 D:000 I:000 B:000 X:00000 - sint2fs
+C:00287 D:004 I:000 B:000 X:00000 - fsdiv
+C:00019 D:000 I:000 B:000 X:00000 - ulong2fs
+C:00073 D:000 I:000 B:000 X:00000 - fscmp
+C:00079 D:000 I:000 B:000 X:00000 - fsreturnval
+C:00051 D:000 I:000 B:000 X:00000 - fsnormalize
+C:00046 D:000 I:000 B:000 X:00000 - fsget2args
+C:00026 D:000 I:000 B:000 X:00000 - fsswapargs
+C:00067 D:000 I:000 B:000 X:00000 - fsrshift
+C:02444 D:018 I:000 B:014 X:00000 - print_format
+C:00000 D:001 I:000 B:000 X:00000 - bp
+C:00021 D:000 I:000 B:000 X:00000 - putchar
+C:00045 D:000 I:000 B:000 X:00000 - slong2fs
+C:00287 D:000 I:000 B:000 X:00000 - ftoa
+C:00025 D:001 I:000 B:000 X:00000 - gptrput
+C:00000 D:000 I:016 B:000 X:00000 - taos
+C:00040 D:000 I:000 B:000 X:00000 - strlen
+C:00007 D:000 I:000 B:000 X:00000 - ABSOLUTE
+------------------------------------------------------
+C:09150 D:140 I:016 B:015 X:00000 - Totals
+
+INTERMAL RAM map (see legend below):
+00: 0 0 0 0 0 0 0 0 a b c c c c c c 
+10: c c c c c c c c c c c c . . . . 
+20: B B d d d d d d d d d e e e e e 
+30: e e e e e e e e e e e . . . . . 
+40: . . . . . . . . . . . . . . . . 
+50: . . . . . . . . . . . . . . . . 
+60: . . . . . . . . . . . . . . . . 
+70: . . . . . . . . . . . . . . . . 
+80: . . . . . . . . . . . . . . . . 
+90: . . . . . . . . . . . . . . . . 
+A0: . . . . . . . . . . . . . . . . 
+B0: . . . . . . . . . . . . . . . . 
+C0: . . . . . . . . . . . . . . . . 
+D0: . . . . . . . . . . . . . . . . 
+E0: . . . . . . . . . . . . . . . . 
+F0: . . . . . . . . . . . . . . . . 
+
+Legend:
+	0: Register bank 0
+	1: Register bank 1
+	2: Register bank 2
+	3: Register bank 3
+	B: bits (see 'BIT map' below)
+	a: bp:R_DSEG
+	b: vprintf:R_DSEG
+	c: ?lib?dseg?1
+	d: R_OSEG
+	e: R_ISEG
+
+BIT map:
+00: U U U U U U U U U U U U U U U . 
+10: . . . . . . . . . . . . . . . . 
+20: . . . . . . . . . . . . . . . . 
+30: . . . . . . . . . . . . . . . . 
+40: . . . . . . . . . . . . . . . . 
+50: . . . . . . . . . . . . . . . . 
+60: . . . . . . . . . . . . . . . . 
+70: . . . . . . . . . . . . . . . . 
+
+CODE usage map:
+0000: 216 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 
+1000: 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 256 
+2000: 256 256 256 230 000 000 000 000 000 000 000 000 000 000 000 000 
+3000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+4000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+5000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+6000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+7000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+8000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+9000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+A000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+B000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+C000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+D000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+E000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+F000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+Total: 9150 bytes
+
+XDATA usage map:
+0000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+1000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+2000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+3000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+4000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+5000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+6000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+7000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+8000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+9000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+A000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+B000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+C000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+D000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+E000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+F000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+Total: 0 bytes
+
+Base Segments:
+   ?lib?dseg?1=D:000A, size=0012
+   BIT_BANK=D:0000, size=0000
+   R_BSEG=B:0000, size=000F
+   R_CONST=C:009F, size=0127
+   R_CSEG=C:0273, size=2173
+   R_DINIT=C:01C6, size=00AC
+   R_DSEG=D:0000, size=0068
+   R_GSINIT=C:002E, size=0071
+   R_HOME=C:0000, size=0000
+   R_ISEG=I:002B, size=0010
+   R_IXSEG=X:0000, size=0000
+   R_OSEG=D:0022, size=0009
+   R_PSEG=X:0000, size=0000
+   R_XINIT=C:0000, size=0000
+   R_XSEG=X:0000, size=0000
+   rbank0=D:0000, size=0008
+
+Module Segments:
+   CSEG=C:0000, size=0007
+   bp:R_DSEG=D:0008, size=0001
+   crt0:R_GSINIT=C:002E, size=0071
+   divulong:R_CSEG=C:1415, size=0065
+   divulong:R_OSEG=D:0022, size=0004
+   fsadd:R_CSEG=C:1594, size=0059
+   fscmp:R_CSEG=C:1762, size=0049
+   fsdiv:R_CSEG=C:1630, size=011F
+   fsdiv:R_OSEG=D:0022, size=0004
+   fsget2args:R_CSEG=C:182D, size=002E
+   fsgt:R_CSEG=C:1486, size=0030
+   fslt:R_CSEG=C:14B6, size=0030
+   fsmul:R_CSEG=C:14E6, size=00A3
+   fsnormalize:R_CSEG=C:17FA, size=0033
+   fsreturnval:R_CSEG=C:17AB, size=004F
+   fsrshift:R_CSEG=C:1875, size=0043
+   fsswapargs:R_CSEG=C:185B, size=001A
+   ftoa:R_CSEG=C:2286, size=011F
+   gptrget:R_CSEG=C:13F9, size=001C
+   gptrput:R_CSEG=C:23A5, size=0019
+   gptrput:R_OSEG=D:0022, size=0001
+   idkwhatsgoingon - WithBluetooth:R_BSEG=B:0000, size=0001
+   idkwhatsgoingon - WithBluetooth:R_CONST=C:009F, size=0127
+   idkwhatsgoingon - WithBluetooth:R_CSEG=C:0273, size=1186
+   idkwhatsgoingon - WithBluetooth:R_DINIT=C:01C6, size=00AC
+   idkwhatsgoingon - WithBluetooth:R_DSEG=D:FFFFFFFF, size=0066
+   idkwhatsgoingon - WithBluetooth:R_OSEG=D:0022, size=0009
+   print_format:?lib?dseg?1=D:000A, size=0012
+   print_format:R_BSEG=B:0001, size=000E
+   print_format:R_CSEG=C:18B8, size=098C
+   putchar:R_CSEG=C:2244, size=0015
+   sint2fs:R_CSEG=C:1623, size=000D
+   slong2fs:R_CSEG=C:2259, size=002D
+   strlen:R_CSEG=C:23BE, size=0028
+   taos:R_ISEG=I:002B, size=0010
+   uchar2fs:R_CSEG=C:1589, size=000B
+   uint2fs:R_CSEG=C:147A, size=000C
+   ulong2fs:R_CSEG=C:174F, size=0013
+   vprintf:R_CSEG=C:15ED, size=0036
+   vprintf:R_DSEG=D:0009, size=0001
+
+Public symbols:
+   _?lib?dseg?1_size=L:0012
+   _?lib?dseg?1_start=L:000A
+   _ADC_at_Pin=C:03AC
+   _InitADC=C:042A
+   _InitPinADC=C:04A6
+   _InitPinADC_PARM_2=D:0022
+   _PWMLeft=C:0550
+   _PWMRight=C:0584
+   _PWMStop=C:05B8
+   _PWMbackward=C:051C
+   _PWMforward=C:04E9
+   _R_BSEG_size=L:000F
+   _R_BSEG_start=L:0000
+   _R_CONST_size=L:0127
+   _R_CONST_start=L:009F
+   _R_CSEG_size=L:2173
+   _R_CSEG_start=L:0273
+   _R_DINIT_size=L:00AC
+   _R_DINIT_start=L:01C6
+   _R_GSINIT_size=L:0071
+   _R_GSINIT_start=L:002E
+   _R_HOME_size=L:0000
+   _R_HOME_start=L:0000
+   _R_ISEG_size=L:0010
+   _R_ISEG_start=L:0000
+   _R_IXSEG_size=L:0000
+   _R_IXSEG_start=L:0000
+   _R_OSEG_size=L:0009
+   _R_OSEG_start=L:0022
+   _R_PSEG_size=L:0000
+   _R_PSEG_start=L:0000
+   _R_XINIT_size=L:0000
+   _R_XINIT_start=L:0000
+   _R_XSEG_size=L:0000
+   _R_XSEG_start=L:0000
+   _TIMER0_Init=C:0442
+   _Timer2_ISR=C:03C0
+   _Timer3us=C:033D
+   _UART1_Init=C:02DC
+   _Volts_at_Pin=C:044B
+   ___fsadd=C:1594
+   ___fsdiv=C:1630
+   ___fsgt=C:1486
+   ___fslt=C:14B6
+   ___fsmul=C:14E6
+   ___sint2fs=C:1623
+   ___slong2fs=C:2259
+   ___uchar2fs=C:1589
+   ___uint2fs=C:147A
+   ___ulong2fs=C:174F
+   __c51_external_startup=C:0273
+   __divslong_PARM_2=D:0022
+   __divulong=C:1415
+   __divulong_PARM_2=D:0022
+   __ftoa=C:2286
+   __gptrget=C:13F9
+   __gptrput=C:23A5
+   __gptrput_PARM_2=D:0022
+   __print_format=C:1C97
+   __print_format_PARM_2=D:0018
+   __print_format_PARM_3=D:001B
+   __taos=I:002B
+   _arrayEqual=C:074D
+   _arrayEqual_PARM_2=D:0023
+   _arrayEqual_PARM_3=D:0025
+   _backward=D:0027
+   _bluetoothMaze=C:0C67
+   _bluetoothMaze_PARM_2=D:0049
+   _bp=D:0008
+   _bp_R_DSEG_size=L:0001
+   _bp_R_DSEG_start=L:0008
+   _cartMoveB=D:0011
+   _cartMoveF=D:000F
+   _checkCommands=C:07BF
+   _checkLeft=C:0C14
+   _checkMode=C:096C
+   _checkRight=C:0BCD
+   _claw_flag=D:0015
+   _command=D:003F
+   _crt0=C:002E
+   _detectobstacle=C:0A00
+   _dummy_name_crt0=C:1623
+   _flag=D:0013
+   _forward1=C:0C5B
+   _forward=D:001F
+   _getDigitalSignal=C:08A3
+   _getchar1=C:0B7C
+   _idkwhatsgoingon - WithBluetooth_R_DSEG_size=L:0066
+   _idkwhatsgoingon - WithBluetooth_R_DSEG_start=L:FFFFFFFF
+   _laserPattern=C:0A7D
+   _left=D:002F
+   _main=C:0F8A
+   _periodcalc=C:05E7
+   _printf=C:1602
+   _putchar1=C:0B61
+   _putchar=C:2244
+   _puts1=C:0B8E
+   _pwmSig1=D:0003
+   _pwmSig2=D:0005
+   _pwmSig3=D:0007
+   _pwmSig4=D:0009
+   _pwmSig5=D:000B
+   _pwmSig6=D:000D
+   _pwm_count1=D:0000
+   _pwm_count2=D:0001
+   _pwm_count3=D:0002
+   _pwm_count=D:FFFFFFFF
+   _recieveData=C:0908
+   _right=D:0037
+   _stack_start=L:003B
+   _stop=D:0017
+   _strlen=C:23BE
+   _voltsAtPeak=C:0888
+   _vprintf=C:15F0
+   _vprintf_PARM_2=D:0009
+   _vprintf_R_DSEG_size=L:0001
+   _vprintf_R_DSEG_start=L:0009
+   _waitms=C:0371
+   _waitquarterperiod=C:0902
+   _x=D:0047
+   fs_check_negative_zeros=C:1780
+   fs_compare_uint32=C:1762
+   fs_direct_return=C:17D4
+   fs_normalize_a=C:17FA
+   fs_return_inf=C:17E2
+   fs_return_nan=C:17EF
+   fs_return_zero=C:17CC
+   fs_round_and_return=C:17AB
+   fs_rshift_a=C:1875
+   fs_swap_a_b=C:185B
+   fs_zerocheck_return=C:17C3
+   fsadd_direct_entry=C:1597
+   fsgetargs=C:182D
+   slong2fs_doit=C:2262
+   ulong2fs_doit=C:1758
+
+Local symbols:
+   crt0:PClearLoop?done?=C:0097
+   crt0:PClearLoop?repeat?=C:0089
+   crt0:XClearLoop?done?=C:007F
+   crt0:XClearLoop?repeat?=C:0071
+   crt0:XInitLoop?done?=C:0067
+   crt0:XInitLoop?repeat?=C:0047
+   crt0:__c51_init_data=C:003B
+   crt0:__c51_program_startup=C:009A
+   crt0:forever?home?=C:009D
+   divulong:__divlong_dummy=C:1415
+   divulong:exit=C:1478
+   divulong:in_lp=C:1449
+   divulong:loop=C:1436
+   divulong:lp0=C:141D
+   divulong:minus=C:1476
+   fsadd:L00005?=C:15A0
+   fsadd:L00010?=C:15A5
+   fsadd:L00011?=C:15AD
+   fsadd:L00020?=C:15B5
+   fsadd:L00021?=C:15C9
+   fsadd:L00022?=C:15CC
+   fsadd:L00025?=C:15E7
+   fsadd:_dummy=C:1594
+   fscmp:_dummy=C:1762
+   fscmp:a_check=C:1780
+   fscmp:a_not_neg_zero=C:1792
+   fscmp:a_not_neg_zero_cleanup=C:1791
+   fscmp:b_check=C:1792
+   fscmp:b_not_neg_zero=C:17AA
+   fscmp:b_not_neg_zero_cleanup_1=C:17A9
+   fscmp:b_not_neg_zero_cleanup_2=C:17A8
+   fscmp:b_not_neg_zero_cleanup_3=C:17A7
+   fscmp:compare32_done=C:177F
+   fsdiv:L00001?=C:1638
+   fsdiv:L00002?=C:1641
+   fsdiv:L00003?=C:1644
+   fsdiv:L00004?=C:164A
+   fsdiv:L00005?=C:1657
+   fsdiv:L00006?=C:165A
+   fsdiv:L00007?=C:1662
+   fsdiv:L00008?=C:166E
+   fsdiv:L00009?=C:1676
+   fsdiv:L00010?=C:168C
+   fsdiv:L00011?=C:16DC
+   fsdiv:L00012?=C:16EF
+   fsdiv:L00013?=C:173E
+   fsdiv:L00014?=C:174C
+   fsdiv:_dummy=C:1630
+   fsdiv:saved_b=D:0025
+   fsdiv:saved_r5=D:0022
+   fsdiv:saved_r6=D:0023
+   fsdiv:saved_r7=D:0024
+   fsget2args:L00001?=C:183A
+   fsget2args:L00002?=C:1856
+   fsget2args:_dummy=C:182D
+   fsgt:_dummy=C:1486
+   fsgt:a_negative=C:149B
+   fsgt:a_positive=C:1494
+   fsgt:ab_different=C:14AD
+   fsgt:ab_negative=C:14A4
+   fsgt:ab_positive=C:14A2
+   fsgt:skip_invert=C:14B1
+   fslt:_dummy=C:14B6
+   fslt:a_negative=C:14CB
+   fslt:a_positive=C:14C4
+   fslt:ab_different=C:14DD
+   fslt:ab_negative=C:14D4
+   fslt:ab_positive=C:14D2
+   fslt:skip_invert=C:14E1
+   fsmul:L00001?=C:14EC
+   fsmul:L00002?=C:14EF
+   fsmul:L00003?=C:14F7
+   fsmul:L00004?=C:14FF
+   fsmul:L00005?=C:1507
+   fsmul:L00006?=C:1512
+   fsmul:L00007?=C:151A
+   fsmul:L00010?=C:1586
+   fsmul:_dummy=C:14E6
+   fsnormalize:L00001?=C:17FD
+   fsnormalize:L00002?=C:180F
+   fsnormalize:L00003?=C:1810
+   fsnormalize:L00004?=C:1814
+   fsnormalize:L00005?=C:181B
+   fsnormalize:L00006?=C:182A
+   fsnormalize:_dummy=C:17FA
+   fsreturnval:L00001?=C:17B1
+   fsreturnval:_dummy=C:17AB
+   fsrshift:L00001?=C:187E
+   fsrshift:L00003?=C:18A3
+   fsrshift:L00005?=C:18A8
+   fsrshift:L00020?=C:18B7
+   fsrshift:_dummy=C:1875
+   fsswapargs:_dummy=C:185B
+   ftoa:ASCII_digits=C:2361
+   ftoa:ASCII_digits_loop=C:2364
+   ftoa:ASCII_exp=C:238D
+   ftoa:ASCII_exp_minus=C:2389
+   ftoa:ASCII_minus=C:235F
+   ftoa:BCD_to_ASCII=C:2354
+   ftoa:Conversion_Loop=C:2303
+   ftoa:Convert_FP_to_BCD=C:22F3
+   ftoa:Divide_by_10_loop=C:233F
+   ftoa:FP_Adjust=C:22AD
+   ftoa:No_BCD_mantissa_overflow=C:2352
+   ftoa:No_Decimal_Point=C:2372
+   ftoa:Shift_Product_Right=C:22E0
+   ftoa:_Is_not_FP_zero=C:229A
+   gptrget:codeptr?=C:1410
+   gptrget:dataptrrestore?=C:1407
+   gptrget:pdataptr?=C:140D
+   gptrget:xdataptr?=C:1413
+   gptrput:codeptr?=C:23B8
+   gptrput:dataptrrestore?=C:23B3
+   gptrput:pdataptr?=C:23B9
+   gptrput:xdataptr?=C:23BC
+   idkwhatsgoingon - WithBluetooth:L002001?=C:0291
+   idkwhatsgoingon - WithBluetooth:L002004?=C:029C
+   idkwhatsgoingon - WithBluetooth:L004001?=C:035E
+   idkwhatsgoingon - WithBluetooth:L004004?=C:0357
+   idkwhatsgoingon - WithBluetooth:L004007?=C:036D
+   idkwhatsgoingon - WithBluetooth:L005001?=C:0382
+   idkwhatsgoingon - WithBluetooth:L005005?=C:0379
+   idkwhatsgoingon - WithBluetooth:L005007?=C:03A4
+   idkwhatsgoingon - WithBluetooth:L005009?=C:03AB
+   idkwhatsgoingon - WithBluetooth:L005018?=C:0385
+   idkwhatsgoingon - WithBluetooth:L006001?=C:03B1
+   idkwhatsgoingon - WithBluetooth:L006004?=C:03B6
+   idkwhatsgoingon - WithBluetooth:L007002?=C:03D8
+   idkwhatsgoingon - WithBluetooth:L011001?=C:04C9
+   idkwhatsgoingon - WithBluetooth:L011002?=C:04D3
+   idkwhatsgoingon - WithBluetooth:L011003?=C:04DD
+   idkwhatsgoingon - WithBluetooth:L011005?=C:04E5
+   idkwhatsgoingon - WithBluetooth:L011011?=C:04B1
+   idkwhatsgoingon - WithBluetooth:L011013?=C:04B3
+   idkwhatsgoingon - WithBluetooth:L011014?=C:04BF
+   idkwhatsgoingon - WithBluetooth:L011015?=C:04C4
+   idkwhatsgoingon - WithBluetooth:L017001?=C:05F1
+   idkwhatsgoingon - WithBluetooth:L017004?=C:05F4
+   idkwhatsgoingon - WithBluetooth:L017009?=C:05FD
+   idkwhatsgoingon - WithBluetooth:L017014?=C:060C
+   idkwhatsgoingon - WithBluetooth:L017016?=C:061B
+   idkwhatsgoingon - WithBluetooth:L017026?=C:060C
+   idkwhatsgoingon - WithBluetooth:L017033?=C:0605
+   idkwhatsgoingon - WithBluetooth:L017035?=C:0614
+   idkwhatsgoingon - WithBluetooth:L018003?=C:075A
+   idkwhatsgoingon - WithBluetooth:L018005?=C:07B4
+   idkwhatsgoingon - WithBluetooth:L018006?=C:07BB
+   idkwhatsgoingon - WithBluetooth:L018013?=C:07B0
+   idkwhatsgoingon - WithBluetooth:L019002?=C:087F
+   idkwhatsgoingon - WithBluetooth:L019005?=C:0859
+   idkwhatsgoingon - WithBluetooth:L019008?=C:0833
+   idkwhatsgoingon - WithBluetooth:L019011?=C:080D
+   idkwhatsgoingon - WithBluetooth:L019014?=C:07E6
+   idkwhatsgoingon - WithBluetooth:L019015?=C:0882
+   idkwhatsgoingon - WithBluetooth:L020001?=C:0888
+   idkwhatsgoingon - WithBluetooth:L021002?=C:08FE
+   idkwhatsgoingon - WithBluetooth:L023001?=C:0908
+   idkwhatsgoingon - WithBluetooth:L023004?=C:0924
+   idkwhatsgoingon - WithBluetooth:L023007?=C:0969
+   idkwhatsgoingon - WithBluetooth:L024001?=C:0975
+   idkwhatsgoingon - WithBluetooth:L024004?=C:0992
+   idkwhatsgoingon - WithBluetooth:L024007?=C:09AF
+   idkwhatsgoingon - WithBluetooth:L024010?=C:09CC
+   idkwhatsgoingon - WithBluetooth:L024013?=C:09E9
+   idkwhatsgoingon - WithBluetooth:L024017?=C:09F6
+   idkwhatsgoingon - WithBluetooth:L024021?=C:09D9
+   idkwhatsgoingon - WithBluetooth:L024025?=C:09BC
+   idkwhatsgoingon - WithBluetooth:L024029?=C:099F
+   idkwhatsgoingon - WithBluetooth:L024033?=C:0982
+   idkwhatsgoingon - WithBluetooth:L024057?=C:0990
+   idkwhatsgoingon - WithBluetooth:L024058?=C:0992
+   idkwhatsgoingon - WithBluetooth:L024061?=C:09AD
+   idkwhatsgoingon - WithBluetooth:L024062?=C:09AF
+   idkwhatsgoingon - WithBluetooth:L024065?=C:09CA
+   idkwhatsgoingon - WithBluetooth:L024066?=C:09CC
+   idkwhatsgoingon - WithBluetooth:L024069?=C:09E7
+   idkwhatsgoingon - WithBluetooth:L024070?=C:09E9
+   idkwhatsgoingon - WithBluetooth:L025002?=C:0A65
+   idkwhatsgoingon - WithBluetooth:L026002?=C:0B58
+   idkwhatsgoingon - WithBluetooth:L026006?=C:0AFF
+   idkwhatsgoingon - WithBluetooth:L026010?=C:0AC4
+   idkwhatsgoingon - WithBluetooth:L026011?=C:0B5E
+   idkwhatsgoingon - WithBluetooth:L027001?=C:0B69
+   idkwhatsgoingon - WithBluetooth:L027006?=C:0B71
+   idkwhatsgoingon - WithBluetooth:L027017?=C:0B6E
+   idkwhatsgoingon - WithBluetooth:L027018?=C:0B76
+   idkwhatsgoingon - WithBluetooth:L028001?=C:0B7F
+   idkwhatsgoingon - WithBluetooth:L028008?=C:0B84
+   idkwhatsgoingon - WithBluetooth:L029001?=C:0B98
+   idkwhatsgoingon - WithBluetooth:L029005?=C:0BCC
+   idkwhatsgoingon - WithBluetooth:L030002?=C:0C10
+   idkwhatsgoingon - WithBluetooth:L031002?=C:0C57
+   idkwhatsgoingon - WithBluetooth:L033001?=C:0CB0
+   idkwhatsgoingon - WithBluetooth:L033004?=C:0CB3
+   idkwhatsgoingon - WithBluetooth:L033009?=C:0CBC
+   idkwhatsgoingon - WithBluetooth:L033011?=C:0CCB
+   idkwhatsgoingon - WithBluetooth:L033015?=C:0E51
+   idkwhatsgoingon - WithBluetooth:L033018?=C:0E90
+   idkwhatsgoingon - WithBluetooth:L033020?=C:0E06
+   idkwhatsgoingon - WithBluetooth:L033026?=C:0F0A
+   idkwhatsgoingon - WithBluetooth:L033029?=C:0F4D
+   idkwhatsgoingon - WithBluetooth:L033031?=C:0EB3
+   idkwhatsgoingon - WithBluetooth:L033035?=C:0F7C
+   idkwhatsgoingon - WithBluetooth:L033041?=C:0C76
+   idkwhatsgoingon - WithBluetooth:L033071?=C:0EAB
+   idkwhatsgoingon - WithBluetooth:L033072?=C:0F68
+   idkwhatsgoingon - WithBluetooth:L033073?=C:0C89
+   idkwhatsgoingon - WithBluetooth:L033074?=C:0C8F
+   idkwhatsgoingon - WithBluetooth:L033075?=C:0CA2
+   idkwhatsgoingon - WithBluetooth:L033076?=C:0CA8
+   idkwhatsgoingon - WithBluetooth:L033080?=C:0CC4
+   idkwhatsgoingon - WithBluetooth:L033081?=C:0E11
+   idkwhatsgoingon - WithBluetooth:L033088?=C:0E8D
+   idkwhatsgoingon - WithBluetooth:L033089?=C:0EA4
+   idkwhatsgoingon - WithBluetooth:L033090?=C:0EBF
+   idkwhatsgoingon - WithBluetooth:L033091?=C:0EC0
+   idkwhatsgoingon - WithBluetooth:L033092?=C:0EC6
+   idkwhatsgoingon - WithBluetooth:L033093?=C:0ECC
+   idkwhatsgoingon - WithBluetooth:L033096?=C:0F08
+   idkwhatsgoingon - WithBluetooth:L033097?=C:0F30
+   idkwhatsgoingon - WithBluetooth:L033098?=C:0F33
+   idkwhatsgoingon - WithBluetooth:L033099?=C:0F4A
+   idkwhatsgoingon - WithBluetooth:L033100?=C:0F61
+   idkwhatsgoingon - WithBluetooth:L033101?=C:0F7A
+   idkwhatsgoingon - WithBluetooth:L033102?=C:0F7B
+   idkwhatsgoingon - WithBluetooth:L033103?=C:0F82
+   idkwhatsgoingon - WithBluetooth:L033104?=C:0F88
+   idkwhatsgoingon - WithBluetooth:L034001?=C:103D
+   idkwhatsgoingon - WithBluetooth:L034004?=C:1040
+   idkwhatsgoingon - WithBluetooth:L034009?=C:1049
+   idkwhatsgoingon - WithBluetooth:L034011?=C:1058
+   idkwhatsgoingon - WithBluetooth:L034013?=C:12BF
+   idkwhatsgoingon - WithBluetooth:L034014?=C:12C2
+   idkwhatsgoingon - WithBluetooth:L034016?=C:12FB
+   idkwhatsgoingon - WithBluetooth:L034018?=C:1323
+   idkwhatsgoingon - WithBluetooth:L034022?=C:12F3
+   idkwhatsgoingon - WithBluetooth:L034024?=C:1365
+   idkwhatsgoingon - WithBluetooth:L034025?=C:138D
+   idkwhatsgoingon - WithBluetooth:L034028?=C:1385
+   idkwhatsgoingon - WithBluetooth:L034030?=C:13B5
+   idkwhatsgoingon - WithBluetooth:L034032?=C:13DB
+   idkwhatsgoingon - WithBluetooth:L034035?=C:13D2
+   idkwhatsgoingon - WithBluetooth:L034038?=C:13C9
+   idkwhatsgoingon - WithBluetooth:L034041?=C:13C0
+   idkwhatsgoingon - WithBluetooth:L034044?=C:13E1
+   idkwhatsgoingon - WithBluetooth:L034047?=C:137F
+   idkwhatsgoingon - WithBluetooth:L034050?=C:12E8
+   idkwhatsgoingon - WithBluetooth:L034053?=C:1251
+   idkwhatsgoingon - WithBluetooth:L034056?=C:11B5
+   idkwhatsgoingon - WithBluetooth:L034059?=C:1012
+   idkwhatsgoingon - WithBluetooth:L034061?=C:11DC
+   idkwhatsgoingon - WithBluetooth:L034064?=C:1221
+   idkwhatsgoingon - WithBluetooth:L034099?=C:1020
+   idkwhatsgoingon - WithBluetooth:L034103?=C:1051
+   idkwhatsgoingon - WithBluetooth:L034104?=C:11BD
+   idkwhatsgoingon - WithBluetooth:L034105?=C:11C0
+   idkwhatsgoingon - WithBluetooth:L034108?=C:1259
+   idkwhatsgoingon - WithBluetooth:L034109?=C:125C
+   idkwhatsgoingon - WithBluetooth:L034112?=C:12F0
+   idkwhatsgoingon - WithBluetooth:L034113?=C:12F3
+   idkwhatsgoingon - WithBluetooth:_Timer2_ISR_sloc0_1_0=B:0000
+   idkwhatsgoingon - WithBluetooth:__str_0=C:009F
+   idkwhatsgoingon - WithBluetooth:__str_10=C:010B
+   idkwhatsgoingon - WithBluetooth:__str_11=C:0165
+   idkwhatsgoingon - WithBluetooth:__str_12=C:0168
+   idkwhatsgoingon - WithBluetooth:__str_13=C:0170
+   idkwhatsgoingon - WithBluetooth:__str_14=C:017E
+   idkwhatsgoingon - WithBluetooth:__str_15=C:0188
+   idkwhatsgoingon - WithBluetooth:__str_16=C:018C
+   idkwhatsgoingon - WithBluetooth:__str_17=C:019F
+   idkwhatsgoingon - WithBluetooth:__str_18=C:01B9
+   idkwhatsgoingon - WithBluetooth:__str_1=C:00A9
+   idkwhatsgoingon - WithBluetooth:__str_2=C:00B4
+   idkwhatsgoingon - WithBluetooth:__str_3=C:00BB
+   idkwhatsgoingon - WithBluetooth:__str_4=C:00C3
+   idkwhatsgoingon - WithBluetooth:__str_5=C:00CA
+   idkwhatsgoingon - WithBluetooth:__str_6=C:00CF
+   idkwhatsgoingon - WithBluetooth:__str_7=C:00E9
+   idkwhatsgoingon - WithBluetooth:__str_8=C:00F7
+   idkwhatsgoingon - WithBluetooth:__str_9=C:0106
+   idkwhatsgoingon - WithBluetooth:_arrayEqual_arr1_1_80=D:0028
+   idkwhatsgoingon - WithBluetooth:_bluetoothMaze_threshold_1_120=D:0051
+   idkwhatsgoingon - WithBluetooth:_bluetoothMaze_x_1_120=D:004D
+   idkwhatsgoingon - WithBluetooth:_bluetoothMaze_xcoord_1_119=D:004B
+   idkwhatsgoingon - WithBluetooth:_bluetoothMaze_y_1_120=D:004F
+   idkwhatsgoingon - WithBluetooth:_main_getCoord_1_135=D:005F
+   idkwhatsgoingon - WithBluetooth:_main_pir_voltage_1_135=D:0055
+   idkwhatsgoingon - WithBluetooth:_main_sloc0_1_0=D:0061
+   idkwhatsgoingon - WithBluetooth:_main_temp_1_135=D:005B
+   idkwhatsgoingon - WithBluetooth:_main_xcoord_1_135=D:0059
+   idkwhatsgoingon - WithBluetooth:_main_ycoord_1_135=D:005A
+   print_format:L002003?=C:18C9
+   print_format:L002004?=C:18D1
+   print_format:L003004?=C:18E6
+   print_format:L005003?=C:190F
+   print_format:L005004?=C:1933
+   print_format:L006002?=C:195D
+   print_format:L006005?=C:1972
+   print_format:L006010?=C:1996
+   print_format:L006012?=C:19A7
+   print_format:L006016?=C:19B5
+   print_format:L006017?=C:19BA
+   print_format:L006018?=C:19CC
+   print_format:L006019?=C:19CE
+   print_format:L006025?=C:19F5
+   print_format:L006028?=C:19E6
+   print_format:L006029?=C:1A02
+   print_format:L006032?=C:1A15
+   print_format:L006035?=C:1A2E
+   print_format:L006037?=C:1A44
+   print_format:L006041?=C:1A66
+   print_format:L006044?=C:1A57
+   print_format:L006045?=C:1A73
+   print_format:L006054?=C:1AAA
+   print_format:L006057?=C:1A99
+   print_format:L006058?=C:1AB9
+   print_format:L006062?=C:1A88
+   print_format:L006063?=C:1ACC
+   print_format:L006064?=C:1AE3
+   print_format:L006072?=C:1B38
+   print_format:L006073?=C:1B1A
+   print_format:L006079?=C:1B15
+   print_format:L006080?=C:1B3F
+   print_format:L006084?=C:1B50
+   print_format:L006085?=C:1B71
+   print_format:L006090?=C:1AD1
+   print_format:L006092?=C:1B84
+   print_format:L006094?=C:1B89
+   print_format:L006096?=C:1BA1
+   print_format:L006097?=C:1BA4
+   print_format:L006102?=C:1BB3
+   print_format:L006149?=C:1994
+   print_format:L006150?=C:1AFF
+   print_format:L006151?=C:1B3D
+   print_format:L006160?=C:19C3
+   print_format:L006165?=C:19D4
+   print_format:L006172?=C:1A22
+   print_format:L006185?=C:1ADE
+   print_format:L006190?=C:1B0D
+   print_format:L006197?=C:1B6F
+   print_format:L007001?=C:1BBB
+   print_format:L007002?=C:1BC8
+   print_format:L007003?=C:1BCE
+   print_format:L007008?=C:1BE7
+   print_format:L007010?=C:1BEA
+   print_format:L007014?=C:1C03
+   print_format:L007017?=C:1C19
+   print_format:L007019?=C:1C31
+   print_format:L007021?=C:1C33
+   print_format:L007027?=C:1C51
+   print_format:L007028?=C:1C67
+   print_format:L007032?=C:1C4E
+   print_format:L007033?=C:1C7D
+   print_format:L007038?=C:1C05
+   print_format:L007040?=C:1C75
+   print_format:L007041?=C:1C7A
+   print_format:L007042?=C:1C96
+   print_format:L007071?=C:1C11
+   print_format:L008001?=C:1CF1
+   print_format:L008003?=C:1D10
+   print_format:L008007?=C:1D36
+   print_format:L008010?=C:1D45
+   print_format:L008015?=C:1D52
+   print_format:L008017?=C:1D67
+   print_format:L008018?=C:1D69
+   print_format:L008020?=C:1DD9
+   print_format:L008021?=C:1DDE
+   print_format:L008022?=C:1DE3
+   print_format:L008023?=C:1DE8
+   print_format:L008024?=C:1DED
+   print_format:L008025?=C:1DF2
+   print_format:L008026?=C:1DF7
+   print_format:L008028?=C:1E0A
+   print_format:L008031?=C:1E2A
+   print_format:L008034?=C:1E1C
+   print_format:L008036?=C:1E3C
+   print_format:L008038?=C:1E49
+   print_format:L008039?=C:1E58
+   print_format:L008040?=C:1E60
+   print_format:L008042?=C:1E8E
+   print_format:L008043?=C:1E9F
+   print_format:L008050?=C:1EAE
+   print_format:L008052?=C:1EE7
+   print_format:L008053?=C:1EFE
+   print_format:L008059?=C:1F10
+   print_format:L008061?=C:1F42
+   print_format:L008064?=C:1F3A
+   print_format:L008067?=C:1F31
+   print_format:L008068?=C:1F44
+   print_format:L008070?=C:1F6F
+   print_format:L008073?=C:1F77
+   print_format:L008074?=C:1F7E
+   print_format:L008075?=C:1F83
+   print_format:L008076?=C:1F88
+   print_format:L008077?=C:1F8D
+   print_format:L008078?=C:1F91
+   print_format:L008079?=C:1F95
+   print_format:L008080?=C:1F99
+   print_format:L008081?=C:1FC3
+   print_format:L008082?=C:1FC8
+   print_format:L008084?=C:2008
+   print_format:L008086?=C:2024
+   print_format:L008087?=C:2030
+   print_format:L008091?=C:2032
+   print_format:L008093?=C:203B
+   print_format:L008100?=C:209A
+   print_format:L008103?=C:2078
+   print_format:L008104?=C:20C4
+   print_format:L008106?=C:2100
+   print_format:L008111?=C:20E2
+   print_format:L008114?=C:210A
+   print_format:L008117?=C:2130
+   print_format:L008120?=C:2132
+   print_format:L008122?=C:2153
+   print_format:L008123?=C:2155
+   print_format:L008124?=C:2139
+   print_format:L008128?=C:216C
+   print_format:L008129?=C:2172
+   print_format:L008133?=C:2189
+   print_format:L008138?=C:21AF
+   print_format:L008143?=C:219A
+   print_format:L008144?=C:21BE
+   print_format:L008145?=C:21C1
+   print_format:L008149?=C:21EF
+   print_format:L008152?=C:21DF
+   print_format:L008155?=C:220A
+   print_format:L008156?=C:2211
+   print_format:L008157?=C:21F4
+   print_format:L008159?=C:221D
+   print_format:L008160?=C:2223
+   print_format:L008167?=C:1FD1
+   print_format:L008168?=C:2041
+   print_format:L008173?=C:2235
+   print_format:L008175?=C:1CA2
+   print_format:L008177?=C:223D
+   print_format:L008180?=C:21D2
+   print_format:L008181?=C:21D4
+   print_format:L008271?=C:21F2
+   print_format:L008276?=C:1CC4
+   print_format:L008277?=C:1CC9
+   print_format:L008278?=C:1CCC
+   print_format:L008281?=C:1D15
+   print_format:L008291?=C:1D57
+   print_format:L008294?=C:1D6E
+   print_format:L008295?=C:1D74
+   print_format:L008296?=C:1D7A
+   print_format:L008297?=C:1D7F
+   print_format:L008298?=C:1D84
+   print_format:L008299?=C:1D89
+   print_format:L008300?=C:1D8F
+   print_format:L008301?=C:1D95
+   print_format:L008302?=C:1D9B
+   print_format:L008303?=C:1DA1
+   print_format:L008304?=C:1DA7
+   print_format:L008305?=C:1DAD
+   print_format:L008306?=C:1DB2
+   print_format:L008307?=C:1DB8
+   print_format:L008308?=C:1DBE
+   print_format:L008309?=C:1DC4
+   print_format:L008310?=C:1DCA
+   print_format:L008311?=C:1DD0
+   print_format:L008312?=C:1DD6
+   print_format:L008325?=C:1EDF
+   print_format:L008326?=C:1EED
+   print_format:L008327?=C:1EF7
+   print_format:L008328?=C:1F08
+   print_format:L008332?=C:1F64
+   print_format:L008333?=C:1F69
+   print_format:L008344?=C:2048
+   print_format:L008374?=C:2223
+   print_format:L008375?=C:222D
+   print_format:__output_char=C:18B8
+   print_format:_calculate_digit=C:1902
+   print_format:_char_argument=B:000A
+   print_format:_charsOutputted=D:0011
+   print_format:_decimals=D:0015
+   print_format:_e_argument=B:0003
+   print_format:_f_argument=B:0002
+   print_format:_fflag=B:000E
+   print_format:_g_argument=B:0004
+   print_format:_i=D:0017
+   print_format:_left_justify=B:0005
+   print_format:_length=D:0016
+   print_format:_long_argument=B:000B
+   print_format:_lower_case=B:0001
+   print_format:_lsd=B:000D
+   print_format:_output_2digits=C:18EB
+   print_format:_output_char=D:000A
+   print_format:_output_digit=C:18D2
+   print_format:_output_e=C:1BB4
+   print_format:_output_f=C:1941
+   print_format:_pound_argument=B:000C
+   print_format:_prefix_sign=B:0007
+   print_format:_prefix_space=B:0008
+   print_format:_radix=D:0013
+   print_format:_signed_argument=B:0009
+   print_format:_value=D:000C
+   print_format:_width=D:0014
+   print_format:_zero_padding=B:0006
+   putchar:L002001?=C:2249
+   putchar:L002006?=C:2251
+   putchar:L002017?=C:224E
+   putchar:L002018?=C:2256
+   sint2fs:_dummy=C:1623
+   slong2fs:_dummy=C:2259
+   slong2fs:slong2fs_positive=C:2280
+   strlen:L002001?=C:23C8
+   strlen:L002003?=C:23E1
+   uchar2fs:_dummy=C:1589
+   uint2fs:_dummy=C:147A
+   ulong2fs:_dummy=C:174F
+   ulong2fs:long2fs_doit=C:175A
+   vprintf:_put_char_to_stdout=C:15ED
