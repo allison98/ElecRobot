@@ -1,9 +1,9 @@
 0000              1   ;--------------------------------------------------------
 0000              2   ; File Created by C51
 0000              3   ; Version 1.0.0 #1069 (Apr 23 2015) (MSVC)
-0000              4   ; This file was generated Tue Apr 03 20:00:07 2018
+0000              4   ; This file was generated Tue Apr 03 20:52:27 2018
 0000              5   ;--------------------------------------------------------
-                  5   $name idkwhatsgoingon
+                  5   $name idkwhatsgoingon_new
                   6   $optc51 --model-small
                   7   $printf_float
 0000              9            R_DSEG    segment data
@@ -631,23 +631,23 @@
 0000            631   ; data variables initialization
 0000            632   ;--------------------------------------------------------
 0000            633            rseg R_DINIT
-0000            634   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:60: volatile unsigned char pwm_count = 0; // used in the timer 2 ISR
-0000 756000     635            mov     _pwm_count,#0x00
-0003            636   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:61: volatile unsigned char pwm_count1 = 0; // this will be usec in the timer 3 ISR
-0003 752000     637            mov     _pwm_count1,#0x00
-0006            638   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:62: volatile unsigned char pwm_count2 = 0; // this will be used in the timer 4 ISR
-0006 75E000     639            mov     _pwm_count2,#0x00
-0009            640   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:63: volatile unsigned char pwm_count3 = 0; //
-0009 75A000     641            mov     _pwm_count3,#0x00
-000C            642   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:78: volatile int flag = 0;
+0000            634   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:64: volatile unsigned char pwm_count = 0; // used in the timer 2 ISR
+0000 757000     635            mov     _pwm_count,#0x00
+0003            636   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:65: volatile unsigned char pwm_count1 = 0; // this will be usec in the timer 3 ISR
+0003 753000     637            mov     _pwm_count1,#0x00
+0006            638   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:66: volatile unsigned char pwm_count2 = 0; // this will be used in the timer 4 ISR
+0006 75F000     639            mov     _pwm_count2,#0x00
+0009            640   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:67: volatile unsigned char pwm_count3 = 0; //
+0009 75B000     641            mov     _pwm_count3,#0x00
+000C            642   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:82: volatile int flag = 0;
 000C E4         643            clr     a
 000D F548       644            mov     _flag,a
 000F F549       645            mov     (_flag + 1),a
-0011            646   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:79: volatile int claw_flag = 0;
+0011            646   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:83: volatile int claw_flag = 0;
 0011 E4         647            clr     a
 0012 F508       648            mov     _claw_flag,a
 0014 F509       649            mov     (_claw_flag + 1),a
-0016            650   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:80: int stop[]={0,0,0,0};
+0016            650   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:84: int stop[]={0,0,0,0};
 0016 75C800     651            mov     _stop,#0x00
 0019 75C900     652            mov     (_stop + 1),#0x00
 001C 75CA00     653            mov     (_stop + 0x0002),#0x00
@@ -656,7 +656,7 @@
 0025 75CD00     656            mov     ((_stop + 0x0004) + 1),#0x00
 0028 75CE00     657            mov     (_stop + 0x0006),#0x00
 002B 75CF00     658            mov     ((_stop + 0x0006) + 1),#0x00
-002E            659   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:81: int forward[]={1,1,1,1};
+002E            659   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:85: int forward[]={1,1,1,1};
 002E 758801     660            mov     _forward,#0x01
 0031 758900     661            mov     (_forward + 1),#0x00
 0034 758A01     662            mov     (_forward + 0x0002),#0x01
@@ -665,7 +665,7 @@
 003D 758D00     665            mov     ((_forward + 0x0004) + 1),#0x00
 0040 758E01     666            mov     (_forward + 0x0006),#0x01
 0043 758F00     667            mov     ((_forward + 0x0006) + 1),#0x00
-0046            668   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:82: int backward[]={1,0,1,1};
+0046            668   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:86: int backward[]={1,0,1,1};
 0046 754801     669            mov     _backward,#0x01
 0049 754900     670            mov     (_backward + 1),#0x00
 004C 754A00     671            mov     (_backward + 0x0002),#0x00
@@ -674,7 +674,7 @@
 0055 754D00     674            mov     ((_backward + 0x0004) + 1),#0x00
 0058 754E01     675            mov     (_backward + 0x0006),#0x01
 005B 754F00     676            mov     ((_backward + 0x0006) + 1),#0x00
-005E            677   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:83: int left[]={1,0,0,1};
+005E            677   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:87: int left[]={1,0,0,1};
 005E 750801     678            mov     _left,#0x01
 0061 750900     679            mov     (_left + 1),#0x00
 0064 750A00     680            mov     (_left + 0x0002),#0x00
@@ -683,7 +683,7 @@
 006D 750D00     683            mov     ((_left + 0x0004) + 1),#0x00
 0070 750E01     684            mov     (_left + 0x0006),#0x01
 0073 750F00     685            mov     ((_left + 0x0006) + 1),#0x00
-0076            686   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:84: int right[]={1,0,0,0};
+0076            686   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:88: int right[]={1,0,0,0};
 0076 75C801     687            mov     _right,#0x01
 0079 75C900     688            mov     (_right + 1),#0x00
 007C 75CA00     689            mov     (_right + 0x0002),#0x00
@@ -692,7 +692,7 @@
 0085 75CD00     692            mov     ((_right + 0x0004) + 1),#0x00
 0088 75CE00     693            mov     (_right + 0x0006),#0x00
 008B 75CF00     694            mov     ((_right + 0x0006) + 1),#0x00
-008E            695   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:86: int command[4] = {0,0,0,0};
+008E            695   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:90: int command[4] = {0,0,0,0};
 008E 758800     696            mov     _command,#0x00
 0091 758900     697            mov     (_command + 1),#0x00
 0094 758A00     698            mov     (_command + 0x0002),#0x00
@@ -701,7 +701,7 @@
 009D 758D00     701            mov     ((_command + 0x0004) + 1),#0x00
 00A0 758E00     702            mov     (_command + 0x0006),#0x00
 00A3 758F00     703            mov     ((_command + 0x0006) + 1),#0x00
-00A6            704   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:88: volatile unsigned int x = 2;
+00A6            704   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:92: volatile unsigned int x = 2;
 00A6 754802     705            mov     _x,#0x02
 00A9 E4         706            clr     a
 00AA F549       707            mov     (_x + 1),a
@@ -714,83 +714,83 @@
 0000            714   ;Allocation info for local variables in function '_c51_external_startup'
 0000            715   ;------------------------------------------------------------
 0000            716   ;------------------------------------------------------------
-0000            717   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:90: char _c51_external_startup(void)
+0000            717   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:94: char _c51_external_startup(void)
 0000            718   ;        -----------------------------------------
 0000            719   ;         function _c51_external_startup
 0000            720   ;        -----------------------------------------
 0000            721   __c51_external_startup:
 0000            722            using   0
-0000            723   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:93: SFRPAGE = 0x00;
+0000            723   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:97: SFRPAGE = 0x00;
 0000 75A700     724            mov     _SFRPAGE,#0x00
-0003            725   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:94: WDTCN = 0xDE; //First key
+0003            725   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:98: WDTCN = 0xDE; //First key
 0003 7597DE     726            mov     _WDTCN,#0xDE
-0006            727   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:95: WDTCN = 0xAD; //Second key
+0006            727   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:99: WDTCN = 0xAD; //Second key
 0006 7597AD     728            mov     _WDTCN,#0xAD
-0009            729   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:97: VDM0CN = 0x80;       // enable VDD monitor
+0009            729   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:101: VDM0CN = 0x80;       // enable VDD monitor
 0009 75FF80     730            mov     _VDM0CN,#0x80
-000C            731   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:98: RSTSRC = 0x02 | 0x04;  // Enable reset on missing clock detector and VDD
+000C            731   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:102: RSTSRC = 0x02 | 0x04;  // Enable reset on missing clock detector and VDD
 000C 75EF06     732            mov     _RSTSRC,#0x06
-000F            733   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:105: SFRPAGE = 0x10;
+000F            733   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:109: SFRPAGE = 0x10;
 000F 75A710     734            mov     _SFRPAGE,#0x10
-0012            735   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:106: PFE0CN = 0x20; // SYSCLK < 75 MHz.
+0012            735   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:110: PFE0CN = 0x20; // SYSCLK < 75 MHz.
 0012 75C120     736            mov     _PFE0CN,#0x20
-0015            737   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:107: SFRPAGE = 0x00;
+0015            737   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:111: SFRPAGE = 0x00;
 0015 75A700     738            mov     _SFRPAGE,#0x00
-0018            739   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:128: CLKSEL = 0x00;
+0018            739   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:132: CLKSEL = 0x00;
 0018 75A900     740            mov     _CLKSEL,#0x00
-001B            741   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:129: CLKSEL = 0x00;
+001B            741   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:133: CLKSEL = 0x00;
 001B 75A900     742            mov     _CLKSEL,#0x00
-001E            743   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:130: while ((CLKSEL & 0x80) == 0);
+001E            743   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:134: while ((CLKSEL & 0x80) == 0);
 001E            744   L002001?:
 001E E5A9       745            mov     a,_CLKSEL
 0020 30E790     746            jnb     acc.7,L002001?
-0023            747   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:131: CLKSEL = 0x03;
+0023            747   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:135: CLKSEL = 0x03;
 0023 75A903     748            mov     _CLKSEL,#0x03
-0026            749   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:132: CLKSEL = 0x03;
+0026            749   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:136: CLKSEL = 0x03;
 0026 75A903     750            mov     _CLKSEL,#0x03
-0029            751   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:133: while ((CLKSEL & 0x80) == 0);
+0029            751   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:137: while ((CLKSEL & 0x80) == 0);
 0029            752   L002004?:
 0029 E5A9       753            mov     a,_CLKSEL
 002B 30E710     754            jnb     acc.7,L002004?
-002E            755   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:138: P0MDOUT |= 0x10; // Enable UART0 TX as push-pull output
+002E            755   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:142: P0MDOUT |= 0x10; // Enable UART0 TX as push-pull output
 002E 43A410     756            orl     _P0MDOUT,#0x10
-0031            757   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:139: XBR0 = 0x01; // Enable UART0 on P0.4(TX) and P0.5(RX)
+0031            757   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:143: XBR0 = 0x01; // Enable UART0 on P0.4(TX) and P0.5(RX)
 0031 75E101     758            mov     _XBR0,#0x01
-0034            759   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:140: XBR1 = 0X00;
+0034            759   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:144: XBR1 = 0X00;
 0034 75E200     760            mov     _XBR1,#0x00
-0037            761   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:141: XBR2 = 0x40; // Enable crossbar and weak pull-ups
+0037            761   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:145: XBR2 = 0x40; // Enable crossbar and weak pull-ups
 0037 75E340     762            mov     _XBR2,#0x40
-003A            763   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:147: SCON0 = 0x10;
+003A            763   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:151: SCON0 = 0x10;
 003A 759810     764            mov     _SCON0,#0x10
-003D            765   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:148: TH1 = 0x100 - ((SYSCLK / BAUDRATE) / (2L * 12L));
+003D            765   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:152: TH1 = 0x100 - ((SYSCLK / BAUDRATE) / (2L * 12L));
 003D 758DE6     766            mov     _TH1,#0xE6
-0040            767   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:149: TL1 = TH1;      // Init Timer1
+0040            767   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:153: TL1 = TH1;      // Init Timer1
 0040 858D8B     768            mov     _TL1,_TH1
-0043            769   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:150: TMOD &= ~0xf0;  // TMOD: timer 1 in 8-bit auto-reload
+0043            769   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:154: TMOD &= ~0xf0;  // TMOD: timer 1 in 8-bit auto-reload
 0043 53890F     770            anl     _TMOD,#0x0F
-0046            771   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:151: TMOD |= 0x20;
+0046            771   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:155: TMOD |= 0x20;
 0046 438920     772            orl     _TMOD,#0x20
-0049            773   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:152: TR1 = 1; // START Timer1
+0049            773   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:156: TR1 = 1; // START Timer1
 0049 D28E       774            setb    _TR1
-004B            775   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:153: TI = 1;  // Indicate TX0 ready
+004B            775   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:157: TI = 1;  // Indicate TX0 ready
 004B D299       776            setb    _TI
-004D            777   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:156: TMR2CN0 = 0x00;   // Stop Timer2; Clear TF2;
+004D            777   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:160: TMR2CN0 = 0x00;   // Stop Timer2; Clear TF2;
 004D 75C800     778            mov     _TMR2CN0,#0x00
-0050            779   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:157: CKCON0 |= 0b_0001_0000; // Timer 2 uses the system clock
+0050            779   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:161: CKCON0 |= 0b_0001_0000; // Timer 2 uses the system clock
 0050 438E10     780            orl     _CKCON0,#0x10
-0053            781   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:158: TMR2RL = (0x10000L - (SYSCLK / 10000L)); // Initialize reload value
+0053            781   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:162: TMR2RL = (0x10000L - (SYSCLK / 10000L)); // Initialize reload value
 0053 75CAE0     782            mov     _TMR2RL,#0xE0
 0056 75CBE3     783            mov     (_TMR2RL >> 8),#0xE3
-0059            784   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:159: TMR2 = 0xffff;   // Set to reload immediately
+0059            784   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:163: TMR2 = 0xffff;   // Set to reload immediately
 0059 75CEFF     785            mov     _TMR2,#0xFF
 005C 75CFFF     786            mov     (_TMR2 >> 8),#0xFF
-005F            787   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:160: ET2 = 1;         // Enable Timer2 interrupts
+005F            787   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:164: ET2 = 1;         // Enable Timer2 interrupts
 005F D2AD       788            setb    _ET2
-0061            789   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:161: TR2 = 1;         // Start Timer2 (TMR2CN is bit addressable)
+0061            789   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:165: TR2 = 1;         // Start Timer2 (TMR2CN is bit addressable)
 0061 D2CA       790            setb    _TR2
-0063            791   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:179: EA = 1; // Enable interrupts
+0063            791   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:183: EA = 1; // Enable interrupts
 0063 D2AF       792            setb    _EA
-0065            793   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:182: return 0;
+0065            793   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:186: return 0;
 0065 758200     794            mov     dpl,#0x00
 0068 22         795            ret
 0069            796   ;------------------------------------------------------------
@@ -799,24 +799,24 @@
 0069            799   ;us                        Allocated to registers r2 r3 
 0069            800   ;i                         Allocated to registers r4 r5 
 0069            801   ;------------------------------------------------------------
-0069            802   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:184: void Timer3us(unsigned int us)
+0069            802   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:188: void Timer3us(unsigned int us)
 0069            803   ;        -----------------------------------------
 0069            804   ;         function Timer3us
 0069            805   ;        -----------------------------------------
 0069            806   _Timer3us:
 0069 AA82       807            mov     r2,dpl
 006B AB83       808            mov     r3,dph
-006D            809   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:189: CKCON0|=0b_0100_0000;
+006D            809   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:193: CKCON0|=0b_0100_0000;
 006D 438E40     810            orl     _CKCON0,#0x40
-0070            811   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:191: TMR3RL = (-(SYSCLK)/1000000L); // Set Timer3 to overflow in 1us.
+0070            811   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:195: TMR3RL = (-(SYSCLK)/1000000L); // Set Timer3 to overflow in 1us.
 0070 7592B8     812            mov     _TMR3RL,#0xB8
 0073 7593FF     813            mov     (_TMR3RL >> 8),#0xFF
-0076            814   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:192: TMR3 = TMR3RL;                 // Initialize Timer3 for first overflow
+0076            814   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:196: TMR3 = TMR3RL;                 // Initialize Timer3 for first overflow
 0076 859294     815            mov     _TMR3,_TMR3RL
 0079 859395     816            mov     (_TMR3 >> 8),(_TMR3RL >> 8)
-007C            817   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:194: TMR3CN0 = 0x04;                 // Sart Timer3 and clear overflow flag
+007C            817   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:198: TMR3CN0 = 0x04;                 // Sart Timer3 and clear overflow flag
 007C 759104     818            mov     _TMR3CN0,#0x04
-007F            819   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:195: for (i = 0; i < us; i++)       // Count <us> overflows
+007F            819   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:199: for (i = 0; i < us; i++)       // Count <us> overflows
 007F 7C00       820            mov     r4,#0x00
 0081 7D00       821            mov     r5,#0x00
 0083            822   L003004?:
@@ -826,19 +826,19 @@
 0086 ED         826            mov     a,r5
 0087 9B         827            subb    a,r3
 0088 5001       828            jnc     L003007?
-008A            829   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:197: while (!(TMR3CN0 & 0x80));  // Wait for overflow
+008A            829   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:201: while (!(TMR3CN0 & 0x80));  // Wait for overflow
 008A            830   L003001?:
 008A E591       831            mov     a,_TMR3CN0
 008C 30E750     832            jnb     acc.7,L003001?
-008F            833   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:198: TMR3CN0 &= ~(0x80);         // Clear overflow indicator
+008F            833   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:202: TMR3CN0 &= ~(0x80);         // Clear overflow indicator
 008F 53917F     834            anl     _TMR3CN0,#0x7F
-0092            835   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:195: for (i = 0; i < us; i++)       // Count <us> overflows
+0092            835   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:199: for (i = 0; i < us; i++)       // Count <us> overflows
 0092 0C         836            inc     r4
 0093 BC00D0     837            cjne    r4,#0x00,L003004?
 0096 0D         838            inc     r5
 0097 8001       839            sjmp    L003004?
 0099            840   L003007?:
-0099            841   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:200: TMR3CN0 = 0 ;                   // Stop Timer3 and clear overflow flag
+0099            841   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:204: TMR3CN0 = 0 ;                   // Stop Timer3 and clear overflow flag
 0099 759100     842            mov     _TMR3CN0,#0x00
 009C 22         843            ret
 009D            844   ;------------------------------------------------------------
@@ -848,14 +848,14 @@
 009D            848   ;j                         Allocated to registers r4 r5 
 009D            849   ;k                         Allocated to registers r6 
 009D            850   ;------------------------------------------------------------
-009D            851   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:202: void waitms (unsigned int ms)
+009D            851   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:206: void waitms (unsigned int ms)
 009D            852   ;        -----------------------------------------
 009D            853   ;         function waitms
 009D            854   ;        -----------------------------------------
 009D            855   _waitms:
 009D AA82       856            mov     r2,dpl
 009F AB83       857            mov     r3,dph
-00A1            858   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:206: for(j=0; j<ms; j++)
+00A1            858   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:210: for(j=0; j<ms; j++)
 00A1 7C00       859            mov     r4,#0x00
 00A3 7D00       860            mov     r5,#0x00
 00A5            861   L004005?:
@@ -865,7 +865,7 @@
 00A8 ED         865            mov     a,r5
 00A9 9B         866            subb    a,r3
 00AA 5001       867            jnc     L004009?
-00AC            868   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:207: for (k=0; k<4; k++) Timer3us(250);
+00AC            868   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:211: for (k=0; k<4; k++) Timer3us(250);
 00AC 7E00       869            mov     r6,#0x00
 00AE            870   L004001?:
 00AE BE0450     871            cjne    r6,#0x04,L004018?
@@ -886,7 +886,7 @@
 00CD 0E         886            inc     r6
 00CE 8001       887            sjmp    L004001?
 00D0            888   L004007?:
-00D0            889   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:206: for(j=0; j<ms; j++)
+00D0            889   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:210: for(j=0; j<ms; j++)
 00D0 0C         890            inc     r4
 00D1 BC0090     891            cjne    r4,#0x00,L004005?
 00D4 0D         892            inc     r5
@@ -898,23 +898,23 @@
 00D8            898   ;------------------------------------------------------------
 00D8            899   ;pin                       Allocated to registers 
 00D8            900   ;------------------------------------------------------------
-00D8            901   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:211: unsigned int ADC_at_Pin(unsigned char pin)
+00D8            901   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:215: unsigned int ADC_at_Pin(unsigned char pin)
 00D8            902   ;        -----------------------------------------
 00D8            903   ;         function ADC_at_Pin
 00D8            904   ;        -----------------------------------------
 00D8            905   _ADC_at_Pin:
 00D8 8582BB     906            mov     _ADC0MX,dpl
-00DB            907   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:214: ADBUSY = 1;       // Dummy conversion first to select new pin
+00DB            907   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:218: ADBUSY = 1;       // Dummy conversion first to select new pin
 00DB D2EC       908            setb    _ADBUSY
-00DD            909   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:215: while (ADBUSY); // Wait for dummy conversion to finish
+00DD            909   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:219: while (ADBUSY); // Wait for dummy conversion to finish
 00DD            910   L005001?:
 00DD 20ECD0     911            jb      _ADBUSY,L005001?
-00E0            912   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:216: ADBUSY = 1;     // Convert voltage at the pin
+00E0            912   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:220: ADBUSY = 1;     // Convert voltage at the pin
 00E0 D2EC       913            setb    _ADBUSY
-00E2            914   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:217: while (ADBUSY); // Wait for conversion to complete
+00E2            914   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:221: while (ADBUSY); // Wait for conversion to complete
 00E2            915   L005004?:
 00E2 20EC10     916            jb      _ADBUSY,L005004?
-00E5            917   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:218: return (ADC0);
+00E5            917   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:222: return (ADC0);
 00E5 85BD82     918            mov     dpl,_ADC0
 00E8 85BE83     919            mov     dph,(_ADC0 >> 8)
 00EB 22         920            ret
@@ -922,7 +922,7 @@
 00EC            922   ;Allocation info for local variables in function 'Timer2_ISR'
 00EC            923   ;------------------------------------------------------------
 00EC            924   ;------------------------------------------------------------
-00EC            925   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:222: void Timer2_ISR(void) interrupt 5
+00EC            925   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:226: void Timer2_ISR(void) interrupt 5
 00EC            926   ;        -----------------------------------------
 00EC            927   ;         function Timer2_ISR
 00EC            928   ;        -----------------------------------------
@@ -932,63 +932,63 @@
 00F0 C003       932            push    ar3
 00F2 C0D0       933            push    psw
 00F4 75D000     934            mov     psw,#0x00
-00F7            935   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:224: TF2H = 0; // Clear Timer2 interrupt flag
+00F7            935   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:228: TF2H = 0; // Clear Timer2 interrupt flag
 00F7 C2CF       936            clr     _TF2H
-00F9            937   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:226: pwm_count++;
-00F9 0560       938            inc     _pwm_count
-00FB            939   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:227: if (pwm_count>100)
-00FB E560       940            mov     a,_pwm_count
+00F9            937   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:230: pwm_count++;
+00F9 0570       938            inc     _pwm_count
+00FB            939   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:231: if (pwm_count>100)
+00FB E570       940            mov     a,_pwm_count
 00FD 249B       941            add     a,#0xff - 0x64
 00FF 5001       942            jnc     L006002?
-0101            943   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:228: pwm_count = 0;
-0101 756000     944            mov     _pwm_count,#0x00
+0101            943   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:232: pwm_count = 0;
+0101 757000     944            mov     _pwm_count,#0x00
 0104            945   L006002?:
-0104            946   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:231: motorR1 = pwm_count>pwmSig1 ? 0 : 1;
-0104 AA60       947            mov     r2,_pwm_count
+0104            946   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:235: motorR1 = pwm_count>pwmSig1 ? 0 : 1;
+0104 AA70       947            mov     r2,_pwm_count
 0106 7B00       948            mov     r3,#0x00
 0108 C3         949            clr     c
-0109 E560       950            mov     a,_pwmSig1
+0109 E570       950            mov     a,_pwmSig1
 010B 9A         951            subb    a,r2
-010C E561       952            mov     a,(_pwmSig1 + 1)
+010C E571       952            mov     a,(_pwmSig1 + 1)
 010E 9B         953            subb    a,r3
 010F 9210       954            mov  _Timer2_ISR_sloc0_1_0,c
 0111 B3         955            cpl     c
-0112 9294       956            mov     _P1_4,c
-0114            957   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:232: motorR2 = pwm_count>pwmSig2 ? 0 : 1;
-0114 AA60       958            mov     r2,_pwm_count
+0112 92A5       956            mov     _P2_5,c
+0114            957   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:236: motorR2 = pwm_count>pwmSig2 ? 0 : 1;
+0114 AA70       958            mov     r2,_pwm_count
 0116 7B00       959            mov     r3,#0x00
 0118 C3         960            clr     c
-0119 E520       961            mov     a,_pwmSig2
+0119 E530       961            mov     a,_pwmSig2
 011B 9A         962            subb    a,r2
-011C E521       963            mov     a,(_pwmSig2 + 1)
+011C E531       963            mov     a,(_pwmSig2 + 1)
 011E 9B         964            subb    a,r3
 011F 9210       965            mov  _Timer2_ISR_sloc0_1_0,c
 0121 B3         966            cpl     c
-0122 9295       967            mov     _P1_5,c
-0124            968   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:234: motorL1 = pwm_count>pwmSig3 ? 0 : 1;
-0124 AA60       969            mov     r2,_pwm_count
+0122 92A4       967            mov     _P2_4,c
+0124            968   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:238: motorL1 = pwm_count>pwmSig3 ? 0 : 1;
+0124 AA70       969            mov     r2,_pwm_count
 0126 7B00       970            mov     r3,#0x00
 0128 C3         971            clr     c
-0129 E5E0       972            mov     a,_pwmSig3
+0129 E5F0       972            mov     a,_pwmSig3
 012B 9A         973            subb    a,r2
-012C E5E1       974            mov     a,(_pwmSig3 + 1)
+012C E5F1       974            mov     a,(_pwmSig3 + 1)
 012E 9B         975            subb    a,r3
 012F 9210       976            mov  _Timer2_ISR_sloc0_1_0,c
 0131 B3         977            cpl     c
-0132 9292       978            mov     _P1_2,c
-0134            979   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:235: motorL2 = pwm_count>pwmSig4 ? 0 : 1;
-0134 AA60       980            mov     r2,_pwm_count
+0132 92A3       978            mov     _P2_3,c
+0134            979   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:239: motorL2 = pwm_count>pwmSig4 ? 0 : 1;
+0134 AA70       980            mov     r2,_pwm_count
 0136 7B00       981            mov     r3,#0x00
 0138 C3         982            clr     c
-0139 E5A0       983            mov     a,_pwmSig4
+0139 E5B0       983            mov     a,_pwmSig4
 013B 9A         984            subb    a,r2
-013C E5A1       985            mov     a,(_pwmSig4 + 1)
+013C E5B1       985            mov     a,(_pwmSig4 + 1)
 013E 9B         986            subb    a,r3
 013F 9210       987            mov  _Timer2_ISR_sloc0_1_0,c
 0141 B3         988            cpl     c
-0142 9293       989            mov     _P1_3,c
-0144            990   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:237: OUT0=pwm_count>80?0:1;
-0144 E560       991            mov     a,_pwm_count
+0142 92A2       989            mov     _P2_2,c
+0144            990   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:241: OUT0=pwm_count>80?0:1;
+0144 E570       991            mov     a,_pwm_count
 0146 24AF       992            add     a,#0xff - 0x50
 0148 9210       993            mov  _Timer2_ISR_sloc0_1_0,c
 014A B3         994            cpl     c
@@ -1005,42 +1005,42 @@
 0156           1005   ;Allocation info for local variables in function 'InitADC'
 0156           1006   ;------------------------------------------------------------
 0156           1007   ;------------------------------------------------------------
-0156           1008   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:267: void InitADC(void)
+0156           1008   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:271: void InitADC(void)
 0156           1009   ;        -----------------------------------------
 0156           1010   ;         function InitADC
 0156           1011   ;        -----------------------------------------
 0156           1012   _InitADC:
-0156           1013   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:269: SFRPAGE = 0x00;
+0156           1013   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:273: SFRPAGE = 0x00;
 0156 75A700    1014            mov     _SFRPAGE,#0x00
-0159           1015   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:270: ADC0CN1 = 0b_10_000_000; //14-bit,  Right justified no shifting applied, perform and Accumulate 1 conversion.
+0159           1015   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:274: ADC0CN1 = 0b_10_000_000; //14-bit,  Right justified no shifting applied, perform and Accumulate 1 conversion.
 0159 75B280    1016            mov     _ADC0CN1,#0x80
-015C           1017   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:271: ADC0CF0 = 0b_11111_0_00; // SYSCLK/32
+015C           1017   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:275: ADC0CF0 = 0b_11111_0_00; // SYSCLK/32
 015C 75BCF8    1018            mov     _ADC0CF0,#0xF8
-015F           1019   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:272: ADC0CF1 = 0b_0_0_011110; // Same as default for now
+015F           1019   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:276: ADC0CF1 = 0b_0_0_011110; // Same as default for now
 015F 75B91E    1020            mov     _ADC0CF1,#0x1E
-0162           1021   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:273: ADC0CN0 = 0b_0_0_0_0_0_00_0; // Same as default for now
+0162           1021   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:277: ADC0CN0 = 0b_0_0_0_0_0_00_0; // Same as default for now
 0162 75E800    1022            mov     _ADC0CN0,#0x00
-0165           1023   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:274: ADC0CF2 = 0b_0_01_11111; // GND pin, Vref=VDD
+0165           1023   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:278: ADC0CF2 = 0b_0_01_11111; // GND pin, Vref=VDD
 0165 75DF3F    1024            mov     _ADC0CF2,#0x3F
-0168           1025   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:275: ADC0CN2 = 0b_0_000_0000;  // Same as default for now. ADC0 conversion initiated on write of 1 to ADBUSY.
+0168           1025   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:279: ADC0CN2 = 0b_0_000_0000;  // Same as default for now. ADC0 conversion initiated on write of 1 to ADBUSY.
 0168 75B300    1026            mov     _ADC0CN2,#0x00
-016B           1027   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:276: ADEN = 1; // Enable ADC
+016B           1027   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:280: ADEN = 1; // Enable ADC
 016B D2EF      1028            setb    _ADEN
 016D 22        1029            ret
 016E           1030   ;------------------------------------------------------------
 016E           1031   ;Allocation info for local variables in function 'TIMER0_Init'
 016E           1032   ;------------------------------------------------------------
 016E           1033   ;------------------------------------------------------------
-016E           1034   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:278: void TIMER0_Init(void)
+016E           1034   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:282: void TIMER0_Init(void)
 016E           1035   ;        -----------------------------------------
 016E           1036   ;         function TIMER0_Init
 016E           1037   ;        -----------------------------------------
 016E           1038   _TIMER0_Init:
-016E           1039   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:280: TMOD &= 0b_1111_0000; // Set the bits of Timer/Counter 0 to zero
+016E           1039   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:284: TMOD &= 0b_1111_0000; // Set the bits of Timer/Counter 0 to zero
 016E 5389F0    1040            anl     _TMOD,#0xF0
-0171           1041   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:281: TMOD |= 0b_0000_0001; // Timer/Counter 0 used as a 16-bit timer
+0171           1041   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:285: TMOD |= 0b_0000_0001; // Timer/Counter 0 used as a 16-bit timer
 0171 438901    1042            orl     _TMOD,#0x01
-0174           1043   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:282: TR0 = 0; // Stop Timer/Counter 0
+0174           1043   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:286: TR0 = 0; // Stop Timer/Counter 0
 0174 C28C      1044            clr     _TR0
 0176 22        1045            ret
 0177           1046   ;------------------------------------------------------------
@@ -1048,12 +1048,12 @@
 0177           1048   ;------------------------------------------------------------
 0177           1049   ;pin                       Allocated to registers r2 
 0177           1050   ;------------------------------------------------------------
-0177           1051   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:287: float Volts_at_Pin(unsigned char pin)
+0177           1051   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:291: float Volts_at_Pin(unsigned char pin)
 0177           1052   ;        -----------------------------------------
 0177           1053   ;         function Volts_at_Pin
 0177           1054   ;        -----------------------------------------
 0177           1055   _Volts_at_Pin:
-0177           1056   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:289: return ((ADC_at_Pin(pin)*VDD) / 0b_0011_1111_1111_1111);
+0177           1056   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:293: return ((ADC_at_Pin(pin)*VDD) / 0b_0011_1111_1111_1111);
 0177 120100    1057            lcall   _ADC_at_Pin
 017A 120100    1058            lcall   ___uint2fs
 017D AA82      1059            mov     r2,dpl
@@ -1107,13 +1107,13 @@
 01D2           1107   ;portno                    Allocated to registers r2 
 01D2           1108   ;mask                      Allocated to registers r3 
 01D2           1109   ;------------------------------------------------------------
-01D2           1110   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:291: void InitPinADC(unsigned char portno, unsigned char pinno)
+01D2           1110   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:295: void InitPinADC(unsigned char portno, unsigned char pinno)
 01D2           1111   ;        -----------------------------------------
 01D2           1112   ;         function InitPinADC
 01D2           1113   ;        -----------------------------------------
 01D2           1114   _InitPinADC:
 01D2 AA82      1115            mov     r2,dpl
-01D4           1116   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:295: mask = 1 << pinno;
+01D4           1116   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:299: mask = 1 << pinno;
 01D4 8558F0    1117            mov     b,_InitPinADC_PARM_2
 01D7 05F0      1118            inc     b
 01D9 7401      1119            mov     a,#0x01
@@ -1123,89 +1123,89 @@
 01DF           1123   L010013?:
 01DF D5F050    1124            djnz    b,L010011?
 01E2 FB        1125            mov     r3,a
-01E3           1126   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:297: SFRPAGE = 0x20;
+01E3           1126   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:301: SFRPAGE = 0x20;
 01E3 75A720    1127            mov     _SFRPAGE,#0x20
-01E6           1128   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:298: switch (portno)
+01E6           1128   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:302: switch (portno)
 01E6 BA0090    1129            cjne    r2,#0x00,L010014?
 01E9 8001      1130            sjmp    L010001?
 01EB           1131   L010014?:
 01EB BA0110    1132            cjne    r2,#0x01,L010015?
 01EE 8001      1133            sjmp    L010002?
 01F0           1134   L010015?:
-01F0           1135   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:300: case 0:
+01F0           1135   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:304: case 0:
 01F0 BA0290    1136            cjne    r2,#0x02,L010005?
 01F3 8001      1137            sjmp    L010003?
 01F5           1138   L010001?:
-01F5           1139   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:301: P0MDIN &= (~mask); // Set pin as analog input
+01F5           1139   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:305: P0MDIN &= (~mask); // Set pin as analog input
 01F5 EB        1140            mov     a,r3
 01F6 F4        1141            cpl     a
 01F7 FA        1142            mov     r2,a
 01F8 52F1      1143            anl     _P0MDIN,a
-01FA           1144   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:302: P0SKIP |= mask; // Skip Crossbar decoding for this pin
+01FA           1144   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:306: P0SKIP |= mask; // Skip Crossbar decoding for this pin
 01FA EB        1145            mov     a,r3
 01FB 42D4      1146            orl     _P0SKIP,a
-01FD           1147   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:303: break;
-01FD           1148   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:304: case 1:
+01FD           1147   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:307: break;
+01FD           1148   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:308: case 1:
 01FD 8001      1149            sjmp    L010005?
 01FF           1150   L010002?:
-01FF           1151   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:305: P1MDIN &= (~mask); // Set pin as analog input
+01FF           1151   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:309: P1MDIN &= (~mask); // Set pin as analog input
 01FF EB        1152            mov     a,r3
 0200 F4        1153            cpl     a
 0201 FA        1154            mov     r2,a
 0202 52F2      1155            anl     _P1MDIN,a
-0204           1156   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:306: P1SKIP |= mask; // Skip Crossbar decoding for this pin
+0204           1156   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:310: P1SKIP |= mask; // Skip Crossbar decoding for this pin
 0204 EB        1157            mov     a,r3
 0205 42D5      1158            orl     _P1SKIP,a
-0207           1159   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:307: break;
-0207           1160   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:308: case 2:
+0207           1159   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:311: break;
+0207           1160   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:312: case 2:
 0207 8001      1161            sjmp    L010005?
 0209           1162   L010003?:
-0209           1163   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:309: P2MDIN &= (~mask); // Set pin as analog input
+0209           1163   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:313: P2MDIN &= (~mask); // Set pin as analog input
 0209 EB        1164            mov     a,r3
 020A F4        1165            cpl     a
 020B FA        1166            mov     r2,a
 020C 52F3      1167            anl     _P2MDIN,a
-020E           1168   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:310: P2SKIP |= mask; // Skip Crossbar decoding for this pin
+020E           1168   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:314: P2SKIP |= mask; // Skip Crossbar decoding for this pin
 020E EB        1169            mov     a,r3
 020F 42CC      1170            orl     _P2SKIP,a
-0211           1171   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:314: }
+0211           1171   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:318: }
 0211           1172   L010005?:
-0211           1173   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:315: SFRPAGE = 0x00;
+0211           1173   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:319: SFRPAGE = 0x00;
 0211 75A700    1174            mov     _SFRPAGE,#0x00
 0214 22        1175            ret
 0215           1176   ;------------------------------------------------------------
 0215           1177   ;Allocation info for local variables in function 'PWMforward'
 0215           1178   ;------------------------------------------------------------
 0215           1179   ;------------------------------------------------------------
-0215           1180   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:324: void PWMforward(void) {
+0215           1180   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:328: void PWMforward(void) {
 0215           1181   ;        -----------------------------------------
 0215           1182   ;         function PWMforward
 0215           1183   ;        -----------------------------------------
 0215           1184   _PWMforward:
-0215           1185   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:325: pwmSig1 = 99;
-0215 756063    1186            mov     _pwmSig1,#0x63
+0215           1185   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:329: pwmSig1 = 99;
+0215 757063    1186            mov     _pwmSig1,#0x63
 0218 E4        1187            clr     a
-0219 F561      1188            mov     (_pwmSig1 + 1),a
-021B           1189   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:326: pwmSig2 = 0;
-021B           1190   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:328: pwmSig3 = 0;
+0219 F571      1188            mov     (_pwmSig1 + 1),a
+021B           1189   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:330: pwmSig2 = 0;
+021B           1190   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:332: pwmSig3 = 0;
 021B E4        1191            clr     a
-021C F520      1192            mov     _pwmSig2,a
-021E F521      1193            mov     (_pwmSig2 + 1),a
-0220 F5E0      1194            mov     _pwmSig3,a
-0222 F5E1      1195            mov     (_pwmSig3 + 1),a
-0224           1196   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:329: pwmSig4 =99;
-0224 75A063    1197            mov     _pwmSig4,#0x63
+021C F530      1192            mov     _pwmSig2,a
+021E F531      1193            mov     (_pwmSig2 + 1),a
+0220 F5F0      1194            mov     _pwmSig3,a
+0222 F5F1      1195            mov     (_pwmSig3 + 1),a
+0224           1196   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:333: pwmSig4 =99;
+0224 75B063    1197            mov     _pwmSig4,#0x63
 0227 E4        1198            clr     a
-0228 F5A1      1199            mov     (_pwmSig4 + 1),a
-022A           1200   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:331: LEDRED = 1;
+0228 F5B1      1199            mov     (_pwmSig4 + 1),a
+022A           1200   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:335: LEDRED = 1;
 022A D287      1201            setb    _P0_7
-022C           1202   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:332: LEDGREEN = 1;
+022C           1202   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:336: LEDGREEN = 1;
 022C D286      1203            setb    _P0_6
-022E           1204   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:333: LEDWHITE = 1;
+022E           1204   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:337: LEDWHITE = 1;
 022E D290      1205            setb    _P1_0
-0230           1206   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:334: SPEAKER = 0;
+0230           1206   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:338: SPEAKER = 0;
 0230 C2A5      1207            clr     _P2_5
-0232           1208   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:335: printf("Forward\n\r");
+0232           1208   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:339: printf("Forward\n\r");
 0232 7410      1209            mov     a,#__str_0
 0234 C0E0      1210            push    acc
 0236 74C8      1211            mov     a,#(__str_0 >> 8)
@@ -1221,36 +1221,36 @@
 0248           1221   ;Allocation info for local variables in function 'PWMbackward'
 0248           1222   ;------------------------------------------------------------
 0248           1223   ;------------------------------------------------------------
-0248           1224   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:338: void PWMbackward(void) {
+0248           1224   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:342: void PWMbackward(void) {
 0248           1225   ;        -----------------------------------------
 0248           1226   ;         function PWMbackward
 0248           1227   ;        -----------------------------------------
 0248           1228   _PWMbackward:
-0248           1229   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:339: pwmSig1 = 0;
+0248           1229   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:343: pwmSig1 = 0;
 0248 E4        1230            clr     a
-0249 F560      1231            mov     _pwmSig1,a
-024B F561      1232            mov     (_pwmSig1 + 1),a
-024D           1233   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:340: pwmSig2 = 99;
-024D 752063    1234            mov     _pwmSig2,#0x63
+0249 F570      1231            mov     _pwmSig1,a
+024B F571      1232            mov     (_pwmSig1 + 1),a
+024D           1233   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:344: pwmSig2 = 99;
+024D 753063    1234            mov     _pwmSig2,#0x63
 0250 E4        1235            clr     a
-0251 F521      1236            mov     (_pwmSig2 + 1),a
-0253           1237   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:342: pwmSig3 = 99;
-0253 75E063    1238            mov     _pwmSig3,#0x63
+0251 F531      1236            mov     (_pwmSig2 + 1),a
+0253           1237   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:346: pwmSig3 = 99;
+0253 75F063    1238            mov     _pwmSig3,#0x63
 0256 E4        1239            clr     a
-0257 F5E1      1240            mov     (_pwmSig3 + 1),a
-0259           1241   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:343: pwmSig4 = 0;
+0257 F5F1      1240            mov     (_pwmSig3 + 1),a
+0259           1241   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:347: pwmSig4 = 0;
 0259 E4        1242            clr     a
-025A F5A0      1243            mov     _pwmSig4,a
-025C F5A1      1244            mov     (_pwmSig4 + 1),a
-025E           1245   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:345: LEDRED = 1;
+025A F5B0      1243            mov     _pwmSig4,a
+025C F5B1      1244            mov     (_pwmSig4 + 1),a
+025E           1245   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:349: LEDRED = 1;
 025E D287      1246            setb    _P0_7
-0260           1247   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:346: LEDGREEN = 1;
+0260           1247   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:350: LEDGREEN = 1;
 0260 D286      1248            setb    _P0_6
-0262           1249   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:347: LEDWHITE = 0;
+0262           1249   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:351: LEDWHITE = 0;
 0262 C290      1250            clr     _P1_0
-0264           1251   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:348: SPEAKER = 1;
+0264           1251   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:352: SPEAKER = 1;
 0264 D2A5      1252            setb    _P2_5
-0266           1253   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:349: printf("Backward\n\r");
+0266           1253   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:353: printf("Backward\n\r");
 0266 7490      1254            mov     a,#__str_1
 0268 C0E0      1255            push    acc
 026A 74C8      1256            mov     a,#(__str_1 >> 8)
@@ -1266,36 +1266,36 @@
 027C           1266   ;Allocation info for local variables in function 'PWMLeft'
 027C           1267   ;------------------------------------------------------------
 027C           1268   ;------------------------------------------------------------
-027C           1269   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:352: void PWMLeft(void) {
+027C           1269   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:356: void PWMLeft(void) {
 027C           1270   ;        -----------------------------------------
 027C           1271   ;         function PWMLeft
 027C           1272   ;        -----------------------------------------
 027C           1273   _PWMLeft:
-027C           1274   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:353: pwmSig1 = 0;
+027C           1274   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:357: pwmSig1 = 0;
 027C E4        1275            clr     a
-027D F560      1276            mov     _pwmSig1,a
-027F F561      1277            mov     (_pwmSig1 + 1),a
-0281           1278   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:354: pwmSig2 = 99;
-0281 752063    1279            mov     _pwmSig2,#0x63
+027D F570      1276            mov     _pwmSig1,a
+027F F571      1277            mov     (_pwmSig1 + 1),a
+0281           1278   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:358: pwmSig2 = 99;
+0281 753063    1279            mov     _pwmSig2,#0x63
 0284 E4        1280            clr     a
-0285 F521      1281            mov     (_pwmSig2 + 1),a
-0287           1282   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:356: pwmSig3 = 0;
+0285 F531      1281            mov     (_pwmSig2 + 1),a
+0287           1282   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:360: pwmSig3 = 0;
 0287 E4        1283            clr     a
-0288 F5E0      1284            mov     _pwmSig3,a
-028A F5E1      1285            mov     (_pwmSig3 + 1),a
-028C           1286   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:357: pwmSig4 = 99;
-028C 75A063    1287            mov     _pwmSig4,#0x63
+0288 F5F0      1284            mov     _pwmSig3,a
+028A F5F1      1285            mov     (_pwmSig3 + 1),a
+028C           1286   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:361: pwmSig4 = 99;
+028C 75B063    1287            mov     _pwmSig4,#0x63
 028F E4        1288            clr     a
-0290 F5A1      1289            mov     (_pwmSig4 + 1),a
-0292           1290   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:359: LEDRED = 1;
+0290 F5B1      1289            mov     (_pwmSig4 + 1),a
+0292           1290   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:363: LEDRED = 1;
 0292 D287      1291            setb    _P0_7
-0294           1292   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:360: LEDGREEN = 0;
+0294           1292   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:364: LEDGREEN = 0;
 0294 C286      1293            clr     _P0_6
-0296           1294   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:361: LEDWHITE = 1;
+0296           1294   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:365: LEDWHITE = 1;
 0296 D290      1295            setb    _P1_0
-0298           1296   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:362: SPEAKER = 0;
+0298           1296   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:366: SPEAKER = 0;
 0298 C2A5      1297            clr     _P2_5
-029A           1298   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:364: printf("Left\n\r");
+029A           1298   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:368: printf("Left\n\r");
 029A 74D0      1299            mov     a,#__str_2
 029C C0E0      1300            push    acc
 029E 74C8      1301            mov     a,#(__str_2 >> 8)
@@ -1311,36 +1311,36 @@
 02B0           1311   ;Allocation info for local variables in function 'PWMRight'
 02B0           1312   ;------------------------------------------------------------
 02B0           1313   ;------------------------------------------------------------
-02B0           1314   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:367: void PWMRight(void) {
+02B0           1314   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:371: void PWMRight(void) {
 02B0           1315   ;        -----------------------------------------
 02B0           1316   ;         function PWMRight
 02B0           1317   ;        -----------------------------------------
 02B0           1318   _PWMRight:
-02B0           1319   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:368: pwmSig1 = 99;
-02B0 756063    1320            mov     _pwmSig1,#0x63
+02B0           1319   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:372: pwmSig1 = 99;
+02B0 757063    1320            mov     _pwmSig1,#0x63
 02B3 E4        1321            clr     a
-02B4 F561      1322            mov     (_pwmSig1 + 1),a
-02B6           1323   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:369: pwmSig2 = 0;
+02B4 F571      1322            mov     (_pwmSig1 + 1),a
+02B6           1323   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:373: pwmSig2 = 0;
 02B6 E4        1324            clr     a
-02B7 F520      1325            mov     _pwmSig2,a
-02B9 F521      1326            mov     (_pwmSig2 + 1),a
-02BB           1327   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:371: pwmSig3 = 99;
-02BB 75E063    1328            mov     _pwmSig3,#0x63
+02B7 F530      1325            mov     _pwmSig2,a
+02B9 F531      1326            mov     (_pwmSig2 + 1),a
+02BB           1327   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:375: pwmSig3 = 99;
+02BB 75F063    1328            mov     _pwmSig3,#0x63
 02BE E4        1329            clr     a
-02BF F5E1      1330            mov     (_pwmSig3 + 1),a
-02C1           1331   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:372: pwmSig4 = 0;
+02BF F5F1      1330            mov     (_pwmSig3 + 1),a
+02C1           1331   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:376: pwmSig4 = 0;
 02C1 E4        1332            clr     a
-02C2 F5A0      1333            mov     _pwmSig4,a
-02C4 F5A1      1334            mov     (_pwmSig4 + 1),a
-02C6           1335   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:374: LEDRED = 1;
+02C2 F5B0      1333            mov     _pwmSig4,a
+02C4 F5B1      1334            mov     (_pwmSig4 + 1),a
+02C6           1335   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:378: LEDRED = 1;
 02C6 D287      1336            setb    _P0_7
-02C8           1337   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:375: LEDGREEN = 0;
+02C8           1337   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:379: LEDGREEN = 0;
 02C8 C286      1338            clr     _P0_6
-02CA           1339   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:376: LEDWHITE = 1;
+02CA           1339   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:380: LEDWHITE = 1;
 02CA D290      1340            setb    _P1_0
-02CC           1341   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:377: SPEAKER = 0;       
+02CC           1341   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:381: SPEAKER = 0;   
 02CC C2A5      1342            clr     _P2_5
-02CE           1343   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:379: printf("Right\n\r");
+02CE           1343   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:383: printf("Right\n\r");
 02CE 7410      1344            mov     a,#__str_3
 02D0 C0E0      1345            push    acc
 02D2 74C9      1346            mov     a,#(__str_3 >> 8)
@@ -1356,33 +1356,33 @@
 02E4           1356   ;Allocation info for local variables in function 'PWMStop'
 02E4           1357   ;------------------------------------------------------------
 02E4           1358   ;------------------------------------------------------------
-02E4           1359   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:382: void PWMStop(void) {
+02E4           1359   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:386: void PWMStop(void) {
 02E4           1360   ;        -----------------------------------------
 02E4           1361   ;         function PWMStop
 02E4           1362   ;        -----------------------------------------
 02E4           1363   _PWMStop:
-02E4           1364   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:383: pwmSig1 = 0;
-02E4           1365   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:384: pwmSig2 = 0;
-02E4           1366   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:386: pwmSig3 = 0;
-02E4           1367   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:387: pwmSig4 = 0;
+02E4           1364   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:387: pwmSig1 = 0;
+02E4           1365   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:388: pwmSig2 = 0;
+02E4           1366   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:390: pwmSig3 = 0;
+02E4           1367   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:391: pwmSig4 = 0;
 02E4 E4        1368            clr     a
-02E5 F560      1369            mov     _pwmSig1,a
-02E7 F561      1370            mov     (_pwmSig1 + 1),a
-02E9 F520      1371            mov     _pwmSig2,a
-02EB F521      1372            mov     (_pwmSig2 + 1),a
-02ED F5E0      1373            mov     _pwmSig3,a
-02EF F5E1      1374            mov     (_pwmSig3 + 1),a
-02F1 F5A0      1375            mov     _pwmSig4,a
-02F3 F5A1      1376            mov     (_pwmSig4 + 1),a
-02F5           1377   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:389: LEDRED = 0;
+02E5 F570      1369            mov     _pwmSig1,a
+02E7 F571      1370            mov     (_pwmSig1 + 1),a
+02E9 F530      1371            mov     _pwmSig2,a
+02EB F531      1372            mov     (_pwmSig2 + 1),a
+02ED F5F0      1373            mov     _pwmSig3,a
+02EF F5F1      1374            mov     (_pwmSig3 + 1),a
+02F1 F5B0      1375            mov     _pwmSig4,a
+02F3 F5B1      1376            mov     (_pwmSig4 + 1),a
+02F5           1377   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:393: LEDRED = 0;
 02F5 C287      1378            clr     _P0_7
-02F7           1379   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:390: LEDGREEN = 1;
+02F7           1379   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:394: LEDGREEN = 1;
 02F7 D286      1380            setb    _P0_6
-02F9           1381   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:391: LEDWHITE = 1;
+02F9           1381   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:395: LEDWHITE = 1;
 02F9 D290      1382            setb    _P1_0
-02FB           1383   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:392: SPEAKER = 0;
+02FB           1383   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:396: SPEAKER = 0;
 02FB C2A5      1384            clr     _P2_5
-02FD           1385   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:394: printf("Stop\n\r");
+02FD           1385   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:398: printf("Stop\n\r");
 02FD 7450      1386            mov     a,#__str_4
 02FF C0E0      1387            push    acc
 0301 74C9      1388            mov     a,#(__str_4 >> 8)
@@ -1400,60 +1400,60 @@
 0313           1400   ;period1                   Allocated to registers r2 r3 r4 r5 
 0313           1401   ;overflow_count            Allocated to registers r2 r3 
 0313           1402   ;------------------------------------------------------------
-0313           1403   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:397: float periodcalc(void) {
+0313           1403   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:401: float periodcalc(void) {
 0313           1404   ;        -----------------------------------------
 0313           1405   ;         function periodcalc
 0313           1406   ;        -----------------------------------------
 0313           1407   _periodcalc:
-0313           1408   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:401: TL0=0; 
+0313           1408   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:405: TL0=0; 
 0313 758A00    1409            mov     _TL0,#0x00
-0316           1410   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:402: TH0=0;
+0316           1410   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:406: TH0=0;
 0316 758C00    1411            mov     _TH0,#0x00
-0319           1412   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:403: TF0=0;
+0319           1412   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:407: TF0=0;
 0319 C28D      1413            clr     _TF0
-031B           1414   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:405: TR0=0;
+031B           1414   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:409: TR0=0;
 031B C28C      1415            clr     _TR0
-031D           1416   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:407: while(P1_6!=0); // Wait for the signal to be zero
+031D           1416   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:411: while(P1_6!=0); // Wait for the signal to be zero
 031D           1417   L016001?:
 031D 209690    1418            jb      _P1_6,L016001?
-0320           1419   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:408: while(P1_6!=1); // Wait for the signal to be one
+0320           1419   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:412: while(P1_6!=1); // Wait for the signal to be one
 0320           1420   L016004?:
 0320 3096D0    1421            jnb     _P1_6,L016004?
-0323           1422   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:409: TR0=1; // Start the timer
+0323           1422   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:413: TR0=1; // Start the timer
 0323 D28C      1423            setb    _TR0
-0325           1424   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:410: while(P1_6!=0) // Wait for the signal to be zero
+0325           1424   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:414: while(P1_6!=0) // Wait for the signal to be zero
 0325 7A00      1425            mov     r2,#0x00
 0327 7B00      1426            mov     r3,#0x00
 0329           1427   L016009?:
 0329 309650    1428            jnb     _P1_6,L016026?
-032C           1429   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:412: if(TF0==1) // Did the 16-bit timer overflow?
-032C           1430   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:414: TF0=0;
+032C           1429   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:416: if(TF0==1) // Did the 16-bit timer overflow?
+032C           1430   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:418: TF0=0;
 032C 108D90    1431            jbc     _TF0,L016033?
 032F 8001      1432            sjmp    L016009?
 0331           1433   L016033?:
-0331           1434   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:415: overflow_count++;
+0331           1434   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:419: overflow_count++;
 0331 0A        1435            inc     r2
 0332 BA0010    1436            cjne    r2,#0x00,L016009?
 0335 0B        1437            inc     r3
-0336           1438   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:419: while(P1_6!=1) // Wait for the signal to be zero
+0336           1438   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:423: while(P1_6!=1) // Wait for the signal to be zero
 0336 8001      1439            sjmp    L016009?
 0338           1440   L016026?:
 0338           1441   L016014?:
 0338 209610    1442            jb      _P1_6,L016016?
-033B           1443   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:421: if(TF0==1) // Did the 16-bit timer overflow?
-033B           1444   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:423: TF0=0;
+033B           1443   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:425: if(TF0==1) // Did the 16-bit timer overflow?
+033B           1444   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:427: TF0=0;
 033B 108D50    1445            jbc     _TF0,L016035?
 033E 8001      1446            sjmp    L016014?
 0340           1447   L016035?:
-0340           1448   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:424: overflow_count++;
+0340           1448   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:428: overflow_count++;
 0340 0A        1449            inc     r2
 0341 BA00D0    1450            cjne    r2,#0x00,L016014?
 0344 0B        1451            inc     r3
 0345 8001      1452            sjmp    L016014?
 0347           1453   L016016?:
-0347           1454   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:429: TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
+0347           1454   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:433: TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
 0347 C28C      1455            clr     _TR0
-0349           1456   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:430: period1=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
+0349           1456   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:434: period1=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
 0349 8A82      1457            mov     dpl,r2
 034B 8B83      1458            mov     dph,r3
 034D 120100    1459            lcall   ___sint2fs
@@ -1569,7 +1569,7 @@
 042E E581      1569            mov     a,sp
 0430 24FC      1570            add     a,#0xfc
 0432 F581      1571            mov     sp,a
-0434           1572   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:431: printf("%f\n\r", period1);
+0434           1572   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:435: printf("%f\n\r", period1);
 0434 C002      1573            push    ar2
 0436 C003      1574            push    ar3
 0438 C004      1575            push    ar4
@@ -1588,7 +1588,7 @@
 0453 E581      1588            mov     a,sp
 0455 24F9      1589            add     a,#0xf9
 0457 F581      1590            mov     sp,a
-0459           1591   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:432: return period1*1000; //return period of high pulse in seconds
+0459           1591   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:436: return period1*1000; //return period of high pulse in seconds
 0459 900000    1592            mov     dptr,#0x0000
 045C 75F07A    1593            mov     b,#0x7A
 045F 7444      1594            mov     a,#0x44
@@ -1613,15 +1613,15 @@
 0479           1613   ;arr1                      Allocated with name '_arrayEqual_arr1_1_78'
 0479           1614   ;i                         Allocated to registers r5 r6 
 0479           1615   ;------------------------------------------------------------
-0479           1616   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:437: int arrayEqual (int arr1[], int size, int arr2[]){
+0479           1616   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:441: int arrayEqual (int arr1[], int size, int arr2[]){
 0479           1617   ;        -----------------------------------------
 0479           1618   ;         function arrayEqual
 0479           1619   ;        -----------------------------------------
 0479           1620   _arrayEqual:
-0479 8582B8    1621            mov     _arrayEqual_arr1_1_78,dpl
-047C 8583B9    1622            mov     (_arrayEqual_arr1_1_78 + 1),dph
-047F 85F0BA    1623            mov     (_arrayEqual_arr1_1_78 + 2),b
-0482           1624   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:439: for(i=0; i<size; i++){
+0479 8582C0    1621            mov     _arrayEqual_arr1_1_78,dpl
+047C 8583C1    1622            mov     (_arrayEqual_arr1_1_78 + 1),dph
+047F 85F0C2    1623            mov     (_arrayEqual_arr1_1_78 + 2),b
+0482           1624   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:443: for(i=0; i<size; i++){
 0482 7D00      1625            mov     r5,#0x00
 0484 7E00      1626            mov     r6,#0x00
 0486           1627   L017003?:
@@ -1634,7 +1634,7 @@
 0490 63F080    1634            xrl     b,#0x80
 0493 95F0      1635            subb    a,b
 0495 5001      1636            jnc     L017006?
-0497           1637   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:440: if(arr1[i]!=arr2[i])
+0497           1637   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:444: if(arr1[i]!=arr2[i])
 0497 8D07      1638            mov     ar7,r5
 0499 EE        1639            mov     a,r6
 049A CF        1640            xch     a,r7
@@ -1643,12 +1643,12 @@
 049E 33        1643            rlc     a
 049F F8        1644            mov     r0,a
 04A0 EF        1645            mov     a,r7
-04A1 25B8      1646            add     a,_arrayEqual_arr1_1_78
+04A1 25C0      1646            add     a,_arrayEqual_arr1_1_78
 04A3 F9        1647            mov     r1,a
 04A4 E8        1648            mov     a,r0
-04A5 35B9      1649            addc    a,(_arrayEqual_arr1_1_78 + 1)
+04A5 35C1      1649            addc    a,(_arrayEqual_arr1_1_78 + 1)
 04A7 FA        1650            mov     r2,a
-04A8 ABBA      1651            mov     r3,(_arrayEqual_arr1_1_78 + 2)
+04A8 ABC2      1651            mov     r3,(_arrayEqual_arr1_1_78 + 2)
 04AA 8982      1652            mov     dpl,r1
 04AC 8A83      1653            mov     dph,r2
 04AE 8BF0      1654            mov     b,r3
@@ -1678,29 +1678,29 @@
 04D7 B50050    1678            cjne    a,ar0,L017013?
 04DA 8001      1679            sjmp    L017005?
 04DC           1680   L017013?:
-04DC           1681   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:441: return 0; 
+04DC           1681   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:445: return 0; 
 04DC 900000    1682            mov     dptr,#0x0000
 04DF 22        1683            ret
 04E0           1684   L017005?:
-04E0           1685   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:439: for(i=0; i<size; i++){
+04E0           1685   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:443: for(i=0; i<size; i++){
 04E0 0D        1686            inc     r5
 04E1 BD0090    1687            cjne    r5,#0x00,L017003?
 04E4 0E        1688            inc     r6
 04E5 8001      1689            sjmp    L017003?
 04E7           1690   L017006?:
-04E7           1691   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:443: return 1; 
+04E7           1691   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:447: return 1; 
 04E7 900001    1692            mov     dptr,#0x0001
 04EA 22        1693            ret
 04EB           1694   ;------------------------------------------------------------
 04EB           1695   ;Allocation info for local variables in function 'checkCommands'
 04EB           1696   ;------------------------------------------------------------
 04EB           1697   ;------------------------------------------------------------
-04EB           1698   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:449: void checkCommands (void){
+04EB           1698   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:453: void checkCommands (void){
 04EB           1699   ;        -----------------------------------------
 04EB           1700   ;         function checkCommands
 04EB           1701   ;        -----------------------------------------
 04EB           1702   _checkCommands:
-04EB           1703   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:450: if(arrayEqual(command, 4, stop)) PWMStop();
+04EB           1703   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:454: if(arrayEqual(command, 4, stop)) PWMStop();
 04EB 75B8C8    1704            mov     _arrayEqual_PARM_3,#_stop
 04EE 75B900    1705            mov     (_arrayEqual_PARM_3 + 1),#0x00
 04F1 75BA40    1706            mov     (_arrayEqual_PARM_3 + 2),#0x40
@@ -1717,7 +1717,7 @@
 050C 120100    1717            lcall   _PWMStop
 050F 020100    1718            ljmp    L018015?
 0512           1719   L018014?:
-0512           1720   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:451: else if (arrayEqual(command,4,forward)) PWMforward(); 
+0512           1720   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:455: else if (arrayEqual(command,4,forward)) PWMforward(); 
 0512 75B888    1721            mov     _arrayEqual_PARM_3,#_forward
 0515 75B900    1722            mov     (_arrayEqual_PARM_3 + 1),#0x00
 0518 75BA40    1723            mov     (_arrayEqual_PARM_3 + 2),#0x40
@@ -1734,7 +1734,7 @@
 0533 120100    1734            lcall   _PWMforward
 0536 020100    1735            ljmp    L018015?
 0539           1736   L018011?:
-0539           1737   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:452: else if (arrayEqual(command,4,backward)) PWMbackward(); 
+0539           1737   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:456: else if (arrayEqual(command,4,backward)) PWMbackward(); 
 0539 75B848    1738            mov     _arrayEqual_PARM_3,#_backward
 053C 75B900    1739            mov     (_arrayEqual_PARM_3 + 1),#0x00
 053F 75BA40    1740            mov     (_arrayEqual_PARM_3 + 2),#0x40
@@ -1751,7 +1751,7 @@
 055A 120100    1751            lcall   _PWMbackward
 055D 8001      1752            sjmp    L018015?
 055F           1753   L018008?:
-055F           1754   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:453: else if (arrayEqual(command,4, left)) PWMLeft(); 
+055F           1754   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:457: else if (arrayEqual(command,4, left)) PWMLeft(); 
 055F 75B808    1755            mov     _arrayEqual_PARM_3,#_left
 0562 75B900    1756            mov     (_arrayEqual_PARM_3 + 1),#0x00
 0565 75BA40    1757            mov     (_arrayEqual_PARM_3 + 2),#0x40
@@ -1768,7 +1768,7 @@
 0580 120100    1768            lcall   _PWMLeft
 0583 8001      1769            sjmp    L018015?
 0585           1770   L018005?:
-0585           1771   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:454: else if (arrayEqual(command,4, right)) PWMRight(); 
+0585           1771   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:458: else if (arrayEqual(command,4, right)) PWMRight(); 
 0585 75B8C8    1772            mov     _arrayEqual_PARM_3,#_right
 0588 75B900    1773            mov     (_arrayEqual_PARM_3 + 1),#0x00
 058B 75BA40    1774            mov     (_arrayEqual_PARM_3 + 2),#0x40
@@ -1785,22 +1785,22 @@
 05A6 120100    1785            lcall   _PWMRight
 05A9 8001      1786            sjmp    L018015?
 05AB           1787   L018002?:
-05AB           1788   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:455: else PWMStop(); //defaults to a halt (redundant)
+05AB           1788   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:459: else PWMStop(); //defaults to a halt (redundant)
 05AB 120100    1789            lcall   _PWMStop
 05AE           1790   L018015?:
-05AE           1791   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:456: waitms(358);
+05AE           1791   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:460: waitms(358);
 05AE 900166    1792            mov     dptr,#0x0166
 05B1 020100    1793            ljmp    _waitms
 05B4           1794   ;------------------------------------------------------------
 05B4           1795   ;Allocation info for local variables in function 'voltsAtPeak'
 05B4           1796   ;------------------------------------------------------------
 05B4           1797   ;------------------------------------------------------------
-05B4           1798   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:463: float voltsAtPeak(void) {
+05B4           1798   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:467: float voltsAtPeak(void) {
 05B4           1799   ;        -----------------------------------------
 05B4           1800   ;         function voltsAtPeak
 05B4           1801   ;        -----------------------------------------
 05B4           1802   _voltsAtPeak:
-05B4           1803   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:465: while(ADC_at_Pin(QFP32_MUX_P1_6)==0); //this waiting for the pin to be high/ 1 
+05B4           1803   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:469: while(ADC_at_Pin(QFP32_MUX_P1_6)==0); //this waiting for the pin to be high/ 1 
 05B4           1804   L019001?:
 05B4 75820C    1805            mov     dpl,#0x0C
 05B7 120100    1806            lcall   _ADC_at_Pin
@@ -1808,33 +1808,33 @@
 05BC 8583F0    1808            mov     b,dph
 05BF 45F0      1809            orl     a,b
 05C1 6001      1810            jz      L019001?
-05C3           1811   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:466: Timer3us((PERIOD*1.0E6)/4.0); //PERIOD IS DEFINED
+05C3           1811   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:470: Timer3us((PERIOD*1.0E6)/4.0); //PERIOD IS DEFINED
 05C3 900000    1812            mov     dptr,#0x0000
 05C6 120100    1813            lcall   _Timer3us
-05C9           1814   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:467: return(Volts_at_Pin(QFP32_MUX_P1_6));
+05C9           1814   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:471: return(Volts_at_Pin(QFP32_MUX_P1_6));
 05C9 75820C    1815            mov     dpl,#0x0C
 05CC 020100    1816            ljmp    _Volts_at_Pin
 05CF           1817   ;------------------------------------------------------------
 05CF           1818   ;Allocation info for local variables in function 'checkerror'
 05CF           1819   ;------------------------------------------------------------
 05CF           1820   ;------------------------------------------------------------
-05CF           1821   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:472: void checkerror (void){
+05CF           1821   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:476: void checkerror (void){
 05CF           1822   ;        -----------------------------------------
 05CF           1823   ;         function checkerror
 05CF           1824   ;        -----------------------------------------
 05CF           1825   _checkerror:
-05CF           1826   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:475: }
+05CF           1826   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:479: }
 05CF 22        1827            ret
 05D0           1828   ;------------------------------------------------------------
 05D0           1829   ;Allocation info for local variables in function 'getDigitalSignal'
 05D0           1830   ;------------------------------------------------------------
 05D0           1831   ;------------------------------------------------------------
-05D0           1832   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:484: int getDigitalSignal (void){
+05D0           1832   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:488: int getDigitalSignal (void){
 05D0           1833   ;        -----------------------------------------
 05D0           1834   ;         function getDigitalSignal
 05D0           1835   ;        -----------------------------------------
 05D0           1836   _getDigitalSignal:
-05D0           1837   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:486: if (Volts_at_Pin(QFP32_MUX_P2_3)>=thresholdVolt) //not too low to be a noise/ a valid signal for high, 1
+05D0           1837   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:490: if (Volts_at_Pin(QFP32_MUX_P2_3)>=thresholdVolt) //not too low to be a noise/ a valid signal for high, 1
 05D0 758210    1838            mov     dpl,#0x10
 05D3 120100    1839            lcall   _Volts_at_Pin
 05D6 AA82      1840            mov     r2,dpl
@@ -1858,7 +1858,7 @@
 05F8 F581      1858            mov     sp,a
 05FA EA        1859            mov     a,r2
 05FB 7001      1860            jnz     L021002?
-05FD           1861   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:488: printf("\nread 1:  at pin 2.3: %f\r", Volts_at_Pin(QFP32_MUX_P2_3));
+05FD           1861   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:492: printf("\nread 1:  at pin 2.3: %f\r", Volts_at_Pin(QFP32_MUX_P2_3));
 05FD 758210    1862            mov     dpl,#0x10
 0600 120100    1863            lcall   _Volts_at_Pin
 0603 AA82      1864            mov     r2,dpl
@@ -1879,9 +1879,9 @@
 0621 E581      1879            mov     a,sp
 0623 24F9      1880            add     a,#0xf9
 0625 F581      1881            mov     sp,a
-0627           1882   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:489: return 1;
+0627           1882   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:493: return 1;
 0627 900001    1883            mov     dptr,#0x0001
-062A           1884   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:493: return 0; 
+062A           1884   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:497: return 0; 
 062A 22        1885            ret
 062B           1886   L021002?:
 062B 900000    1887            mov     dptr,#0x0000
@@ -1890,12 +1890,12 @@
 062F           1890   ;Allocation info for local variables in function 'waitquarterperiod'
 062F           1891   ;------------------------------------------------------------
 062F           1892   ;------------------------------------------------------------
-062F           1893   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:500: void waitquarterperiod(void){
+062F           1893   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:504: void waitquarterperiod(void){
 062F           1894   ;        -----------------------------------------
 062F           1895   ;         function waitquarterperiod
 062F           1896   ;        -----------------------------------------
 062F           1897   _waitquarterperiod:
-062F           1898   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:501: waitms(constant_delay_time);
+062F           1898   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:505: waitms(constant_delay_time);
 062F 900014    1899            mov     dptr,#0x0014
 0632 020100    1900            ljmp    _waitms
 0635           1901   ;------------------------------------------------------------
@@ -1904,25 +1904,25 @@
 0635           1904   ;checkcomm                 Allocated to registers 
 0635           1905   ;i                         Allocated to registers r2 r3 
 0635           1906   ;------------------------------------------------------------
-0635           1907   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:507: void recieveData (){
+0635           1907   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:511: void recieveData (){
 0635           1908   ;        -----------------------------------------
 0635           1909   ;         function recieveData
 0635           1910   ;        -----------------------------------------
 0635           1911   _recieveData:
-0635           1912   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:511: while(getDigitalSignal()==0);      //wait for the signal to be 1 
+0635           1912   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:515: while(getDigitalSignal()==0);          //wait for the signal to be 1 
 0635           1913   L023001?:
 0635 120100    1914            lcall   _getDigitalSignal
 0638 E582      1915            mov     a,dpl
 063A 8583F0    1916            mov     b,dph
 063D 45F0      1917            orl     a,b
 063F 6001      1918            jz      L023001?
-0641           1919   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:515: waitms(175);       //wait 
+0641           1919   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:519: waitms(175);   //wait 
 0641 9000AF    1920            mov     dptr,#0x00AF
 0644 120100    1921            lcall   _waitms
-0647           1922   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:516: command[0] = 1;
+0647           1922   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:520: command[0] = 1;
 0647 758801    1923            mov     _command,#0x01
 064A 758900    1924            mov     (_command + 1),#0x00
-064D           1925   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:518: for( i=1; i<4; i++){
+064D           1925   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:522: for( i=1; i<4; i++){
 064D 7A01      1926            mov     r2,#0x01
 064F 7B00      1927            mov     r3,#0x00
 0651           1928   L023004?:
@@ -1933,14 +1933,14 @@
 0656 6480      1933            xrl     a,#0x80
 0658 9480      1934            subb    a,#0x80
 065A 5001      1935            jnc     L023007?
-065C           1936   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:519: waitms(358); //wait for a period
+065C           1936   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:523: waitms(358); //wait for a period
 065C 900166    1937            mov     dptr,#0x0166
 065F C002      1938            push    ar2
 0661 C003      1939            push    ar3
 0663 120100    1940            lcall   _waitms
 0666 D003      1941            pop     ar3
 0668 D002      1942            pop     ar2
-066A           1943   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:520: command[i]=getDigitalSignal();     
+066A           1943   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:524: command[i]=getDigitalSignal();         
 066A 8A04      1944            mov     ar4,r2
 066C EB        1945            mov     a,r3
 066D CC        1946            xch     a,r4
@@ -1963,33 +1963,33 @@
 068B 08        1963            inc     r0
 068C A6F0      1964            mov     @r0,b
 068E 18        1965            dec     r0
-068F           1966   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:518: for( i=1; i<4; i++){
+068F           1966   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:522: for( i=1; i<4; i++){
 068F 0A        1967            inc     r2
 0690 BA0090    1968            cjne    r2,#0x00,L023004?
 0693 0B        1969            inc     r3
 0694 8001      1970            sjmp    L023004?
 0696           1971   L023007?:
-0696           1972   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:523: checkCommands();
+0696           1972   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:527: checkCommands();
 0696 020100    1973            ljmp    _checkCommands
 0699           1974   ;------------------------------------------------------------
 0699           1975   ;Allocation info for local variables in function 'checkMode'
 0699           1976   ;------------------------------------------------------------
 0699           1977   ;------------------------------------------------------------
-0699           1978   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:533: int checkMode(){
+0699           1978   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:537: int checkMode(){
 0699           1979   ;        -----------------------------------------
 0699           1980   ;         function checkMode
 0699           1981   ;        -----------------------------------------
 0699           1982   _checkMode:
-0699           1983   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:534: if(!BUTTON1 || x == 0){
+0699           1983   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:538: if(!BUTTON1 || x == 0){
 0699 30B110    1984            jnb     _P3_1,L024001?
 069C E548      1985            mov     a,_x
 069E 4549      1986            orl     a,(_x + 1)
 06A0 7001      1987            jnz     L024019?
-06A2           1988   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:535: while(!BUTTON1);
+06A2           1988   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:539: while(!BUTTON1);
 06A2           1989   L024001?:
 06A2 30B110    1990            jnb     _P3_1,L024001?
-06A5           1991   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:536: x= 0;
-06A5           1992   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:537: return 0;
+06A5           1991   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:540: x= 0;
+06A5           1992   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:541: return 0;
 06A5 E4        1993            clr     a
 06A6 F548      1994            mov     _x,a
 06A8 F549      1995            mov     (_x + 1),a
@@ -1997,7 +1997,7 @@
 06AC F583      1997            mov     dph,a
 06AE 22        1998            ret
 06AF           1999   L024019?:
-06AF           2000   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:539: else if(!BUTTON2 || x == 1){
+06AF           2000   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:543: else if(!BUTTON2 || x == 1){
 06AF 30B390    2001            jnb     _P3_3,L024004?
 06B2 7401      2002            mov     a,#0x01
 06B4 B548D0    2003            cjne    a,_x,L024037?
@@ -2007,18 +2007,18 @@
 06BD           2007   L024037?:
 06BD 8001      2008            sjmp    L024015?
 06BF           2009   L024038?:
-06BF           2010   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:540: while(!BUTTON2);
+06BF           2010   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:544: while(!BUTTON2);
 06BF           2011   L024004?:
 06BF 30B390    2012            jnb     _P3_3,L024004?
-06C2           2013   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:541: x = 1;
+06C2           2013   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:545: x = 1;
 06C2 754801    2014            mov     _x,#0x01
 06C5 E4        2015            clr     a
 06C6 F549      2016            mov     (_x + 1),a
-06C8           2017   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:542: return 1;
+06C8           2017   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:546: return 1;
 06C8 900001    2018            mov     dptr,#0x0001
 06CB 22        2019            ret
 06CC           2020   L024015?:
-06CC           2021   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:544: else if(!BUTTON3 || x == 3){
+06CC           2021   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:548: else if(!BUTTON3 || x == 3){
 06CC 30B790    2022            jnb     _P3_7,L024007?
 06CF 7403      2023            mov     a,#0x03
 06D1 B548D0    2024            cjne    a,_x,L024041?
@@ -2028,22 +2028,22 @@
 06DA           2028   L024041?:
 06DA 8001      2029            sjmp    L024011?
 06DC           2030   L024042?:
-06DC           2031   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:545: while(!BUTTON3);
+06DC           2031   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:549: while(!BUTTON3);
 06DC           2032   L024007?:
 06DC 30B790    2033            jnb     _P3_7,L024007?
-06DF           2034   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:546: x = 3;
+06DF           2034   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:550: x = 3;
 06DF 754803    2035            mov     _x,#0x03
 06E2 E4        2036            clr     a
 06E3 F549      2037            mov     (_x + 1),a
-06E5           2038   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:547: return 3;
+06E5           2038   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:551: return 3;
 06E5 900003    2039            mov     dptr,#0x0003
 06E8 22        2040            ret
 06E9           2041   L024011?:
-06E9           2042   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:550: x = 2;
+06E9           2042   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:554: x = 2;
 06E9 754802    2043            mov     _x,#0x02
 06EC E4        2044            clr     a
 06ED F549      2045            mov     (_x + 1),a
-06EF           2046   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:551: return 2;
+06EF           2046   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:555: return 2;
 06EF 900002    2047            mov     dptr,#0x0002
 06F2 22        2048            ret
 06F3           2049   ;------------------------------------------------------------
@@ -2051,7 +2051,7 @@
 06F3           2051   ;------------------------------------------------------------
 06F3           2052   ;threshold                 Allocated to registers r2 r3 r4 r5 
 06F3           2053   ;------------------------------------------------------------
-06F3           2054   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:556: void detectobstacle(float threshold){
+06F3           2054   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:560: void detectobstacle(float threshold){
 06F3           2055   ;        -----------------------------------------
 06F3           2056   ;         function detectobstacle
 06F3           2057   ;        -----------------------------------------
@@ -2060,7 +2060,7 @@
 06F5 AB83      2060            mov     r3,dph
 06F7 ACF0      2061            mov     r4,b
 06F9 FD        2062            mov     r5,a
-06FA           2063   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:567: if(threshold <= 0.6 ){
+06FA           2063   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:571: if(threshold <= 0.6 ){
 06FA 749A      2064            mov     a,#0x9A
 06FC C0E0      2065            push    acc
 06FE 7499      2066            mov     a,#0x99
@@ -2080,7 +2080,7 @@
 071A F581      2080            mov     sp,a
 071C EA        2081            mov     a,r2
 071D 7001      2082            jnz     L025002?
-071F           2083   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:569: printf("Turn right \r\n");
+071F           2083   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:573: printf("Turn right \r\n");
 071F 7410      2084            mov     a,#__str_7
 0721 C0E0      2085            push    acc
 0723 74D4      2086            mov     a,#(__str_7 >> 8)
@@ -2091,27 +2091,27 @@
 072E 1581      2091            dec     sp
 0730 1581      2092            dec     sp
 0732 1581      2093            dec     sp
-0734           2094   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:570: PWMRight();
+0734           2094   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:574: PWMRight();
 0734 120100    2095            lcall   _PWMRight
-0737           2096   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:571: waitms(500); //Make waits longer
+0737           2096   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:575: waitms(500); //Make waits longer
 0737 9001F4    2097            mov     dptr,#0x01F4
 073A 120100    2098            lcall   _waitms
-073D           2099   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:572: waitms(500); 
+073D           2099   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:576: waitms(500); 
 073D 9001F4    2100            mov     dptr,#0x01F4
 0740 120100    2101            lcall   _waitms
-0743           2102   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:573: waitms(300); 
+0743           2102   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:577: waitms(300); 
 0743 90012C    2103            mov     dptr,#0x012C
 0746 120100    2104            lcall   _waitms
-0749           2105   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:575: PWMStop();
+0749           2105   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:579: PWMStop();
 0749 120100    2106            lcall   _PWMStop
-074C           2107   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:576: waitms(500);
+074C           2107   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:580: waitms(500);
 074C 9001F4    2108            mov     dptr,#0x01F4
 074F 120100    2109            lcall   _waitms
-0752           2110   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:577: waitms(250);
+0752           2110   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:581: waitms(250);
 0752 9000FA    2111            mov     dptr,#0x00FA
 0755 020100    2112            ljmp    _waitms
 0758           2113   L025002?:
-0758           2114   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:582: printf("Go Straight \r\n");
+0758           2114   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:586: printf("Go Straight \r\n");
 0758 7450      2115            mov     a,#__str_8
 075A C0E0      2116            push    acc
 075C 74D4      2117            mov     a,#(__str_8 >> 8)
@@ -2122,14 +2122,14 @@
 0767 1581      2122            dec     sp
 0769 1581      2123            dec     sp
 076B 1581      2124            dec     sp
-076D           2125   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:584: PWMforward();
+076D           2125   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:588: PWMforward();
 076D 020100    2126            ljmp    _PWMforward
 0770           2127   ;------------------------------------------------------------
 0770           2128   ;Allocation info for local variables in function 'laserPattern'
 0770           2129   ;------------------------------------------------------------
 0770           2130   ;rate                      Allocated to registers r2 r3 r4 r5 
 0770           2131   ;------------------------------------------------------------
-0770           2132   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:591: void laserPattern(float rate){
+0770           2132   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:595: void laserPattern(float rate){
 0770           2133   ;        -----------------------------------------
 0770           2134   ;         function laserPattern
 0770           2135   ;        -----------------------------------------
@@ -2138,9 +2138,9 @@
 0772 AB83      2138            mov     r3,dph
 0774 ACF0      2139            mov     r4,b
 0776 FD        2140            mov     r5,a
-0777           2141   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:592: LASER = 0;
+0777           2141   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:596: LASER = 0;
 0777 C2B0      2142            clr     _P3_0
-0779           2143   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:593: if(rate<0.8)
+0779           2143   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:597: if(rate<0.8)
 0779 C002      2144            push    ar2
 077B C003      2145            push    ar3
 077D C004      2146            push    ar4
@@ -2168,12 +2168,12 @@
 07A9 D002      2168            pop     ar2
 07AB EE        2169            mov     a,r6
 07AC 6001      2170            jz      L026010?
-07AE           2171   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:594: waitms(200);
+07AE           2171   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:598: waitms(200);
 07AE 9000C8    2172            mov     dptr,#0x00C8
 07B1 120100    2173            lcall   _waitms
 07B4 020100    2174            ljmp    L026011?
 07B7           2175   L026010?:
-07B7           2176   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:595: else if(rate>=0.8 && rate<2.0)
+07B7           2176   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:599: else if(rate>=0.8 && rate<2.0)
 07B7 EE        2177            mov     a,r6
 07B8 7001      2178            jnz     L026006?
 07BA C002      2179            push    ar2
@@ -2201,12 +2201,12 @@
 07E5 D002      2201            pop     ar2
 07E7 EE        2202            mov     a,r6
 07E8 6001      2203            jz      L026006?
-07EA           2204   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:596: waitms(500);
+07EA           2204   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:600: waitms(500);
 07EA 9001F4    2205            mov     dptr,#0x01F4
 07ED 120100    2206            lcall   _waitms
 07F0 8001      2207            sjmp    L026011?
 07F2           2208   L026006?:
-07F2           2209   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:597: else if(rate>=2.0 && rate<2.8)
+07F2           2209   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:601: else if(rate>=2.0 && rate<2.8)
 07F2 C002      2210            push    ar2
 07F4 C003      2211            push    ar3
 07F6 C004      2212            push    ar4
@@ -2249,23 +2249,23 @@
 083E F581      2249            mov     sp,a
 0840 EA        2250            mov     a,r2
 0841 6001      2251            jz      L026002?
-0843           2252   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:598: waitms(800);
+0843           2252   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:602: waitms(800);
 0843 900320    2253            mov     dptr,#0x0320
 0846 120100    2254            lcall   _waitms
 0849 8001      2255            sjmp    L026011?
 084B           2256   L026002?:
-084B           2257   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:600: waitms(1000);
+084B           2257   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:604: waitms(1000);
 084B 9003E8    2258            mov     dptr,#0x03E8
 084E 120100    2259            lcall   _waitms
 0851           2260   L026011?:
-0851           2261   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:601: LASER = 1;
+0851           2261   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:605: LASER = 1;
 0851 D2B0      2262            setb    _P3_0
 0853 22        2263            ret
 0854           2264   ;------------------------------------------------------------
 0854           2265   ;Allocation info for local variables in function 'main'
 0854           2266   ;------------------------------------------------------------
 0854           2267   ;checkcommand              Allocated to registers 
-0854           2268   ;i                         Allocated to registers r4 r5 
+0854           2268   ;i                         Allocated to registers r2 r3 
 0854           2269   ;sig1                      Allocated to registers 
 0854           2270   ;sig2                      Allocated to registers 
 0854           2271   ;peak                      Allocated to registers 
@@ -2273,577 +2273,458 @@
 0854           2273   ;periodpwm                 Allocated to registers 
 0854           2274   ;period                    Allocated to registers r4 r5 r6 r7 
 0854           2275   ;overflow_count            Allocated to registers r4 r5 
-0854           2276   ;pir_voltage               Allocated to registers r2 r3 r4 r5 
-0854           2277   ;mode_toggle               Allocated to registers r2 r3 
-0854           2278   ;sloc0                     Allocated with name '_main_sloc0_1_0'
-0854           2279   ;------------------------------------------------------------
-0854           2280   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:604: void main(void)
-0854           2281   ;        -----------------------------------------
-0854           2282   ;         function main
-0854           2283   ;        -----------------------------------------
-0854           2284   _main:
-0854           2285   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:619: TL0=0;
-0854 758A00    2286            mov     _TL0,#0x00
-0857           2287   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:620: TH0=0;
-0857 758C00    2288            mov     _TH0,#0x00
-085A           2289   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:621: TF0=0;     
-085A C28D      2290            clr     _TF0
-085C           2291   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:622: TIMER0_Init();
-085C 120100    2292            lcall   _TIMER0_Init
-085F           2293   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:624: InitPinADC(1, 6); // Configure P2.5 as analog input
-085F 755806    2294            mov     _InitPinADC_PARM_2,#0x06
-0862 758201    2295            mov     dpl,#0x01
-0865 120100    2296            lcall   _InitPinADC
-0868           2297   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:625: InitPinADC(2, 3); //???    
-0868 755803    2298            mov     _InitPinADC_PARM_2,#0x03
-086B 758202    2299            mov     dpl,#0x02
-086E 120100    2300            lcall   _InitPinADC
-0871           2301   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:626: InitPinADC(2, 4); //PIR
-0871 755804    2302            mov     _InitPinADC_PARM_2,#0x04
-0874 758202    2303            mov     dpl,#0x02
-0877 120100    2304            lcall   _InitPinADC
-087A           2305   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:627: InitPinADC(2, 6); //Temp Sensor
-087A 755806    2306            mov     _InitPinADC_PARM_2,#0x06
-087D 758202    2307            mov     dpl,#0x02
-0880 120100    2308            lcall   _InitPinADC
-0883           2309   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:628: InitADC();
-0883 120100    2310            lcall   _InitADC
-0886           2311   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:630: printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
-0886 7490      2312            mov     a,#__str_9
-0888 C0E0      2313            push    acc
-088A 74D5      2314            mov     a,#(__str_9 >> 8)
-088C C0E0      2315            push    acc
-088E 7480      2316            mov     a,#0x80
-0890 C0E0      2317            push    acc
-0892 120100    2318            lcall   _printf
-0895 1581      2319            dec     sp
-0897 1581      2320            dec     sp
-0899 1581      2321            dec     sp
-089B           2322   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:632: "Check pins P2.2 and P2.1 with the oscilloscope.\r\n");
-089B 74D0      2323            mov     a,#__str_10
-089D C0E0      2324            push    acc
-089F 74D5      2325            mov     a,#(__str_10 >> 8)
-08A1 C0E0      2326            push    acc
-08A3 7480      2327            mov     a,#0x80
-08A5 C0E0      2328            push    acc
-08A7 120100    2329            lcall   _printf
-08AA 1581      2330            dec     sp
-08AC 1581      2331            dec     sp
-08AE 1581      2332            dec     sp
-08B0           2333   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:634: printf("\n\r");
-08B0 7410      2334            mov     a,#__str_11
-08B2 C0E0      2335            push    acc
-08B4 74D6      2336            mov     a,#(__str_11 >> 8)
-08B6 C0E0      2337            push    acc
-08B8 7480      2338            mov     a,#0x80
-08BA C0E0      2339            push    acc
-08BC 120100    2340            lcall   _printf
-08BF 1581      2341            dec     sp
-08C1 1581      2342            dec     sp
-08C3 1581      2343            dec     sp
-08C5           2344   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:638: while (1)
-08C5           2345   L027026?:
-08C5           2346   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:640: mode_toggle = checkMode();
-08C5 120100    2347            lcall   _checkMode
-08C8 AA82      2348            mov     r2,dpl
-08CA AB83      2349            mov     r3,dph
-08CC           2350   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:643: if(mode_toggle == 0){
-08CC EA        2351            mov     a,r2
-08CD 4B        2352            orl     a,r3
-08CE 6001      2353            jz      L027050?
-08D0 020100    2354            ljmp    L027023?
-08D3           2355   L027050?:
-08D3           2356   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:644: printf("auto \r\n");
-08D3 7410      2357            mov     a,#__str_12
-08D5 C0E0      2358            push    acc
-08D7 74D7      2359            mov     a,#(__str_12 >> 8)
-08D9 C0E0      2360            push    acc
-08DB 7480      2361            mov     a,#0x80
-08DD C0E0      2362            push    acc
-08DF 120100    2363            lcall   _printf
-08E2 1581      2364            dec     sp
-08E4 1581      2365            dec     sp
-08E6 1581      2366            dec     sp
-08E8           2367   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:646: TL0=0; 
-08E8 758A00    2368            mov     _TL0,#0x00
-08EB           2369   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:647: TH0=0;
-08EB 758C00    2370            mov     _TH0,#0x00
-08EE           2371   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:648: TF0=0;
-08EE C28D      2372            clr     _TF0
-08F0           2373   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:650: while(P2_1!=0); // Wait for the signal to be zero
-08F0           2374   L027001?:
-08F0 20A150    2375            jb      _P2_1,L027001?
-08F3           2376   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:651: while(P2_1!=1); // Wait for the signal to be one
-08F3           2377   L027004?:
-08F3 30A190    2378            jnb     _P2_1,L027004?
-08F6           2379   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:652: TR0=1; // Start the timer
-08F6 D28C      2380            setb    _TR0
-08F8           2381   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:653: while(P2_1!=0) // Wait for the signal to be zero
-08F8 7C00      2382            mov     r4,#0x00
-08FA 7D00      2383            mov     r5,#0x00
-08FC           2384   L027009?:
-08FC 30A110    2385            jnb     _P2_1,L027011?
-08FF           2386   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:655: if(TF0==1) // Did the 16-bit timer overflow?
-08FF           2387   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:657: TF0=0;
-08FF 108D50    2388            jbc     _TF0,L027054?
-0902 8001      2389            sjmp    L027009?
-0904           2390   L027054?:
-0904           2391   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:658: overflow_count++;
-0904 0C        2392            inc     r4
-0905 BC00D0    2393            cjne    r4,#0x00,L027009?
-0908 0D        2394            inc     r5
-0909 8001      2395            sjmp    L027009?
-090B           2396   L027011?:
-090B           2397   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:669: TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
-090B C28C      2398            clr     _TR0
-090D           2399   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:670: period=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
-090D 8C82      2400            mov     dpl,r4
-090F 8D83      2401            mov     dph,r5
-0911 120100    2402            lcall   ___sint2fs
-0914 AC82      2403            mov     r4,dpl
-0916 AD83      2404            mov     r5,dph
-0918 AEF0      2405            mov     r6,b
-091A FF        2406            mov     r7,a
-091B C004      2407            push    ar4
-091D C005      2408            push    ar5
-091F C006      2409            push    ar6
-0921 C007      2410            push    ar7
-0923 900000    2411            mov     dptr,#0x0000
-0926 75F080    2412            mov     b,#0x80
-0929 7447      2413            mov     a,#0x47
-092B 120100    2414            lcall   ___fsmul
-092E 858268    2415            mov     _main_sloc0_1_0,dpl
-0931 858369    2416            mov     (_main_sloc0_1_0 + 1),dph
-0934 85F06A    2417            mov     (_main_sloc0_1_0 + 2),b
-0937 F56B      2418            mov     (_main_sloc0_1_0 + 3),a
-0939 E581      2419            mov     a,sp
-093B 24FC      2420            add     a,#0xfc
-093D F581      2421            mov     sp,a
-093F 858C82    2422            mov     dpl,_TH0
-0942 120100    2423            lcall   ___uchar2fs
-0945 AC82      2424            mov     r4,dpl
-0947 AD83      2425            mov     r5,dph
-0949 AEF0      2426            mov     r6,b
-094B FF        2427            mov     r7,a
-094C C004      2428            push    ar4
-094E C005      2429            push    ar5
-0950 C006      2430            push    ar6
-0952 C007      2431            push    ar7
-0954 900000    2432            mov     dptr,#0x0000
-0957 75F080    2433            mov     b,#0x80
-095A 7443      2434            mov     a,#0x43
-095C 120100    2435            lcall   ___fsmul
-095F AC82      2436            mov     r4,dpl
-0961 AD83      2437            mov     r5,dph
-0963 AEF0      2438            mov     r6,b
-0965 FF        2439            mov     r7,a
-0966 E581      2440            mov     a,sp
-0968 24FC      2441            add     a,#0xfc
-096A F581      2442            mov     sp,a
-096C C004      2443            push    ar4
-096E C005      2444            push    ar5
-0970 C006      2445            push    ar6
-0972 C007      2446            push    ar7
-0974 856882    2447            mov     dpl,_main_sloc0_1_0
-0977 856983    2448            mov     dph,(_main_sloc0_1_0 + 1)
-097A 856AF0    2449            mov     b,(_main_sloc0_1_0 + 2)
-097D E56B      2450            mov     a,(_main_sloc0_1_0 + 3)
-097F 120100    2451            lcall   ___fsadd
-0982 858268    2452            mov     _main_sloc0_1_0,dpl
-0985 858369    2453            mov     (_main_sloc0_1_0 + 1),dph
-0988 85F06A    2454            mov     (_main_sloc0_1_0 + 2),b
-098B F56B      2455            mov     (_main_sloc0_1_0 + 3),a
-098D E581      2456            mov     a,sp
-098F 24FC      2457            add     a,#0xfc
-0991 F581      2458            mov     sp,a
-0993 AC8A      2459            mov     r4,_TL0
-0995 7D00      2460            mov     r5,#0x00
-0997 8C82      2461            mov     dpl,r4
-0999 8D83      2462            mov     dph,r5
-099B 120100    2463            lcall   ___sint2fs
-099E AC82      2464            mov     r4,dpl
-09A0 AD83      2465            mov     r5,dph
-09A2 AEF0      2466            mov     r6,b
-09A4 FF        2467            mov     r7,a
-09A5 C004      2468            push    ar4
-09A7 C005      2469            push    ar5
-09A9 C006      2470            push    ar6
-09AB C007      2471            push    ar7
-09AD 856882    2472            mov     dpl,_main_sloc0_1_0
-09B0 856983    2473            mov     dph,(_main_sloc0_1_0 + 1)
-09B3 856AF0    2474            mov     b,(_main_sloc0_1_0 + 2)
-09B6 E56B      2475            mov     a,(_main_sloc0_1_0 + 3)
-09B8 120100    2476            lcall   ___fsadd
-09BB AC82      2477            mov     r4,dpl
-09BD AD83      2478            mov     r5,dph
-09BF AEF0      2479            mov     r6,b
-09C1 FF        2480            mov     r7,a
-09C2 E581      2481            mov     a,sp
-09C4 24FC      2482            add     a,#0xfc
-09C6 F581      2483            mov     sp,a
-09C8 C004      2484            push    ar4
-09CA C005      2485            push    ar5
-09CC C006      2486            push    ar6
-09CE C007      2487            push    ar7
-09D0 90F4FC    2488            mov     dptr,#0xF4FC
-09D3 75F032    2489            mov     b,#0x32
-09D6 7434      2490            mov     a,#0x34
-09D8 120100    2491            lcall   ___fsmul
-09DB AC82      2492            mov     r4,dpl
-09DD AD83      2493            mov     r5,dph
-09DF AEF0      2494            mov     r6,b
-09E1 FF        2495            mov     r7,a
-09E2 E581      2496            mov     a,sp
-09E4 24FC      2497            add     a,#0xfc
-09E6 F581      2498            mov     sp,a
-09E8           2499   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:672: printf( "\rT=%f ms   \n ", period*1000.0);
-09E8 C004      2500            push    ar4
-09EA C005      2501            push    ar5
-09EC C006      2502            push    ar6
-09EE C007      2503            push    ar7
-09F0 900000    2504            mov     dptr,#0x0000
-09F3 75F07A    2505            mov     b,#0x7A
-09F6 7444      2506            mov     a,#0x44
-09F8 120100    2507            lcall   ___fsmul
-09FB AC82      2508            mov     r4,dpl
-09FD AD83      2509            mov     r5,dph
-09FF AEF0      2510            mov     r6,b
-0A01 FF        2511            mov     r7,a
-0A02 E581      2512            mov     a,sp
-0A04 24FC      2513            add     a,#0xfc
-0A06 F581      2514            mov     sp,a
-0A08 C004      2515            push    ar4
-0A0A C005      2516            push    ar5
-0A0C C006      2517            push    ar6
-0A0E C007      2518            push    ar7
-0A10 C004      2519            push    ar4
-0A12 C005      2520            push    ar5
-0A14 C006      2521            push    ar6
-0A16 C007      2522            push    ar7
-0A18 7490      2523            mov     a,#__str_13
-0A1A C0E0      2524            push    acc
-0A1C 74D8      2525            mov     a,#(__str_13 >> 8)
-0A1E C0E0      2526            push    acc
-0A20 7480      2527            mov     a,#0x80
-0A22 C0E0      2528            push    acc
-0A24 120100    2529            lcall   _printf
-0A27 E581      2530            mov     a,sp
-0A29 24F9      2531            add     a,#0xf9
-0A2B F581      2532            mov     sp,a
-0A2D           2533   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:673: waitms(50);
-0A2D 900032    2534            mov     dptr,#0x0032
-0A30 120100    2535            lcall   _waitms
-0A33 D007      2536            pop     ar7
-0A35 D006      2537            pop     ar6
-0A37 D005      2538            pop     ar5
-0A39 D004      2539            pop     ar4
-0A3B           2540   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:674: detectobstacle(period*1000.0);
-0A3B 8C82      2541            mov     dpl,r4
-0A3D 8D83      2542            mov     dph,r5
-0A3F 8EF0      2543            mov     b,r6
-0A41 EF        2544            mov     a,r7
-0A42 C004      2545            push    ar4
-0A44 C005      2546            push    ar5
-0A46 C006      2547            push    ar6
-0A48 C007      2548            push    ar7
-0A4A 120100    2549            lcall   _detectobstacle
-0A4D D007      2550            pop     ar7
-0A4F D006      2551            pop     ar6
-0A51 D005      2552            pop     ar5
-0A53 D004      2553            pop     ar4
-0A55           2554   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:675: laserPattern(period*1000);
-0A55 8C82      2555            mov     dpl,r4
-0A57 8D83      2556            mov     dph,r5
-0A59 8EF0      2557            mov     b,r6
-0A5B EF        2558            mov     a,r7
-0A5C 120100    2559            lcall   _laserPattern
-0A5F           2560   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:684: waitms(50);        
-0A5F 900032    2561            mov     dptr,#0x0032
-0A62 120100    2562            lcall   _waitms
-0A65 020100    2563            ljmp    L027026?
-0A68           2564   L027023?:
-0A68           2565   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:688: else if(mode_toggle == 1){
-0A68 BA01D0    2566            cjne    r2,#0x01,L027055?
-0A6B BB00D0    2567            cjne    r3,#0x00,L027055?
-0A6E 8001      2568            sjmp    L027056?
-0A70           2569   L027055?:
-0A70 020100    2570            ljmp    L027020?
-0A73           2571   L027056?:
-0A73           2572   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:689: recieveData();     //keep reading data continously 
-0A73 120100    2573            lcall   _recieveData
-0A76           2574   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:690: printf("Command: ");
-0A76 7490      2575            mov     a,#__str_14
-0A78 C0E0      2576            push    acc
-0A7A 74D9      2577            mov     a,#(__str_14 >> 8)
-0A7C C0E0      2578            push    acc
-0A7E 7480      2579            mov     a,#0x80
-0A80 C0E0      2580            push    acc
-0A82 120100    2581            lcall   _printf
-0A85 1581      2582            dec     sp
-0A87 1581      2583            dec     sp
-0A89 1581      2584            dec     sp
-0A8B           2585   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:691: for(i=0; i<4; i++)
-0A8B 7C00      2586            mov     r4,#0x00
-0A8D 7D00      2587            mov     r5,#0x00
-0A8F           2588   L027028?:
-0A8F C3        2589            clr     c
-0A90 EC        2590            mov     a,r4
-0A91 9404      2591            subb    a,#0x04
-0A93 ED        2592            mov     a,r5
-0A94 6480      2593            xrl     a,#0x80
-0A96 9480      2594            subb    a,#0x80
-0A98 5001      2595            jnc     L027031?
-0A9A           2596   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:692: printf("%d\t", command[i]);
-0A9A 8C06      2597            mov     ar6,r4
-0A9C ED        2598            mov     a,r5
-0A9D CE        2599            xch     a,r6
-0A9E 25E0      2600            add     a,acc
-0AA0 CE        2601            xch     a,r6
-0AA1 33        2602            rlc     a
-0AA2 EE        2603            mov     a,r6
-0AA3 2488      2604            add     a,#_command
-0AA5 F8        2605            mov     r0,a
-0AA6 8606      2606            mov     ar6,@r0
-0AA8 08        2607            inc     r0
-0AA9 8607      2608            mov     ar7,@r0
-0AAB 18        2609            dec     r0
-0AAC C004      2610            push    ar4
-0AAE C005      2611            push    ar5
-0AB0 C006      2612            push    ar6
-0AB2 C007      2613            push    ar7
-0AB4 7450      2614            mov     a,#__str_15
-0AB6 C0E0      2615            push    acc
-0AB8 74DA      2616            mov     a,#(__str_15 >> 8)
-0ABA C0E0      2617            push    acc
-0ABC 7480      2618            mov     a,#0x80
-0ABE C0E0      2619            push    acc
-0AC0 120100    2620            lcall   _printf
-0AC3 E581      2621            mov     a,sp
-0AC5 24FB      2622            add     a,#0xfb
-0AC7 F581      2623            mov     sp,a
-0AC9 D005      2624            pop     ar5
-0ACB D004      2625            pop     ar4
-0ACD           2626   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:691: for(i=0; i<4; i++)
-0ACD 0C        2627            inc     r4
-0ACE BC00D0    2628            cjne    r4,#0x00,L027028?
-0AD1 0D        2629            inc     r5
-0AD2 8001      2630            sjmp    L027028?
-0AD4           2631   L027031?:
-0AD4           2632   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:693: printf("\n\r");
-0AD4 7410      2633            mov     a,#__str_11
-0AD6 C0E0      2634            push    acc
-0AD8 74D6      2635            mov     a,#(__str_11 >> 8)
-0ADA C0E0      2636            push    acc
-0ADC 7480      2637            mov     a,#0x80
-0ADE C0E0      2638            push    acc
-0AE0 120100    2639            lcall   _printf
-0AE3 1581      2640            dec     sp
-0AE5 1581      2641            dec     sp
-0AE7 1581      2642            dec     sp
-0AE9           2643   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:694: command[0] = 0;
-0AE9 758800    2644            mov     _command,#0x00
-0AEC 758900    2645            mov     (_command + 1),#0x00
-0AEF           2646   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:695: command[1] = 0;
-0AEF 758A00    2647            mov     (_command + 0x0002),#0x00
-0AF2 758B00    2648            mov     ((_command + 0x0002) + 1),#0x00
-0AF5           2649   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:696: command[2] = 0;
-0AF5 758C00    2650            mov     (_command + 0x0004),#0x00
-0AF8 758D00    2651            mov     ((_command + 0x0004) + 1),#0x00
-0AFB           2652   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:697: command[3] = 0;
-0AFB 758E00    2653            mov     (_command + 0x0006),#0x00
-0AFE 758F00    2654            mov     ((_command + 0x0006) + 1),#0x00
-0B01 020100    2655            ljmp    L027026?
-0B04           2656   L027020?:
-0B04           2657   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:701: else if( mode_toggle == 3){
-0B04 BA0390    2658            cjne    r2,#0x03,L027059?
-0B07 BB0090    2659            cjne    r3,#0x00,L027059?
-0B0A 8001      2660            sjmp    L027060?
-0B0C           2661   L027059?:
-0B0C 020100    2662            ljmp    L027017?
-0B0F           2663   L027060?:
-0B0F           2664   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:702: pir_voltage = Volts_at_Pin(QFP32_MUX_P2_4);
-0B0F 758211    2665            mov     dpl,#0x11
-0B12 120100    2666            lcall   _Volts_at_Pin
-0B15 AA82      2667            mov     r2,dpl
-0B17 AB83      2668            mov     r3,dph
-0B19 ACF0      2669            mov     r4,b
-0B1B FD        2670            mov     r5,a
-0B1C           2671   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:703: if(pir_voltage >= 3.0 && pir_voltage <= 3.4)
-0B1C C002      2672            push    ar2
-0B1E C003      2673            push    ar3
-0B20 C004      2674            push    ar4
-0B22 C005      2675            push    ar5
-0B24 E4        2676            clr     a
-0B25 C0E0      2677            push    acc
-0B27 C0E0      2678            push    acc
-0B29 7440      2679            mov     a,#0x40
-0B2B C0E0      2680            push    acc
-0B2D C0E0      2681            push    acc
-0B2F 8A82      2682            mov     dpl,r2
-0B31 8B83      2683            mov     dph,r3
-0B33 8CF0      2684            mov     b,r4
-0B35 ED        2685            mov     a,r5
-0B36 120100    2686            lcall   ___fslt
-0B39 AE82      2687            mov     r6,dpl
-0B3B E581      2688            mov     a,sp
-0B3D 24FC      2689            add     a,#0xfc
-0B3F F581      2690            mov     sp,a
-0B41 D005      2691            pop     ar5
-0B43 D004      2692            pop     ar4
-0B45 D003      2693            pop     ar3
-0B47 D002      2694            pop     ar2
-0B49 EE        2695            mov     a,r6
-0B4A 7001      2696            jnz     L027013?
-0B4C C002      2697            push    ar2
-0B4E C003      2698            push    ar3
-0B50 C004      2699            push    ar4
-0B52 C005      2700            push    ar5
-0B54 749A      2701            mov     a,#0x9A
-0B56 C0E0      2702            push    acc
-0B58 7499      2703            mov     a,#0x99
-0B5A C0E0      2704            push    acc
-0B5C 7459      2705            mov     a,#0x59
-0B5E C0E0      2706            push    acc
-0B60 7440      2707            mov     a,#0x40
-0B62 C0E0      2708            push    acc
-0B64 8A82      2709            mov     dpl,r2
-0B66 8B83      2710            mov     dph,r3
-0B68 8CF0      2711            mov     b,r4
-0B6A ED        2712            mov     a,r5
-0B6B 120100    2713            lcall   ___fsgt
-0B6E AE82      2714            mov     r6,dpl
-0B70 E581      2715            mov     a,sp
-0B72 24FC      2716            add     a,#0xfc
-0B74 F581      2717            mov     sp,a
-0B76 D005      2718            pop     ar5
-0B78 D004      2719            pop     ar4
-0B7A D003      2720            pop     ar3
-0B7C D002      2721            pop     ar2
-0B7E EE        2722            mov     a,r6
-0B7F 7001      2723            jnz     L027013?
-0B81           2724   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:704: PWMStop();
-0B81 C002      2725            push    ar2
-0B83 C003      2726            push    ar3
-0B85 C004      2727            push    ar4
-0B87 C005      2728            push    ar5
-0B89 120100    2729            lcall   _PWMStop
-0B8C D005      2730            pop     ar5
-0B8E D004      2731            pop     ar4
-0B90 D003      2732            pop     ar3
-0B92 D002      2733            pop     ar2
-0B94 8001      2734            sjmp    L027014?
-0B96           2735   L027013?:
-0B96           2736   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:706: PWMforward();
-0B96 C002      2737            push    ar2
-0B98 C003      2738            push    ar3
-0B9A C004      2739            push    ar4
-0B9C C005      2740            push    ar5
-0B9E 120100    2741            lcall   _PWMforward
-0BA1 D005      2742            pop     ar5
-0BA3 D004      2743            pop     ar4
-0BA5 D003      2744            pop     ar3
-0BA7 D002      2745            pop     ar2
-0BA9           2746   L027014?:
-0BA9           2747   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:707: waitms(100);
-0BA9 900064    2748            mov     dptr,#0x0064
-0BAC C002      2749            push    ar2
-0BAE C003      2750            push    ar3
-0BB0 C004      2751            push    ar4
-0BB2 C005      2752            push    ar5
-0BB4 120100    2753            lcall   _waitms
-0BB7           2754   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:708: printf("pir_voltage: %f \r\n", pir_voltage);
-0BB7 74D0      2755            mov     a,#__str_16
-0BB9 C0E0      2756            push    acc
-0BBB 74DB      2757            mov     a,#(__str_16 >> 8)
-0BBD C0E0      2758            push    acc
-0BBF 7480      2759            mov     a,#0x80
-0BC1 C0E0      2760            push    acc
-0BC3 120100    2761            lcall   _printf
-0BC6 E581      2762            mov     a,sp
-0BC8 24F9      2763            add     a,#0xf9
-0BCA F581      2764            mov     sp,a
-0BCC 020100    2765            ljmp    L027026?
-0BCF           2766   L027017?:
-0BCF           2767   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon.c:712: printf("Do nothing\r\n");  
-0BCF 7410      2768            mov     a,#__str_17
-0BD1 C0E0      2769            push    acc
-0BD3 74DC      2770            mov     a,#(__str_17 >> 8)
-0BD5 C0E0      2771            push    acc
-0BD7 7480      2772            mov     a,#0x80
-0BD9 C0E0      2773            push    acc
-0BDB 120100    2774            lcall   _printf
-0BDE 1581      2775            dec     sp
-0BE0 1581      2776            dec     sp
-0BE2 1581      2777            dec     sp
-0BE4 020100    2778            ljmp    L027026?
-0BE7           2779            rseg R_CSEG
-0BE7           2780   
-0000           2781            rseg R_XINIT
-0000           2782   
-0000           2783            rseg R_CONST
-0000           2784   __str_0:
-0000 466F7277  2785            db 'Forward'
+0854           2276   ;mode_toggle               Allocated to registers r2 r3 
+0854           2277   ;sloc0                     Allocated with name '_main_sloc0_1_0'
+0854           2278   ;------------------------------------------------------------
+0854           2279   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:608: void main(void)
+0854           2280   ;        -----------------------------------------
+0854           2281   ;         function main
+0854           2282   ;        -----------------------------------------
+0854           2283   _main:
+0854           2284   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:623: TL0=0;
+0854 758A00    2285            mov     _TL0,#0x00
+0857           2286   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:624: TH0=0;
+0857 758C00    2287            mov     _TH0,#0x00
+085A           2288   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:625: TF0=0;         
+085A C28D      2289            clr     _TF0
+085C           2290   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:626: TIMER0_Init();
+085C 120100    2291            lcall   _TIMER0_Init
+085F           2292   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:628: InitPinADC(1, 6); // Configure P2.5 as analog input
+085F 755806    2293            mov     _InitPinADC_PARM_2,#0x06
+0862 758201    2294            mov     dpl,#0x01
+0865 120100    2295            lcall   _InitPinADC
+0868           2296   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:632: InitPinADC(2, 6); //Temp Sensor
+0868 755806    2297            mov     _InitPinADC_PARM_2,#0x06
+086B 758202    2298            mov     dpl,#0x02
+086E 120100    2299            lcall   _InitPinADC
+0871           2300   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:633: InitADC();
+0871 120100    2301            lcall   _InitADC
+0874           2302   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:635: printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
+0874 7490      2303            mov     a,#__str_9
+0876 C0E0      2304            push    acc
+0878 74D5      2305            mov     a,#(__str_9 >> 8)
+087A C0E0      2306            push    acc
+087C 7480      2307            mov     a,#0x80
+087E C0E0      2308            push    acc
+0880 120100    2309            lcall   _printf
+0883 1581      2310            dec     sp
+0885 1581      2311            dec     sp
+0887 1581      2312            dec     sp
+0889           2313   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:637: "Check pins P2.2 and P2.1 with the oscilloscope.\r\n");
+0889 74D0      2314            mov     a,#__str_10
+088B C0E0      2315            push    acc
+088D 74D5      2316            mov     a,#(__str_10 >> 8)
+088F C0E0      2317            push    acc
+0891 7480      2318            mov     a,#0x80
+0893 C0E0      2319            push    acc
+0895 120100    2320            lcall   _printf
+0898 1581      2321            dec     sp
+089A 1581      2322            dec     sp
+089C 1581      2323            dec     sp
+089E           2324   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:639: printf("\n\r");
+089E 7410      2325            mov     a,#__str_11
+08A0 C0E0      2326            push    acc
+08A2 74D6      2327            mov     a,#(__str_11 >> 8)
+08A4 C0E0      2328            push    acc
+08A6 7480      2329            mov     a,#0x80
+08A8 C0E0      2330            push    acc
+08AA 120100    2331            lcall   _printf
+08AD 1581      2332            dec     sp
+08AF 1581      2333            dec     sp
+08B1 1581      2334            dec     sp
+08B3           2335   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:643: while (1)
+08B3           2336   L027019?:
+08B3           2337   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:645: mode_toggle = checkMode();
+08B3 120100    2338            lcall   _checkMode
+08B6 AA82      2339            mov     r2,dpl
+08B8 AB83      2340            mov     r3,dph
+08BA           2341   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:648: if(mode_toggle == 0){
+08BA EA        2342            mov     a,r2
+08BB 4B        2343            orl     a,r3
+08BC 6001      2344            jz      L027040?
+08BE 020100    2345            ljmp    L027016?
+08C1           2346   L027040?:
+08C1           2347   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:649: printf("auto \r\n");
+08C1 7410      2348            mov     a,#__str_12
+08C3 C0E0      2349            push    acc
+08C5 74D7      2350            mov     a,#(__str_12 >> 8)
+08C7 C0E0      2351            push    acc
+08C9 7480      2352            mov     a,#0x80
+08CB C0E0      2353            push    acc
+08CD 120100    2354            lcall   _printf
+08D0 1581      2355            dec     sp
+08D2 1581      2356            dec     sp
+08D4 1581      2357            dec     sp
+08D6           2358   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:651: TL0=0; 
+08D6 758A00    2359            mov     _TL0,#0x00
+08D9           2360   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:652: TH0=0;
+08D9 758C00    2361            mov     _TH0,#0x00
+08DC           2362   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:653: TF0=0;
+08DC C28D      2363            clr     _TF0
+08DE           2364   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:655: while(P2_1!=0); // Wait for the signal to be zero
+08DE           2365   L027001?:
+08DE 20A150    2366            jb      _P2_1,L027001?
+08E1           2367   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:656: while(P2_1!=1); // Wait for the signal to be one
+08E1           2368   L027004?:
+08E1 30A190    2369            jnb     _P2_1,L027004?
+08E4           2370   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:657: TR0=1; // Start the timer
+08E4 D28C      2371            setb    _TR0
+08E6           2372   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:658: while(P2_1!=0) // Wait for the signal to be zero
+08E6 7C00      2373            mov     r4,#0x00
+08E8 7D00      2374            mov     r5,#0x00
+08EA           2375   L027009?:
+08EA 30A110    2376            jnb     _P2_1,L027011?
+08ED           2377   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:660: if(TF0==1) // Did the 16-bit timer overflow?
+08ED           2378   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:662: TF0=0;
+08ED 108D50    2379            jbc     _TF0,L027044?
+08F0 8001      2380            sjmp    L027009?
+08F2           2381   L027044?:
+08F2           2382   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:663: overflow_count++;
+08F2 0C        2383            inc     r4
+08F3 BC00D0    2384            cjne    r4,#0x00,L027009?
+08F6 0D        2385            inc     r5
+08F7 8001      2386            sjmp    L027009?
+08F9           2387   L027011?:
+08F9           2388   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:674: TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
+08F9 C28C      2389            clr     _TR0
+08FB           2390   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:675: period=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
+08FB 8C82      2391            mov     dpl,r4
+08FD 8D83      2392            mov     dph,r5
+08FF 120100    2393            lcall   ___sint2fs
+0902 AC82      2394            mov     r4,dpl
+0904 AD83      2395            mov     r5,dph
+0906 AEF0      2396            mov     r6,b
+0908 FF        2397            mov     r7,a
+0909 C004      2398            push    ar4
+090B C005      2399            push    ar5
+090D C006      2400            push    ar6
+090F C007      2401            push    ar7
+0911 900000    2402            mov     dptr,#0x0000
+0914 75F080    2403            mov     b,#0x80
+0917 7447      2404            mov     a,#0x47
+0919 120100    2405            lcall   ___fsmul
+091C 858270    2406            mov     _main_sloc0_1_0,dpl
+091F 858371    2407            mov     (_main_sloc0_1_0 + 1),dph
+0922 85F072    2408            mov     (_main_sloc0_1_0 + 2),b
+0925 F573      2409            mov     (_main_sloc0_1_0 + 3),a
+0927 E581      2410            mov     a,sp
+0929 24FC      2411            add     a,#0xfc
+092B F581      2412            mov     sp,a
+092D 858C82    2413            mov     dpl,_TH0
+0930 120100    2414            lcall   ___uchar2fs
+0933 AC82      2415            mov     r4,dpl
+0935 AD83      2416            mov     r5,dph
+0937 AEF0      2417            mov     r6,b
+0939 FF        2418            mov     r7,a
+093A C004      2419            push    ar4
+093C C005      2420            push    ar5
+093E C006      2421            push    ar6
+0940 C007      2422            push    ar7
+0942 900000    2423            mov     dptr,#0x0000
+0945 75F080    2424            mov     b,#0x80
+0948 7443      2425            mov     a,#0x43
+094A 120100    2426            lcall   ___fsmul
+094D AC82      2427            mov     r4,dpl
+094F AD83      2428            mov     r5,dph
+0951 AEF0      2429            mov     r6,b
+0953 FF        2430            mov     r7,a
+0954 E581      2431            mov     a,sp
+0956 24FC      2432            add     a,#0xfc
+0958 F581      2433            mov     sp,a
+095A C004      2434            push    ar4
+095C C005      2435            push    ar5
+095E C006      2436            push    ar6
+0960 C007      2437            push    ar7
+0962 857082    2438            mov     dpl,_main_sloc0_1_0
+0965 857183    2439            mov     dph,(_main_sloc0_1_0 + 1)
+0968 8572F0    2440            mov     b,(_main_sloc0_1_0 + 2)
+096B E573      2441            mov     a,(_main_sloc0_1_0 + 3)
+096D 120100    2442            lcall   ___fsadd
+0970 858270    2443            mov     _main_sloc0_1_0,dpl
+0973 858371    2444            mov     (_main_sloc0_1_0 + 1),dph
+0976 85F072    2445            mov     (_main_sloc0_1_0 + 2),b
+0979 F573      2446            mov     (_main_sloc0_1_0 + 3),a
+097B E581      2447            mov     a,sp
+097D 24FC      2448            add     a,#0xfc
+097F F581      2449            mov     sp,a
+0981 AC8A      2450            mov     r4,_TL0
+0983 7D00      2451            mov     r5,#0x00
+0985 8C82      2452            mov     dpl,r4
+0987 8D83      2453            mov     dph,r5
+0989 120100    2454            lcall   ___sint2fs
+098C AC82      2455            mov     r4,dpl
+098E AD83      2456            mov     r5,dph
+0990 AEF0      2457            mov     r6,b
+0992 FF        2458            mov     r7,a
+0993 C004      2459            push    ar4
+0995 C005      2460            push    ar5
+0997 C006      2461            push    ar6
+0999 C007      2462            push    ar7
+099B 857082    2463            mov     dpl,_main_sloc0_1_0
+099E 857183    2464            mov     dph,(_main_sloc0_1_0 + 1)
+09A1 8572F0    2465            mov     b,(_main_sloc0_1_0 + 2)
+09A4 E573      2466            mov     a,(_main_sloc0_1_0 + 3)
+09A6 120100    2467            lcall   ___fsadd
+09A9 AC82      2468            mov     r4,dpl
+09AB AD83      2469            mov     r5,dph
+09AD AEF0      2470            mov     r6,b
+09AF FF        2471            mov     r7,a
+09B0 E581      2472            mov     a,sp
+09B2 24FC      2473            add     a,#0xfc
+09B4 F581      2474            mov     sp,a
+09B6 C004      2475            push    ar4
+09B8 C005      2476            push    ar5
+09BA C006      2477            push    ar6
+09BC C007      2478            push    ar7
+09BE 90F4FC    2479            mov     dptr,#0xF4FC
+09C1 75F032    2480            mov     b,#0x32
+09C4 7434      2481            mov     a,#0x34
+09C6 120100    2482            lcall   ___fsmul
+09C9 AC82      2483            mov     r4,dpl
+09CB AD83      2484            mov     r5,dph
+09CD AEF0      2485            mov     r6,b
+09CF FF        2486            mov     r7,a
+09D0 E581      2487            mov     a,sp
+09D2 24FC      2488            add     a,#0xfc
+09D4 F581      2489            mov     sp,a
+09D6           2490   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:677: printf( "\rT=%f ms   \n ", period*1000.0);
+09D6 C004      2491            push    ar4
+09D8 C005      2492            push    ar5
+09DA C006      2493            push    ar6
+09DC C007      2494            push    ar7
+09DE 900000    2495            mov     dptr,#0x0000
+09E1 75F07A    2496            mov     b,#0x7A
+09E4 7444      2497            mov     a,#0x44
+09E6 120100    2498            lcall   ___fsmul
+09E9 AC82      2499            mov     r4,dpl
+09EB AD83      2500            mov     r5,dph
+09ED AEF0      2501            mov     r6,b
+09EF FF        2502            mov     r7,a
+09F0 E581      2503            mov     a,sp
+09F2 24FC      2504            add     a,#0xfc
+09F4 F581      2505            mov     sp,a
+09F6 C004      2506            push    ar4
+09F8 C005      2507            push    ar5
+09FA C006      2508            push    ar6
+09FC C007      2509            push    ar7
+09FE C004      2510            push    ar4
+0A00 C005      2511            push    ar5
+0A02 C006      2512            push    ar6
+0A04 C007      2513            push    ar7
+0A06 7490      2514            mov     a,#__str_13
+0A08 C0E0      2515            push    acc
+0A0A 74D8      2516            mov     a,#(__str_13 >> 8)
+0A0C C0E0      2517            push    acc
+0A0E 7480      2518            mov     a,#0x80
+0A10 C0E0      2519            push    acc
+0A12 120100    2520            lcall   _printf
+0A15 E581      2521            mov     a,sp
+0A17 24F9      2522            add     a,#0xf9
+0A19 F581      2523            mov     sp,a
+0A1B           2524   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:678: waitms(50);
+0A1B 900032    2525            mov     dptr,#0x0032
+0A1E 120100    2526            lcall   _waitms
+0A21 D007      2527            pop     ar7
+0A23 D006      2528            pop     ar6
+0A25 D005      2529            pop     ar5
+0A27 D004      2530            pop     ar4
+0A29           2531   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:679: detectobstacle(period*1000.0);
+0A29 8C82      2532            mov     dpl,r4
+0A2B 8D83      2533            mov     dph,r5
+0A2D 8EF0      2534            mov     b,r6
+0A2F EF        2535            mov     a,r7
+0A30 C004      2536            push    ar4
+0A32 C005      2537            push    ar5
+0A34 C006      2538            push    ar6
+0A36 C007      2539            push    ar7
+0A38 120100    2540            lcall   _detectobstacle
+0A3B D007      2541            pop     ar7
+0A3D D006      2542            pop     ar6
+0A3F D005      2543            pop     ar5
+0A41 D004      2544            pop     ar4
+0A43           2545   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:680: laserPattern(period*1000);
+0A43 8C82      2546            mov     dpl,r4
+0A45 8D83      2547            mov     dph,r5
+0A47 8EF0      2548            mov     b,r6
+0A49 EF        2549            mov     a,r7
+0A4A 120100    2550            lcall   _laserPattern
+0A4D           2551   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:689: waitms(50);    
+0A4D 900032    2552            mov     dptr,#0x0032
+0A50 120100    2553            lcall   _waitms
+0A53 020100    2554            ljmp    L027019?
+0A56           2555   L027016?:
+0A56           2556   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:693: else if(mode_toggle == 1){
+0A56 BA01D0    2557            cjne    r2,#0x01,L027045?
+0A59 BB00D0    2558            cjne    r3,#0x00,L027045?
+0A5C 8001      2559            sjmp    L027046?
+0A5E           2560   L027045?:
+0A5E 020100    2561            ljmp    L027013?
+0A61           2562   L027046?:
+0A61           2563   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:694: recieveData();         //keep reading data continously 
+0A61 120100    2564            lcall   _recieveData
+0A64           2565   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:695: printf("Command: ");
+0A64 7490      2566            mov     a,#__str_14
+0A66 C0E0      2567            push    acc
+0A68 74D9      2568            mov     a,#(__str_14 >> 8)
+0A6A C0E0      2569            push    acc
+0A6C 7480      2570            mov     a,#0x80
+0A6E C0E0      2571            push    acc
+0A70 120100    2572            lcall   _printf
+0A73 1581      2573            dec     sp
+0A75 1581      2574            dec     sp
+0A77 1581      2575            dec     sp
+0A79           2576   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:696: for(i=0; i<4; i++)
+0A79 7A00      2577            mov     r2,#0x00
+0A7B 7B00      2578            mov     r3,#0x00
+0A7D           2579   L027021?:
+0A7D C3        2580            clr     c
+0A7E EA        2581            mov     a,r2
+0A7F 9404      2582            subb    a,#0x04
+0A81 EB        2583            mov     a,r3
+0A82 6480      2584            xrl     a,#0x80
+0A84 9480      2585            subb    a,#0x80
+0A86 5001      2586            jnc     L027024?
+0A88           2587   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:697: printf("%d\t", command[i]);
+0A88 8A04      2588            mov     ar4,r2
+0A8A EB        2589            mov     a,r3
+0A8B CC        2590            xch     a,r4
+0A8C 25E0      2591            add     a,acc
+0A8E CC        2592            xch     a,r4
+0A8F 33        2593            rlc     a
+0A90 EC        2594            mov     a,r4
+0A91 2488      2595            add     a,#_command
+0A93 F8        2596            mov     r0,a
+0A94 8604      2597            mov     ar4,@r0
+0A96 08        2598            inc     r0
+0A97 8605      2599            mov     ar5,@r0
+0A99 18        2600            dec     r0
+0A9A C002      2601            push    ar2
+0A9C C003      2602            push    ar3
+0A9E C004      2603            push    ar4
+0AA0 C005      2604            push    ar5
+0AA2 7450      2605            mov     a,#__str_15
+0AA4 C0E0      2606            push    acc
+0AA6 74DA      2607            mov     a,#(__str_15 >> 8)
+0AA8 C0E0      2608            push    acc
+0AAA 7480      2609            mov     a,#0x80
+0AAC C0E0      2610            push    acc
+0AAE 120100    2611            lcall   _printf
+0AB1 E581      2612            mov     a,sp
+0AB3 24FB      2613            add     a,#0xfb
+0AB5 F581      2614            mov     sp,a
+0AB7 D003      2615            pop     ar3
+0AB9 D002      2616            pop     ar2
+0ABB           2617   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:696: for(i=0; i<4; i++)
+0ABB 0A        2618            inc     r2
+0ABC BA00D0    2619            cjne    r2,#0x00,L027021?
+0ABF 0B        2620            inc     r3
+0AC0 8001      2621            sjmp    L027021?
+0AC2           2622   L027024?:
+0AC2           2623   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:698: printf("\n\r");
+0AC2 7410      2624            mov     a,#__str_11
+0AC4 C0E0      2625            push    acc
+0AC6 74D6      2626            mov     a,#(__str_11 >> 8)
+0AC8 C0E0      2627            push    acc
+0ACA 7480      2628            mov     a,#0x80
+0ACC C0E0      2629            push    acc
+0ACE 120100    2630            lcall   _printf
+0AD1 1581      2631            dec     sp
+0AD3 1581      2632            dec     sp
+0AD5 1581      2633            dec     sp
+0AD7           2634   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:699: command[0] = 0;
+0AD7 758800    2635            mov     _command,#0x00
+0ADA 758900    2636            mov     (_command + 1),#0x00
+0ADD           2637   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:700: command[1] = 0;
+0ADD 758A00    2638            mov     (_command + 0x0002),#0x00
+0AE0 758B00    2639            mov     ((_command + 0x0002) + 1),#0x00
+0AE3           2640   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:701: command[2] = 0;
+0AE3 758C00    2641            mov     (_command + 0x0004),#0x00
+0AE6 758D00    2642            mov     ((_command + 0x0004) + 1),#0x00
+0AE9           2643   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:702: command[3] = 0;
+0AE9 758E00    2644            mov     (_command + 0x0006),#0x00
+0AEC 758F00    2645            mov     ((_command + 0x0006) + 1),#0x00
+0AEF 020100    2646            ljmp    L027019?
+0AF2           2647   L027013?:
+0AF2           2648   ;        C:\Users\allisony\Documents\ElecRobot\idkwhatsgoingon_new.c:719: printf("Do nothing\r\n");      
+0AF2 7490      2649            mov     a,#__str_16
+0AF4 C0E0      2650            push    acc
+0AF6 74DA      2651            mov     a,#(__str_16 >> 8)
+0AF8 C0E0      2652            push    acc
+0AFA 7480      2653            mov     a,#0x80
+0AFC C0E0      2654            push    acc
+0AFE 120100    2655            lcall   _printf
+0B01 1581      2656            dec     sp
+0B03 1581      2657            dec     sp
+0B05 1581      2658            dec     sp
+0B07 020100    2659            ljmp    L027019?
+0B0A           2660            rseg R_CSEG
+0B0A           2661   
+0000           2662            rseg R_XINIT
+0000           2663   
+0000           2664            rseg R_CONST
+0000           2665   __str_0:
+0000 466F7277  2666            db 'Forward'
      617264
-0007 0A        2786            db 0x0A
-0008 0D        2787            db 0x0D
-0009 00        2788            db 0x00
-000A           2789   __str_1:
-000A 4261636B  2790            db 'Backward'
+0007 0A        2667            db 0x0A
+0008 0D        2668            db 0x0D
+0009 00        2669            db 0x00
+000A           2670   __str_1:
+000A 4261636B  2671            db 'Backward'
      77617264
-0012 0A        2791            db 0x0A
-0013 0D        2792            db 0x0D
-0014 00        2793            db 0x00
-0015           2794   __str_2:
-0015 4C656674  2795            db 'Left'
-0019 0A        2796            db 0x0A
-001A 0D        2797            db 0x0D
-001B 00        2798            db 0x00
-001C           2799   __str_3:
-001C 52696768  2800            db 'Right'
+0012 0A        2672            db 0x0A
+0013 0D        2673            db 0x0D
+0014 00        2674            db 0x00
+0015           2675   __str_2:
+0015 4C656674  2676            db 'Left'
+0019 0A        2677            db 0x0A
+001A 0D        2678            db 0x0D
+001B 00        2679            db 0x00
+001C           2680   __str_3:
+001C 52696768  2681            db 'Right'
      74
-0021 0A        2801            db 0x0A
-0022 0D        2802            db 0x0D
-0023 00        2803            db 0x00
-0024           2804   __str_4:
-0024 53746F70  2805            db 'Stop'
-0028 0A        2806            db 0x0A
-0029 0D        2807            db 0x0D
-002A 00        2808            db 0x00
-002B           2809   __str_5:
-002B 2566      2810            db '%f'
-002D 0A        2811            db 0x0A
-002E 0D        2812            db 0x0D
-002F 00        2813            db 0x00
-0030           2814   __str_6:
-0030 0A        2815            db 0x0A
-0031 72656164  2816            db 'read 1:  at pin 2.3: %f'
+0021 0A        2682            db 0x0A
+0022 0D        2683            db 0x0D
+0023 00        2684            db 0x00
+0024           2685   __str_4:
+0024 53746F70  2686            db 'Stop'
+0028 0A        2687            db 0x0A
+0029 0D        2688            db 0x0D
+002A 00        2689            db 0x00
+002B           2690   __str_5:
+002B 2566      2691            db '%f'
+002D 0A        2692            db 0x0A
+002E 0D        2693            db 0x0D
+002F 00        2694            db 0x00
+0030           2695   __str_6:
+0030 0A        2696            db 0x0A
+0031 72656164  2697            db 'read 1:  at pin 2.3: %f'
      20313A20
      20617420
      70696E20
      322E333A
      202566
-0048 0D        2817            db 0x0D
-0049 00        2818            db 0x00
-004A           2819   __str_7:
-004A 5475726E  2820            db 'Turn right '
+0048 0D        2698            db 0x0D
+0049 00        2699            db 0x00
+004A           2700   __str_7:
+004A 5475726E  2701            db 'Turn right '
      20726967
      687420
-0055 0D        2821            db 0x0D
-0056 0A        2822            db 0x0A
-0057 00        2823            db 0x00
-0058           2824   __str_8:
-0058 476F2053  2825            db 'Go Straight '
+0055 0D        2702            db 0x0D
+0056 0A        2703            db 0x0A
+0057 00        2704            db 0x00
+0058           2705   __str_8:
+0058 476F2053  2706            db 'Go Straight '
      74726169
      67687420
-0064 0D        2826            db 0x0D
-0065 0A        2827            db 0x0A
-0066 00        2828            db 0x00
-0067           2829   __str_9:
-0067 1B        2830            db 0x1B
-0068 5B324A    2831            db '[2J'
-006B 00        2832            db 0x00
-006C           2833   __str_10:
-006C 53717561  2834            db 'Square wave generator for the EFM8LB1.'
+0064 0D        2707            db 0x0D
+0065 0A        2708            db 0x0A
+0066 00        2709            db 0x00
+0067           2710   __str_9:
+0067 1B        2711            db 0x1B
+0068 5B324A    2712            db '[2J'
+006B 00        2713            db 0x00
+006C           2714   __str_10:
+006C 53717561  2715            db 'Square wave generator for the EFM8LB1.'
      72652077
      61766520
      67656E65
@@ -2853,66 +2734,58 @@
      65204546
      4D384C42
      312E
-0092 0D        2835            db 0x0D
-0093 0A        2836            db 0x0A
-0094 43686563  2837            db 'Check pins P2.2 and '
+0092 0D        2716            db 0x0D
+0093 0A        2717            db 0x0A
+0094 43686563  2718            db 'Check pins P2.2 and '
      6B207069
      6E732050
      322E3220
      616E6420
-00A8 50322E31  2838            db 'P2.1 with the oscilloscope.'
+00A8 50322E31  2719            db 'P2.1 with the oscilloscope.'
      20776974
      68207468
      65206F73
      63696C6C
      6F73636F
      70652E
-00C3 0D        2839            db 0x0D
-00C4 0A        2840            db 0x0A
-00C5 00        2841            db 0x00
-00C6           2842   __str_11:
-00C6 0A        2843            db 0x0A
-00C7 0D        2844            db 0x0D
-00C8 00        2845            db 0x00
-00C9           2846   __str_12:
-00C9 6175746F  2847            db 'auto '
+00C3 0D        2720            db 0x0D
+00C4 0A        2721            db 0x0A
+00C5 00        2722            db 0x00
+00C6           2723   __str_11:
+00C6 0A        2724            db 0x0A
+00C7 0D        2725            db 0x0D
+00C8 00        2726            db 0x00
+00C9           2727   __str_12:
+00C9 6175746F  2728            db 'auto '
      20
-00CE 0D        2848            db 0x0D
-00CF 0A        2849            db 0x0A
-00D0 00        2850            db 0x00
-00D1           2851   __str_13:
-00D1 0D        2852            db 0x0D
-00D2 543D2566  2853            db 'T=%f ms   '
+00CE 0D        2729            db 0x0D
+00CF 0A        2730            db 0x0A
+00D0 00        2731            db 0x00
+00D1           2732   __str_13:
+00D1 0D        2733            db 0x0D
+00D2 543D2566  2734            db 'T=%f ms   '
      206D7320
      2020
-00DC 0A        2854            db 0x0A
-00DD 20        2855            db ' '
-00DE 00        2856            db 0x00
-00DF           2857   __str_14:
-00DF 436F6D6D  2858            db 'Command: '
+00DC 0A        2735            db 0x0A
+00DD 20        2736            db ' '
+00DE 00        2737            db 0x00
+00DF           2738   __str_14:
+00DF 436F6D6D  2739            db 'Command: '
      616E643A
      20
-00E8 00        2859            db 0x00
-00E9           2860   __str_15:
-00E9 2564      2861            db '%d'
-00EB 09        2862            db 0x09
-00EC 00        2863            db 0x00
-00ED           2864   __str_16:
-00ED 7069725F  2865            db 'pir_voltage: %f '
-     766F6C74
-     6167653A
-     20256620
-00FD 0D        2866            db 0x0D
-00FE 0A        2867            db 0x0A
-00FF 00        2868            db 0x00
-0100           2869   __str_17:
-0100 446F206E  2870            db 'Do nothing'
+00E8 00        2740            db 0x00
+00E9           2741   __str_15:
+00E9 2564      2742            db '%d'
+00EB 09        2743            db 0x09
+00EC 00        2744            db 0x00
+00ED           2745   __str_16:
+00ED 446F206E  2746            db 'Do nothing'
      6F746869
      6E67
-010A 0D        2871            db 0x0D
-010B 0A        2872            db 0x0A
-010C 00        2873            db 0x00
-010D           2874   
-002E           2875            CSEG
-002E           2876   
-002E           2877   end
+00F7 0D        2747            db 0x0D
+00F8 0A        2748            db 0x0A
+00F9 00        2749            db 0x00
+00FA           2750   
+002E           2751            CSEG
+002E           2752   
+002E           2753   end
