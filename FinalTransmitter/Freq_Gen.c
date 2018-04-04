@@ -244,7 +244,7 @@ void main (void)
 	{	rx_size=1;
         if( rx_size > 0)
         { 
-		    newF=21050;
+		    newF=21030;
 			    reload=(SYSCLK/(newF*2L))-1;
 			    SerialTransmit("\r\nFrequency set to: ");
 		        PrintNumber(SYSCLK/((reload+1)*2L), 10, 1);
